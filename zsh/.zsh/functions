@@ -1,0 +1,15 @@
+fpath=(~/.zsh/function $fpath)
+
+mkd(){ mkdir "$1" && cd "$1"; }
+rmd(){ local P="`pwd`"; cd .. && rmdir "$P" || cd "$P"; }
+
+dot() {
+	if [[ $LBUFFER = *.. ]]; then
+		LBUFFER+=/..
+	else
+		LBUFFER+=.
+	fi
+}
+
+# exec 2>>(while read line; do
+#   print '\e[91m'${(q)line}'\e[0m' > /dev/tty; print -n $'\0'; done &)

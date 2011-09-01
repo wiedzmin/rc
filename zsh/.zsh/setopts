@@ -1,0 +1,83 @@
+setopt menucomplete
+setopt autocd
+setopt NO_BEEP
+setopt CORRECT_ALL
+setopt inc_append_history
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_NO_STORE
+setopt BRACECCL
+setopt extended_glob
+#setopt prompt_subst
+
+#setopt histexpiredupsfirst histfindnodups
+#setopt histignoredups histnostore histverify histignorespace
+#setopt HIST_IGNORE_ALL_DUPS
+# setopt prompt_subst
+#setopt SHARE_HISTORY
+# setopt NO_BEEP #never ever beep ever
+# setopt AUTO_CD #"running" `/etc` actually does a `cd /etc`
+# setopt CORRECT #correct mistakes
+# setopt AUTO_LIST
+# setopt COMPLETE_IN_WORD #allow tab completion in the middle of a word
+# setopt ALWAYS_TO_END #tab completion moves to end of word
+# setopt listtypes
+# setopt interactivecomments # %1 killed. will show up exactly when it is killed.
+# unsetopt flowcontrol
+# setopt APPEND_HISTORY
+#setopt INC_APPEND_HISTORY
+#setopt SHARE_HISTORY
+# setopt NO_BEEP
+
+# setopt  HIST_REDUCE_BLANKS
+
+# setopt autocd # AutoCD
+# setopt extendedglob # Extended opts
+# setopt extended_glob
+# setopt brace_ccl # Expands {abc}file to afile bfile cfile, etc.
+# setopt equals # Searches =name in PATH
+# setopt glob_dots # Dont require a leading dot for matching "hidden" files
+# setopt multios # Enable multiple redirections
+# setopt notify # Report status of bg jobs immediately
+# setopt check_jobs # Report status of bg jobs if exiting
+
+# Опции истории команд
+
+## Дополнение файла истрии
+# setopt  APPEND_HISTORY
+
+## Игнopupoвaть вce пoвтopeнuя команд
+# setopt  HIST_IGNORE_ALL_DUPS
+
+## Игнopupo лишние пpoбeлы
+# setopt  HIST_IGNORE_SPACE
+
+## Удалять из файл истории пустые строки
+# setopt  HIST_REDUCE_BLANKS
+
+# Установка-снятие опций шелла
+# setopt   notify globdots correct pushdtohome cdablevars autolist
+# setopt   correctall autocd recexact longlistjobs
+# setopt   autoresume histignoredups pushdsilent noclobber
+# setopt   autopushd pushdminus extendedglob rcquotes mailwarning
+# unsetopt bgnice autoparamslash
+
+## Отключение звукового сигнала
+## при ошибках
+# setopt  No_Beep
+
+## Нe cчuтaть Control+C зa выxog uз oбoлoчku
+# setopt  IGNORE_EOF
+
+# setopt autopushd pushdminus pushdsilent pushdtohome
+# setopt autocd
+# setopt cdablevars
+# setopt ignoreeof
+# setopt interactivecomments
+# setopt nobanghist
+# setopt noclobber
+# setopt HIST_REDUCE_BLANKS
+# setopt HIST_IGNORE_SPACE
+# setopt SH_WORD_SPLIT
+# setopt nohup

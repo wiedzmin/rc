@@ -1,0 +1,98 @@
+alias mc="nocorrect mc"
+alias nc="nocorrect nc"
+alias telnet="nocorrect telnet"
+alias wine="nocorrect wine"
+
+alias dud="(setopt globdots;du -ks * | sort -nr | sed -e 's/^\([0-9]\{1,\}\)[0-9]\{6\}[^0-9]/\1G\t/;t;s/^\([0-9]\{1,\}\)[0-9]\{3\}[^0-9]/\1M\t/;t;d')"
+
+alias \$=''
+
+alias -s conf=vim
+alias -s cf=vim
+alias -s pdf=okular
+alias -s djvu=okular
+alias -s py='env python'
+alias -s php='env php'
+alias -s doc=soffice
+
+alias -g ERR='2>>( sed -ue "s/.*/$fg_bold[red]&$reset_color/" 1>&2 )'
+alias -g X='| xargs'
+alias -g L='| less' 
+alias -g H='| head'
+alias -g T='| tail'
+
+alias -g GS='git status'
+alias -g GD='git diff'
+alias -g GDC='git diff --cached'
+alias -g GAP='git add . --patch'
+alias -g GC='git commit'
+
+alias -g PU='sudo vim /etc/portage/package.use'
+alias -g PM='sudo vim /etc/portage/package.mask'
+alias -g EU='equery uses'
+alias -g GL='genlop -l | grep'
+alias -g GLC='genlop -c'
+
+alias -g untar='tar xvvf'
+
+
+#MRU dirs
+hash -d xmonad-tuning=/mnt/work/projects/tuning/xmonad
+
+# if [ -f /usr/bin/grc ]; then
+#     alias ping="grc --colour=auto ping"
+#     alias traceroute="grc --colour=auto traceroute"
+#     alias make="grc --colour=auto make"
+#     alias diff="grc --colour=auto diff"
+# #    alias cvs="grc --colour=auto cvs"
+#     alias netstat="grc --colour=auto netstat"
+#     alias logc="grc cat"
+#     alias logt="grc tail"
+#     alias logh="grc head"
+# fi
+
+# alias ls='ls --color=auto'
+alias ls='ls -F --color=auto'
+alias ll='ls -l'
+alias la='ls -A'
+alias li='ls -ial'
+alias lsd='ls -ld *(-/DN)'
+alias lsa='ls -ld .*'
+
+# alias zkbd='zsh /usr/share/zsh/4.3.5/functions/Misc/zkbd'
+# Установка alias'ов
+## alias'ы для команд, не требующих коррекции, но требующих подтверждения
+# alias mv='nocorrect mv -i'      # переименование-перемещение c пogтвepжgeнueм
+# alias cp='nocorrect cp -iR'     # рекурсивное копирование с подтверждением
+# alias rm='nocorrect rm -i'      # удаление с подтверждением
+# alias rmf='nocorrect rm -f'     # принудимтельное удаление
+# alias rmrf='nocorrect rm -fR'   # принудительное рекурсивное удаление
+# alias mkdir='nocorrect mkdir'   # создание каталогов без коррекции
+## Примечание: если не определить здесь nocorrect,
+## zsh будет настойчиво предлагать подстановку существующих имен
+## при создании каталого, копировании и т.д.
+## Разные полезные (ИМХО) alias'ы
+# alias h=history
+# alias grep=egrep
+# alias df='df -m' ###  вывод свободного дискового пространства в мегабайтах
+# alias -g N='2>/dev/null'
+##################################################################
+# My aliases
+# Normal aliases
+# alias f='find |grep'
+# alias c="clear"
+# alias dir='ls -1'
+# alias gvim='gvim -geom 82x35'
+# alias ..='cd ..'
+# alias ppp-on='sudo /usr/sbin/ppp-on'
+# alias ppp-off='sudo /usr/sbin/ppp-off'
+# alias firestarter='sudo su -c firestarter'
+# alias mpg123='mpg123 -o oss'
+# alias mpg321='mpg123 -o oss'
+# alias hist="grep '$1' /home/paul/.zsh_history"
+# alias irssi="irssi -c irc.freenode.net -n yyz"
+# alias mem="free -m"
+# alias msn="tmsnc -l hutchy@subdimension.com"
+
+# command S equivalent to command &> /dev/null &
+# alias -g S='&> /dev/null &'
