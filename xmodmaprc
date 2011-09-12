@@ -1,0 +1,12 @@
+clear mod1
+clear mod4
+clear mod5
+keycode 64 = Super_L
+keycode 133 = Alt_L Meta_L
+keycode 108 = Super_R
+keycode 191 = Insert
+add mod1 = Meta_L
+add mod1 = Alt_L
+add mod4 = Super_L
+add mod5 = Super_R
+keysym Super_R = Menu 
