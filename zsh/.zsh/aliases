@@ -54,7 +54,12 @@ alias -g untar='tar xvvf'
 
 
 #MRU dirs
-hash -d xmonad-tuning=/mnt/work/projects/tuning/xmonad
+hash -d workspace=/home/octocat/workspace
+hash -d xmonad=/home/octocat/.xmonad
+hash -d opossum=/home/octocat/workspace/opossum
+hash -d webdrive=/home/octocat/workspace/webdrive
+hash -d emacs=/home/octocat/.emacs.d
+
 
 # if [ -f /usr/bin/grc ]; then
 #     alias ping="grc --colour=auto ping"
