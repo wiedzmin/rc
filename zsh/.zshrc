@@ -31,6 +31,9 @@ zle -N dot
 source ~/.zsh/bindkeys
 source ~/.zsh/zstyles
 
+local _myhosts
+_myhosts=( ${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} )
+zstyle ':completion:*' hosts $_myhosts
 
 # Ниже даны опции, относящиеся к функциям zsh,
 # которыми собственно и определяется мощь этой оболочки
