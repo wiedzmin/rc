@@ -2,6 +2,8 @@ alias mc="nocorrect mc"
 alias nc="nocorrect nc"
 alias telnet="nocorrect telnet"
 alias wine="nocorrect wine"
+alias assh="nocorrect assh"
+alias vim="nocorrect vim"
 
 alias dud="(setopt globdots;du -ks * | sort -nr | sed -e 's/^\([0-9]\{1,\}\)[0-9]\{6\}[^0-9]/\1G\t/;t;s/^\([0-9]\{1,\}\)[0-9]\{3\}[^0-9]/\1M\t/;t;d')"
 
