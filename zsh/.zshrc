@@ -1,4 +1,6 @@
-eval `dircolors -b`
+if [ `uname -s` = "Linux" ]; then
+    eval `dircolors -b`
+fi
 umask 0077
 
 source ~/.zsh/constants
