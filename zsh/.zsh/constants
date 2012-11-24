@@ -26,78 +26,8 @@ SAVEHIST=10240 # Число команд, сохраняемых в HISTFILE
 # prompt view
 PROMPT="[${fg_green}%n(%l) ${fg_light_green}%~${fg_no_colour}] %# "
 RPROMPT="${fg_green}[%D / %T]${fg_no_colour}"
-# RPROMPT=$'${vcs_info_msg_0_}%b%F{cyan}%T%f'
-# SPROMPT="" # prompt for CORRECT_ALL
-# RPROMPT=$'${vcs_info_msg_0_}%b%F{cyan}%T%f'
 
 hosts=(${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%% *}%%,*})
 
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;32'
-
-#automatically decide when to page a list of completions
-# LISTMAX=0
-
-#MAILCHECK=0
-
-# limit coredumpsize 0
-
-# Всякие переменные
-## файл истории команд
-## если не указан, история не будет сохраняться
-## при выходе из сеанса
-# HISTFILE=~/.zhistory
-## Число команд, сохраняемых в HISTFILE
-# SAVEHIST=5000
-## Чucлo koмaнg, coxpaняeмыx в сеансе
-# HISTSIZE=5000
-## Примечание:
-## рекомендуются равные значения для
-## SAVEHIST и HISTSIZE
-# DIRSTACKSIZE=20
-# Список хостов, к которым будет применяться автодополнение
-# при наборе в командной строке
-# например, как аргументов браузера или ftp-клиента (see later zstyle)
-# hosts=('hostname' linuxshop.ru ftp.archlinux.org)
-
-# Установка вида приглашения
-## Обычное приглащение вида ~%=>
-## (каталог от домашнего - пользователь/root - стрелка)
-# PROMPT='%~%#=> '
-## Приглашения для второй линии мноргострочных команд
-## вида #_строки>
-# PROMPT2='%i%U> '
-## Приглашение с правой стороны экрана вида
-## 19:15 vc/5 (время - номер консоли)
-# RPROMPT=' %T %y%b'
-
-# cdpath=(~/media ~/docs)
-
-# Use hard limits, except for a smaller stack and no core dumps
-# unlimit
-# limit stack 8192
-# limit core 0
-# limit -s
-# Установка атрибутов доступа для вновь создаваемых файлов
-# umask 022
-
-###########################################################        
-# Options for Zsh
-# export HISTFILE=~/.zsh_history
-# export HISTSIZE=50000
-# export SAVEHIST=50000
-# eval `dircolors -b`
-# PS1 and PS2
-# export PS1="$(print '%{\e[1;34m%}%n%{\e[0m%}'):$(print '%{\e[0;34m%}%~%{\e[0m%}')$ "
-# export PS2="$(print '%{\e[0;34m%}>%{\e[0m%}')"
-# Vars used later on by Zsh
-# export EDITOR="gvim -geom 82x35"
-# export BROWSER=links
-# export XTERM="aterm +sb -geometry 80x29 -fg black -bg lightgoldenrodyellow -fn -xos4-terminus-medium-*-normal-*-14-*-*-*-*-*-iso8859-15"
-# Исправление поведения less - для ликвидации лишних Esc
-# и прочего безобразия при  выводе man-страниц.
-# Насколько мне известно, нужно только в некоторых дистрибутивах
-# export LESS="-R"
-# Указание путей к man-страницам.
-# manpath="/usr/man:/usr/share/man:/usr/local/man:/usr/X11R6/man:/opt/qt/doc"
-# export MANPATH
