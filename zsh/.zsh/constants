@@ -20,9 +20,8 @@ fg_black=$'%{\e[0;30m%}'
 
 # history
 HISTFILE=~/.histfile
-HISTSIZE=10240
-SAVEHIST=8192
-
+HISTSIZE=10240 # Чucлo koмaнg, coxpaняeмыx в сеансе
+SAVEHIST=10240 # Число команд, сохраняемых в HISTFILE
 
 # prompt view
 PROMPT="[${fg_green}%n(%l) ${fg_light_green}%~${fg_no_colour}] %# "
