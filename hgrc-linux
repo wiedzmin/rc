@@ -1,0 +1,35 @@
+[ui]
+username = octocat <aaermolov@gmail.com>
+merge = meld
+
+[extensions]
+color =
+hgext.extdiff =
+hgk =
+hgshelve=/home/octocat/.hgext/hgshelve/hgshelve.py
+pager =
+prompt = /home/octocat/.hgext/hg-prompt/prompt.py
+
+#[pager]
+#pager = p
+
+[alias]
+blame = annotate --user --number
+
+[extdiff]
+#cmd.kdiff3 =
+cmd.meld =
+
+[merge-tools]
+meld.priority = 1
+meld.premerge = False
+meld.args = $local $other $base
+
+[merge-patterns]
+** = meld
+
+#[hooks]
+#precommit = ./check-before-commit-dev.sh
+
+[extensions]
+record=

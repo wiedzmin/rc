@@ -1,0 +1,11 @@
+[user]
+        name = octocat
+        email = aaermolov@gmail.com
+[color]
+        diff = auto
+        status = auto
+[alias]
+        st = status
+        last = diff --stat=150,120 HEAD^ HEAD
+[core]
+        editor = emacsclient
