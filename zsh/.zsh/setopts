@@ -1,6 +1,6 @@
 setopt menucomplete
 setopt autocd
-setopt NO_BEEP
+#setopt BEEP
 setopt CORRECT_ALL
 setopt inc_append_history
 setopt SHARE_HISTORY

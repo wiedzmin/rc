@@ -3,7 +3,23 @@ if [ `uname -s` = "Linux" ]; then
 fi
 umask 0077
 
-source ~/.zsh/constants
+#straightforward way to switch between oh-my-zsh and my own
+USE_OH_MY_ZSH=1
+
+if [[ $USE_OH_MY_ZSH == 1 ]] ; then
+    ZSH=$HOME/.oh-my-zsh
+    ZSH_THEME="agnoster"
+    plugins=(git mercurial)
+    source $ZSH/oh-my-zsh.sh
+else
+    source ~/.zsh/constants
+fi
+
+# history
+HISTFILE=~/.histfile
+HISTSIZE=10240 # Чucлo koмaнg, coxpaняeмыx в сеансе
+SAVEHIST=10240 # Число команд, сохраняемых в HISTFILE
+
 source ~/.zsh/hooks
 source ~/.zsh/setopts
 source ~/.zsh/aliases

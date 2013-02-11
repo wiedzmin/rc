@@ -55,10 +55,13 @@ alias -g untar='tar xvvf'
 
 #MRU dirs
 hash -d workspace=/home/octocat/workspace
+hash -d job=/home/octocat/job
 hash -d xmonad=/home/octocat/.xmonad
 hash -d opossum=/home/octocat/workspace/opossum
 hash -d webdrive=/home/octocat/workspace/webdrive
 hash -d emacs=/home/octocat/.emacs.d
+hash -d dotfiles=/home/octocat/.emacs.d
+hash -d clroot=/home/octocat/.commonlisp
 
 alias ls='ls -F --color=auto'
 alias ll='ls -l'
