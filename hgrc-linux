@@ -1,14 +1,17 @@
 [ui]
-username = octocat <aaermolov@gmail.com>
-merge = meld
+username = octocat <ronin-n@yandex.ru>
+merge = internal:merge
+ignore = ~/.hgignore
 
 [extensions]
 color =
-hgext.extdiff =
+# extdiff =
 hgk =
 hgshelve=/home/octocat/.hgext/hgshelve/hgshelve.py
 pager =
 prompt = /home/octocat/.hgext/hg-prompt/prompt.py
+mq =
+graphlog =
 
 #[pager]
 #pager = p
@@ -16,20 +19,19 @@ prompt = /home/octocat/.hgext/hg-prompt/prompt.py
 [alias]
 blame = annotate --user --number
 
-[extdiff]
-#cmd.kdiff3 =
-cmd.meld =
+# [extdiff]
+# p4diff = /usr/bin/p4merge
 
-[merge-tools]
-meld.priority = 1
-meld.premerge = False
-meld.args = $local $other $base
+# [merge-tools]
+# p4.priority = 60
+# p4.premerge = True
+# p4.executable = /usr/bin/p4merge
+# p4.gui = True
+# p4.args = $base $local $other $output
+# p4.binary = False
 
-[merge-patterns]
-** = meld
-
-#[hooks]
-#precommit = ./check-before-commit-dev.sh
+[hooks]
+# precommit = ./check-before-commit-dev.sh
 
 [extensions]
 record=
