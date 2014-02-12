@@ -4,6 +4,9 @@ alias telnet="nocorrect telnet"
 alias wine="nocorrect wine"
 alias assh="nocorrect assh"
 alias vim="nocorrect vim"
+alias hg="nocorrect hg"
+
+alias cv 'cdargs \!* && cd 'cat $HOME/.cdargsresult''
 
 alias dud="(setopt globdots;du -ks * | sort -nr | sed -e 's/^\([0-9]\{1,\}\)[0-9]\{6\}[^0-9]/\1G\t/;t;s/^\([0-9]\{1,\}\)[0-9]\{3\}[^0-9]/\1M\t/;t;d')"
 
@@ -62,6 +65,7 @@ hash -d webdrive=/home/octocat/workspace/webdrive
 hash -d emacs=/home/octocat/.emacs.d
 hash -d dotfiles=/home/octocat/.emacs.d
 hash -d clroot=/home/octocat/.commonlisp
+hash -d code=/home/octocat/code
 
 alias ls='ls -F --color=auto'
 alias ll='ls -l'
@@ -69,3 +73,5 @@ alias la='ls -A'
 alias li='ls -ial'
 alias lsd='ls -ld *(-/DN)'
 alias lsa='ls -ld .*'
+
+PROJECT_PATHS=(/home/octocat/workspace)

@@ -28,3 +28,4 @@ hosts=(${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%% *}%%,*})
 
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;32'
+export SHELL=/bin/bash
