@@ -15,7 +15,7 @@ URxvt*scrollTtyOutput: false
 URxvt*scrollWithBuffer: true
 ! scroll back to the bottom on keypress
 URxvt*scrollTtyKeypress: true
-URxvt.perl-ext-common: default,matcher,fullscreen,tabbedex,clipboard
+URxvt.perl-ext-common: default,matcher,tabbedex,clipboard
 Urxvt*perl-lib: /usr/lib/urxvt/perl/
 URxvt.url-launcher: /usr/bin/firefox
 URxvt.matcher.button: 1
