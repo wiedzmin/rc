@@ -14,3 +14,8 @@ dot() {
 		LBUFFER+=.
 	fi
 }
+
+# edit file with root privs
+function eed() {
+         emacsclient -c -a emacs "/sudo:root@localhost:$1"
+}
