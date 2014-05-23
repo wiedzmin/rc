@@ -55,4 +55,3 @@ then
     PS1='$ '
 fi
 
-export PYTHONPATH=$HOME/workspace/magrathea
