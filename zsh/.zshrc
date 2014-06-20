@@ -56,3 +56,7 @@ then
 fi
 
 export GOPATH=/home/octocat/workspace/gocode
+
+wd() {
+  . /home/octocat/bin/wd/wd.sh
+}
