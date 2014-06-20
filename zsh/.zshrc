@@ -55,3 +55,4 @@ then
     PS1='$ '
 fi
 
+export GOPATH=/home/octocat/workspace/gocode
