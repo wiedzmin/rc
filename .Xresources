@@ -2,8 +2,8 @@
 URxvt.font: xft:consolas for powerline:bold:pixelsize=12
 URxvt*letterSpace: -1
 ! URxvt.foreground: #f6f0e8
-URxvt.foreground: #2B2B2B
-URxvt*background: #3f3f3f
+URxvt.foreground: #dcdccc
+URxvt*background: #2B2B2B
 ! URxvt.background: rgba:3f00/3f00/3f00/dddd
 urgentOnBell: True
 visualBell: True
