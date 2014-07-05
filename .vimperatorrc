@@ -69,3 +69,4 @@ map Ю >
 
 " goto parent domain
 map gp :js content.location.href = content.location.href.replace(/^(\w+:\/\/).+?\.(.+?\/).*/, '$1$2')<CR>
+set editor=emacsclient
