@@ -40,4 +40,6 @@ export EDITOR=emacsclient
 eval `cat ~/.fehbg` &
 udisks-glue -f &
 
+arbtt-capture &
+
 exec $CURRENT_WM
