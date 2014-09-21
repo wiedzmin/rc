@@ -4,9 +4,9 @@ CURRENT_WM=/home/octocat/.commonlisp/stumpwm.bin
 # CURRENT_WM=i3
 # CURRENT_WM=awesome
 
-START_TRAY=0
-RUN_XXKB=0
-DISABLE_CAPSLOCK=0
+START_TRAY=1
+RUN_XXKB=1
+DISABLE_CAPSLOCK=1
 
 if [ -f .Xresources ]
 then
