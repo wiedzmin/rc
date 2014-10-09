@@ -4,7 +4,7 @@ fi
 umask 0077
 
 #straightforward way to switch between oh-my-zsh and my own
-USE_OH_MY_ZSH=0
+USE_OH_MY_ZSH=1
 
 if [[ $USE_OH_MY_ZSH == 1 ]] ; then
     ZSH=$HOME/.oh-my-zsh
