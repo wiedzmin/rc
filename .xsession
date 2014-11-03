@@ -40,6 +40,7 @@ urxvtd -q -o -f
 export EDITOR=emacsclient
 eval `cat ~/.fehbg` &
 udisks-glue -f &
+volumeicon &
 
 arbtt-capture &
 
