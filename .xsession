@@ -21,7 +21,7 @@ then
 fi
 
 if [[ $DISABLE_CAPSLOCK == 1 ]] ; then
-    xmodmap -e "remove lock = Caps_Lock"
+    xmodmap -e "clear Lock"
 fi
 
 xinput set-button-map `xinput --list | grep Synaptics | awk '{i=NF-3; print $i}' | awk 'BEGIN { FS = "=" } ; { print $2 }'` 1 2 3 5 4 7 6 9 8 10 11 12
