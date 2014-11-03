@@ -7,6 +7,7 @@ CURRENT_WM=stumpwm
 START_TRAY=1
 RUN_XXKB=1
 DISABLE_CAPSLOCK=1
+TRAY_GRAVITY=bottom
 
 if [ -f .Xresources ]
 then
@@ -32,7 +33,7 @@ fi
 
 # service progs
 if [[ $START_TRAY == 1 ]] ; then
-    trayer-srg --edge bottom --align right --monitor primary --SetDockType true --SetPartialStrut true --expand true --widthtype request --height 16 --transparent true --tint 0x000000 &
+    trayer-srg --edge $TRAY_GRAVITY --align right --monitor primary --SetDockType true --SetPartialStrut true --expand true --widthtype request --height 16 --transparent true --tint 0x000000 &
 fi
 unclutter -idle 5 &
 urxvtd -q -o -f
