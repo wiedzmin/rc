@@ -1,6 +1,6 @@
 #!/bin/bash
 # CURRENT_WM=xmonad
-CURRENT_WM=/home/octocat/.commonlisp/stumpwm.bin
+CURRENT_WM=stumpwm
 # CURRENT_WM=i3
 # CURRENT_WM=awesome
 
