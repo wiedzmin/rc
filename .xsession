@@ -9,6 +9,10 @@ RUN_XXKB=1
 DISABLE_CAPSLOCK=1
 TRAY_GRAVITY=bottom
 
+# TODO: try to use OS package manager for rtags itself, and el-get only for emacs part, if possible
+# TODO: automate symlinking rtags binaries
+export PATH=/home/octocat/.emacs.d/el-get/rtags/src:~/bin/:$PATH
+
 if [ -f .Xresources ]
 then
     xrdb -merge .Xresources
@@ -41,6 +45,8 @@ export EDITOR=emacsclient
 eval `cat ~/.fehbg` &
 udisks-glue -f &
 volumeicon &
+
+rdm &
 
 arbtt-capture &
 
