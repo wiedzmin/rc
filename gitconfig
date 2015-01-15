@@ -1,11 +1,16 @@
 [user]
-        name = octocat
-        email = aaermolov@gmail.com
+	email = aermolov@mirantis.com
+	name = Alex Ermolov
 [color]
+	ui = auto
         diff = auto
         status = auto
 [alias]
         st = status
         last = diff --stat=150,120 HEAD^ HEAD
+	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
 [core]
         editor = emacsclient
+	quotepath = false
+[push]
+	default = current
