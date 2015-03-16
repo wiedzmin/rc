@@ -54,4 +54,6 @@ if [[ $RUN_SSHUTTLE == 1 ]] ; then
     sshuttle -r octocat.ru 0/0 --daemon
 fi
 
+sudo -u mpd /usr/bin/mpd /etc/mpd.conf
+
 exec $CURRENT_WM
