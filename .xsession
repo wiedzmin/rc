@@ -6,6 +6,7 @@ CURRENT_WM=stumpwm
 
 START_TRAY=1
 RUN_XXKB=1
+RUN_SSHUTTLE=0
 DISABLE_CAPSLOCK=1
 TRAY_GRAVITY=bottom
 
@@ -49,5 +50,8 @@ volumeicon &
 rdm &
 
 arbtt-capture &
+if [[ $RUN_SSHUTTLE == 1 ]] ; then
+    sshuttle -r octocat.ru 0/0 --daemon
+fi
 
 exec $CURRENT_WM
