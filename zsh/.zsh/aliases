@@ -76,6 +76,7 @@ alias lsa='ls -ld .*'
 #handey patching aliases
 alias ptch='patch -Ntbp0 < '
 alias uptch='patch -NRtbp0 < '
+alias clptch='find . -name \*.orig -o -name \*.rej | xargs rm'
 alias gfpf='git format-patch -1 --no-prefix -s -p FETCH_HEAD -o '
 
 PROJECT_PATHS=(/home/octocat/workspace)
