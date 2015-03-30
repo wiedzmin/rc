@@ -23,6 +23,7 @@ SAVEHIST=10240 # Число команд, сохраняемых в HISTFILE
 source ~/.zsh/hooks
 source ~/.zsh/setopts
 source ~/.zsh/aliases
+source ~/.zsh/aliases.private
 source ~/.zsh/functions
 
 autoload -Uz compinit && compinit
