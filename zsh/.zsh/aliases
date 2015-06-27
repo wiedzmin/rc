@@ -78,5 +78,9 @@ alias ptch='patch -Ntbp0 < '
 alias uptch='patch -NRtbp0 < '
 alias clptch='find . -name \*.orig -o -name \*.rej | xargs rm'
 alias gfpf='git format-patch -1 --no-prefix -s -p FETCH_HEAD -o '
+alias gfpd='git diff --no-prefix -s -p > '
+alias gcwo='git checkout -b  origin/' # fetch branch from primary remote, eliminates ambiguity
+alias gcl='git clean -d -x -f'
+alias gcld='git clean -d -x -n' # HINT: try to use -i for interactive mode
 
 PROJECT_PATHS=(/home/octocat/workspace)
