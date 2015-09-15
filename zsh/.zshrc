@@ -57,6 +57,7 @@ then
 fi
 
 export GOPATH=/home/octocat/workspace/gocode
+export XAUTHORITY=/home/octocat/.Xauthority
 
 wd() {
   . /home/octocat/bin/wd/wd.sh
