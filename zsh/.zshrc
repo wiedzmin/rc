@@ -9,7 +9,7 @@ USE_OH_MY_ZSH=1
 if [[ $USE_OH_MY_ZSH == 1 ]] ; then
     ZSH=$HOME/.oh-my-zsh
     ZSH_THEME="clean"
-    plugins=(dircycle encode64 fasd last-working-dir lol nyan pip python urltools vagrant wd zsh-syntax-highlighting sudo)
+    plugins=(dircycle encode64 fasd last-working-dir lol nyan pip python urltools vagrant wd zsh-syntax-highlighting sudo fzf-marks)
     source $ZSH/oh-my-zsh.sh
 else
     source ~/.zsh/constants
@@ -23,7 +23,6 @@ SAVEHIST=10240 # Число команд, сохраняемых в HISTFILE
 source ~/.zsh/hooks
 source ~/.zsh/setopts
 source ~/.zsh/aliases
-source ~/.zsh/aliases.private
 source ~/.zsh/functions
 
 autoload -Uz compinit && compinit
@@ -58,7 +57,11 @@ fi
 
 export GOPATH=/home/octocat/workspace/gocode
 export XAUTHORITY=/home/octocat/.Xauthority
+export BOOKMARKFILE=/home/octocat/.bookmarks
 
 wd() {
   . /home/octocat/bin/wd/wd.sh
 }
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_OPTS="--extended-exact --cycle"
