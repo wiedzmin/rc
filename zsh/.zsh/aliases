@@ -43,17 +43,6 @@ alias -g GLC='genlop -c'
 
 alias -g untar='tar xvvf'
 
-#MRU dirs
-hash -d workspace=/home/octocat/workspace
-hash -d job=/home/octocat/job
-hash -d xmonad=/home/octocat/.xmonad
-hash -d emacs=/home/octocat/.emacs.d
-hash -d dotfiles=/home/octocat/.emacs.d
-hash -d clroot=/home/octocat/.commonlisp
-hash -d code=/home/octocat/code
-hash -d vagrant=/home/octocat/vagrant
-hash -d bookshelf=/home/octocat/bookshelf
-
 alias ls='ls -F --color=auto'
 alias ll='ls -l'
 alias la='ls -A'
