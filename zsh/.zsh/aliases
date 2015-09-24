@@ -4,7 +4,6 @@ alias telnet="nocorrect telnet"
 alias wine="nocorrect wine"
 alias assh="nocorrect assh"
 alias vim="nocorrect vim"
-alias hg="nocorrect hg"
 
 alias cv 'cdargs \!* && cd 'cat $HOME/.cdargsresult''
 
@@ -37,15 +36,6 @@ alias -g GD='git diff'
 alias -g GDC='git diff --cached'
 alias -g GAP='git add . --patch'
 alias -g GC='git commit'
-
-alias -g HU='hg up'
-alias -g HRX='hg pull'
-alias -g HTX='hg push'
-alias -g HD='hg diff'
-alias -g HS='hg status'
-alias -g HB='hg blame -u -n -l'
-alias -g HL='hg log | less'
-alias -g HVC='hg log -p -r'
 
 alias -g PU='sudo vim /etc/portage/package.use'
 alias -g PM='sudo vim /etc/portage/package.mask'
