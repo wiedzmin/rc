@@ -73,7 +73,7 @@ alias li='ls -ial'
 alias lsd='ls -ld *(-/DN)'
 alias lsa='ls -ld .*'
 
-#handey patching aliases
+#handy patching aliases
 alias ptch='patch -Ntbp0 < '
 alias uptch='patch -NRtbp0 < '
 alias clptch='find . -name \*.orig -o -name \*.rej | xargs rm'
