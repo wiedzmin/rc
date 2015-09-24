@@ -61,3 +61,27 @@ fshow() {
     done < <(sed '1d;s/^[^a-z0-9]*//;/^$/d' <<< "$out" | awk '{print $1}')
   done
 }
+
+# fkill - kill process
+fkill() {
+  pid=$(ps -ef | sed 1d | peco --initial-filter SmartCase | awk '{print $2}')
+
+  if [ "x$pid" != "x" ]
+  then
+    kill -${1:-9} $pid
+  fi
+}
+
+# fj - changing directory with fasd
+fj() {
+  local dir
+  dir=$(fasd -Rdl | peco --initial-filter SmartCase) && cd "$dir"
+}
+
+#--------------------------------------------------------------------------
+# A Cleaner Print of your current IP
+#--------------------------------------------------------------------------
+function ip() {
+    ifconfig eth0 | grep 'inet ' | sed -e 's/:/ /' | awk '{print "eth0 (IPv4): " $2 " " $3 " " $4 " " $5 " " $6}'
+    ifconfig wlan0 | grep 'inet ' | sed -e 's/ / /'| awk '{print "wlan0 (IPv4): " $2 " " $3 " " $4 " " $5 " " $6}'
+}
