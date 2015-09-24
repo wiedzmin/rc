@@ -10,3 +10,6 @@ zle -N fcoc
 bindkey '^]c' fcoc
 zle -N fshow
 bindkey '^]s' fshow
+
+zle -N jump
+bindkey '^xjj' jump
