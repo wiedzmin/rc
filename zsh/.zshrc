@@ -9,7 +9,7 @@ USE_OH_MY_ZSH=1
 if [[ $USE_OH_MY_ZSH == 1 ]] ; then
     ZSH=$HOME/.oh-my-zsh
     ZSH_THEME="clean"
-    plugins=(dircycle encode64 fasd last-working-dir lol nyan pip python urltools vagrant wd zsh-syntax-highlighting sudo fzf-marks)
+    plugins=(dircycle fasd nyan urltools vagrant zsh-syntax-highlighting sudo fzf-marks)
     source $ZSH/oh-my-zsh.sh
 else
     source ~/.zsh/constants
