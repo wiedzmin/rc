@@ -3,10 +3,10 @@ bindkey . dot
 bindkey ' ' magic-space # also do history expansion on space
 
 zle -N fbr
-bindkey '^vb' fbr
+bindkey "^]c" fbr
 zle -N fco
-bindkey '^vt' fco
+bindkey '^]t' fco
 zle -N fcoc
-bindkey '^vc' fcoc
+bindkey '^]c' fcoc
 zle -N fshow
-bindkey '^vs' fshow
+bindkey '^]s' fshow
