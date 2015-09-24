@@ -1,0 +1,7 @@
+safeload ~/.fzf.zsh
+export FZF_DEFAULT_OPTS="--extended-exact --cycle --ansi"
+
+safeload ~/.oh-my-zsh/custom/plugins/zsh-notify/notify.plugin.zsh
+safeload ~/.oh-my-zsh/custom/plugins/enhancd/enhancd.sh
+
+export ENHANCD_FILTER="/usr/local/bin/peco:fzf:non-existing-filter"

@@ -85,3 +85,7 @@ function ip() {
     ifconfig eth0 | grep 'inet ' | sed -e 's/:/ /' | awk '{print "eth0 (IPv4): " $2 " " $3 " " $4 " " $5 " " $6}'
     ifconfig wlan0 | grep 'inet ' | sed -e 's/ / /'| awk '{print "wlan0 (IPv4): " $2 " " $3 " " $4 " " $5 " " $6}'
 }
+
+safeload () {
+    [ -f $1 ] && source $1
+}

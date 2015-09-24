@@ -3,47 +3,27 @@ if [ `uname -s` = "Linux" ]; then
 fi
 umask 0077
 
-#straightforward way to switch between oh-my-zsh and my own
-USE_OH_MY_ZSH=1
-
-if [[ $USE_OH_MY_ZSH == 1 ]] ; then
-    ZSH=$HOME/.oh-my-zsh
-    ZSH_THEME="clean"
-    plugins=(dircycle fasd nyan urltools vagrant zsh-syntax-highlighting sudo fzf-marks)
-    source $ZSH/oh-my-zsh.sh
-else
-    source ~/.zsh/constants
-fi
-
 # history
 HISTFILE=~/.histfile
 HISTSIZE=10240 # Чucлo koмaнg, coxpaняeмыx в сеансе
 SAVEHIST=10240 # Число команд, сохраняемых в HISTFILE
 
-source ~/.zsh/hooks
+#straightforward way to switch between oh-my-zsh and my own
+USE_OH_MY_ZSH=1
+
+if [[ $USE_OH_MY_ZSH == 1 ]]
+then
+    ZSH=$HOME/.oh-my-zsh
+    ZSH_THEME="clean"
+    plugins=(dircycle fasd nyan urltools vagrant zsh-syntax-highlighting sudo fzf-marks)
+    source $ZSH/oh-my-zsh.sh
+else
+    source ~/.zsh/promptdefs
+fi
+
+
 source ~/.zsh/setopts
-source ~/.zsh/aliases
-source ~/.zsh/functions
-
-autoload -Uz compinit && compinit
-autoload -Uz promptinit && promptinit
-autoload -Uz colors && colors
-autoload -Uz vcs_info
-autoload -U dot
-autoload -U predict-on
-autoload run-help
-zmodload zsh/complist
-
-zle -N predict-on
-zle -N predict-off
-zle -N dot
-
-source ~/.zsh/bindkeys
-source ~/.zsh/zstyles
-
-local _myhosts
-_myhosts=( ${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} )
-zstyle ':completion:*' hosts $_myhosts
+source ~/.zsh/variables
 
 if [[ "$TERM" == "dumb" ]]
 then
@@ -53,11 +33,21 @@ then
     unfunction precmd
     unfunction preexec
     PS1='$ '
+else
+    autoload -Uz compinit && compinit
+    autoload -Uz promptinit && promptinit
+    autoload -Uz colors && colors
+    autoload -Uz vcs_info
+    autoload -U dot
+    autoload -U predict-on
+    autoload run-help
+    zmodload zsh/complist
+    zle -N predict-on
+    zle -N predict-off
+    zle -N dot
+    source ~/.zsh/aliases
+    source ~/.zsh/functions
+    source ~/.zsh/zstyles
+    source ~/.zsh/custom
+    source ~/.zsh/bindkeys
 fi
-
-export GOPATH=/home/octocat/workspace/gocode
-export XAUTHORITY=/home/octocat/.Xauthority
-export BOOKMARKFILE=/home/octocat/.bookmarks
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_OPTS="--extended-exact --cycle"

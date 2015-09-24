@@ -1,0 +1,7 @@
+export ZBEEP=$'\e[?5h\e[?5l'
+export GREP_OPTIONS='--color=auto'
+export GREP_COLOR='1;32'
+export SHELL=/bin/bash
+export GOPATH=/home/octocat/workspace/gocode
+export XAUTHORITY=/home/octocat/.Xauthority
+export BOOKMARKFILE=/home/octocat/.bookmarks
