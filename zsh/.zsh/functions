@@ -3,10 +3,6 @@ fpath=(~/.zsh/function $fpath)
 mkd(){ mkdir "$1" && cd "$1"; }
 rmd(){ local P="`pwd`"; cd .. && rmdir "$P" || cd "$P"; }
 
-function cv () {
-         cdargs "$1" && cd `cat "$HOME/.cdargsresult"` ;
-} 
-
 dot() {
 	if [[ $LBUFFER = *.. ]]; then
 		LBUFFER+=/..

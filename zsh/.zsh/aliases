@@ -1,8 +1,6 @@
 alias mc="nocorrect mc"
 alias nc="nocorrect nc"
 alias telnet="nocorrect telnet"
-alias wine="nocorrect wine"
-alias assh="nocorrect assh"
 alias vim="nocorrect vim"
 
 alias cv 'cdargs \!* && cd 'cat $HOME/.cdargsresult''

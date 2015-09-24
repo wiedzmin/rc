@@ -59,9 +59,5 @@ export GOPATH=/home/octocat/workspace/gocode
 export XAUTHORITY=/home/octocat/.Xauthority
 export BOOKMARKFILE=/home/octocat/.bookmarks
 
-wd() {
-  . /home/octocat/bin/wd/wd.sh
-}
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS="--extended-exact --cycle"

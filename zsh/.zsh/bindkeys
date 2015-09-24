@@ -1,17 +1,6 @@
 bindkey -e
 bindkey . dot
-bindkey -e '\e[3~' delete-char
-bindkey -e '\e[1~' beginning-of-line #home
-bindkey -e '\e[4~' end-of-line #end
-bindkey -e '\e[2~' overwrite-mode #insert
 bindkey ' ' magic-space # also do history expansion on space
-bindkey '^i' expand-or-complete-prefix #tab completion
-bindkey "^X^Z" predict-on # C-x C-z
-bindkey "^Z" predict-off # C-z
-
-autoload -U edit-command-line
-zle -N edit-command-line
-bindkey '\C-x\C-e' edit-command-line
 
 zle -N fbr
 bindkey '^vb' fbr
