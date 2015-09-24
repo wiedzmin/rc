@@ -17,6 +17,8 @@ alias -s py='env python'
 alias -s php='env php'
 alias -s doc=soffice
 
+alias -g grep="grep --color=auto --perl-regexp"
+
 findname() { pattern=$1; find . -name "${pattern}" }
 find_in_files() { fnpattern=$1; grpattern=$2; find . -name "${fnpattern}" -exec grep "${grpattern}" -n {} + }
 
