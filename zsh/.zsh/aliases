@@ -74,3 +74,5 @@ alias gcl='git clean -d -x -f'
 alias gcld='git clean -d -x -n' # HINT: try to use -i for interactive mode
 
 PROJECT_PATHS=(/home/octocat/workspace)
+
+alias zr=". ~/.zshrc"
