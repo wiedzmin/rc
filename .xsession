@@ -1,4 +1,7 @@
 #!/bin/bash
+rm ${HOME}/.xsession-errors
+exec > ${HOME}//.xsession-errors-`date +%d-%m-%Y-%T | tr -d '[:cntrl:]'` 2>&1
+
 # CURRENT_WM=xmonad
 CURRENT_WM=stumpwm
 # CURRENT_WM=i3
@@ -13,6 +16,8 @@ TRAY_GRAVITY=bottom
 # TODO: try to use OS package manager for rtags itself, and el-get only for emacs part, if possible
 # TODO: automate symlinking rtags binaries
 export PATH=/home/octocat/.emacs.d/el-get/rtags/src:~/bin/:$PATH
+
+export TZ="Europe/Moscow"
 
 if [ -f .Xresources ]
 then
@@ -54,5 +59,13 @@ if [[ $RUN_SSHUTTLE == 1 ]] ; then
 fi
 
 sudo -u mpd /usr/bin/mpd /etc/mpd.conf
+
+which wmname >/dev/null 2>&1 && wmname LG3D
+
+if test -z "$DBUS_SESSION_BUS_ADDRESS"; then
+    eval `dbus-launch --sh-syntax --exit-with-session`
+fi
+
+# dropbox &
 
 exec $CURRENT_WM
