@@ -7,7 +7,7 @@ bindkey "^]c" fbr
 zle -N fco
 bindkey '^]t' fco
 zle -N fcoc
-bindkey '^]c' fcoc
+bindkey '^]l' fcoc
 zle -N fshow
 bindkey '^]s' fshow
 
