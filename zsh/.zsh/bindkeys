@@ -13,3 +13,8 @@ bindkey '^]s' fshow
 
 zle -N jump
 bindkey '^xjj' jump
+
+zle -N cd::cd
+bindkey '^xd' cd::cd
+
+bindkey -r '^g'
