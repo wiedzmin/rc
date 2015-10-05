@@ -11,7 +11,7 @@ START_TRAY=1
 RUN_XXKB=1
 RUN_SSHUTTLE=0
 DISABLE_CAPSLOCK=1
-TRAY_GRAVITY=bottom
+TRAY_GRAVITY=top
 
 # TODO: try to use OS package manager for rtags itself, and el-get only for emacs part, if possible
 # TODO: automate symlinking rtags binaries
