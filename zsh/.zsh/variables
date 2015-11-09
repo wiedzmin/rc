@@ -6,3 +6,5 @@ export GOPATH=/home/octocat/workspace/gocode
 export XAUTHORITY=/home/octocat/.Xauthority
 export BOOKMARKFILE=/home/octocat/.bookmarks
 unset GREP_OPTIONS
+
+export GTAGSLIBPATH=$HOME/.gtags/
