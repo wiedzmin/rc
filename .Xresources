@@ -3,7 +3,7 @@ URxvt*font: xft:Consolas:pixelsize=12,xft:Monospace:size=9:antialias=true:hintin
 URxvt*letterSpace: -1
 ! URxvt.foreground: #f6f0e8
 URxvt.foreground: #dcdccc
-URxvt*background: #2B2B2B
+URxvt*background: #1A1A1A
 ! URxvt.background: rgba:3f00/3f00/3f00/dddd
 urgentOnBell: True
 visualBell: True
