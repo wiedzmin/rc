@@ -15,7 +15,7 @@ URxvt*scrollTtyOutput: false
 URxvt*scrollWithBuffer: true
 ! scroll back to the bottom on keypress
 URxvt*scrollTtyKeypress: true
-URxvt.perl-ext-common: default,matcher,tabbedex,clipboard
+URxvt.perl-ext-common: default,matcher,clipboard
 Urxvt*perl-lib: /usr/lib/urxvt/perl/
 URxvt.url-launcher: /usr/bin/firefox
 URxvt.matcher.button: 1
@@ -27,10 +27,6 @@ URxvt.keysym.M-w: perl:clipboard:copy
 URxvt.keysym.C-y: perl:clipboard:paste
 URxvt.url-select.launcher: /usr/bin/firefox -new-tab
 URxvt.url-select.underline: true
-URxvt.tabbed.tabbar-fg: 2
-URxvt.tabbed.tabbar-bg: 0
-URxvt.tabbed.tab-fg: 3
-URxvt.tabbed.tab-bg: 0
 URxvt.keysym.F11: perl:fullscreen:switch
 
 URxvt*colorUL: #c5f779
