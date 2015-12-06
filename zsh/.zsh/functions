@@ -23,7 +23,10 @@ fbr() {
   branches=$(git branch --all | grep -v HEAD) &&
   branch=$(echo "$branches" |
            fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
-  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+  if [ "x$branch" != "x" ]
+  then
+    git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+  fi
 }
 
 # fco - checkout git branch/tag
@@ -38,15 +41,21 @@ fco() {
   target=$(
     (echo "$tags"; echo "$branches") |
     fzf-tmux -l30 -- --no-hscroll --ansi +m -d "\t" -n 2) || return
-  git checkout $(echo "$target" | awk '{print $2}')
+  if [ "x$target" != "x" ]
+  then
+    git checkout $(echo "$target" | awk '{print $2}')
+  fi
 }
 
 # fcoc - checkout git commit
 fcoc() {
   local commits commit
-  commits=$(git log --pretty=oneline --abbrev-commit --reverse) &&
-  commit=$(echo "$commits" | fzf --tac +s +m -e) &&
-  git checkout $(echo "$commit" | sed "s/ .*//")
+  commits=$(git log --pretty=oneline --abbrev-commit --reverse)
+  commit=$(echo "$commits" | fzf --tac +s +m -e)
+  if [ "x$commit" != "x" ]
+  then
+    git checkout $(echo "$commit" | sed "s/ .*//")
+  fi
 }
 
 # fshow - git commit browser
