@@ -73,7 +73,7 @@ fshow() {
 
 # fkill - kill process
 fkill() {
-  pid=$(ps -ef | sed 1d | peco --initial-filter SmartCase | awk '{print $2}')
+  pid=$(ps -ef | sed 1d | fzf | awk '{print $2}')
 
   if [ "x$pid" != "x" ]
   then
