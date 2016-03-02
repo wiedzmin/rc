@@ -1,6 +1,6 @@
 #!/bin/bash
 rm ${HOME}/.xsession-errors
-exec > ${HOME}//.xsession-errors-`date +%d-%m-%Y-%T | tr -d '[:cntrl:]'` 2>&1
+exec > ${HOME}//.xsession-errors-`date +%Y-%m-%d-%T | tr -d '[:cntrl:]'` 2>&1
 
 # CURRENT_WM=xmonad
 CURRENT_WM=stumpwm
