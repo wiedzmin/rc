@@ -1,0 +1,39 @@
+- hosts: localhost
+
+  tasks:
+
+    - name: get work dir
+      shell: pwd
+      register: workdir
+
+    - name: make homedir symlinks
+      file:
+        src={{ workdir.stdout }}/{{ item.src }}
+        dest={{ ansible_env.HOME }}/{{ item.dest }}
+        state=link
+      with_items:
+        - { src: '.Xresources', dest: '.Xresources' }
+        - { src: 'hgrc-linux', dest: '.hgrc' } # TODO check OS
+        - { src: '.tmux.conf', dest: '.tmux.conf' }
+        - { src: '.xsession', dest: '.xsession' }
+        - { src: 'zsh/.zsh', dest: '.zsh' }
+        - { src: 'zsh/.zshrc', dest: '.zshrc' }
+        - { src: '.xxkbrc', dest: '.xxkbrc' }
+        - { src: '.vimperatorrc', dest: '.vimperatorrc' }
+        - { src: 'emacsclient.desktop', dest: '.local/share/applications/emacsclient.desktop' }
+
+    - name: register org-protocol handler in mimeapps
+      lineinfile:
+        dest={{ ansible_env.HOME }}/.local/share/applications/mimeapps.list
+        line=x-scheme-handler/org-protocol=emacsclient.desktop
+        state=present
+
+    - name: make system symlinks
+      file:
+        src={{ workdir.stdout }}/{{ item.src }}
+        dest={{ item.dest }}
+        state=link
+        # sudo=yes
+      with_items:
+        - { src: 'acpi', dest: '/etc/acpi' }
+        - { src: 'xorg.conf.d', dest: '/etc/X11/xorg.conf.d' }
