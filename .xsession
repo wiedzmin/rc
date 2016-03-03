@@ -66,6 +66,7 @@ fi
 
 redshift -l 55.751244:37.618423 -t 5500:3700 -m randr &
 
+eval $(ssh-agent)
 checkmail &
 dropbox &
 
