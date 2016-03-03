@@ -73,4 +73,6 @@ eval $(ssh-agent)
 checkmail &
 dropbox &
 
+dbus-launch nm-applet &
+
 exec $CURRENT_WM
