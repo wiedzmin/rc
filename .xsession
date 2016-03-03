@@ -56,7 +56,7 @@ if [[ $RUN_SSHUTTLE == 1 ]] ; then
     sshuttle -r octocat.ru 0/0 --daemon
 fi
 
-sudo -u mpd /usr/bin/mpd /etc/mpd.conf
+/usr/bin/pulseaudio --start
 
 which wmname >/dev/null 2>&1 && wmname LG3D
 
