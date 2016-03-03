@@ -1,4 +1,4 @@
-export PATH=/home/octocat/bin:$PATH
+source ~/set_path_global
 
 export ZBEEP=$'\e[?5h\e[?5l'
 export GREP_OPTIONS='--color=auto'

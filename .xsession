@@ -13,9 +13,7 @@ RUN_SSHUTTLE=0
 DISABLE_CAPSLOCK=1
 TRAY_GRAVITY=top
 
-# TODO: try to use OS package manager for rtags itself, and el-get only for emacs part, if possible
-# TODO: automate symlinking rtags binaries
-export PATH=/home/octocat/.emacs.d/el-get/rtags/src:~/bin/:$PATH
+source ~/set_path_global
 
 export TZ="Europe/Moscow"
 
