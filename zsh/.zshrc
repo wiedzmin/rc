@@ -11,18 +11,6 @@ SAVEHIST=10240 # Число команд, сохраняемых в HISTFILE
 #straightforward way to switch between oh-my-zsh and my own
 USE_OH_MY_ZSH=1
 
-if [[ $USE_OH_MY_ZSH == 1 ]]
-then
-    ZSH=$HOME/.oh-my-zsh
-    ZSH_THEME="clean"
-    plugins=(dircycle fasd nyan urltools vagrant zsh-syntax-highlighting sudo fzf-marks)
-    source $ZSH/oh-my-zsh.sh
-else
-    source ~/.zsh/promptdefs
-fi
-
-
-source ~/.zsh/setopts
 source ~/.zsh/variables
 
 if [[ "$TERM" == "dumb" ]]
@@ -34,6 +22,20 @@ then
     unfunction preexec
     PS1='$ '
 else
+    if [[ $USE_OH_MY_ZSH == 1 ]]
+    then
+        ZSH=$HOME/.oh-my-zsh
+        ZSH_THEME="clean"
+        plugins=(dircycle fasd nyan urltools vagrant zsh-syntax-highlighting sudo fzf-marks)
+        source $ZSH/oh-my-zsh.sh
+    else
+        source ~/.zsh/promptdefs
+    fi
+
+    source ~/.zsh/setopts
+
+    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
     autoload -Uz compinit && compinit
     autoload -Uz promptinit && promptinit
     autoload -Uz colors && colors
