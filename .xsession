@@ -75,6 +75,6 @@ dropbox &
 
 dbus-launch nm-applet &
 
-i3status | dzen2 -fn Consolas:size=11 -xs 1 -w 1450 &
+~/scripts/statusbar.sh 1 &
 
 exec $CURRENT_WM
