@@ -75,6 +75,6 @@ dropbox &
 
 dbus-launch nm-applet &
 
-~/scripts/statusbar.sh 1 &
+# statusbar.sh 1 &
 
 exec $CURRENT_WM

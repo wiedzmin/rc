@@ -34,7 +34,14 @@
         src={{ workdir.stdout }}/{{ item.src }}
         dest={{ item.dest }}
         state=link
-        # sudo=yes
       with_items:
         - { src: 'acpi', dest: '/etc/acpi' }
         - { src: 'xorg.conf.d', dest: '/etc/X11/xorg.conf.d' }
+
+    - name: accompanying tools | checkmail build
+      command: go build checkmail.go
+      args:
+        chdir: "{{ workdir.stdout }}/src/"
+
+    - name: accompanying tools | checkmail install
+      shell: "mv {{ workdir.stdout }}/src/checkmail {{ workdir.stdout }}/utils/checkmail"
