@@ -38,10 +38,8 @@
         - { src: 'acpi', dest: '/etc/acpi' }
         - { src: 'xorg.conf.d', dest: '/etc/X11/xorg.conf.d' }
 
-    - name: accompanying tools | checkmail build
-      command: go build checkmail.go
-      args:
-        chdir: "{{ workdir.stdout }}/src/"
+    - name: accompanying tools | shepherd build (mail checking tool)
+      shell: sbcl --eval "(pushnew (truename \"{{ workdir.stdout }}/src/\") ql:*local-project-directories*)" --eval "(ql:register-local-projects)" --eval "(ql:quickload 'shepherd)" --eval "(shepherd::save-image-shepherd)"
 
-    - name: accompanying tools | checkmail install
-      shell: "mv {{ workdir.stdout }}/src/checkmail {{ workdir.stdout }}/utils/checkmail"
+    - name: accompanying tools | shepherd install (mail checking tool)
+      shell: "mv {{ workdir.stdout }}/shepherd {{ workdir.stdout }}/utils/shepherd"

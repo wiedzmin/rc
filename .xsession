@@ -70,7 +70,7 @@ copyq &
 autocutsel -buttonup &
 
 eval $(ssh-agent)
-checkmail &
+shepherd &
 dropbox &
 
 dbus-launch nm-applet &
