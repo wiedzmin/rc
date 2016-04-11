@@ -23,6 +23,7 @@
         - { src: '.vimperatorrc', dest: '.vimperatorrc' }
         - { src: 'emacsclient.desktop', dest: '.local/share/applications/emacsclient.desktop' }
         - { src: '.i3status.conf', dest: '.i3status.conf' }
+        - { src: '.mbsyncrc', dest: '.mbsyncrc' }
         - { src: '.mailcap', dest: '.mailcap' }
 
     - name: register org-protocol handler in mimeapps
