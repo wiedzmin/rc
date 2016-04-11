@@ -18,10 +18,12 @@
         - { src: '.xsession', dest: '.xsession' }
         - { src: 'zsh/.zsh', dest: '.zsh' }
         - { src: 'zsh/.zshrc', dest: '.zshrc' }
+        - { src: 'set_path_global', dest: 'set_path_global' }
         - { src: '.xxkbrc', dest: '.xxkbrc' }
         - { src: '.vimperatorrc', dest: '.vimperatorrc' }
         - { src: 'emacsclient.desktop', dest: '.local/share/applications/emacsclient.desktop' }
         - { src: '.i3status.conf', dest: '.i3status.conf' }
+        - { src: '.mailcap', dest: '.mailcap' }
 
     - name: register org-protocol handler in mimeapps
       lineinfile:
@@ -34,6 +36,7 @@
         src={{ workdir.stdout }}/{{ item.src }}
         dest={{ item.dest }}
         state=link
+      sudo: yes
       with_items:
         - { src: 'acpi', dest: '/etc/acpi' }
         - { src: 'xorg.conf.d', dest: '/etc/X11/xorg.conf.d' }
