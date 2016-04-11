@@ -1,6 +1,4 @@
 #!/bin/bash
-rm ${HOME}/.xsession-errors
-exec > ${HOME}//.xsession-errors-`date +%Y-%m-%d-%T | tr -d '[:cntrl:]'` 2>&1
 
 # CURRENT_WM=xmonad
 CURRENT_WM=stumpwm
@@ -12,6 +10,20 @@ RUN_XXKB=1
 RUN_SSHUTTLE=0
 DISABLE_CAPSLOCK=1
 TRAY_GRAVITY=top
+LOGS_TO_KEEP=3
+
+rm ${HOME}/.xsession-errors
+
+ls -a ~ | grep xsession-errors | sort -n -r | (i=0; while read f; do
+  if [ $i -lt $((LOGS_TO_KEEP-1)) ]; then
+    ((i++))
+    continue
+  else
+    rm -f "$f"
+  fi
+done)
+
+exec > ${HOME}//.xsession-errors-`date +%Y-%m-%d-%T | tr -d '[:cntrl:]'` 2>&1
 
 source ~/set_path_global
 
