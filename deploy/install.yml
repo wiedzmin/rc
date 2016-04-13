@@ -8,7 +8,7 @@
 
     - name: make homedir symlinks
       file:
-        src={{ workdir.stdout }}/{{ item.src }}
+        src={{ workdir.stdout }}/../{{ item.src }}
         dest={{ ansible_env.HOME }}/{{ item.dest }}
         state=link
       with_items:
@@ -34,7 +34,7 @@
 
     - name: make system symlinks
       file:
-        src={{ workdir.stdout }}/{{ item.src }}
+        src={{ workdir.stdout }}/../{{ item.src }}
         dest={{ item.dest }}
         state=link
       sudo: yes
@@ -43,7 +43,7 @@
         - { src: 'xorg.conf.d', dest: '/etc/X11/xorg.conf.d' }
 
     - name: accompanying tools | shepherd build (mail checking tool)
-      shell: sbcl --eval "(pushnew (truename \"{{ workdir.stdout }}/src/\") ql:*local-project-directories*)" --eval "(ql:register-local-projects)" --eval "(ql:quickload 'shepherd)" --eval "(shepherd::save-image-shepherd)"
+      shell: sbcl --eval "(pushnew (truename \"{{ workdir.stdout }}/../src/\") ql:*local-project-directories*)" --eval "(ql:register-local-projects)" --eval "(ql:quickload 'shepherd)" --eval "(shepherd::save-image-shepherd)"
 
     - name: accompanying tools | shepherd install (mail checking tool)
-      shell: "mv {{ workdir.stdout }}/shepherd {{ workdir.stdout }}/utils/shepherd"
+      shell: "mv {{ workdir.stdout }}/shepherd {{ workdir.stdout }}/../utils/shepherd"
