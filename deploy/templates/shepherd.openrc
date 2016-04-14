@@ -1,0 +1,18 @@
+#!/sbin/runscript
+
+DAEMON={{ workdir.stdout }}/../utils/shepherd
+PIDFILE={{ ansible_env.HOME }}/shepherd.pid
+
+start () {
+	ebegin "Starting shepherd"
+	start-stop-daemon --background --start -u octocat:octocat --exec ${DAEMON} \
+        --make-pidfile --pidfile ${PIDFILE}
+	eend $? "Failed to start shepherd"
+}
+
+stop() {
+	ebegin "Stopping shepherd"
+	start-stop-daemon --stop --pidfile ${PIDFILE}
+	eend $? "Failed to stop shepherd"
+}
+

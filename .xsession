@@ -82,7 +82,6 @@ copyq &
 autocutsel -buttonup &
 
 eval $(ssh-agent)
-shepherd &
 dropbox &
 
 dbus-launch nm-applet &
