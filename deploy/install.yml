@@ -6,6 +6,13 @@
       shell: pwd
       register: workdir
 
+    - name: ensure some directories exist
+      file:
+        path={{ ansible_env.HOME }}/{{ item }}
+        state=directory
+      with_items:
+        - '.imapfilter'
+
     - name: make homedir symlinks
       file:
         src={{ workdir.stdout }}/../{{ item.src }}
@@ -25,6 +32,7 @@
         - { src: '.i3status.conf', dest: '.i3status.conf' }
         - { src: '.mbsyncrc', dest: '.mbsyncrc' }
         - { src: '.mailcap', dest: '.mailcap' }
+        - { src: 'imapfilter-config.lua', dest: '.imapfilter/config.lua' }
 
     - name: register org-protocol handler in mimeapps
       lineinfile:

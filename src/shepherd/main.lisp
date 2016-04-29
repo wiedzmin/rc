@@ -46,6 +46,11 @@
   (sb-impl::run-program "/usr/bin/notmuch" '("new")))
 
 #+sbcl
+(defun cleanup-trash-and-spam ()
+  (format t "~a Cleaning trash and spam~%" (get-now-timestamp))
+  (sb-impl::run-program "/usr/bin/imapfilter" '()))
+
+#+sbcl
 (defun shepherd-main ()
   (with-interactive-interrupt
     (cl-cron:make-cron-job 'check-mail-personal-full :step-min 25)
@@ -53,6 +58,7 @@
     (cl-cron:make-cron-job 'check-mail-work-full :step-min 15)
     (cl-cron:make-cron-job 'check-mail-work-inbox :step-min 3)
     (cl-cron:make-cron-job 'update-notmuch-db :step-min 2)
+    (cl-cron:make-cron-job 'cleanup-trash-and-spam :step-min 60)
     (cl-cron:start-cron)
     (bordeaux-threads::join-thread cl-cron::*cron-dispatcher-thread*)))
 
