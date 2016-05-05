@@ -54,35 +54,35 @@ fi
 if [[ $START_TRAY == 1 ]] ; then
     trayer-srg --edge $TRAY_GRAVITY --align right --monitor primary --SetDockType true --SetPartialStrut true --expand true --widthtype request --height 15 --transparent true --tint 0x000000 &
 fi
-unclutter -idle 5 &
+
 urxvtd -q -o -f
 export EDITOR=emacsclient
 eval `cat ~/.fehbg` &
-udisks-glue -f &
-volumeicon &
 
-rdm &
+which udisks-glue > /dev/null && udisks-glue -f &
+which volumeicon > /dev/null && volumeicon &
+which rdm > /dev/null && rdm &
+which unclutter > /dev/null && unclutter -idle 5 &
+which arbtt-capture > /dev/null && arbtt-capture &
 
-arbtt-capture &
 if [[ $RUN_SSHUTTLE == 1 ]] ; then
     sshuttle -r octocat.ru 0/0 --daemon
 fi
 
 /usr/bin/pulseaudio --start
 
-which wmname >/dev/null 2>&1 && wmname LG3D
+which wmname > /dev/null 2>&1 && wmname LG3D
 
 if test -z "$DBUS_SESSION_BUS_ADDRESS"; then
     eval `dbus-launch --sh-syntax --exit-with-session`
 fi
 
-redshift -l 55.751244:37.618423 -t 5500:3700 -m randr &
-
-copyq &
-autocutsel -buttonup &
-
 eval $(ssh-agent)
-dropbox &
+
+which redshift > /dev/null && redshift -l 55.751244:37.618423 -t 5500:3700 -m randr &
+which copyq > /dev/null && copyq &
+which autocutsel > /dev/null && autocutsel -buttonup &
+which dropbox > /dev/null && dropbox &
 
 dbus-launch nm-applet &
 
