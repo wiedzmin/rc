@@ -72,7 +72,10 @@
       with_items:
         - { src: 'acpi', dest: '/etc/acpi' }
         - { src: 'xorg.conf.d', dest: '/etc/X11/xorg.conf.d' }
-        - { src: 'gitconfig', dest: '/etc/gitconfig' }
+
+    - name: prepare global gitconfig
+      template: src=../gitconfig.template dest=/etc/gitconfig
+      sudo: yes
 
     - name: accompanying tools | shepherd build (mail checking tool)
       shell: sbcl --eval "(pushnew (truename \"{{ workdir.stdout }}/../src/\") ql:*local-project-directories*)" --eval "(ql:register-local-projects)" --eval "(ql:quickload 'shepherd)" --eval "(shepherd::save-image-shepherd)"

@@ -14,3 +14,5 @@
 	quotepath = false
 [push]
 	default = current
+[commit]
+	template = {{ workdir.stdout }}/../git-commit-template
