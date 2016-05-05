@@ -14,6 +14,27 @@
         - '.imapfilter'
         - '.arbtt'
 
+    - name: ensure some packages installed (Gentoo)
+      portage: package={{ item }} state=present
+      with_items:
+        - 'gnome-extra/nm-applet'
+        - 'media-sound/volumeicon'
+        - 'net-misc/dropbox'
+        - 'sys-apps/dbus'
+        - 'sys-fs/udisks-glue'
+        - 'x11-apps/copyq'
+        - 'x11-apps/xmodmap'
+        - 'x11-apps/xrdb'
+        - 'x11-misc/autocutsel'
+        - 'x11-misc/kbdd'
+        - 'x11-misc/redshift'
+        - 'x11-misc/trayer-srg'
+        - 'x11-misc/unclutter'
+        - 'x11-misc/xxkb'
+        - 'x11-terms/rxvt-unicode'
+      sudo: yes
+      when: ansible_distribution == "Gentoo"
+
     - name: make homedir symlinks
       file:
         src={{ workdir.stdout }}/../{{ item.src }}
