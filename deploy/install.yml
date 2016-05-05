@@ -12,6 +12,7 @@
         state=directory
       with_items:
         - '.imapfilter'
+        - '.arbtt'
 
     - name: make homedir symlinks
       file:
@@ -33,6 +34,7 @@
         - { src: '.mbsyncrc', dest: '.mbsyncrc' }
         - { src: '.mailcap', dest: '.mailcap' }
         - { src: 'imapfilter-config.lua', dest: '.imapfilter/config.lua' }
+        - { src: 'categorize.cfg', dest: '.arbtt/categorize.cfg' }
 
     - name: register org-protocol handler in mimeapps
       lineinfile:
@@ -49,6 +51,7 @@
       with_items:
         - { src: 'acpi', dest: '/etc/acpi' }
         - { src: 'xorg.conf.d', dest: '/etc/X11/xorg.conf.d' }
+        - { src: 'gitconfig', dest: '/etc/gitconfig' }
 
     - name: accompanying tools | shepherd build (mail checking tool)
       shell: sbcl --eval "(pushnew (truename \"{{ workdir.stdout }}/../src/\") ql:*local-project-directories*)" --eval "(ql:register-local-projects)" --eval "(ql:quickload 'shepherd)" --eval "(shepherd::save-image-shepherd)"
