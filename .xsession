@@ -69,7 +69,7 @@ if [[ $RUN_SSHUTTLE == 1 ]] ; then
     sshuttle -r octocat.ru 0/0 --daemon
 fi
 
-/usr/bin/pulseaudio --start
+pulseaudio --start
 
 which wmname > /dev/null 2>&1 && wmname LG3D
 
