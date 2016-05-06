@@ -57,6 +57,7 @@
         - { src: '.mailcap', dest: '.mailcap' }
         - { src: 'imapfilter-config.lua', dest: '.imapfilter/config.lua' }
         - { src: 'categorize.cfg', dest: '.arbtt/categorize.cfg' }
+        - { src: 'gpg-agent.conf', dest: '.gnupg/gpg-agent.conf' }
 
     - name: register org-protocol handler in mimeapps
       lineinfile:
