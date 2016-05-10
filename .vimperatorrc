@@ -77,3 +77,14 @@ map gp :js content.location.href = content.location.href.replace(/^(\w+:\/\/).+?
 set editor=emacsclient
 
 :highlight Hint font-size:120%;color:white;background-color:red;padding:2px;
+
+map oc :js invoke_org_capture()<CR>
+map щс oc
+:js <<EOJS
+    invoke_org_capture = function () {
+        javascript:location.href='org-protocol://capture://'+
+              encodeURIComponent(location.href)+'/'+
+              encodeURIComponent(document.title)+'/'+
+              encodeURIComponent(window.getSelection())
+    }
+EOJS
