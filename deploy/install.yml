@@ -89,13 +89,6 @@
         repo=https://github.com/tmux-plugins/tpm
         dest={{ ansible_env.HOME }}/.tmux/plugins/tpm
 
-    - name: ensure tmux plugin manager initialization
-      lineinfile:
-        dest={{ ansible_env.HOME }}/.tmux.conf
-        regexp=''
-        insertafter=EOF
-        line="set -g @plugin 'tmux-plugins/tpm'\nrun '~/.tmux/plugins/tpm/tpm'"
-
     - name: accompanying tools | shepherd build (mail checking tool)
       shell: sbcl --eval "(pushnew (truename \"{{ workdir.stdout }}/../src/\") ql:*local-project-directories*)" --eval "(ql:register-local-projects)" --eval "(ql:quickload 'shepherd)" --eval "(shepherd::save-image-shepherd)"
 
