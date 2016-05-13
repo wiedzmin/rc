@@ -53,6 +53,7 @@
         - { src: 'common_settings', dest: 'common_settings' }
         - { src: '.xxkbrc', dest: '.xxkbrc' }
         - { src: '.vimperatorrc', dest: '.vimperatorrc' }
+        - { src: '.conkerorrc', dest: '.conkerorrc' }
         - { src: 'emacsclient.desktop', dest: '.local/share/applications/emacsclient.desktop' }
         - { src: '.i3status.conf', dest: '.i3status.conf' }
         - { src: '.mbsyncrc', dest: '.mbsyncrc' }
