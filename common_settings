@@ -1,0 +1,18 @@
+#!/usr/bin/env zsh
+
+BIN_DIRS=(
+    $HOME/bin
+    $HOME/tools/bin
+    $HOME/workspace/configs/rc/utils
+)
+
+# Remove dupes from 'path', which is array tied to 'PATH'
+typeset -U path
+for ((i=1; i<= $#BIN_DIRS; i++)) do
+    for dir in $BIN_DIRS[i]; do
+        if [ -d $dir ] ; then
+            path=($dir "$path[@]")
+        fi
+    done
+done
+

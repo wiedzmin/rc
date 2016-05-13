@@ -48,7 +48,7 @@
         - { src: '.xsession', dest: '.xsession' }
         - { src: 'zsh/.zsh', dest: '.zsh' }
         - { src: 'zsh/.zshrc', dest: '.zshrc' }
-        - { src: 'set_path_global', dest: 'set_path_global' }
+        - { src: 'common_settings', dest: 'common_settings' }
         - { src: '.xxkbrc', dest: '.xxkbrc' }
         - { src: '.vimperatorrc', dest: '.vimperatorrc' }
         - { src: 'emacsclient.desktop', dest: '.local/share/applications/emacsclient.desktop' }

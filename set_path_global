@@ -1,4 +1,0 @@
-#!/bin/bash
-
-export PATH=~/bin/:~/tools/bin/:~/workspace/configs/rc/utils/:$PATH
-

@@ -11,6 +11,7 @@ SAVEHIST=10240 # Число команд, сохраняемых в HISTFILE
 #straightforward way to switch between oh-my-zsh and my own
 USE_OH_MY_ZSH=1
 
+source ~/common_settings
 source ~/.zsh/variables
 
 if [[ "$TERM" == "dumb" ]]
