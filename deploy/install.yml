@@ -14,6 +14,7 @@
         - '.imapfilter'
         - '.arbtt'
         - '.tmux/plugins'
+        - '.ssh'
 
     - name: ensure some packages installed (Gentoo)
       portage: package={{ item }} state=present
@@ -58,6 +59,7 @@
         - { src: 'imapfilter-config.lua', dest: '.imapfilter/config.lua' }
         - { src: 'categorize.cfg', dest: '.arbtt/categorize.cfg' }
         - { src: 'gpg-agent.conf', dest: '.gnupg/gpg-agent.conf' }
+        - { src: 'ssh_config', dest: '.ssh/config' }
 
     - name: register org-protocol handler in mimeapps
       lineinfile:

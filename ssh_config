@@ -1,0 +1,6 @@
+Host *
+ControlMaster auto
+ControlPath ~/.ssh/master-%r@%h:%p
+ControlPersist 5m
+ServerAliveInterval 30
+TCPKeepAlive yes
