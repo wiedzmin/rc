@@ -15,6 +15,7 @@
         - '.arbtt'
         - '.tmux/plugins'
         - '.ssh'
+        - '.config/twmn'
 
     - name: ensure some packages installed (Gentoo)
       portage: package={{ item }} state=present
@@ -60,6 +61,7 @@
         - { src: 'categorize.cfg', dest: '.arbtt/categorize.cfg' }
         - { src: 'gpg-agent.conf', dest: '.gnupg/gpg-agent.conf' }
         - { src: 'ssh_config', dest: '.ssh/config' }
+        - { src: 'twmn.conf', dest: '.config/twmn/twmn.conf' }
 
     - name: register org-protocol handler in mimeapps
       lineinfile:
