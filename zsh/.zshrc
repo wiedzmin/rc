@@ -5,8 +5,8 @@ umask 0077
 
 # history
 HISTFILE=~/.histfile
-HISTSIZE=10240 # Чucлo koмaнg, coxpaняeмыx в сеансе
-SAVEHIST=10240 # Число команд, сохраняемых в HISTFILE
+HISTSIZE=100000
+SAVEHIST=100000
 
 #straightforward way to switch between oh-my-zsh and my own
 USE_OH_MY_ZSH=1
