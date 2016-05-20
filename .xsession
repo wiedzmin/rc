@@ -13,7 +13,7 @@ TRAY_GRAVITY=top
 LOGS_TO_KEEP=3
 
 fg-run() {
-    which $1 > /dev/null && "$@"
+    which "$1" > /dev/null && "$@"
 }
 
 bg-run() {
@@ -30,13 +30,13 @@ setup-agents() {
         if [[ $gpg_agent_binary -gt 0 ]]; then
             keychain_agents="$keychain_agents,gpg"
         fi
-        eval $(keychain --eval --agents "$keychain_agents" --quiet)
+        eval "$(keychain --eval --agents "$keychain_agents" --quiet)"
     else
         if [[ $ssh_agent_binary -gt 0 ]]; then
-            eval $(ssh-agent)
+            eval "$(ssh-agent)"
         fi
         if [[ $gpg_agent_binary -gt 0 ]]; then
-            eval $(gpg-agent --daemon)
+            eval "$(gpg-agent --daemon)"
         fi
     fi
 }
@@ -64,9 +64,9 @@ wm-loop() {
 }
 
 rotate-xsession-errors() {
-    rm ${HOME}/.xsession-errors
+    rm "${HOME}/.xsession-errors"
 
-    ls -a ~ | grep xsession-errors | sort -n -r | (i=0; while read f; do
+    ls -a ~ | grep xsession-errors | sort -n -r | (i=0; while read -r f; do
       if [ $i -lt $((LOGS_TO_KEEP-1)) ]; then
           ((i++))
           continue
@@ -75,7 +75,7 @@ rotate-xsession-errors() {
       fi
     done)
 
-    exec > ${HOME}//.xsession-errors-`date +%Y-%m-%d-%T | tr -d '[:cntrl:]'` 2>&1
+    exec > "${HOME}//.xsession-errors-\"$(date +%Y-%m-%d-%T | tr -d '[:cntrl:]')\"" 2>&1
 }
 
 process-conditionals() {
@@ -85,9 +85,9 @@ process-conditionals() {
     fi
 
     # input
-    if [ -f $HOME/xmodmaprc ]
+    if [ -f "$HOME/xmodmaprc" ]
     then
-        xmodmap $HOME/xmodmaprc
+        xmodmap "$HOME/xmodmaprc"
     fi
 
     if [[ $DISABLE_CAPSLOCK == 1 ]] ; then
@@ -109,7 +109,7 @@ process-conditionals() {
     fi
 
     if test -z "$DBUS_SESSION_BUS_ADDRESS"; then
-        eval `dbus-launch --sh-syntax --exit-with-session`
+        eval "$(dbus-launch --sh-syntax --exit-with-session)"
     fi
 }
 
