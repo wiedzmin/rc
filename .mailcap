@@ -1,4 +1,15 @@
 application/pdf; /usr/bin/zathura %s; test=test "$DISPLAY" != ""; description=Portable Document Format; nametemplate=%s.pdf
 application/x-pdf; /usr/bin/zathura %s; test=test "$DISPLAY" != ""; description=Portable Document Format; nametemplate=%s.pdf
-text/html; /usr/bin/google-chrome-stable %s; test=test "$DISPLAY" != "" ; description=HyperText; nametemplate=%s.htm
-
+image/vnd.djvu; /usr/bin/zathura %s; test=test "$DISPLAY" != ""; description=DjVu Format; nametemplate=%s.djvu
+image/x-djvu; /usr/bin/zathura %s; test=test "$DISPLAY" != ""; description=DjVu Format; nametemplate=%s.djvu
+text/html; /usr/bin/firefox %s; test=test "$DISPLAY" != "" ; description=HyperText; nametemplate=%s.htm
+video/avi; /usr/bin/vlc %s; test=test "$DISPLAY" != "" ; description=Video; nametemplate=%s.avi
+video/mpeg; /usr/bin/vlc %s; test=test "$DISPLAY" != "" ; description=Video; nametemplate=%s.mpeg
+video/x-flv; /usr/bin/vlc %s; test=test "$DISPLAY" != "" ; description=Video; nametemplate=%s.flv
+video/mp4; /usr/bin/vlc %s; test=test "$DISPLAY" != "" ; description=Video; nametemplate=%s.mp4
+video/x-ms-wmv; /usr/bin/vlc %s; test=test "$DISPLAY" != "" ; description=Video; nametemplate=%s.wmv
+video/x-matroska; /usr/bin/vlc %s; test=test "$DISPLAY" != "" ; description=Video; nametemplate=%s.mkv
+image/jpeg; /usr/bin/feh %s; test=test "$DISPLAY" != ""; description=JPEG Format; nametemplate=%s.jpeg
+image/jpeg; /usr/bin/feh %s; test=test "$DISPLAY" != ""; description=JPEG Format; nametemplate=%s.jpg
+image/png; /usr/bin/feh %s; test=test "$DISPLAY" != ""; description=PNG Format; nametemplate=%s.png
+application/msword; /usr/bin/feh %s; test=test "$DISPLAY" != ""; description=PNG Format; nametemplate=%s.png

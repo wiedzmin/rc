@@ -71,6 +71,24 @@
         line=x-scheme-handler/org-protocol=emacsclient.desktop
         state=present
 
+    - name: setup xdg-open associations
+      shell: xdg-mime default {{ item.program }}.desktop {{ item.mimetype }}
+      with_items:
+        - { program: 'firefox', mimetype: 'text/html' }
+        - { program: 'vlc', mimetype: 'video/avi' }
+        - { program: 'vlc', mimetype: 'video/mpeg' }
+        - { program: 'vlc', mimetype: 'video/x-flv' }
+        - { program: 'vlc', mimetype: 'video/mp4' }
+        - { program: 'vlc', mimetype: 'video/x-ms-wmv' }
+        - { program: 'vlc', mimetype: 'video/x-matroska' }
+        - { program: 'zathura', mimetype: 'application/pdf' }
+        - { program: 'zathura', mimetype: 'application/x-pdf' }
+        - { program: 'zathura', mimetype: 'image/vnd.djvu' }
+        - { program: 'zathura', mimetype: 'image/x-djvu' }
+        - { program: 'feh', mimetype: 'image/jpeg' }
+        - { program: 'feh', mimetype: 'image/png' }
+        - { program: 'abiword', mimetype: 'application/msword' }
+
     - name: make system symlinks
       file:
         src={{ workdir.stdout }}/../{{ item.src }}
