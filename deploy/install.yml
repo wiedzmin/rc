@@ -64,6 +64,7 @@
         - { src: 'ssh_config', dest: '.ssh/config' }
         - { src: 'twmn.conf', dest: '.config/twmn/twmn.conf' }
         - { src: '.msmtprc', dest: '.msmtprc' }
+        - { src: '.pylintrc', dest: '.pylintrc' }
 
     - name: register org-protocol handler in mimeapps
       lineinfile:
