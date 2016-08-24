@@ -27,7 +27,7 @@ else
     then
         ZSH=$HOME/.oh-my-zsh
         ZSH_THEME="clean"
-        plugins=(dircycle fasd nyan urltools vagrant zsh-syntax-highlighting sudo fzf-marks)
+        plugins=(dircycle fasd nyan urltools vagrant zsh-syntax-highlighting sudo fzf-marks docker docker-compose emacs)
         source $ZSH/oh-my-zsh.sh
     else
         source ~/.zsh/promptdefs
