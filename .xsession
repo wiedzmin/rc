@@ -54,7 +54,7 @@ start-programs() {
     bg-run copyq
     bg-run autocutsel -buttonup
     bg-run dropbox
-
+    bg-run pulseaudio --start
 }
 
 wm-loop() {
