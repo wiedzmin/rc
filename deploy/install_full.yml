@@ -1,0 +1,9 @@
+- include: ensure_homedir_entities.yml
+
+- include: ensure_system_entities.yml
+
+- include: ensure_associations.yml
+
+- include: setup_vpn_service.yml
+
+- include: setup_tools.yml

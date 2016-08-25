@@ -1,0 +1,51 @@
+- hosts: localhost
+
+  tasks:
+
+    - name: get work dir
+      shell: pwd
+      register: workdir
+
+    - name: ensure some directories exist
+      file:
+        path={{ ansible_env.HOME }}/{{ item }}
+        state=directory
+      with_items:
+        - '.imapfilter'
+        - '.arbtt'
+        - '.tmux/plugins'
+        - '.ssh'
+        - '.config/twmn'
+
+    - name: make homedir symlinks
+      file:
+        src={{ workdir.stdout }}/../{{ item.src }}
+        dest={{ ansible_env.HOME }}/{{ item.dest }}
+        state=link
+      with_items:
+        - { src: '.Xresources', dest: '.Xresources' }
+        - { src: 'hgrc-linux', dest: '.hgrc' } # TODO check OS
+        - { src: '.tmux.conf', dest: '.tmux.conf' }
+        - { src: '.xsession', dest: '.xsession' }
+        - { src: 'zsh/.zsh', dest: '.zsh' }
+        - { src: 'zsh/.zshrc', dest: '.zshrc' }
+        - { src: 'common_settings', dest: 'common_settings' }
+        - { src: '.xxkbrc', dest: '.xxkbrc' }
+        - { src: '.vimperatorrc', dest: '.vimperatorrc' }
+        - { src: '.conkerorrc', dest: '.conkerorrc' }
+        - { src: 'emacsclient.desktop', dest: '.local/share/applications/emacsclient.desktop' }
+        - { src: '.i3status.conf', dest: '.i3status.conf' }
+        - { src: '.mbsyncrc', dest: '.mbsyncrc' }
+        - { src: '.mailcap', dest: '.mailcap' }
+        - { src: 'imapfilter-config.lua', dest: '.imapfilter/config.lua' }
+        - { src: 'categorize.cfg', dest: '.arbtt/categorize.cfg' }
+        - { src: 'gpg-agent.conf', dest: '.gnupg/gpg-agent.conf' }
+        - { src: 'ssh_config', dest: '.ssh/config' }
+        - { src: 'twmn.conf', dest: '.config/twmn/twmn.conf' }
+        - { src: '.msmtprc', dest: '.msmtprc' }
+        - { src: '.pylintrc', dest: '.pylintrc' }
+
+    # - name: install tmux plugin manager
+    #   git:
+    #     repo=https://github.com/tmux-plugins/tpm
+    #     dest={{ ansible_env.HOME }}/.tmux/plugins/tpm

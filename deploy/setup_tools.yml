@@ -1,0 +1,28 @@
+- hosts: localhost
+
+  tasks:
+
+    - name: get work dir
+      shell: pwd
+      register: workdir
+
+    - name: accompanying tools | shepherd build (mail checking tool)
+      # TODO: migrate to buildapp
+      shell: sbcl --eval "(pushnew (truename \"{{ workdir.stdout }}/../src/\") ql:*local-project-directories*)" --eval "(ql:register-local-projects)" --eval "(ql:quickload 'shepherd)" --eval "(shepherd::save-image-shepherd)"
+
+    - name: accompanying tools | shepherd install (mail checking tool)
+      shell: "mv {{ workdir.stdout }}/shepherd {{ workdir.stdout }}/../utils/shepherd"
+
+    - name: accompanying tools | shepherd generate openrc entry
+      template: src=templates/shepherd.openrc dest=./shepherd.openrc.entry
+
+    - name: accompanying tools | shepherd install openrc entry
+      copy: src=shepherd.openrc.entry dest=/etc/init.d/shepherd mode=0755
+      sudo: yes
+
+    - name: accompanying tools | shepherd restart service
+      service: name=shepherd state=restarted
+      sudo: yes
+
+    - name: accompanying tools | shepherd openrc cleanup
+      file: path=shepherd.openrc.entry state=absent

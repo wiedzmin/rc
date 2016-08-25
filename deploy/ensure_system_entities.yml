@@ -1,0 +1,55 @@
+- hosts: localhost
+
+  tasks:
+
+    - name: get work dir
+      shell: pwd
+      register: workdir
+
+    - name: ensure some _system_ directories exist
+      file:
+        path={{ item }}
+        state=directory
+        mode=0755
+        owner=octocat
+        group=octocat
+        recurse=yes
+      sudo: yes
+      with_items:
+        - '/etc/custom_vpn'
+
+    - name: ensure some packages installed (Gentoo)
+      portage: package={{ item }} state=present
+      with_items:
+        - 'gnome-extra/nm-applet'
+        - 'media-sound/volumeicon'
+        - 'net-misc/dropbox'
+        - 'sys-apps/dbus'
+        - 'sys-fs/udisks-glue'
+        - 'x11-apps/copyq'
+        - 'x11-apps/xmodmap'
+        - 'x11-apps/xrdb'
+        - 'x11-misc/autocutsel'
+        - 'x11-misc/kbdd'
+        - 'x11-misc/redshift'
+        - 'x11-misc/trayer-srg'
+        - 'x11-misc/unclutter'
+        - 'x11-misc/xxkb'
+        - 'x11-terms/rxvt-unicode'
+        - 'x11-misc/yeganesh'
+      sudo: yes
+      when: ansible_distribution == "Gentoo"
+
+    - name: make system symlinks
+      file:
+        src={{ workdir.stdout }}/../{{ item.src }}
+        dest={{ item.dest }}
+        state=link
+      sudo: yes
+      with_items:
+        - { src: 'acpi', dest: '/etc/acpi' }
+        - { src: 'xorg.conf.d', dest: '/etc/X11/xorg.conf.d' }
+
+    - name: prepare global gitconfig
+      template: src=../gitconfig.template dest=/etc/gitconfig
+      sudo: yes
