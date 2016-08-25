@@ -1,0 +1,19 @@
+#!/sbin/openrc-run
+
+VPNCONF="/etc/custom_vpn/office-udp.ovpn"
+PIDFILE=${HOME}/job-vpn.pid
+DAEMON_OPTS="--config ${VPNCONF} --writepid ${PIDFILE} --daemon"
+
+start () {
+	ebegin "Starting job vpn"
+	start-stop-daemon --start --exec /usr/sbin/openvpn --pidfile ${PIDFILE} \
+             -- ${DAEMON_OPTS}
+	eend $? "Failed to start job vpn"
+}
+
+stop() {
+	ebegin "Stopping job vpn"
+	start-stop-daemon --stop --pidfile ${PIDFILE}
+	eend $? "Failed to stop job vpn"
+}
+
