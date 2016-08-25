@@ -6,6 +6,9 @@
       shell: pwd
       register: workdir
 
+    - name: accompanying tools | bootstrap Buildapp tool
+      shell: sbcl --eval "(ql:quickload 'buildapp)" --eval "(buildapp:build-buildapp \"{{ workdir.stdout }}/../utils/buildapp\")"
+
     - name: accompanying tools | shepherd build (mail checking tool)
       # TODO: migrate to buildapp
       shell: sbcl --eval "(pushnew (truename \"{{ workdir.stdout }}/../src/\") ql:*local-project-directories*)" --eval "(ql:register-local-projects)" --eval "(ql:quickload 'shepherd)" --eval "(shepherd::save-image-shepherd)"
