@@ -1,2 +1,4 @@
-* TODO find out the cause of recursive symlinking in make-symlinks.sh
-* TODO consider using tmux in X/console and respective setups
+* BACKLOG review current tools ans setups and add respective ebuilds to local overlay 
+** dev-util/ninja
+** dev-util/bear
+** dev-util/rtags
