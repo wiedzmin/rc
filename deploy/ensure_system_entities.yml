@@ -37,6 +37,7 @@
         - 'x11-misc/xxkb'
         - 'x11-terms/rxvt-unicode'
         - 'x11-misc/yeganesh'
+        - 'dev-util/rtags'
       sudo: yes
       when: ansible_distribution == "Gentoo"
 
