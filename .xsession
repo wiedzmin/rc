@@ -51,7 +51,6 @@ start-programs() {
     bg-run dbus-launch nm-applet
 
     bg-run redshift -l 55.751244:37.618423 -t 5500:3700 -m randr
-    bg-run copyq
     bg-run autocutsel -buttonup
     bg-run dropbox
     bg-run pulseaudio --start

@@ -26,7 +26,7 @@
         - 'net-misc/dropbox'
         - 'sys-apps/dbus'
         - 'sys-fs/udisks-glue'
-        - 'x11-apps/copyq'
+        # - 'x11-apps/copyq'
         - 'x11-apps/xmodmap'
         - 'x11-apps/xrdb'
         - 'x11-misc/autocutsel'
