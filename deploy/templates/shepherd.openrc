@@ -1,4 +1,4 @@
-#!/sbin/runscript
+#!/sbin/openrc-run
 
 DAEMON={{ workdir.stdout }}/../utils/shepherd
 PIDFILE={{ ansible_env.HOME }}/shepherd.pid
@@ -15,4 +15,3 @@ stop() {
 	start-stop-daemon --stop --pidfile ${PIDFILE}
 	eend $? "Failed to stop shepherd"
 }
-
