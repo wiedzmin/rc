@@ -39,6 +39,10 @@
         - 'x11-misc/yeganesh'
         - 'dev-util/rtags'
         - 'mail-filter/imapfilter'
+        - 'app-emulation/docker'
+        - 'app-emulation/docker-compose'
+        - 'app-emulation/docker-machine'
+        - 'app-emulation/docker-swarm'
       sudo: yes
       when: ansible_distribution == "Gentoo"
 
@@ -51,6 +55,7 @@
       with_items:
         - { src: 'acpi', dest: '/etc/acpi' }
         - { src: 'xorg.conf.d', dest: '/etc/X11/xorg.conf.d' }
+        - { src: 'docker', dest: '/etc/conf.d/docker' }
 
     - name: prepare global gitconfig
       template: src=../gitconfig.template dest=/etc/gitconfig
