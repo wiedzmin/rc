@@ -38,6 +38,7 @@
         - 'x11-terms/rxvt-unicode'
         - 'x11-misc/yeganesh'
         - 'dev-util/rtags'
+        - 'mail-filter/imapfilter'
       sudo: yes
       when: ansible_distribution == "Gentoo"
 
