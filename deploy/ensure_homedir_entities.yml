@@ -24,6 +24,7 @@
         state=link
       with_items:
         - { src: '.Xresources', dest: '.Xresources' }
+        - { src: 'xmodmaprc', dest: 'xmodmaprc' }
         - { src: 'hgrc-linux', dest: '.hgrc' } # TODO check OS
         - { src: '.tmux.conf', dest: '.tmux.conf' }
         - { src: '.xsession', dest: '.xsession' }
