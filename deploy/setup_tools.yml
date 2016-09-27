@@ -16,16 +16,12 @@
     - name: accompanying tools | shepherd install (mail checking tool)
       shell: "mv {{ workdir.stdout }}/shepherd {{ workdir.stdout }}/../utils/shepherd"
 
-    - name: accompanying tools | shepherd generate openrc entry
-      template: src=templates/shepherd.openrc dest=./shepherd.openrc.entry
-
-    - name: accompanying tools | shepherd install openrc entry
-      copy: src=shepherd.openrc.entry dest=/etc/init.d/shepherd mode=0755
+    - name: vpn | copy files to system location
+      copy:
+        src={{ workdir.stdout }}/../private/{{ item.src }}
+        dest={{ item.dest }}
       sudo: yes
-
-    - name: accompanying tools | shepherd restart service
-      service: name=shepherd state=restarted
-      sudo: yes
-
-    - name: accompanying tools | shepherd openrc cleanup
-      file: path=shepherd.openrc.entry state=absent
+      with_items:
+        - { src: 'auth.conf', dest: '/etc/custom_vpn/auth.conf' }
+        - { src: 'office-tcp.ovpn', dest: '/etc/custom_vpn/office-tcp.ovpn' }
+        - { src: 'office-udp.ovpn', dest: '/etc/custom_vpn/office-udp.ovpn' }

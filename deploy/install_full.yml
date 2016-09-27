@@ -4,6 +4,6 @@
 
 - include: ensure_associations.yml
 
-- include: setup_vpn_service.yml
-
 - include: setup_tools.yml
+
+- include: setup_openrc_services.yml
