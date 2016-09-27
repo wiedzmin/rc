@@ -33,3 +33,17 @@
 
     - name: accompanying tools | shepherd | openrc cleanup
       file: path=shepherd.openrc.entry state=absent
+
+    - name: sshuttle | generate openrc entry
+      template: src=templates/sshuttle.openrc dest=./sshuttle.openrc.entry
+
+    - name: sshuttle | install openrc entry
+      copy: src=sshuttle.openrc.entry dest=/etc/init.d/sshuttle mode=0755
+      sudo: yes
+
+    - name: sshuttle | restart service
+      service: name=sshuttle state=restarted
+      sudo: yes
+
+    - name: sshuttle | openrc cleanup
+      file: path=sshuttle.openrc.entry state=absent
