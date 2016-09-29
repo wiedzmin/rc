@@ -7,7 +7,7 @@
       register: workdir
 
     - name: vpn | generate openrc entry
-      template: src=templates/job-vpn.openrc dest=./job-vpn.openrc.entry
+      template: src=../templates/job-vpn.openrc dest=./job-vpn.openrc.entry
 
     - name: vpn | install openrc entry
       copy: src=job-vpn.openrc.entry dest=/etc/init.d/job-vpn mode=0755
@@ -21,7 +21,7 @@
       file: path=job-vpn.openrc.entry state=absent
 
     - name: accompanying tools | shepherd | generate openrc entry
-      template: src=templates/shepherd.openrc dest=./shepherd.openrc.entry
+      template: src=../templates/shepherd.openrc dest=./shepherd.openrc.entry
 
     - name: accompanying tools | shepherd | install openrc entry
       copy: src=shepherd.openrc.entry dest=/etc/init.d/shepherd mode=0755
@@ -35,7 +35,7 @@
       file: path=shepherd.openrc.entry state=absent
 
     - name: sshuttle | generate openrc entry
-      template: src=templates/sshuttle.openrc dest=./sshuttle.openrc.entry
+      template: src=../templates/sshuttle.openrc dest=./sshuttle.openrc.entry
 
     - name: sshuttle | install openrc entry
       copy: src=sshuttle.openrc.entry dest=/etc/init.d/sshuttle mode=0755

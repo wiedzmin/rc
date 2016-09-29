@@ -46,6 +46,18 @@
       sudo: yes
       when: ansible_distribution == "Gentoo"
 
+    - name: clean up system in favor of symlinks
+      file:
+        path={{ item }}
+        state=absent
+      sudo: yes
+      with_items:
+        - '/etc/acpi'
+        - '/etc/X11/xorg.conf.d'
+        - '/etc/conf.d/docker'
+        - '/etc/mpd.conf'
+
+
     - name: make system symlinks
       file:
         src={{ workdir.stdout }}/../{{ item.src }}
@@ -53,10 +65,11 @@
         state=link
       sudo: yes
       with_items:
-        - { src: 'acpi', dest: '/etc/acpi' }
-        - { src: 'xorg.conf.d', dest: '/etc/X11/xorg.conf.d' }
-        - { src: 'docker', dest: '/etc/conf.d/docker' }
+        - { src: 'conf.d/system/acpi', dest: '/etc/acpi' }
+        - { src: 'conf.d/system/xorg.conf.d', dest: '/etc/X11/xorg.conf.d' }
+        - { src: 'conf.d/system/docker', dest: '/etc/conf.d/docker' }
+        - { src: 'conf.d/system/mpd.conf', dest: '/etc/mpd.conf' }
 
     - name: prepare global gitconfig
-      template: src=../gitconfig.template dest=/etc/gitconfig
+      template: src=../conf.d/user/dev/gitconfig.template dest=/etc/gitconfig
       sudo: yes

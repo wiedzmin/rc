@@ -15,4 +15,4 @@
 [push]
 	default = current
 [commit]
-	template = {{ workdir.stdout }}/../git-commit-template
+	template = {{ workdir.stdout }}/../conf.d/user/dev/git-commit-template
