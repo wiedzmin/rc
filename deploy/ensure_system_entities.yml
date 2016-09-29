@@ -46,7 +46,7 @@
       sudo: yes
       when: ansible_distribution == "Gentoo"
 
-    - name: clean up system in favor of symlinks
+    - name: clean up system files in favor of symlinks
       file:
         path={{ item }}
         state=absent
@@ -56,7 +56,6 @@
         - '/etc/X11/xorg.conf.d'
         - '/etc/conf.d/docker'
         - '/etc/mpd.conf'
-
 
     - name: make system symlinks
       file:
