@@ -1,0 +1,285 @@
+# abi_x86_32 settings for respective packages
+# app-emulation/emul-linux-x86-baselibs-20140508-r14  USE="development kerberos ldap pam" ABI_X86="-32" 39,395 kB
+app-admin/gamin abi_x86_32
+app-arch/bzip2 abi_x86_32
+app-arch/xz-utils abi_x86_32
+app-crypt/mit-krb5 abi_x86_32
+app-text/libpaper abi_x86_32
+dev-db/sqlite abi_x86_32
+dev-lang/perl abi_x86_32
+dev-lang/python abi_x86_32
+dev-libs/dbus-glib abi_x86_32
+dev-libs/elfutils abi_x86_32
+dev-libs/expat abi_x86_32
+dev-libs/glib abi_x86_32
+dev-libs/gmp abi_x86_32
+dev-libs/json-c abi_x86_32
+dev-libs/libffi abi_x86_32
+dev-libs/libgcrypt abi_x86_32
+dev-libs/libgpg-error abi_x86_32
+dev-libs/libnl abi_x86_32
+dev-libs/libpcre abi_x86_32
+dev-libs/libtasn1 abi_x86_32
+dev-libs/libusb abi_x86_32
+dev-libs/libusb-compat abi_x86_32
+dev-libs/libxml2 abi_x86_32
+dev-libs/libxslt abi_x86_32
+dev-libs/lzo abi_x86_32
+dev-libs/nettle abi_x86_32
+dev-libs/nspr abi_x86_32
+dev-libs/nss abi_x86_32
+dev-libs/openssl abi_x86_32
+dev-libs/udis86 abi_x86_32
+media-libs/giflib abi_x86_32
+media-libs/lcms abi_x86_32
+media-libs/libart_lgpl abi_x86_32
+media-libs/libjpeg-turbo abi_x86_32
+media-libs/libmng abi_x86_32
+media-libs/libpng abi_x86_32
+media-libs/tiff abi_x86_32
+media-sound/pulseaudio abi_x86_32
+net-dialup/capi4k-utils abi_x86_32
+net-dns/libidn abi_x86_32
+net-libs/gnutls abi_x86_32
+net-libs/libgssglue abi_x86_32
+net-libs/libsoup abi_x86_32
+net-libs/libtirpc abi_x86_32
+net-libs/neon abi_x86_32
+net-misc/curl abi_x86_32
+net-nds/openldap abi_x86_32
+net-print/cups abi_x86_32
+net-wireless/bluez abi_x86_32
+sys-apps/acl abi_x86_32
+sys-apps/attr abi_x86_32
+sys-apps/dbus abi_x86_32
+sys-apps/file abi_x86_32
+sys-apps/keyutils abi_x86_32
+sys-apps/pciutils abi_x86_32
+sys-apps/tcp-wrappers abi_x86_32
+sys-apps/util-linux abi_x86_32
+sys-auth/nss-mdns abi_x86_32
+sys-auth/nss_ldap abi_x86_32
+sys-auth/pam_ldap abi_x86_32
+sys-devel/binutils abi_x86_32
+sys-devel/gettext abi_x86_32
+sys-devel/libperl abi_x86_32
+sys-devel/libtool abi_x86_32
+sys-devel/llvm abi_x86_32
+sys-fs/e2fsprogs abi_x86_32
+sys-fs/udev abi_x86_32
+sys-libs/cracklib abi_x86_32
+sys-libs/db abi_x86_32
+sys-libs/e2fsprogs-libs abi_x86_32
+sys-libs/gdbm abi_x86_32
+sys-libs/gpm abi_x86_32
+sys-libs/libavc1394 abi_x86_32
+sys-libs/libraw1394 abi_x86_32
+sys-libs/ncurses abi_x86_32
+sys-libs/pam abi_x86_32
+sys-libs/pwdb abi_x86_32
+sys-libs/readline abi_x86_32
+sys-libs/slang abi_x86_32
+sys-libs/talloc abi_x86_32
+sys-libs/zlib abi_x86_32
+ 
+#app-emulation/emul-linux-x86-db-20140508-r1  USE="development" ABI_X86="-32" 1,470 kB
+dev-db/myodbc abi_x86_32
+dev-db/mysql abi_x86_32
+dev-db/unixODBC abi_x86_32
+ 
+# app-emulation/emul-linux-x86-medialibs-20140508-r6  USE="development" ABI_X86="-32" 11,058 kB
+app-misc/lirc abi_x86_32
+dev-libs/DirectFB abi_x86_32
+dev-libs/fribidi abi_x86_32
+dev-libs/libcdio abi_x86_32
+dev-libs/liboil abi_x86_32
+media-gfx/sane-backends abi_x86_32
+media-libs/a52dec abi_x86_32
+media-libs/faac abi_x86_32
+media-libs/faad2 abi_x86_32
+media-libs/gst-plugins-base abi_x86_32
+media-libs/gstreamer abi_x86_32
+media-libs/libcuefile abi_x86_32
+media-libs/libdca abi_x86_32
+media-libs/libdv abi_x86_32
+media-libs/libdvdnav abi_x86_32
+media-libs/libdvdread abi_x86_32
+media-libs/libgphoto2 abi_x86_32
+media-libs/libid3tag abi_x86_32
+media-libs/libiec61883 abi_x86_32
+media-libs/libmad abi_x86_32
+media-libs/libmimic abi_x86_32
+media-libs/libmms abi_x86_32
+media-libs/libmpeg2 abi_x86_32
+media-libs/libofa abi_x86_32
+media-libs/libreplaygain abi_x86_32
+media-libs/libshout abi_x86_32
+media-libs/libsidplay abi_x86_32
+media-libs/libtheora abi_x86_32
+media-libs/libv4l abi_x86_32
+media-libs/libvisual abi_x86_32
+media-libs/libvpx abi_x86_32
+media-libs/speex abi_x86_32
+media-libs/taglib abi_x86_32
+media-libs/x264 abi_x86_32
+media-libs/xvid abi_x86_32
+media-sound/lame abi_x86_32
+media-video/ffmpeg abi_x86_32
+media-video/mjpegtools abi_x86_32
+sys-libs/libieee1284 abi_x86_32
+ 
+# app-emulation/emul-linux-x86-opengl-20140508  USE="development" ABI_X86="-32" 48,065 kB
+media-libs/freeglut abi_x86_32
+media-libs/glew abi_x86_32
+media-libs/glu abi_x86_32
+media-libs/mesa abi_x86_32
+x11-libs/libdrm abi_x86_32
+ 
+# app-emulation/emul-linux-x86-soundlibs-20140508  USE="alsa development pulseaudio" ABI_X86="-32" 7,090 kB
+dev-libs/libical abi_x86_32
+media-libs/alsa-lib abi_x86_32
+media-libs/alsa-oss abi_x86_32
+media-libs/audiofile abi_x86_32
+media-libs/flac abi_x86_32
+media-libs/ladspa-sdk abi_x86_32
+media-libs/libao abi_x86_32
+media-libs/libmikmod abi_x86_32
+media-libs/libmodplug abi_x86_32
+media-libs/libogg abi_x86_32
+media-libs/libsamplerate abi_x86_32
+media-libs/libsndfile abi_x86_32
+media-libs/libvorbis abi_x86_32
+media-libs/portaudio abi_x86_32
+media-libs/webrtc-audio-processing abi_x86_32
+media-plugins/alsa-plugins abi_x86_32
+media-plugins/alsaequal abi_x86_32
+media-plugins/caps-plugins abi_x86_32
+media-plugins/swh-plugins abi_x86_32
+media-sound/cdparanoia abi_x86_32
+media-sound/gsm abi_x86_32
+media-sound/jack-audio-connection-kit abi_x86_32
+media-sound/mpg123 abi_x86_32
+media-sound/musepack-tools abi_x86_32
+media-sound/pulseaudio abi_x86_32
+media-sound/twolame abi_x86_32
+media-sound/wavpack abi_x86_32
+net-wireless/bluez abi_x86_32
+sci-libs/fftw abi_x86_32
+ 
+# app-emulation/emul-linux-x86-xlibs-20140508  USE="(development) opengl" ABI_X86="-32" 2,704 kB
+media-libs/fontconfig abi_x86_32
+media-libs/freetype abi_x86_32
+x11-libs/libICE abi_x86_32
+x11-libs/libSM abi_x86_32
+x11-libs/libX11 abi_x86_32
+x11-libs/libXScrnSaver abi_x86_32
+x11-libs/libXau abi_x86_32
+x11-libs/libXaw abi_x86_32
+x11-libs/libXcomposite abi_x86_32
+x11-libs/libXcursor abi_x86_32
+x11-libs/libXdamage abi_x86_32
+x11-libs/libXdmcp abi_x86_32
+x11-libs/libXext abi_x86_32
+x11-libs/libXfixes abi_x86_32
+x11-libs/libXft abi_x86_32
+x11-libs/libXi abi_x86_32
+x11-libs/libXinerama abi_x86_32
+x11-libs/libXmu abi_x86_32
+x11-libs/libXp abi_x86_32
+x11-libs/libXpm abi_x86_32
+x11-libs/libXrandr abi_x86_32
+x11-libs/libXrender abi_x86_32
+x11-libs/libXt abi_x86_32
+x11-libs/libXtst abi_x86_32
+x11-libs/libXv abi_x86_32
+x11-libs/libXvMC abi_x86_32
+x11-libs/libXxf86dga abi_x86_32
+x11-libs/libXxf86vm abi_x86_32
+x11-libs/libpciaccess abi_x86_32
+x11-libs/libvdpau abi_x86_32
+x11-libs/libxcb abi_x86_32
+x11-proto/scrnsaverproto abi_x86_32
+
+app-emulation/wine abi_x86_32
+x11-misc/virtualgl abi_x86_32
+
+# some real updates from the concrete system
+x11-proto/dri2proto abi_x86_32
+x11-proto/xf86vidmodeproto abi_x86_32
+x11-proto/xcb-proto abi_x86_32 python_targets_python3_4
+x11-proto/xf86bigfontproto abi_x86_32
+x11-libs/libxshmfence abi_x86_32
+x11-proto/xextproto abi_x86_32
+x11-proto/glproto abi_x86_32
+virtual/opengl abi_x86_32
+virtual/libiconv abi_x86_32
+x11-proto/presentproto abi_x86_32
+x11-proto/dri3proto abi_x86_32
+x11-proto/xf86driproto abi_x86_32
+x11-proto/inputproto abi_x86_32
+x11-proto/videoproto abi_x86_32
+virtual/glu abi_x86_32
+virtual/libffi abi_x86_32
+dev-libs/libpthread-stubs abi_x86_32
+x11-proto/xproto abi_x86_32
+x11-proto/damageproto abi_x86_32
+x11-proto/kbproto abi_x86_32
+x11-proto/fixesproto abi_x86_32
+virtual/libudev abi_x86_32
+
+# and some more
+dev-util/pkgconfig abi_x86_32
+dev-qt/qtcore abi_x86_32
+dev-qt/qtdbus abi_x86_32
+virtual/jpeg abi_x86_32
+dev-qt/qtsql abi_x86_32
+dev-lang/orc abi_x86_32
+x11-proto/renderproto abi_x86_32
+dev-qt/qtgui abi_x86_32
+dev-qt/qtwebkit abi_x86_32
+dev-qt/qtxmlpatterns abi_x86_32
+x11-proto/randrproto abi_x86_32
+dev-qt/qt3support abi_x86_32
+dev-qt/qtscript abi_x86_32
+virtual/pkgconfig abi_x86_32
+
+# and some even more
+x11-proto/recordproto abi_x86_32
+sys-libs/libcap abi_x86_32
+net-libs/libasyncns abi_x86_32
+
+# and some even more
+x11-proto/xineramaproto abi_x86_32
+virtual/libintl abi_x86_32
+net-libs/glib-networking abi_x86_32
+x11-libs/cairo abi_x86_32
+x11-libs/pixman abi_x86_32
+dev-libs/icu abi_x86_32
+media-gfx/graphite2 abi_x86_32
+x11-proto/printproto abi_x86_32
+media-libs/harfbuzz abi_x86_32
+app-crypt/p11-kit abi_x86_32
+sys-devel/flex abi_x86_32
+x11-libs/pango abi_x86_32
+x11-proto/xf86dgaproto abi_x86_32
+dev-libs/libltdl abi_x86_32
+net-libs/libproxy abi_x86_32
+x11-proto/compositeproto abi_x86_32
+media-libs/libdvdcss abi_x86_32
+# END OF abi_x86_32 settings for respective packages
+
+net-misc/networkmanager abi_x86_32
+# required by net-misc/networkmanager-1.0.10-r1::gentoo
+# required by net-misc/networkmanager (argument)
+>=virtual/libgudev-230 abi_x86_32
+# required by virtual/libgudev-230::gentoo
+# required by net-misc/networkmanager-1.0.10-r1::gentoo
+# required by net-misc/networkmanager (argument)
+>=dev-libs/libgudev-230 abi_x86_32
+
+# required by media-libs/gst-plugins-base-1.8.2::gentoo[opus]
+# required by media-libs/gst-plugins-good-1.8.2::gentoo
+# required by media-plugins/gst-plugins-jpeg-1.8.2::gentoo
+# required by @selected
+# required by @world (argument)
+>=media-libs/opus-1.1.3 abi_x86_32

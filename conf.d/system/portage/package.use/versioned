@@ -1,0 +1,115 @@
+# required by dev-lang/ruby-2.2.2-r1::gentoo
+# required by virtual/rubygems-11::gentoo[ruby_targets_ruby22]
+# required by dev-ruby/json-1.8.3::gentoo
+# required by dev-ruby/rdoc-4.1.2-r1::gentoo[ruby_targets_ruby19]
+# required by dev-lang/ruby-2.0.0_p645::gentoo[rdoc]
+# required by dev-ruby/racc-1.4.12::gentoo[ruby_targets_ruby20]
+>=dev-ruby/test-unit-3.1.2 ruby_targets_ruby22
+# required by dev-lang/ruby-2.2.2-r1::gentoo
+# required by virtual/rubygems-11::gentoo[ruby_targets_ruby22]
+# required by dev-ruby/json-1.8.3::gentoo
+# required by dev-ruby/rdoc-4.1.2-r1::gentoo[ruby_targets_ruby19]
+# required by dev-lang/ruby-2.0.0_p645::gentoo[rdoc]
+# required by dev-ruby/racc-1.4.12::gentoo[ruby_targets_ruby20]
+>=dev-ruby/minitest-5.7.0 ruby_targets_ruby22
+# required by dev-lang/ruby-2.2.2-r1::gentoo
+# required by virtual/rubygems-11::gentoo[ruby_targets_ruby22]
+# required by dev-ruby/json-1.8.3::gentoo
+# required by dev-ruby/rdoc-4.1.2-r1::gentoo[ruby_targets_ruby19]
+# required by dev-lang/ruby-2.0.0_p645::gentoo[rdoc]
+# required by dev-ruby/racc-1.4.12::gentoo[ruby_targets_ruby20]
+>=dev-ruby/power_assert-0.2.3 ruby_targets_ruby22
+# required by dev-lang/ruby-2.2.2-r1::gentoo
+# required by virtual/rubygems-11::gentoo[ruby_targets_ruby22]
+# required by dev-ruby/json-1.8.3::gentoo
+# required by dev-ruby/rdoc-4.1.2-r1::gentoo[ruby_targets_ruby19]
+# required by dev-lang/ruby-2.0.0_p645::gentoo[rdoc]
+# required by dev-ruby/racc-1.4.12::gentoo[ruby_targets_ruby20]
+>=dev-ruby/rake-10.4.2 ruby_targets_ruby22
+# required by dev-lang/ruby-2.2.2-r1::gentoo[rdoc]
+# required by virtual/rubygems-11::gentoo[ruby_targets_ruby22]
+# required by dev-ruby/json-1.8.3::gentoo
+# required by @selected
+# required by @world (argument)
+>=dev-ruby/rdoc-4.1.2-r1 ruby_targets_ruby22
+# required by dev-ruby/rdoc-4.1.2-r1::gentoo[ruby_targets_ruby22]
+# required by dev-lang/ruby-2.2.2-r1::gentoo[rdoc]
+# required by virtual/rubygems-11::gentoo[ruby_targets_ruby22]
+# required by dev-ruby/power_assert-0.2.3::gentoo[-test,ruby_targets_ruby22]
+# required by dev-ruby/test-unit-3.1.2::gentoo[ruby_targets_ruby22]
+>=dev-ruby/json-1.8.3 ruby_targets_ruby22
+# required by virtual/rubygems-11::gentoo[ruby_targets_ruby22]
+# required by dev-ruby/json-1.8.3::gentoo
+# required by dev-lang/ruby-2.2.2-r1::gentoo
+# required by dev-ruby/racc-1.4.12::gentoo[ruby_targets_ruby22]
+# required by dev-ruby/rdoc-4.1.2-r1::gentoo[ruby_targets_ruby19]
+# required by dev-lang/ruby-2.0.0_p645::gentoo[rdoc]
+# required by dev-ruby/rake-10.4.2::gentoo[ruby_targets_ruby20]
+# required by app-emulation/vagrant-1.4.3-r2::gentoo[-test,ruby_targets_ruby20]
+# required by @selected
+# required by @world (argument)
+>=dev-ruby/rubygems-2.4.8 ruby_targets_ruby22
+# required by dev-ruby/rdoc-4.1.2-r1::gentoo[ruby_targets_ruby22]
+# required by dev-lang/ruby-2.2.2-r1::gentoo[rdoc]
+# required by virtual/rubygems-11::gentoo[ruby_targets_ruby22]
+# required by dev-ruby/json-1.8.3::gentoo
+# required by @selected
+# required by @world (argument)
+>=dev-ruby/racc-1.4.12 ruby_targets_ruby22
+# required by dev-qt/qtwebkit-5.4.2::gentoo
+# required by dev-qt/qtquick1-5.4.2::gentoo[webkit]
+# required by net-misc/dropbox-3.6.8::gentoo[X]
+# required by @selected
+# required by @world (argument)
+>=dev-qt/qtcore-5.4.2 icu
+# required by dev-ruby/test-unit-3.1.2::gentoo[-test,ruby_targets_ruby22]
+# required by dev-lang/ruby-2.2.2-r1::gentoo
+# required by dev-ruby/racc-1.4.12::gentoo[ruby_targets_ruby22]
+# required by dev-ruby/rdoc-4.1.2-r1::gentoo[ruby_targets_ruby19]
+# required by dev-lang/ruby-2.0.0_p645::gentoo[rdoc]
+# required by dev-ruby/rubygems-2.4.8::gentoo[ruby_targets_ruby20]
+>=virtual/rubygems-11 ruby_targets_ruby22
+# required by app-emulation/qemu-2.4.0::gentoo[-qemu_softmmu_targets_lm32,-qemu_softmmu_targets_mips,-qemu_softmmu_targets_alpha,-qemu_softmmu_targets_mips64,-qemu_softmmu_targets_s390x,-qemu_softmmu_targets_xtensaeb,-qemu_softmmu_targets_mipsel,opengl,-qemu_softmmu_targets_cris,-qemu_softmmu_targets_moxie,-qemu_softmmu_targets_m68k,-qemu_softmmu_targets_xtensa,-qemu_softmmu_targets_or32,-qemu_softmmu_targets_ppcemb,-qemu_softmmu_targets_microblaze,-qemu_softmmu_targets_arm,-qemu_softmmu_targets_sh4eb,-qemu_softmmu_targets_unicore32,-qemu_softmmu_targets_i386,-qemu_softmmu_targets_mips64el,-qemu_softmmu_targets_ppc64,-qemu_softmmu_targets_sparc,-qemu_softmmu_targets_ppc,qemu_softmmu_targets_x86_64,-qemu_softmmu_targets_microblazeel,-qemu_softmmu_targets_sparc64,-qemu_softmmu_targets_aarch64,-static-softmmu,-qemu_softmmu_targets_sh4]
+# required by app-emulation/libvirt-1.2.18-r1::gentoo[qemu]
+# required by dev-python/libvirt-python-1.2.18::gentoo
+# required by app-emulation/virt-manager-1.2.1::gentoo
+# required by @selected
+# required by @world (argument)
+>=media-libs/mesa-10.6.3 gles2
+# required by kde-plasma/polkit-kde-agent-5.4.0::gentoo
+# required by kde-frameworks/kauth-5.13.0::gentoo[policykit]
+# required by kde-frameworks/kcmutils-5.13.0::gentoo
+# required by kde-apps/dolphin-15.08.0::gentoo
+# required by @selected
+# required by @world (argument)
+>=sys-auth/polkit-qt-0.112.0-r1 qt5
+# required by media-libs/phonon-vlc-0.8.2::gentoo
+>=media-libs/phonon-4.8.3-r1 qt5
+# required by kde-frameworks/knotifications-5.13.0::gentoo[dbus]
+# required by kde-frameworks/khtml-5.13.0::gentoo
+# required by kde-apps/kio-extras-15.08.0::gentoo
+# required by kde-apps/dolphin-15.08.0::gentoo
+# required by @selected
+# required by @world (argument)
+>=dev-libs/libdbusmenu-qt-0.9.3_pre20140619-r1 qt5
+# required by media-libs/phonon-4.8.3-r1::gentoo[vlc]
+# required by kde-frameworks/knotifications-5.13.0::gentoo
+# required by kde-frameworks/khtml-5.13.0::gentoo
+# required by kde-apps/kio-extras-15.08.0::gentoo
+# required by kde-apps/dolphin-15.08.0::gentoo
+# required by @selected
+# required by @world (argument)
+>=media-libs/phonon-vlc-0.8.2 qt5
+x11-misc/tint2 battery examples tint2conf
+
+# required by media-libs/libgphoto2-2.5.8::gentoo
+# required by media-gfx/gphotofs-0.5::gentoo
+# required by media-gfx/gphotofs (argument)
+>=virtual/libusb-1-r2 abi_x86_32
+
+# required by x11-libs/cairo-1.14.2-r1::gentoo
+# required by x11-libs/pango-1.36.8-r1::gentoo
+# required by x11-wm/awesome-3.5.6-r1::gentoo
+# required by @selected
+# required by @world (argument)
+>=sys-libs/binutils-libs-2.25.1-r1 abi_x86_32

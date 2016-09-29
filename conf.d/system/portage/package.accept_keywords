@@ -1,0 +1,15 @@
+#required by iwl6005-ucode (argument)
+=sys-firmware/iwl6005-ucode-18.168.6.1 ~amd64
+# required by dev-util/dtrace (argument)
+=dev-util/dtrace-20110215 **
+# required by sys-fs/hfsplusutils (argument)
+=sys-fs/hfsplusutils-1.0.4-r1 **
+=x11-misc/twmn-9999 **
+=app-editors/wily-1.0-r1 **
+# required by app-office/mytetra (argument)
+=app-office/mytetra-9999 **
+=x11-terms/termit-2.5.0 **
+# required by dev-vcs/git-extras (argument)
+=dev-vcs/git-extras-9999 **
+=net-mail/isync-9999 **
+=x11-apps/arbtt-9999 **

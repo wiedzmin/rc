@@ -1,0 +1,13 @@
+x11-wm/xmonad **
+x11-wm/xmonad-extras **
+x11-wm/xmonad-contrib **
+x11-misc/dmenu **
+=dev-vcs/gti-9999 **
+#required by dev-util/runsnakerun-2.0.0_beta4::betagarden, required by dev-util/runsnakerun (argument)
+=dev-python/squaremap-1.0.0_beta24 **
+#required by dev-util/runsnakerun (argument)
+=dev-util/runsnakerun-2.0.0_beta4 **
+=app-emacs/remem-2.12_p20070423 **
+app-editors/emacs-vcs **
+# required by dev-vcs/git-extras (argument)
+=dev-vcs/git-extras-9999 **
