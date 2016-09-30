@@ -88,3 +88,10 @@
     - name: prepare global gitconfig
       template: src=../conf.d/user/dev/gitconfig.template dest=/etc/gitconfig
       sudo: yes
+
+    - name: mount portage build directory as tmpfs
+      sudo: yes
+      lineinfile:
+        dest=/etc/fstab
+        line='tmpfs                   /var/tmp/portage/       tmpfs   uid=250,gid=250,size=10G,mode=0775      0 1'
+        state=present
