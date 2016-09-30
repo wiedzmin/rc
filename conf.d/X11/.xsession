@@ -96,7 +96,7 @@ rotate-xsession-errors() {
       fi
     done)
 
-    exec > "${HOME}//.xsession-errors-\"$(date +%Y-%m-%d-%T | tr -d '[:cntrl:]')\"" 2>&1
+    exec > ${HOME}//.xsession-errors-`date +%Y-%m-%d-%T | tr -d '[:cntrl:]'` 2>&1
 }
 
 process-conditionals() {
