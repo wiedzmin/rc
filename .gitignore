@@ -2,4 +2,5 @@
 private
 system-index.txt
 utils/buildapp
+utils/rg
 utils/shepherd

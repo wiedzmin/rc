@@ -1,5 +1,8 @@
 - hosts: localhost
 
+  vars:
+    ripgrep_repo_location: /tmp/ripgrep
+
   tasks:
 
     - name: get work dir
@@ -25,3 +28,24 @@
         - { src: 'auth.conf', dest: '/etc/custom_vpn/auth.conf' }
         - { src: 'office-tcp.ovpn', dest: '/etc/custom_vpn/office-tcp.ovpn' }
         - { src: 'office-udp.ovpn', dest: '/etc/custom_vpn/office-udp.ovpn' }
+
+    - name: ripgrep | clone repository
+      git:
+        repo=https://github.com/BurntSushi/ripgrep
+        dest={{ ripgrep_repo_location }}
+        force=yes
+
+    - name: ripgrep | build
+      shell: cargo build --release
+      args:
+          chdir: '{{ ripgrep_repo_location }}'
+
+    - name: ripgrep | install binary
+      shell: "mv {{ ripgrep_repo_location }}/target/release/rg {{ workdir.stdout }}/../utils/rg"
+
+    - name: make system symlinks
+      file:
+        src={{ workdir.stdout }}/../utils/rg
+        dest=/usr/bin/rg
+        state=link
+      sudo: yes

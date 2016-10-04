@@ -43,6 +43,7 @@
         - 'app-emulation/docker-compose'
         - 'app-emulation/docker-machine'
         - 'app-emulation/docker-swarm'
+        - 'dev-util/cargo'
       sudo: yes
       when: ansible_distribution == "Gentoo"
 
