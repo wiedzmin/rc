@@ -34,6 +34,7 @@
         - { src: 'conf.d/user/browser/.conkerorrc', dest: '.conkerorrc' }
         - { src: 'conf.d/user/browser/.vimperatorrc', dest: '.vimperatorrc' }
         - { src: 'conf.d/user/common_settings', dest: 'common_settings' }
+        - { src: 'conf.d/user/common_settings_bash', dest: 'common_settings_bash' }
         - { src: 'conf.d/user/dev/.pylintrc', dest: '.pylintrc' }
         - { src: 'conf.d/user/gpg-agent.conf', dest: '.gnupg/gpg-agent.conf' }
         - { src: 'conf.d/user/mail/.mailcap', dest: '.mailcap' }
@@ -49,3 +50,9 @@
     #   git:
     #     repo=https://github.com/tmux-plugins/tpm
     #     dest={{ ansible_env.HOME }}/.tmux/plugins/tpm
+
+    - name: bash | source common settings
+      lineinfile:
+        dest={{ ansible_env.HOME }}/.bashrc
+        line='source ~/common_settings_bash'
+        state=present

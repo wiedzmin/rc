@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+BIN_DIRS=(
+    $HOME/bin
+    $HOME/tools/bin
+    $HOME/workspace/configs/rc/utils
+)
+
+# Remove dupes from 'path', which is array tied to 'PATH'
+# typeset -U path
+for dir in $BIN_DIRS; do
+    if [ -d $dir ] ; then
+        path=($dir "$path[@]")
+    fi
+done
+
+for candidate in emacsclient vim vi; do
+    if [[ ! -z $(which $candidate) ]]; then
+        export VISUAL=$candidate
+        export EDITOR=$candidate
+        break
+    fi
+done
