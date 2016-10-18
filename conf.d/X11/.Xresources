@@ -29,6 +29,13 @@ URxvt.url-select.launcher: /usr/bin/firefox -new-tab
 URxvt.url-select.underline: true
 URxvt.keysym.F11: perl:fullscreen:switch
 
+Xft.autohint: 0
+Xft.lcdfilter:  lcddefault
+Xft.hintstyle:  hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+
 URxvt*colorUL: #c5f779
 URxvt*underlineColor: #c5f779
 
