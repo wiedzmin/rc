@@ -5,10 +5,10 @@ CURRENT_WM=stumpwm
 # CURRENT_WM=i3
 # CURRENT_WM=awesome
 
-START_TRAY=1
 START_XXKB=1
 START_KBDD=0
-START_TRAYER_SRG=1
+START_TRAYER_SRG=0
+START_VOLUMEICON=0
 DISABLE_CAPSLOCK=1
 LOGS_TO_KEEP=3
 
@@ -76,7 +76,7 @@ start-programs() {
     bg-run unclutter -idle 5
     bg-run arbtt-capture
 
-    bg-run dbus-launch nm-applet
+    # bg-run dbus-launch nm-applet # TODO: refactor bg-run to handle such cases
 
     bg-run redshift -l 55.751244:37.618423 -t 5500:3700 -m randr
     bg-run autocutsel -buttonup
