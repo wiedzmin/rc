@@ -44,6 +44,7 @@
         - { src: 'conf.d/user/ssh_config', dest: '.ssh/config' }
         - { src: 'conf.d/user/zsh/.zsh', dest: '.zsh' }
         - { src: 'conf.d/user/zsh/.zshrc', dest: '.zshrc' }
+        - { src: 'conf.d/user/.stalonetrayrc', dest: '.stalonetrayrc' }
         - { src: 'templates/emacsclient.desktop', dest: '.local/share/applications/emacsclient.desktop' }
 
     # - name: install tmux plugin manager
