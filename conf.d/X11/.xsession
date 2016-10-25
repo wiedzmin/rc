@@ -6,13 +6,19 @@ CURRENT_WM=stumpwm
 # CURRENT_WM=awesome
 
 START_TRAY=1
-START_DROPBOX=0
 START_XXKB=1
 START_KBDD=0
 START_TRAYER_SRG=1
-START_SSHUTTLE=0
 DISABLE_CAPSLOCK=1
 LOGS_TO_KEEP=3
+
+ac_adapter=$(acpi -a | cut -d' ' -f3 | cut -d- -f1)
+
+if [ "$ac_adapter" = "off" ]; then
+    # place "heavyweight" services switches here
+    START_DROPBOX=0
+    START_SSHUTTLE=0
+fi
 
 fg-run() {
     which "$1" > /dev/null && "$@"
