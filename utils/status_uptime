@@ -1,0 +1,2 @@
+#!/bin/sh
+uptime | cut -f 4-7 -d " " | cut -f 1-2 -d ","

@@ -1,0 +1,16 @@
+#!/bin/sh
+t=$(sensors | awk '/Core\ 0/ {gsub(/\+/,"",$3); gsub(/\..+/,"",$3)    ; print $3}')
+tc=$C0
+case 1 in
+	$((t <= 50)))
+		tc=$C2
+		;;
+	$((t >= 87)))
+		tc=$C3
+		;;
+	$((t >= 105)))
+		tc=$C4
+		;;
+esac
+echo "$t°C"
+
