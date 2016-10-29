@@ -9,10 +9,10 @@ case $UPOWER_STATE in
 		st="="
 		;;
 	discharging)
-		st="-"
+		st="▼"
 		;;
 	charging)
-		st="+"
+		st="▲"
 		;;
 esac
 echo $st$UPOWER_PERCENTAGE
