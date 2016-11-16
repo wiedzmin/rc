@@ -31,7 +31,7 @@ dev-lang/php cgi curl gd postgres xmlrpc
 dev-lang/python sqlite tk
 dev-libs/elfutils static-libs
 dev-libs/libpcre pcre16
-dev-lisp/sbcl source
+dev-lisp/sbcl source threads
 dev-ml/camlimages truetype tiff jpeg postscript
 dev-python/bpython gtk
 dev-python/ipython emacs examples notebook
