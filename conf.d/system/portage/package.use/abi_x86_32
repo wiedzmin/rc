@@ -283,3 +283,10 @@ net-misc/networkmanager abi_x86_32
 # required by @selected
 # required by @world (argument)
 >=media-libs/opus-1.1.3 abi_x86_32
+
+# required by virtual/libudev-232::gentoo[-static-libs,-systemd]
+# required by sys-fs/lvm2-2.02.166::gentoo
+# required by app-emulation/docker-1.12.3::gentoo[device-mapper]
+# required by @selected
+# required by @world (argument)
+>=sys-fs/eudev-3.2 abi_x86_32
