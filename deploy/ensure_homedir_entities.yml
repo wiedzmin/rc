@@ -14,6 +14,8 @@
         - '.config/twmn'
         - '.config/i3'
 
+    - include: generate_imapfilter_config.yml
+
     - name: make homedir symlinks
       file:
         src={{ playbook_dir }}/../{{ item.src }}
@@ -38,7 +40,6 @@
         - { src: 'conf.d/user/mail/.mailcap', dest: '.mailcap' }
         - { src: 'conf.d/user/mail/.mbsyncrc', dest: '.mbsyncrc' }
         - { src: 'conf.d/user/mail/.msmtprc', dest: '.msmtprc' }
-        - { src: 'conf.d/user/mail/imapfilter-config.lua', dest: '.imapfilter/config.lua' }
         - { src: 'conf.d/user/ssh_config', dest: '.ssh/config' }
         - { src: 'conf.d/user/zsh/.zsh', dest: '.zsh' }
         - { src: 'conf.d/user/zsh/.zshrc', dest: '.zshrc' }

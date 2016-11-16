@@ -1,6 +1,3 @@
-options.timeout = 120
-options.subscribe = true
-
 cmd_personal = io.popen('gpg2 -q --for-your-eyes-only --no-tty -d ~/docs/enc/cred/aaermolov@gmail.com.gpg', 'r')
 out_personal = cmd_personal:read('*a')
 pass_personal = string.gsub(out_personal, '[\n\r]+', '')
