@@ -41,6 +41,8 @@
         - 'app-emulation/docker-swarm'
         - 'dev-util/cargo'
         - 'sys-power/acpi'
+        - 'sys-power/upower-pm-utils'
+        - 'app-text/pandoc' #TODO: try to keep it here or try to build in Docker container
       sudo: yes
       when: ansible_distribution == "Gentoo"
 
