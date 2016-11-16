@@ -24,7 +24,4 @@
 >dev-lang/go-1.6.2
 >x11-base/xorg-server-1.18.3
 >net-misc/unison-2.32.52
->app-editors/vim-7.4.2102
->app-editors/gvim-7.4.2102
->app-editors/vim-core-7.4.2102
 >app-editors/emacs-24.5-r3
