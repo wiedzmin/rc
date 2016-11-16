@@ -5,23 +5,19 @@
 
   tasks:
 
-    - name: get work dir
-      shell: pwd
-      register: workdir
-
     - name: accompanying tools | bootstrap Buildapp tool
-      shell: sbcl --eval "(ql:quickload 'buildapp)" --eval "(buildapp:build-buildapp \"{{ workdir.stdout }}/../utils/buildapp\")"
+      shell: sbcl --eval "(ql:quickload 'buildapp)" --eval "(buildapp:build-buildapp \"{{ playbook_dir }}/../utils/buildapp\")"
 
     - name: accompanying tools | shepherd build (mail checking tool)
       # TODO: migrate to buildapp
-      shell: sbcl --eval "(pushnew (truename \"{{ workdir.stdout }}/../src/\") ql:*local-project-directories*)" --eval "(ql:register-local-projects)" --eval "(ql:quickload 'shepherd)" --eval "(shepherd::save-image-shepherd)"
+      shell: sbcl --eval "(pushnew (truename \"{{ playbook_dir }}/../src/\") ql:*local-project-directories*)" --eval "(ql:register-local-projects)" --eval "(ql:quickload 'shepherd)" --eval "(shepherd::save-image-shepherd)"
 
     - name: accompanying tools | shepherd install (mail checking tool)
-      shell: "mv {{ workdir.stdout }}/shepherd {{ workdir.stdout }}/../utils/shepherd"
+      shell: "mv {{ playbook_dir }}/shepherd {{ playbook_dir }}/../utils/shepherd"
 
     - name: vpn | copy files to system location
       copy:
-        src={{ workdir.stdout }}/../private/{{ item.src }}
+        src={{ playbook_dir }}/../private/{{ item.src }}
         dest={{ item.dest }}
       sudo: yes
       with_items:
@@ -41,11 +37,11 @@
           chdir: '{{ ripgrep_repo_location }}'
 
     - name: ripgrep | install binary
-      shell: "mv {{ ripgrep_repo_location }}/target/release/rg {{ workdir.stdout }}/../utils/rg"
+      shell: "mv {{ ripgrep_repo_location }}/target/release/rg {{ playbook_dir }}/../utils/rg"
 
     - name: make system symlinks
       file:
-        src={{ workdir.stdout }}/../utils/rg
+        src={{ playbook_dir }}/../utils/rg
         dest=/usr/bin/rg
         state=link
       sudo: yes

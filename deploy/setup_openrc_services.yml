@@ -2,10 +2,6 @@
 
   tasks:
 
-    - name: get work dir
-      shell: pwd
-      register: workdir
-
     - name: vpn | generate openrc entry
       template: src=../templates/job-vpn.openrc dest=./job-vpn.openrc.entry
 

@@ -2,10 +2,6 @@
 
   tasks:
 
-    - name: get work dir
-      shell: pwd
-      register: workdir
-
     - name: ensure some _system_ directories exist
       file:
         path={{ item }}
@@ -69,7 +65,7 @@
 
     - name: make system symlinks
       file:
-        src={{ workdir.stdout }}/../{{ item.src }}
+        src={{ playbook_dir }}/../{{ item.src }}
         dest={{ item.dest }}
         state=link
       sudo: yes

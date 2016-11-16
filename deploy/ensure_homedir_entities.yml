@@ -2,10 +2,6 @@
 
   tasks:
 
-    - name: get work dir
-      shell: pwd
-      register: workdir
-
     - name: ensure some directories exist
       file:
         path={{ ansible_env.HOME }}/{{ item }}
@@ -20,7 +16,7 @@
 
     - name: make homedir symlinks
       file:
-        src={{ workdir.stdout }}/../{{ item.src }}
+        src={{ playbook_dir }}/../{{ item.src }}
         dest={{ ansible_env.HOME }}/{{ item.dest }}
         state=link
       with_items:
