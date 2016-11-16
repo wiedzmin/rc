@@ -198,3 +198,4 @@ sys-apps/usermode-utilities fuse
 # required by dev-util/cargo-0.13.0-r1::gentoo
 # required by dev-util/cargo (argument)
 >=sys-devel/llvm-3.8.1-r2 multitarget
+x11-drivers/xf86-video-intel uxa xvmc
