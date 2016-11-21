@@ -14,8 +14,6 @@
         - '.config/twmn'
         - '.config/i3'
 
-    - include: generate_imapfilter_config.yml
-
     - name: make homedir symlinks
       file:
         src={{ playbook_dir }}/../{{ item.src }}
@@ -56,3 +54,5 @@
         dest={{ ansible_env.HOME }}/.bashrc
         line='source ~/common_settings_bash'
         state=present
+
+- include: generate_imapfilter_config.yml
