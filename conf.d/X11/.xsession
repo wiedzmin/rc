@@ -4,6 +4,7 @@
 CURRENT_WM=stumpwm
 # CURRENT_WM=i3
 # CURRENT_WM=awesome
+# CURRENT_WM=sawfish
 
 START_XXKB=1
 START_KBDD=0

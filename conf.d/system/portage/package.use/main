@@ -199,3 +199,5 @@ sys-apps/usermode-utilities fuse
 # required by dev-util/cargo (argument)
 >=sys-devel/llvm-3.8.1-r2 multitarget
 x11-drivers/xf86-video-intel uxa xvmc
+x11-wm/sawfish emacs xinerama
+dev-libs/librep emacs
