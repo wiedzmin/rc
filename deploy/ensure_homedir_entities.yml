@@ -44,10 +44,11 @@
         - { src: 'conf.d/user/.stalonetrayrc', dest: '.stalonetrayrc' }
         - { src: 'templates/emacsclient.desktop', dest: '.local/share/applications/emacsclient.desktop' }
 
-    # - name: install tmux plugin manager
-    #   git:
-    #     repo=https://github.com/tmux-plugins/tpm
-    #     dest={{ ansible_env.HOME }}/.tmux/plugins/tpm
+    - name: install tmux plugin manager
+      git:
+        repo=https://github.com/tmux-plugins/tpm
+        dest={{ ansible_env.HOME }}/.tmux/plugins/tpm
+      when: False
 
     - name: bash | source common settings
       lineinfile:
