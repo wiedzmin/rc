@@ -66,9 +66,9 @@ setup-agents() {
 }
 
 start-programs() {
+    bg-run dbus-daemon --session
     bg-run trayer-srg --edge top --align right --monitor primary --SetDockType true --SetPartialStrut true --expand true --widthtype request --height 15 --transparent true --tint 0x000000
     bg-run xxkb
-    bg-run kbdd
     bg-run sshuttle -r octocat.ru 0/0 --daemon
 
     bg-run udisks-glue -f
@@ -77,12 +77,13 @@ start-programs() {
     bg-run unclutter -idle 5
     bg-run arbtt-capture
 
-    # bg-run dbus-launch nm-applet # TODO: refactor bg-run to handle such cases
+    bg-run nm-applet
 
     bg-run redshift -l 55.751244:37.618423 -t 5500:3700 -m randr
     bg-run autocutsel -buttonup
     bg-run dropbox
     bg-run pulseaudio --start
+    bg-run kbdd
 }
 
 wm-loop() {
