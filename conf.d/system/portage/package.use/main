@@ -85,7 +85,7 @@ www-client/firefox pgo
 www-client/uzbl gtk3 vim-syntax helpers
 www-plugins/adobe-flash debug
 x11-apps/xdpyinfo xinerama dga
-x11-base/xorg-server xvfb
+x11-base/xorg-server kdrive xvfb xephyr
 x11-drivers/nvidia-drivers acpi gtk2
 x11-libs/cairo xcb
 x11-libs/gdk-pixbuf jpeg
