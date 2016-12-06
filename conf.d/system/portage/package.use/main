@@ -201,3 +201,5 @@ sys-apps/usermode-utilities fuse
 x11-drivers/xf86-video-intel uxa xvmc
 x11-wm/sawfish emacs xinerama
 dev-libs/librep emacs
+sys-apps/qingy emacs directfb gpm
+>=dev-libs/DirectFB-1.7.6 truetype fbcon jpeg
