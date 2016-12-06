@@ -21,7 +21,6 @@
 >dev-libs/libxml2-2.9.3
 >media-libs/mesa-11.2.2
 >x11-misc/bumblebee-3.2.1
->dev-lang/go-1.6.2
 >x11-base/xorg-server-1.18.3
 >net-misc/unison-2.32.52
 >app-emulation/docker-machine-0.7.0
