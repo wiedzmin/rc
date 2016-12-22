@@ -97,3 +97,10 @@
         dest=/etc/fstab
         line='tmpfs                   /var/tmp/portage/       tmpfs   uid=250,gid=250,size=10G,mode=0775      0 1'
         state=present
+
+    - name: symlink local overlay files
+      file:
+        src={{ playbook_dir }}/../conf.d/system/local_overlay
+        dest=/usr/local/portage
+        state=link
+      sudo: yes
