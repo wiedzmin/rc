@@ -193,7 +193,7 @@ sys-apps/firejail x11
 sys-apps/usermode-utilities fuse
 # required by app-text/pdftk-2.02::gentoo
 # required by app-text/pdftk (argument)
->=sys-devel/gcc-4.9.3 gcj
+>=sys-devel/gcc-4.9.3 gcj go
 # required by dev-lang/rust-1.12.0::gentoo[system-llvm]
 # required by dev-util/cargo-0.13.0-r1::gentoo
 # required by dev-util/cargo (argument)
