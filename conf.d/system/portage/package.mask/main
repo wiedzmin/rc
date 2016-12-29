@@ -29,4 +29,3 @@
 >sys-kernel/genkernel-3.4.52.4-r2
 >sys-fs/udev-230-r1
 >virtual/libudev-215-r1
->dev-lisp/sbcl-1.3.9
