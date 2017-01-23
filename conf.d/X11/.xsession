@@ -6,10 +6,12 @@ CURRENT_WM=stumpwm
 # CURRENT_WM=awesome
 # CURRENT_WM=sawfish
 
-START_XXKB=1
+START_XXKB=1 # TODO: do not start, when WM is Amesome, it has its own
 START_KBDD=0
-START_TRAYER_SRG=0
+START_TRAYER_SRG=1 # TODO: do not start, when WM is Amesome, it has its own
 START_VOLUMEICON=0
+START_DROPBOX=0
+START_SSHUTTLE=0
 DISABLE_CAPSLOCK=1
 LOGS_TO_KEEP=3
 
