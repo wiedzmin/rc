@@ -77,7 +77,7 @@ start-programs() {
     bg-run volumeicon
     bg-run rdm
     bg-run unclutter -idle 5
-    bg-run rescuetime
+    bg-run arbtt-capture
 
     bg-run nm-applet
 
