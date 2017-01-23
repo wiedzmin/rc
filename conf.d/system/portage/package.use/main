@@ -1,22 +1,24 @@
->=dev-libs/libdbusmenu-12.10.2-r1 gtk3
->=media-libs/mesa-9999 gles2
 app-admin/conky curl hddtemp moc mpd rss thinkpad truetype vim-syntax wifi
 app-admin/hddtemp network-cron
 app-arch/p7zip -kde
 app-crypt/gcr gtk
+app-crypt/pinentry gnome-keyring emacs
 app-crypt/qca gpg
 app-editors/emacs Xaw3d gif gnutls gsettings -gtk -gtk3 gzip-el imagemagick jpeg libxml2 sound source tiff toolkit-scroll-bars xft
 app-editors/emacs-vcs Xaw3d games gif gnutls gsettings -gtk -gtk3 gzip-el imagemagick jpeg libxml2 sound source tiff toolkit-scroll-bars xft
 app-editors/gvim cscope gtk lua neXt tcl
 app-editors/vim cscope lua tcl vim-pager
 app-emacs/whizzytex advi doc examples gv xdvi
+app-emulation/docker overlay device-mapper -aufs
 app-emulation/virtualbox extensions qt4 vnc
 app-laptop/laptop-mode-tools acpi apm bluetooth
 app-misc/cdargs emacs
 app-misc/geoclue -networkmanager
+app-misc/powerline awesome extra man rc tmux vim zsh
 app-misc/tmux vim-syntax utempter
 app-office/ledger emacs gnuplot xml
 app-portage/layman mercurial subversion
+app-shells/fzf tmux vim
 app-text/ghostscript-gpl cups
 app-text/poppler cairo
 app-text/texlive doc dvi2tty dvipdfm graphics png pstricks science truetype luatex xetex l10n_ru
@@ -29,20 +31,33 @@ dev-lang/gforth emacs
 dev-lang/go bash-completion emacs vim-syntax zsh-completion
 dev-lang/php cgi curl gd postgres xmlrpc
 dev-lang/python sqlite tk
+dev-lang/rust clang
 dev-libs/elfutils static-libs
+dev-libs/keybinder lua
 dev-libs/libpcre pcre16
+dev-libs/librep emacs
 dev-lisp/sbcl source threads
 dev-ml/camlimages truetype tiff jpeg postscript
+dev-python/PyQt5 network printsupport
 dev-python/bpython gtk
 dev-python/ipython emacs examples notebook
 dev-python/numpy lapack
 dev-python/pip zsh-completion
+dev-scheme/guile emacs networking
+dev-tcltk/tclx threads tk
 dev-util/global emacs vim
 dev-util/quilt emacs graphviz
 dev-util/strace aio
 dev-vcs/git cgi emacs gtk highlight tk
 dev-vcs/mercurial emacs gpg tk zsh-completion
+gnome-extra/nm-applet bluetooth modemmanager
+gnome-extra/zenity -webkit
+kde-apps/gwenview kipi raw
+kde-base/krdc vnc
 kde-base/marble plasma
+lxde-base/lxpanel wifi
+mail-mta/msmtp gnutls idn vim-syntax
+media-fonts/powerline-fonts anonymouspro dejavusansmono droidsansmono inconsolata inconsolatadz liberationmono meslo sourcecodepro terminus_pcf ubuntumono
 media-gfx/darktable -kde
 media-gfx/exiv2 xmp
 media-gfx/fbv jpeg png
@@ -61,6 +76,8 @@ media-libs/sdl-image jpeg
 media-libs/sdl2-image jpeg
 media-libs/swfdec ffmpeg gstreamer gtk
 media-sound/mpd aac cdio flac inotify lastfmradio mikmod modplug musepack sndfile soundcloud twolame wavpack wildmidi -ffmpeg
+media-sound/pulseaudio equalizer
+media-sound/sox flac twolame wavpack
 media-sound/volumeicon libnotify
 media-sound/xmms2 flac mp3
 media-video/ffmpeg threads mp3 twolame
@@ -69,25 +86,40 @@ net-analyzer/mtr -gtk
 net-im/skype pulseaudio
 net-libs/gnutls pkcs11 -crywrap
 net-libs/libproxy -webkit
+net-libs/rb_libtorrent -python  # temporarily turn python bindings off, until root cause of build failure wiil found
+net-mail/isync sasl ssl
+net-mail/mu emacs
+net-mail/notmuch doc emacs mutt
+net-mail/offlineimap doc sqlite
 net-misc/networkmanager bluetooth nss modemmanager -gnutls -wext
 net-misc/networkmanager-openvpn gtk
-gnome-extra/nm-applet bluetooth modemmanager
+net-misc/openvpn passwordsave
+net-misc/unison gtk threads
 net-misc/whois idn
 net-misc/wicd gtk
+net-p2p/syncthing tools
 net-wireless/wpa_supplicant -qt4 -qt5
 sci-mathematics/maxima emacs latex sbcl tk
 sci-mathematics/octave gui
 sci-visualization/gnuplot emacs examples latex
+sys-apps/firejail x11
 sys-apps/kmscon udev
 sys-apps/lm_sensors sensord
+sys-apps/qingy emacs directfb gpm
+sys-apps/usermode-utilities fuse
+sys-block/gparted reiserfs
+sys-boot/grub doc mount truetype
 sys-devel/llvm clang
 www-client/firefox pgo
 www-client/uzbl gtk3 vim-syntax helpers
 www-plugins/adobe-flash debug
+www-plugins/google-talkplugin libnotify
 x11-apps/xdpyinfo xinerama dga
 x11-base/xorg-server kdrive xvfb xephyr
 x11-drivers/nvidia-drivers acpi gtk2
+x11-drivers/xf86-video-intel uxa xvmc
 x11-libs/cairo xcb
+x11-libs/fltk xft xinerama
 x11-libs/gdk-pixbuf jpeg
 x11-libs/libxcb xkb
 x11-libs/wxGTK tiff
@@ -101,105 +133,8 @@ x11-misc/xscreensaver jpeg
 x11-plugins/vicious contrib
 x11-terms/gnome-terminal -gnome-shell -nautilus
 x11-terms/rxvt-unicode blink fading-colors startup-notification unicode3 xft
+x11-wm/enlightenment xcomposite xinerama xrandr
 x11-wm/notion xinerama
+x11-wm/sawfish emacs xinerama
 x11-wm/stumpwm sbcl
 x11-wm/xmonad-contrib xft
-www-plugins/google-talkplugin libnotify
-app-misc/powerline awesome extra man rc tmux vim zsh
-app-crypt/pinentry gnome-keyring emacs
-media-fonts/powerline-fonts anonymouspro dejavusansmono droidsansmono inconsolata inconsolatadz liberationmono meslo sourcecodepro terminus_pcf ubuntumono
-app-emulation/docker overlay device-mapper -aufs
-x11-wm/enlightenment xcomposite xinerama xrandr
-net-mail/offlineimap doc sqlite
->=media-libs/gexiv2-0.6.1 introspection
->=media-libs/gegl-0.3.4 cairo
-net-mail/mu emacs
-net-libs/rb_libtorrent -python  # temporarily turn python bindings off, until root cause of build failure wiil found
-net-mail/isync sasl ssl
-dev-python/PyQt5 network printsupport
->=dev-python/PyQt5-5.5.1 widgets gui
->=dev-qt/qtwebkit-5.5.1-r1 printsupport
-media-sound/pulseaudio equalizer
->=media-sound/pulseaudio-8.0 gnome
-kde-base/krdc vnc
-net-misc/openvpn passwordsave
-x11-libs/fltk xft xinerama
-dev-lang/rust clang
-dev-scheme/guile emacs networking
-# required by dev-scheme/guile-2.0.9-r1::lisp
-# required by @selected
-# required by @world (argument)
->=dev-libs/boehm-gc-7.4.2 threads
-# required by app-editors/emacs-vcs-25.1.9999-r1::gentoo
-# required by @selected
-# required by @world (argument)
->=app-emacs/emacs-common-gentoo-1.5 games
-# required by net-im/skype-4.3.0.37-r6::gentoo
-# required by @selected
-# required by @world (argument)
->=dev-qt/qtwebkit-4.8.7:4 -exceptions
-kde-apps/gwenview kipi raw
-# required by dev-db/mysql-5.6.29::gentoo
-# required by virtual/mysql-5.6-r8::gentoo
-# required by dev-perl/DBD-mysql-4.32.0-r1::gentoo
->=virtual/libmysqlclient-18 abi_x86_32
-net-mail/notmuch doc emacs mutt
-# required by media-libs/phonon-4.9.0::gentoo[vlc]
-# required by kde-apps/gwenview-15.12.3::gentoo
-# required by @selected
-# required by @world (argument)
->=media-libs/phonon-vlc-0.9.0 qt4
-# required by kde-base/kdelibs-4.14.19::gentoo[crypt]
-# required by kde-apps/kdesu-15.12.3::gentoo
-# required by kde-apps/kdepasswd-15.12.3::gentoo
-# required by kde-base/kdm-4.11.22::gentoo
-# required by @selected
-# required by @world (argument)
->=app-crypt/qca-2.1.1-r1 qt4
-# required by media-libs/phonon-vlc-0.9.0::gentoo
->=media-libs/phonon-4.9.0 qt4
-dev-tcltk/tclx threads tk
-media-sound/sox flac twolame wavpack
-# required by app-editors/neovim-0.1.4::gentoo
-# required by dev-python/neovim-python-client-0.1.7::gentoo
->=dev-lua/lpeg-1.0.0-r1 luajit
-# required by app-editors/neovim-0.1.4::gentoo
-# required by dev-python/neovim-python-client-0.1.7::gentoo
->=dev-lua/mpack-1.0.2 luajit
-# required by kde-apps/okular-15.12.3::gentoo[pdf]
-# required by @selected
-# required by @world (argument)
->=app-text/poppler-0.43.0 qt4
-# required by net-mail/notmuch-0.22::gentoo[crypt]
-# required by @selected
-# required by @world (argument)
->=dev-libs/gmime-2.6.20-r3 smime
-gnome-extra/zenity -webkit
-# required by media-gfx/gimp-2.9.4::gentoo
-# required by @selected
-# required by @world (argument)
->=media-libs/libmypaint-1.3.0_beta1 gegl
-# required by kde-base/kdelibs-4.14.22::gentoo
-# required by media-video/vlc-2.2.4::gentoo[kde]
-# required by @selected
-# required by @world (argument)
->=dev-libs/libdbusmenu-qt-0.9.3_pre20160218 qt4
-mail-mta/msmtp gnutls idn vim-syntax
-net-misc/unison gtk threads
-sys-apps/firejail x11
-# required by sys-apps/firejail-0.9.40-r2::gentoo[x11]
-# required by sys-apps/firejail (argument)
->=x11-wm/xpra-0.17.5 server
-sys-apps/usermode-utilities fuse
-# required by app-text/pdftk-2.02::gentoo
-# required by app-text/pdftk (argument)
->=sys-devel/gcc-4.9.3 gcj go
-# required by dev-lang/rust-1.12.0::gentoo[system-llvm]
-# required by dev-util/cargo-0.13.0-r1::gentoo
-# required by dev-util/cargo (argument)
->=sys-devel/llvm-3.8.1-r2 multitarget
-x11-drivers/xf86-video-intel uxa xvmc
-x11-wm/sawfish emacs xinerama
-dev-libs/librep emacs
-sys-apps/qingy emacs directfb gpm
->=dev-libs/DirectFB-1.7.6 truetype fbcon jpeg
