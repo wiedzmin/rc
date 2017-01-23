@@ -84,9 +84,9 @@ map oc :js invoke_org_capture()<CR>
 map щс oc
 :js <<EOJS
     invoke_org_capture = function () {
-        javascript:location.href='org-protocol://capture://'+
-              encodeURIComponent(location.href)+'/'+
-              encodeURIComponent(document.title)+'/'+
+        location.href='org-protocol://capture?url='+
+              encodeURIComponent(location.href)+'&title='+
+              encodeURIComponent(document.title)+'&body'+
               encodeURIComponent(window.getSelection())
     }
 EOJS
