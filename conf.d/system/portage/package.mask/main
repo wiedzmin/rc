@@ -31,5 +31,5 @@
 >virtual/libudev-215-r1
 >sys-libs/binutils-libs-2.25.1-r2
 >sys-devel/llvm-3.8.1-r2
->app-emulation/docker-1.12.3
+>app-emulation/docker-1.13.0
 >dev-python/setuptools-27.2.0
