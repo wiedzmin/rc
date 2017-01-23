@@ -17,7 +17,7 @@
 >media-libs/libv4l-0.9.5
 >net-libs/rb_libtorrent-0.16.19
 >net-misc/dhcpcd-6.7.1
->sys-devel/gcc-4.9.3
+>sys-devel/gcc-4.9.4
 >dev-libs/libxml2-2.9.3
 >media-libs/mesa-11.2.2
 >x11-misc/bumblebee-3.2.1
