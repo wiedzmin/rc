@@ -1,4 +1,4 @@
-safeload ~/.fzf.zsh
+safeload $FZF_ZSH
 export FZF_DEFAULT_OPTS="--extended-exact --cycle --ansi"
 
 safeload ~/.oh-my-zsh/custom/plugins/zsh-notify/notify.plugin.zsh

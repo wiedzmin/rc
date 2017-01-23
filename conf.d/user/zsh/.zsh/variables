@@ -8,3 +8,4 @@ export BOOKMARKFILE=/home/octocat/.bookmarks
 unset GREP_OPTIONS
 
 export GTAGSLIBPATH=$HOME/.gtags/
+export FZF_ZSH=/usr/share/zsh/site-contrib/fzf.zsh

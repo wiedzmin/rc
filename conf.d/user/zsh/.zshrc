@@ -35,7 +35,7 @@ else
 
     source ~/.zsh/setopts
 
-    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+    [ -f $FZF_ZSH ] && source $FZF_ZSH
 
     autoload -Uz compinit && compinit
     autoload -Uz promptinit && promptinit
