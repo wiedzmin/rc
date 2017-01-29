@@ -290,3 +290,14 @@ net-misc/networkmanager abi_x86_32
 # required by @selected
 # required by @world (argument)
 >=sys-fs/eudev-3.2 abi_x86_32
+
+# required by media-libs/libgphoto2-2.5.12::gentoo[cameras_ax203,cameras_st2205]
+# required by media-gfx/gphotofs-0.5::gentoo
+# required by @selected
+# required by @world (argument)
+>=media-libs/gd-2.2.3 abi_x86_32
+
+# required by net-libs/gnutls-3.5.8::gentoo
+# required by @selected
+# required by @world (argument)
+>=dev-libs/libunistring-0.9.7 abi_x86_32
