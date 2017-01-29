@@ -138,3 +138,4 @@ x11-wm/notion xinerama
 x11-wm/sawfish emacs xinerama
 x11-wm/stumpwm sbcl
 x11-wm/xmonad-contrib xft
+net-libs/libvncserver threads -ssl gnutls
