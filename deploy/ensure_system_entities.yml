@@ -38,6 +38,9 @@
         - 'sys-apps/fbset'
         - 'app-doc/zeal'
         - 'sys-apps/ripgrep'
+        - 'app-shells/fzf'
+        - 'net-misc/rclone-bin'
+
       become: true
       when: ansible_distribution == "Gentoo"
 
