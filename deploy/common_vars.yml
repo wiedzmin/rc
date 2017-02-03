@@ -1,0 +1,2 @@
+project_root_rel: "{{ playbook_dir }}/.."
+project_root: "{{ project_root_rel | realpath }}"
