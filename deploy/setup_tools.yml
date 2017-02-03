@@ -21,9 +21,8 @@
         dest={{ item.dest }}
       sudo: yes
       with_items:
-        - { src: 'auth.conf', dest: '/etc/custom_vpn/auth.conf' }
-        - { src: 'office-tcp.ovpn', dest: '/etc/custom_vpn/office-tcp.ovpn' }
-        - { src: 'office-udp.ovpn', dest: '/etc/custom_vpn/office-udp.ovpn' }
+        - { src: 'current/auth.conf', dest: '/etc/custom_vpn/auth.conf' }
+        - { src: 'current/office.ovpn', dest: '/etc/custom_vpn/office.ovpn' }
 
     - name: ripgrep | clone repository
       git:
