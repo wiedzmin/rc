@@ -36,6 +36,8 @@
         - 'net-misc/urlview'
         - 'sys-libs/gpm'
         - 'sys-apps/fbset'
+        - 'app-doc/zeal'
+        - 'sys-apps/ripgrep'
       become: true
       when: ansible_distribution == "Gentoo"
 
