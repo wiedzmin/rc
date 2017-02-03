@@ -144,3 +144,13 @@
 # >dev-util/boost-build-1.57.0
 # >dev-libs/boost-1.57.0
 =app-editors/emacs-25.1
+# required by app-text/pandoc-1.17.1::haskell
+# required by app-text/pandoc (argument)
+# /etc/portage/package.mask/main:
+# >app-text/pandoc-1.11.1-r1
+=dev-haskell/tagsoup-0.14
+# required by app-text/pandoc-1.17.1::haskell
+# required by app-text/pandoc (argument)
+# /etc/portage/package.mask/main:
+# >app-text/pandoc-1.11.1-r1
+=dev-haskell/pandoc-types-1.16.1-r1
