@@ -4,7 +4,11 @@ BIN_DIRS=(
     $HOME/bin
     $HOME/tools/bin
     $HOME/workspace/configs/rc/utils
+    /usr/lib/go/bin
+    $HOME/workspace/gocode/bin
 )
+
+GOPATH=/home/octocat/workspace/gocode
 
 # Remove dupes from 'path', which is array tied to 'PATH'
 typeset -U path
