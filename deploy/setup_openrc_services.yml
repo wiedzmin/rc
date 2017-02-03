@@ -2,20 +2,6 @@
 
   tasks:
 
-    - name: vpn | generate openrc entry
-      template: src=../templates/job-vpn.openrc dest=./job-vpn.openrc.entry
-
-    - name: vpn | install openrc entry
-      copy: src=job-vpn.openrc.entry dest=/etc/init.d/job-vpn mode=0755
-      sudo: yes
-
-    - name: vpn | restart service
-      service: name=job-vpn state=restarted
-      sudo: yes
-
-    - name: vpn | openrc cleanup
-      file: path=job-vpn.openrc.entry state=absent
-
     - name: accompanying tools | shepherd | generate openrc entry
       template: src=../templates/shepherd.openrc dest=./shepherd.openrc.entry
 

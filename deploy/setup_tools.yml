@@ -27,6 +27,20 @@
       tags:
         - cl_tools
 
+    - name: ensure VPN custom config directory exist
+      file:
+        path={{ item }}
+        state=directory
+        mode=0755
+        owner=octocat
+        group=octocat
+        recurse=yes
+      sudo: yes
+      with_items:
+        - '/etc/custom_vpn'
+      tags:
+        - vpn
+
     - name: vpn | copy files to system location
       copy:
         src="{{ project_root }}/private/{{ item.src }}"
@@ -37,6 +51,28 @@
         - { src: 'current/office.ovpn', dest: '/etc/custom_vpn/office.ovpn' }
       tags:
         - vpn
+
+    - name: vpn | generate openrc entry
+      template: src=../templates/job-vpn.openrc dest=./job-vpn.openrc.entry
+      tags:
+        - openrc
+
+    - name: vpn | install openrc entry
+      copy: src=job-vpn.openrc.entry dest=/etc/init.d/job-vpn mode=0755
+      become: true
+      tags:
+        - openrc
+
+    - name: vpn | restart service
+      service: name=job-vpn state=restarted
+      become: true
+      tags:
+        - openrc
+
+    - name: vpn | openrc cleanup
+      file: path=job-vpn.openrc.entry state=absent
+      tags:
+        - openrc
 
     - name: ripgrep | clone repository
       git:

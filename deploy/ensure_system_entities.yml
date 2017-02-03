@@ -4,18 +4,6 @@
 
     - include_vars: common_vars.yml
 
-    - name: ensure some _system_ directories exist
-      file:
-        path={{ item }}
-        state=directory
-        mode=0755
-        owner=octocat
-        group=octocat
-        recurse=yes
-      sudo: yes
-      with_items:
-        - '/etc/custom_vpn'
-
     - name: ensure some packages installed (Gentoo)
       portage: package={{ item }} state=present
       with_items:
