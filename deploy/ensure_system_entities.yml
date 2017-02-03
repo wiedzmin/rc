@@ -35,14 +35,14 @@
         - 'app-text/pandoc' #TODO: try to keep it here or try to build in Docker container
         - 'sys-libs/gpm'
         - 'sys-apps/fbset'
-      sudo: yes
+      become: true
       when: ansible_distribution == "Gentoo"
 
     - name: clean up system files in favor of symlinks
       file:
         path={{ item }}
         state=absent
-      sudo: yes
+      become: true
       with_items:
         - '/etc/acpi'
         - '/etc/X11/xorg.conf.d'
@@ -62,7 +62,7 @@
         src={{ project_root }}/{{ item.src }}
         dest={{ item.dest }}
         state=link
-      sudo: yes
+      become: true
       with_items:
         - { src: 'conf.d/system/acpi', dest: '/etc/acpi' }
         - { src: 'conf.d/system/xorg.conf.d', dest: '/etc/X11/xorg.conf.d' }
@@ -79,10 +79,10 @@
 
     - name: prepare global gitconfig
       template: src=../conf.d/user/dev/gitconfig.template dest=/etc/gitconfig
-      sudo: yes
+      become: true
 
     - name: mount portage build directory as tmpfs
-      sudo: yes
+      become: true
       lineinfile:
         dest=/etc/fstab
         line='tmpfs                   /var/tmp/portage/       tmpfs   uid=250,gid=250,size=10G,mode=0775      0 1'
@@ -93,4 +93,4 @@
         src={{ project_root }}/conf.d/system/local_overlay
         dest=/usr/local/portage
         state=link
-      sudo: yes
+      become: true

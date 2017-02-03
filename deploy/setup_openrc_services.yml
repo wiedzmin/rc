@@ -7,11 +7,11 @@
 
     - name: accompanying tools | shepherd | install openrc entry
       copy: src=shepherd.openrc.entry dest=/etc/init.d/shepherd mode=0755
-      sudo: yes
+      become: true
 
     - name: accompanying tools | shepherd | restart service
       service: name=shepherd state=restarted
-      sudo: yes
+      become: true
 
     - name: accompanying tools | shepherd | openrc cleanup
       file: path=shepherd.openrc.entry state=absent
@@ -21,11 +21,11 @@
 
     - name: sshuttle | install openrc entry
       copy: src=sshuttle.openrc.entry dest=/etc/init.d/sshuttle mode=0755
-      sudo: yes
+      become: true
 
     - name: sshuttle | restart service
       service: name=sshuttle state=restarted
-      sudo: yes
+      become: true
 
     - name: sshuttle | openrc cleanup
       file: path=sshuttle.openrc.entry state=absent

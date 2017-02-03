@@ -35,7 +35,7 @@
         owner=octocat
         group=octocat
         recurse=yes
-      sudo: yes
+      become: true
       with_items:
         - '/etc/custom_vpn'
       tags:
@@ -54,7 +54,7 @@
       copy:
         src="{{ project_root }}/private/{{ item.src }}"
         dest={{ item.dest }}
-      sudo: yes
+      become: true
       with_items:
         - { src: 'current/auth.conf', dest: '/etc/custom_vpn/auth.conf' }
         - { src: 'current/office.ovpn', dest: '/etc/custom_vpn/office.ovpn' }
@@ -108,6 +108,6 @@
         src={{ project_root }}/utils/rg
         dest=/usr/bin/rg
         state=link
-      sudo: yes
+      become: true
       tags:
         - cli
