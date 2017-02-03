@@ -2,6 +2,8 @@
 
   tasks:
 
+    - include_vars: common_vars.yml
+
     - name: ensure some _system_ directories exist
       file:
         path={{ item }}
@@ -69,7 +71,7 @@
 
     - name: make system symlinks
       file:
-        src={{ playbook_dir }}/../{{ item.src }}
+        src={{ project_root }}/{{ item.src }}
         dest={{ item.dest }}
         state=link
       sudo: yes
@@ -100,7 +102,7 @@
 
     - name: symlink local overlay files
       file:
-        src={{ playbook_dir }}/../conf.d/system/local_overlay
+        src={{ project_root }}/conf.d/system/local_overlay
         dest=/usr/local/portage
         state=link
       sudo: yes

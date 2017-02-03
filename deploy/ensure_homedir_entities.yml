@@ -2,6 +2,8 @@
 
   tasks:
 
+    - include_vars: common_vars.yml
+
     - name: ensure some directories exist
       file:
         path={{ ansible_env.HOME }}/{{ item }}
@@ -17,7 +19,7 @@
 
     - name: make homedir symlinks
       file:
-        src={{ playbook_dir }}/../{{ item.src }}
+        src={{ project_root }}/{{ item.src }}
         dest={{ ansible_env.HOME }}/{{ item.dest }}
         state=link
       with_items:
