@@ -33,6 +33,7 @@
         - { src: 'conf.d/X11/i3.conf', dest: '.config/i3/config' }
         - { src: 'conf.d/X11/.sawfishrc', dest: '.sawfish/rc' }
         - { src: 'conf.d/user/.tmux.conf', dest: '.tmux.conf' }
+        - { src: 'conf.d/user/.urlview', dest: '.urlview' }
         - { src: 'conf.d/user/browser/.conkerorrc', dest: '.conkerorrc' }
         - { src: 'conf.d/user/browser/.vimperatorrc', dest: '.vimperatorrc' }
         - { src: 'conf.d/user/common_settings', dest: 'common_settings' }

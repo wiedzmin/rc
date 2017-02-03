@@ -33,6 +33,7 @@
         - 'sys-power/acpi'
         - 'sys-power/upower-pm-utils'
         - 'app-text/pandoc' #TODO: try to keep it here or try to build in Docker container
+        - 'net-misc/urlview'
         - 'sys-libs/gpm'
         - 'sys-apps/fbset'
       become: true
