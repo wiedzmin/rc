@@ -4,6 +4,9 @@
 
     - include_vars: common_vars.yml
 
+    # TODO think of moving this to shell level
+    # consult with "world" file
+    # reduce time for checks
     - name: ensure some packages installed (Gentoo)
       portage: package={{ item }} state=present
       with_items:
