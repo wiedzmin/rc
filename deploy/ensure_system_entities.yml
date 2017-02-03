@@ -85,6 +85,7 @@
         - { src: 'conf.d/system/portage/package.keywords', dest: '/etc/portage/package.keywords' }
         - { src: 'conf.d/system/portage/package.license', dest: '/etc/portage/package.license' }
         - { src: 'conf.d/system/portage/package.unmask', dest: '/etc/portage/package.unmask' }
+        - { src: 'conf.d/system/udev.d/95-external-head-hotplug.rules', dest: '/etc/udev/rules.d/95-external-head-hotplug.rules' }
 
     - name: prepare global gitconfig
       template: src=../conf.d/user/dev/gitconfig.template dest=/etc/gitconfig
