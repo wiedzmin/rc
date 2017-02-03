@@ -6,16 +6,26 @@
   tasks:
 
     - include_vars: common_vars.yml
+      tags:
+        - cl_tools
+        - vpn
+        - cli
 
     - name: accompanying tools | bootstrap Buildapp tool
       shell: sbcl --eval "(ql:quickload 'buildapp)" --eval "(buildapp:build-buildapp \"{{ project_root }}/utils/buildapp\")"
+      tags:
+        - cl_tools
 
     - name: accompanying tools | shepherd build (mail checking tool)
       # TODO: migrate to buildapp
       shell: sbcl --eval "(pushnew (truename \"{{ project_root }}/src/\") ql:*local-project-directories*)" --eval "(ql:register-local-projects)" --eval "(ql:quickload 'shepherd)" --eval "(shepherd::save-image-shepherd)"
+      tags:
+        - cl_tools
 
     - name: accompanying tools | shepherd install (mail checking tool)
       shell: "mv {{ playbook_dir }}/shepherd {{ project_root }}/utils/shepherd"
+      tags:
+        - cl_tools
 
     - name: vpn | copy files to system location
       copy:
@@ -25,24 +35,34 @@
       with_items:
         - { src: 'current/auth.conf', dest: '/etc/custom_vpn/auth.conf' }
         - { src: 'current/office.ovpn', dest: '/etc/custom_vpn/office.ovpn' }
+      tags:
+        - vpn
 
     - name: ripgrep | clone repository
       git:
         repo=https://github.com/BurntSushi/ripgrep
         dest={{ ripgrep_repo_location }}
         force=yes
+      tags:
+        - cli
 
     - name: ripgrep | build
       shell: cargo build --release
       args:
-          chdir: '{{ ripgrep_repo_location }}'
+        chdir: '{{ ripgrep_repo_location }}'
+      tags:
+        - cli
 
     - name: ripgrep | install binary
       shell: "mv {{ ripgrep_repo_location }}/target/release/rg {{ project_root }}/utils/rg"
+      tags:
+        - cli
 
-    - name: make system symlinks
+    - name: ripgrep | make system symlinks
       file:
         src={{ project_root }}/utils/rg
         dest=/usr/bin/rg
         state=link
       sudo: yes
+      tags:
+        - cli
