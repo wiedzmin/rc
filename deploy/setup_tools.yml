@@ -29,7 +29,7 @@
         - cl_tools
 
     - name: accompanying tools | shepherd | generate openrc entry
-      template: src=../templates/shepherd.openrc dest=./shepherd.openrc.entry
+      template: src={{ project_root }}/conf.d/system/openrc/shepherd.openrc dest=./shepherd.openrc.entry
       tags:
         - openrc
 
@@ -85,7 +85,7 @@
         - vpn
 
     - name: vpn | generate openrc entry
-      template: src=../templates/job-vpn.openrc dest=./job-vpn.openrc.entry
+      template: src={{ project_root }}/conf.d/system/openrc/job-vpn.openrc dest=./job-vpn.openrc.entry
       tags:
         - openrc
 
@@ -153,7 +153,7 @@
         - tg
 
     - name: sshuttle | generate openrc entry
-      template: src=../templates/sshuttle.openrc dest=./sshuttle.openrc.entry
+      template: src={{ project_root }}/conf.d/system/openrc/sshuttle.openrc dest=./sshuttle.openrc.entry
       tags:
         - openrc
 
