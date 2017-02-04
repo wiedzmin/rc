@@ -130,6 +130,8 @@
         - '.config/twmn'
         - '.config/i3'
         - '.sawfish'
+        - '.local/share/applications'
+        - '.gnupg'
       tags:
         - homedir
 
@@ -167,10 +169,17 @@
       tags:
         - homedir
 
+    - stat: path={{ ansible_env.HOME }}/.bashrc
+      register: bashrc
+      tags:
+        - homedir
+
     - name: bash | source common settings
       lineinfile:
         dest={{ ansible_env.HOME }}/.bashrc
         line='source ~/common_settings_bash'
         state=present
+      when:
+        bashrc.stat.exists == True
       tags:
         - homedir
