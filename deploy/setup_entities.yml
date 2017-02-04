@@ -93,7 +93,7 @@
         - system
 
     - name: prepare global gitconfig
-      template: src=../conf.d/user/dev/gitconfig.template dest=/etc/gitconfig
+      template: src={{ project_root }}/conf.d/user/dev/gitconfig.template dest=/etc/gitconfig
       become: true
       tags:
         - system
