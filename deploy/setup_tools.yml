@@ -2,6 +2,9 @@
 
   vars:
     ripgrep_repo_location: /tmp/ripgrep
+    mail_configs_dir: "{{ playbook_dir }}/../conf.d/user/mail"
+    imapfilter_d_path: "{{ mail_configs_dir }}/imapfilter.d"
+    imapfilter_config: "{{ mail_configs_dir }}/imapfilter-config.lua"
 
   tasks:
 
@@ -26,6 +29,28 @@
       shell: "mv {{ playbook_dir }}/shepherd {{ project_root }}/utils/shepherd"
       tags:
         - cl_tools
+
+    - name: accompanying tools | shepherd | generate openrc entry
+      template: src=../templates/shepherd.openrc dest=./shepherd.openrc.entry
+      tags:
+        - openrc
+
+    - name: accompanying tools | shepherd | install openrc entry
+      copy: src=shepherd.openrc.entry dest=/etc/init.d/shepherd mode=0755
+      become: true
+      tags:
+        - openrc
+
+    - name: accompanying tools | shepherd | restart service
+      service: name=shepherd state=restarted
+      become: true
+      tags:
+        - openrc
+
+    - name: accompanying tools | shepherd | openrc cleanup
+      file: path=shepherd.openrc.entry state=absent
+      tags:
+        - openrc
 
     - name: ensure VPN custom config directory exist
       file:
@@ -128,3 +153,87 @@
       become: true
       tags:
         - tg
+
+    - name: sshuttle | generate openrc entry
+      template: src=../templates/sshuttle.openrc dest=./sshuttle.openrc.entry
+      tags:
+        - openrc
+
+    - name: sshuttle | install openrc entry
+      copy: src=sshuttle.openrc.entry dest=/etc/init.d/sshuttle mode=0755
+      become: true
+      tags:
+        - openrc
+
+    - name: sshuttle | openrc cleanup
+      file: path=sshuttle.openrc.entry state=absent
+      tags:
+        - openrc
+
+    - name: sshuttle | restart service
+      service: name=sshuttle state=restarted
+      become: true
+      tags:
+        - openrc
+
+    - name: install tmux plugin manager
+      git:
+        repo=https://github.com/tmux-plugins/tpm
+        dest={{ ansible_env.HOME }}/.tmux/plugins/tpm
+      tags:
+        - tmux
+
+    - name: imapfilter | remove old config file
+      file: path="{{ imapfilter_config }}" state=absent
+      tags:
+        - mail
+
+    - name: imapfilter | seed base config
+      shell: "cat {{ mail_configs_dir }}/imapfilter-base.lua >> {{ imapfilter_config }} && echo -e -n '\n' >> {{ imapfilter_config }}"
+      tags:
+        - mail
+
+    - name: imapfilter | populate with account configs
+      shell: "cat {{ item }} >> {{ imapfilter_config }} && echo -e -n '\n' >> {{ imapfilter_config }}"
+      with_fileglob:
+        - "{{ imapfilter_d_path }}/*"
+      tags:
+        - mail
+
+    - name: imapfilter | copy generated config file
+      copy: src="{{ imapfilter_config }}" dest={{ ansible_env.HOME }}/.imapfilter/config.lua
+      tags:
+        - mail
+
+    - name: imapfilter | Remove generated config file
+      file: path="{{ imapfilter_config }}" state=absent
+      tags:
+        - mail
+
+    - name: register org-protocol handler in mimeapps
+      lineinfile:
+        dest={{ ansible_env.HOME }}/.local/share/applications/mimeapps.list
+        line=x-scheme-handler/org-protocol=emacsclient.desktop
+        state=present
+      tags:
+        - assoc
+
+    - name: setup xdg-open associations
+      shell: xdg-mime default {{ item.program }}.desktop {{ item.mimetype }}
+      with_items:
+        - { program: 'firefox', mimetype: 'text/html' }
+        - { program: 'vlc', mimetype: 'video/avi' }
+        - { program: 'vlc', mimetype: 'video/mpeg' }
+        - { program: 'vlc', mimetype: 'video/x-flv' }
+        - { program: 'vlc', mimetype: 'video/mp4' }
+        - { program: 'vlc', mimetype: 'video/x-ms-wmv' }
+        - { program: 'vlc', mimetype: 'video/x-matroska' }
+        - { program: 'zathura', mimetype: 'application/pdf' }
+        - { program: 'zathura', mimetype: 'application/x-pdf' }
+        - { program: 'zathura', mimetype: 'image/vnd.djvu' }
+        - { program: 'zathura', mimetype: 'image/x-djvu' }
+        - { program: 'feh', mimetype: 'image/jpeg' }
+        - { program: 'feh', mimetype: 'image/png' }
+        - { program: 'abiword', mimetype: 'application/msword' }
+      tags:
+        - assoc
