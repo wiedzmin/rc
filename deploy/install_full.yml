@@ -1,5 +1,3 @@
-- include: ensure_homedir_entities.yml
-
-- include: ensure_system_entities.yml
+- include: setup_entities.yml
 
 - include: setup_tools.yml

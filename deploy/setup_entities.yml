@@ -43,9 +43,10 @@
         - 'sys-apps/ripgrep'
         - 'app-shells/fzf'
         - 'net-misc/rclone-bin'
-
       become: true
       when: ansible_distribution == "Gentoo"
+      tags:
+        - system
 
     - name: clean up system files in favor of symlinks
       file:
@@ -65,6 +66,8 @@
         - '/etc/portage/package.keywords'
         - '/etc/portage/package.license'
         - '/etc/portage/package.unmask'
+      tags:
+        - system
 
     - name: make system symlinks
       file:
@@ -86,10 +89,14 @@
         - { src: 'conf.d/system/portage/package.license', dest: '/etc/portage/package.license' }
         - { src: 'conf.d/system/portage/package.unmask', dest: '/etc/portage/package.unmask' }
         - { src: 'conf.d/system/udev.d/95-external-head-hotplug.rules', dest: '/etc/udev/rules.d/95-external-head-hotplug.rules' }
+      tags:
+        - system
 
     - name: prepare global gitconfig
       template: src=../conf.d/user/dev/gitconfig.template dest=/etc/gitconfig
       become: true
+      tags:
+        - system
 
     - name: mount portage build directory as tmpfs
       become: true
@@ -97,6 +104,8 @@
         dest=/etc/fstab
         line='tmpfs                   /var/tmp/portage/       tmpfs   uid=250,gid=250,size=10G,mode=0775      0 1'
         state=present
+      tags:
+        - system
 
     - name: symlink local overlay files
       file:
@@ -104,3 +113,62 @@
         dest=/usr/local/portage
         state=link
       become: true
+      tags:
+        - system
+
+    - name: ensure some directories exist
+      file:
+        path={{ ansible_env.HOME }}/{{ item }}
+        state=directory
+      with_items:
+        - '.imapfilter'
+        - '.arbtt'
+        - '.tmux/plugins'
+        - '.ssh'
+        - '.config/twmn'
+        - '.config/i3'
+        - '.sawfish'
+      tags:
+        - homedir
+
+    - name: make homedir symlinks
+      file:
+        src={{ project_root }}/{{ item.src }}
+        dest={{ ansible_env.HOME }}/{{ item.dest }}
+        state=link
+      with_items:
+        - { src: 'conf.d/X11/.Xresources', dest: '.Xresources' }
+        - { src: 'conf.d/X11/.i3status.conf', dest: '.i3status.conf' }
+        - { src: 'conf.d/X11/.xsession', dest: '.xsession' }
+        - { src: 'conf.d/X11/.xxkbrc', dest: '.xxkbrc' }
+        - { src: 'conf.d/X11/categorize.cfg', dest: '.arbtt/categorize.cfg' }
+        - { src: 'conf.d/X11/twmn.conf', dest: '.config/twmn/twmn.conf' }
+        - { src: 'conf.d/X11/xmodmaprc', dest: 'xmodmaprc' }
+        - { src: 'conf.d/X11/i3.conf', dest: '.config/i3/config' }
+        - { src: 'conf.d/X11/.sawfishrc', dest: '.sawfish/rc' }
+        - { src: 'conf.d/user/.tmux.conf', dest: '.tmux.conf' }
+        - { src: 'conf.d/user/.urlview', dest: '.urlview' }
+        - { src: 'conf.d/user/browser/.conkerorrc', dest: '.conkerorrc' }
+        - { src: 'conf.d/user/browser/.vimperatorrc', dest: '.vimperatorrc' }
+        - { src: 'conf.d/user/common_settings', dest: 'common_settings' }
+        - { src: 'conf.d/user/common_settings_bash', dest: 'common_settings_bash' }
+        - { src: 'conf.d/user/dev/.pylintrc', dest: '.pylintrc' }
+        - { src: 'conf.d/user/gpg-agent.conf', dest: '.gnupg/gpg-agent.conf' }
+        - { src: 'conf.d/user/mail/.mailcap', dest: '.mailcap' }
+        - { src: 'conf.d/user/mail/.mbsyncrc', dest: '.mbsyncrc' }
+        - { src: 'conf.d/user/mail/.msmtprc', dest: '.msmtprc' }
+        - { src: 'conf.d/user/ssh_config', dest: '.ssh/config' }
+        - { src: 'conf.d/user/zsh/.zsh', dest: '.zsh' }
+        - { src: 'conf.d/user/zsh/.zshrc', dest: '.zshrc' }
+        - { src: 'conf.d/user/.stalonetrayrc', dest: '.stalonetrayrc' }
+        - { src: 'templates/emacsclient.desktop', dest: '.local/share/applications/emacsclient.desktop' }
+      tags:
+        - homedir
+
+    - name: bash | source common settings
+      lineinfile:
+        dest={{ ansible_env.HOME }}/.bashrc
+        line='source ~/common_settings_bash'
+        state=present
+      tags:
+        - homedir
