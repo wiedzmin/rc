@@ -111,3 +111,20 @@
       become: true
       tags:
         - cli
+
+    - name: download Telegram Desktop archive
+      get_url:
+        url: https://updates.tdesktop.com/tlinux/tsetup.{{ telegram_version }}.tar.xz
+        dest: /tmp/tsetup.tar.xz
+      tags:
+        - tg
+
+    - name: update Telegram Desktop binaries
+      unarchive:
+        src: /tmp/tsetup.tar.xz
+        dest: /usr/local/bin
+        extra_opts:
+          - "--strip=1"
+      become: true
+      tags:
+        - tg
