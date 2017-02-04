@@ -10,9 +10,7 @@
 
     - include_vars: common_vars.yml
       tags:
-        - cl_tools
-        - vpn
-        - cli
+        - vars
 
     - name: accompanying tools | bootstrap Buildapp tool
       shell: sbcl --eval "(ql:quickload 'buildapp)" --eval "(buildapp:build-buildapp \"{{ project_root }}/utils/buildapp\")"

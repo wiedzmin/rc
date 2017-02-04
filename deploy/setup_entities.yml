@@ -3,6 +3,8 @@
   tasks:
 
     - include_vars: common_vars.yml
+      tags:
+        - vars
 
     # TODO think of moving this to shell level
     # consult with "world" file
