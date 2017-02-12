@@ -165,6 +165,7 @@
         - { src: 'conf.d/user/zsh/.zsh', dest: '.zsh' }
         - { src: 'conf.d/user/zsh/.zshrc', dest: '.zshrc' }
         - { src: 'conf.d/user/.stalonetrayrc', dest: '.stalonetrayrc' }
+        - { src: 'conf.d/user/.gmrunrc', dest: '.gmrunrc' }
         - { src: 'conf.d/user/emacsclient.desktop', dest: '.local/share/applications/emacsclient.desktop' }
       tags:
         - homedir
