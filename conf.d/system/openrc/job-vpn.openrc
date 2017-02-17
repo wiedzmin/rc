@@ -1,6 +1,6 @@
 #!/sbin/openrc-run
 
-VPNCONF="/etc/custom_vpn/office-udp.ovpn"
+VPNCONF="/etc/custom_vpn/office.ovpn"
 PIDFILE=${HOME}/job-vpn.pid
 DAEMON_OPTS="--config ${VPNCONF} --writepid ${PIDFILE} --daemon"
 
