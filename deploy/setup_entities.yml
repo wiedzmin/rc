@@ -79,7 +79,7 @@
       become: true
       with_items:
         - { src: 'conf.d/system/acpi', dest: '/etc/acpi' }
-        - { src: 'conf.d/system/xorg.conf.d', dest: '/etc/X11/xorg.conf.d' }
+        - { src: 'conf.d/X11/xorg.conf.d', dest: '/etc/X11/xorg.conf.d' }
         - { src: 'conf.d/system/docker', dest: '/etc/conf.d/docker' }
         - { src: 'conf.d/system/mpd.conf', dest: '/etc/mpd.conf' }
         - { src: 'conf.d/system/portage/package.mask', dest: '/etc/portage/package.mask' }
