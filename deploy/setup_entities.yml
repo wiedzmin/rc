@@ -6,47 +6,15 @@
       tags:
         - vars
 
-    # TODO think of moving this to shell level
-    # consult with "world" file
-    # reduce time for checks
-    - name: ensure some packages installed (Gentoo)
-      portage: package={{ item }} state=present
-      with_items:
-        - 'gnome-extra/nm-applet'
-        - 'media-sound/volumeicon'
-        - 'net-misc/dropbox'
-        - 'sys-apps/dbus'
-        - 'sys-fs/udisks-glue'
-        # - 'x11-apps/copyq'
-        - 'x11-apps/xmodmap'
-        - 'x11-apps/xrdb'
-        - 'x11-misc/autocutsel'
-        - 'x11-misc/kbdd'
-        - 'x11-misc/redshift'
-        - 'x11-misc/trayer-srg'
-        - 'x11-misc/unclutter'
-        - 'x11-misc/xxkb'
-        - 'x11-terms/rxvt-unicode'
-        - 'x11-misc/yeganesh'
-        - 'dev-util/rtags'
-        - 'mail-filter/imapfilter'
-        - 'app-emulation/docker'
-        - 'app-emulation/docker-compose'
-        - 'app-emulation/docker-machine'
-        - 'app-emulation/docker-swarm'
-        - 'dev-util/cargo'
-        - 'sys-power/acpi'
-        - 'sys-power/upower-pm-utils'
-        - 'app-text/pandoc' #TODO: try to keep it here or try to build in Docker container
-        - 'net-misc/urlview'
-        - 'sys-libs/gpm'
-        - 'sys-apps/fbset'
-        - 'app-doc/zeal'
-        - 'sys-apps/ripgrep'
-        - 'app-shells/fzf'
-        - 'net-misc/rclone-bin'
+    - name: ensure some system dirs exists
+      file:
+        path={{ item }}
+        state=directory
       become: true
-      when: ansible_distribution == "Gentoo"
+      with_items:
+        - '/etc/X11'
+        - '/etc/conf.d'
+        - '/etc/portage'
       tags:
         - system
 
@@ -91,6 +59,72 @@
         - { src: 'conf.d/system/portage/package.license', dest: '/etc/portage/package.license' }
         - { src: 'conf.d/system/portage/package.unmask', dest: '/etc/portage/package.unmask' }
         - { src: 'conf.d/system/udev.d/95-external-head-hotplug.rules', dest: '/etc/udev/rules.d/95-external-head-hotplug.rules' }
+      tags:
+        - system
+
+    - name: add overlays
+      layman:
+        name={{ item }}
+        state=present
+      with_items:
+        - booboo
+        - chaos
+        - dilfridge
+        - emacs
+        - flow
+        - go-overlay
+        - haskell
+        - jorgicio
+        - lisp
+        - mva
+        - qwin-overlay
+        - raiagent
+        # - my_local_overlay # TODO manage local overlay somehow
+      when: ansible_distribution == "Gentoo"
+      tags:
+        - system
+
+    # TODO think of moving this to shell level
+    # consult with "world" file
+    # reduce time for checks
+    - name: ensure some packages installed (Gentoo)
+      portage: package={{ item }} state=present
+      with_items:
+        - 'gnome-extra/nm-applet'
+        - 'media-sound/volumeicon'
+        - 'net-misc/dropbox'
+        - 'sys-apps/dbus'
+        - 'sys-fs/udisks-glue'
+        # - 'x11-apps/copyq'
+        - 'x11-apps/xmodmap'
+        - 'x11-apps/xrdb'
+        - 'x11-misc/autocutsel'
+        - 'x11-misc/kbdd'
+        - 'x11-misc/redshift'
+        - 'x11-misc/trayer-srg'
+        - 'x11-misc/unclutter'
+        - 'x11-misc/xxkb'
+        - 'x11-terms/rxvt-unicode'
+        - 'x11-misc/yeganesh'
+        - 'dev-util/rtags'
+        - 'mail-filter/imapfilter'
+        - 'app-emulation/docker'
+        - 'app-emulation/docker-compose'
+        - 'app-emulation/docker-machine'
+        - 'app-emulation/docker-swarm'
+        - 'dev-util/cargo'
+        - 'sys-power/acpi'
+        - 'sys-power/upower-pm-utils'
+        - 'app-text/pandoc' #TODO: try to keep it here or try to build in Docker container
+        - 'net-misc/urlview'
+        - 'sys-libs/gpm'
+        - 'sys-apps/fbset'
+        - 'app-doc/zeal'
+        - 'sys-apps/ripgrep'
+        - 'app-shells/fzf'
+        - 'net-misc/rclone-bin'
+      become: true
+      when: ansible_distribution == "Gentoo"
       tags:
         - system
 
