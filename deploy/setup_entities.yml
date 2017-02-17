@@ -156,6 +156,7 @@
         - { src: 'conf.d/user/browser/.vimperatorrc', dest: '.vimperatorrc' }
         - { src: 'conf.d/user/common_settings', dest: 'common_settings' }
         - { src: 'conf.d/user/common_settings_bash', dest: 'common_settings_bash' }
+        - { src: 'conf.d/user/tmux-sessions', dest: 'tmux-sessions' }
         - { src: 'conf.d/user/dev/.pylintrc', dest: '.pylintrc' }
         - { src: 'conf.d/user/gpg-agent.conf', dest: '.gnupg/gpg-agent.conf' }
         - { src: 'conf.d/user/mail/.mailcap', dest: '.mailcap' }
