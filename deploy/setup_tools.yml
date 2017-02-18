@@ -19,7 +19,7 @@
     - name: accompanying tools | bootstrap Buildapp tool
       shell: sbcl --eval "(ql:quickload 'buildapp)" --eval "(buildapp:build-buildapp \"{{ project_root }}/utils/buildapp\")"
       tags:
-        - cl_tools
+        - infra
 
     - name: tools | generate openrc templates
       template: src={{ project_root }}/conf.d/system/openrc/{{ item }}.openrc dest=./{{ item }}.openrc.entry
