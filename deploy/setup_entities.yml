@@ -4,7 +4,7 @@
 
     - include_vars: common_vars.yml
       tags:
-        - vars
+        - always
 
     - name: ensure some system dirs exists
       file:

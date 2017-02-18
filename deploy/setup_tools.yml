@@ -10,7 +10,7 @@
 
     - include_vars: common_vars.yml
       tags:
-        - vars
+        - always
 
     - name: accompanying tools | bootstrap Buildapp tool
       shell: sbcl --eval "(ql:quickload 'buildapp)" --eval "(buildapp:build-buildapp \"{{ project_root }}/utils/buildapp\")"
