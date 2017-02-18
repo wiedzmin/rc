@@ -31,16 +31,6 @@
   (sb-impl::run-program "/usr/bin/mbsync" '("aaermolov@gmail.com-inbox")))
 
 #+sbcl
-(defun check-mail-work-full ()
-  (format t "~a Checking channel: aermolov@mirantis.com~%" (get-now-timestamp))
-  (sb-impl::run-program "/usr/bin/mbsync" '("aermolov@mirantis.com")))
-
-#+sbcl
-(defun check-mail-work-inbox ()
-  (format t "~a Checking channel: aermolov@mirantis.com-inbox~%" (get-now-timestamp))
-  (sb-impl::run-program "/usr/bin/mbsync" '("aermolov@mirantis.com-inbox")))
-
-#+sbcl
 (defun update-notmuch-db ()
   (format t "~a Updating notmuch DB~%" (get-now-timestamp))
   (sb-impl::run-program "/usr/bin/notmuch" '("new")))
@@ -55,8 +45,6 @@
   (with-interactive-interrupt
     (cl-cron:make-cron-job 'check-mail-personal-full :step-min 25)
     (cl-cron:make-cron-job 'check-mail-personal-inbox :step-min 5)
-    (cl-cron:make-cron-job 'check-mail-work-full :step-min 15)
-    (cl-cron:make-cron-job 'check-mail-work-inbox :step-min 3)
     (cl-cron:make-cron-job 'update-notmuch-db :step-min 2)
     (cl-cron:make-cron-job 'cleanup-trash-and-spam :step-min 60)
     (cl-cron:start-cron)
