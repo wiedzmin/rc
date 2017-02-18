@@ -8,8 +8,10 @@ QL_SYSTEM = shepherd
 MANIFEST_FLAGS =  --no-sysinit
 MANIFEST_FLAGS += --no-userinit
 MANIFEST_FLAGS += --load ${SRCDIR}/prep-quicklisp.lisp
-MANIFEST_FLAGS += --eval '(ql:quickload "${QL_SYSTEM}")'
-MANIFEST_FLAGS += --eval '(ql:write-asdf-manifest-file \#P"${MANIFEST}" :if-exists :supersede :exclude-local-projects nil)' 
+MANIFEST_FLAGS += --eval '(ql:quickload :qlot)'
+MANIFEST_FLAGS += --eval '(qlot:install :${QL_SYSTEM})'
+MANIFEST_FLAGS += --eval '(qlot:quickload :${QL_SYSTEM})'
+MANIFEST_FLAGS += --eval '(qlot:with-local-quicklisp :${QL_SYSTEM} (ql:write-asdf-manifest-file \#P"${MANIFEST}" :if-exists :supersede :exclude-local-projects nil))' 
 MANIFEST_FLAGS += --eval '(uiop:quit)'
 
 # Buildapp settings
