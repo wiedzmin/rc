@@ -22,11 +22,13 @@
       shell: sbcl --eval "(pushnew (truename \"{{ project_root }}/src/\") ql:*local-project-directories*)" --eval "(ql:register-local-projects)" --eval "(ql:quickload 'shepherd)" --eval "(shepherd::save-image-shepherd)"
       tags:
         - cl_tools
+        - shepherd
 
     - name: accompanying tools | shepherd install (mail checking tool)
       shell: "mv {{ playbook_dir }}/shepherd {{ project_root }}/utils/shepherd"
       tags:
         - cl_tools
+        - shepherd
 
     - name: accompanying tools | shepherd | generate openrc entry
       template: src={{ project_root }}/conf.d/system/openrc/shepherd.openrc dest=./shepherd.openrc.entry
@@ -43,7 +45,8 @@
       service: name=shepherd state=restarted
       become: true
       tags:
-        - openrc
+        - shepherd
+        - service
 
     - name: accompanying tools | shepherd | openrc cleanup
       file: path=shepherd.openrc.entry state=absent
@@ -63,6 +66,7 @@
         - '/etc/custom_vpn'
       tags:
         - vpn
+        - prepare
 
     - name: cleanup VPN custom config directory
       file:
@@ -72,6 +76,7 @@
         - "/etc/custom_vpn/*"
       tags:
         - vpn
+        - prepare
 
     - name: vpn | copy files to system location
       copy:
@@ -99,7 +104,8 @@
       service: name=job-vpn state=restarted
       become: true
       tags:
-        - openrc
+        - vpn
+        - service
 
     - name: vpn | openrc cleanup
       file: path=job-vpn.openrc.entry state=absent
@@ -172,7 +178,8 @@
       service: name=sshuttle state=restarted
       become: true
       tags:
-        - openrc
+        - sshuttle
+        - service
 
     - name: install tmux plugin manager
       git:

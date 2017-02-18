@@ -17,6 +17,7 @@
         - '/etc/portage'
       tags:
         - system
+        - prepare
 
     - name: clean up system files in favor of symlinks
       file:
@@ -38,6 +39,7 @@
         - '/etc/portage/package.unmask'
       tags:
         - system
+        - prepare
 
     - name: make system symlinks
       file:
@@ -83,6 +85,7 @@
       when: ansible_distribution == "Gentoo"
       tags:
         - system
+        - portage
 
     # TODO think of moving this to shell level
     # consult with "world" file
@@ -127,12 +130,14 @@
       when: ansible_distribution == "Gentoo"
       tags:
         - system
+        - portage
 
     - name: prepare global gitconfig
       template: src={{ project_root }}/conf.d/user/dev/gitconfig.template dest=/etc/gitconfig
       become: true
       tags:
         - system
+        - dev
 
     - name: mount portage build directory as tmpfs
       become: true
@@ -142,6 +147,7 @@
         state=present
       tags:
         - system
+        - portage
 
     - name: symlink local overlay files
       file:
@@ -151,6 +157,7 @@
       become: true
       tags:
         - system
+        - portage
 
     - name: ensure some directories exist
       file:
@@ -168,6 +175,7 @@
         - '.gnupg'
       tags:
         - homedir
+        - prepare
 
     - name: make homedir symlinks
       file:
@@ -210,6 +218,7 @@
       register: bashrc
       tags:
         - homedir
+        - bash
 
     - name: bash | source common settings
       lineinfile:
@@ -220,3 +229,4 @@
         bashrc.stat.exists == True
       tags:
         - homedir
+        - bash
