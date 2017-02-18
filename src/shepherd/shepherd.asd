@@ -5,5 +5,5 @@
   :version "0.1"
   :depends-on (#:cl-cron)
   :serial t
-  :components ((:file "package")
-               (:file "main")))
+  :components ((:file "src/package")
+               (:file "src/main")))

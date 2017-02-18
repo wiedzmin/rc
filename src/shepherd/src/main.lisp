@@ -50,9 +50,3 @@
     (cl-cron:start-cron)
     (bordeaux-threads::join-thread cl-cron::*cron-dispatcher-thread*)))
 
-#+sbcl
-(defun save-image-shepherd ()
-  (sb-ext:save-lisp-and-die "shepherd"
-                            :compression t
-                            :executable t
-                            :toplevel #'shepherd-main))

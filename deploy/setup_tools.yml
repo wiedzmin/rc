@@ -41,17 +41,18 @@
         - openrc
 
     - name: accompanying tools | shepherd build (mail checking tool)
-      # TODO: migrate to buildapp
-      shell: sbcl --eval "(pushnew (truename \"{{ project_root }}/src/\") ql:*local-project-directories*)" --eval "(ql:register-local-projects)" --eval "(ql:quickload 'shepherd)" --eval "(shepherd::save-image-shepherd)"
+      make:
+        chdir: "{{ project_root }}/src/shepherd"
+        target: all
       tags:
-        - cl_tools
         - shepherd
+        - mail
 
     - name: accompanying tools | shepherd install (mail checking tool)
-      shell: "mv {{ playbook_dir }}/shepherd {{ project_root }}/utils/shepherd"
+      shell: "mv {{ project_root }}/src/shepherd/builds/shepherd {{ project_root }}/utils/shepherd"
       tags:
-        - cl_tools
         - shepherd
+        - mail
 
     - name: accompanying tools | shepherd | restart service
       service: name=shepherd state=restarted
