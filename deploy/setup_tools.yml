@@ -5,6 +5,10 @@
     mail_configs_dir: "{{ playbook_dir }}/../conf.d/user/mail"
     imapfilter_d_path: "{{ mail_configs_dir }}/imapfilter.d"
     imapfilter_config: "{{ mail_configs_dir }}/imapfilter-config.lua"
+    openrc_services_list:
+      - shepherd
+      - job-vpn
+      - sshuttle
 
   tasks:
 
@@ -16,6 +20,25 @@
       shell: sbcl --eval "(ql:quickload 'buildapp)" --eval "(buildapp:build-buildapp \"{{ project_root }}/utils/buildapp\")"
       tags:
         - cl_tools
+
+    - name: tools | generate openrc templates
+      template: src={{ project_root }}/conf.d/system/openrc/{{ item }}.openrc dest=./{{ item }}.openrc.entry
+      with_items: "{{ openrc_services_list }}"
+      tags:
+        - openrc
+
+    - name: tools | install openrc entries
+      copy: src={{ item }}.openrc.entry dest=/etc/init.d/{{ item }} mode=0755
+      become: true
+      with_items: "{{ openrc_services_list }}"
+      tags:
+        - openrc
+
+    - name: tools | openrc local cleanup
+      file: path={{ item }}.openrc.entry state=absent
+      with_items:  "{{ openrc_services_list }}"
+      tags:
+        - openrc
 
     - name: accompanying tools | shepherd build (mail checking tool)
       # TODO: migrate to buildapp
@@ -30,28 +53,12 @@
         - cl_tools
         - shepherd
 
-    - name: accompanying tools | shepherd | generate openrc entry
-      template: src={{ project_root }}/conf.d/system/openrc/shepherd.openrc dest=./shepherd.openrc.entry
-      tags:
-        - openrc
-
-    - name: accompanying tools | shepherd | install openrc entry
-      copy: src=shepherd.openrc.entry dest=/etc/init.d/shepherd mode=0755
-      become: true
-      tags:
-        - openrc
-
     - name: accompanying tools | shepherd | restart service
       service: name=shepherd state=restarted
       become: true
       tags:
         - shepherd
         - service
-
-    - name: accompanying tools | shepherd | openrc cleanup
-      file: path=shepherd.openrc.entry state=absent
-      tags:
-        - openrc
 
     - name: ensure VPN custom config directory exist
       file:
@@ -89,28 +96,12 @@
       tags:
         - vpn
 
-    - name: vpn | generate openrc entry
-      template: src={{ project_root }}/conf.d/system/openrc/job-vpn.openrc dest=./job-vpn.openrc.entry
-      tags:
-        - openrc
-
-    - name: vpn | install openrc entry
-      copy: src=job-vpn.openrc.entry dest=/etc/init.d/job-vpn mode=0755
-      become: true
-      tags:
-        - openrc
-
     - name: vpn | restart service
       service: name=job-vpn state=restarted
       become: true
       tags:
         - vpn
         - service
-
-    - name: vpn | openrc cleanup
-      file: path=job-vpn.openrc.entry state=absent
-      tags:
-        - openrc
 
     - name: ripgrep | clone repository
       git:
@@ -157,22 +148,6 @@
       become: true
       tags:
         - tg
-
-    - name: sshuttle | generate openrc entry
-      template: src={{ project_root }}/conf.d/system/openrc/sshuttle.openrc dest=./sshuttle.openrc.entry
-      tags:
-        - openrc
-
-    - name: sshuttle | install openrc entry
-      copy: src=sshuttle.openrc.entry dest=/etc/init.d/sshuttle mode=0755
-      become: true
-      tags:
-        - openrc
-
-    - name: sshuttle | openrc cleanup
-      file: path=sshuttle.openrc.entry state=absent
-      tags:
-        - openrc
 
     - name: sshuttle | restart service
       service: name=sshuttle state=restarted
