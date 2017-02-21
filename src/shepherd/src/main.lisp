@@ -41,12 +41,21 @@
   (sb-impl::run-program "/usr/bin/imapfilter" '()))
 
 #+sbcl
-(defun shepherd-main ()
-  (with-interactive-interrupt
-    (cl-cron:make-cron-job 'check-mail-personal-full :step-min 25)
-    (cl-cron:make-cron-job 'check-mail-personal-inbox :step-min 5)
-    (cl-cron:make-cron-job 'update-notmuch-db :step-min 2)
-    (cl-cron:make-cron-job 'cleanup-trash-and-spam :step-min 60)
-    (cl-cron:start-cron)
-    (bordeaux-threads::join-thread cl-cron::*cron-dispatcher-thread*)))
+(defun shepherd-main (argv)
+  (declare (ignorable argv))
+  (handler-bind
+      ((error #'exit-with-backtrace))
+    (with-interactive-interrupt
+      (cl-cron:make-cron-job 'check-mail-personal-full :step-min 25)
+      (cl-cron:make-cron-job 'check-mail-personal-inbox :step-min 5)
+      (cl-cron:make-cron-job 'update-notmuch-db :step-min 2)
+      (cl-cron:make-cron-job 'cleanup-trash-and-spam :step-min 60)
+      (cl-cron:start-cron)
+      (bordeaux-threads::join-thread cl-cron::*cron-dispatcher-thread*))
+    (uiop:quit 0)))
 
+(defun exit-with-backtrace (c)
+  "Print the backtrace and exit. Don't land in the
+   debugger."
+  (uiop:print-condition-backtrace c :count 15)
+  (uiop:quit 1))
