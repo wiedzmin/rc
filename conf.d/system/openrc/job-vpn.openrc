@@ -6,7 +6,7 @@ DAEMON_OPTS="--config ${VPNCONF} --writepid ${PIDFILE} --daemon"
 
 start () {
 	ebegin "Starting job vpn"
-	start-stop-daemon --start --exec /usr/sbin/openvpn --pidfile ${PIDFILE} \
+	start-stop-daemon --background --start --exec /usr/sbin/openvpn --make-pidfile --pidfile ${PIDFILE} \
              -- ${DAEMON_OPTS}
 	eend $? "Failed to start job vpn"
 }
