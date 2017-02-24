@@ -173,6 +173,7 @@
         - '.sawfish'
         - '.local/share/applications'
         - '.gnupg'
+        - 'pids'
       tags:
         - homedir
         - prepare

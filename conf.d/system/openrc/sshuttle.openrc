@@ -2,7 +2,7 @@
 
 DAEMON=/usr/bin/sshuttle
 DAEMON_OPTS="-r {{ remote_domain }} 0/0 --daemon"
-PIDFILE=${HOME}/sshuttle.pid
+PIDFILE={{ pids_dir }}/sshuttle.pid
 
 start () {
 	ebegin "Starting Sshuttle"

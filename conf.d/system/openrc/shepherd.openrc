@@ -1,7 +1,7 @@
 #!/sbin/openrc-run
 
 DAEMON={{ project_root }}/utils/shepherd
-PIDFILE={{ ansible_env.HOME }}/shepherd.pid # consider collecting pidfiles in separate dir
+PIDFILE={{ pids_dir }}/shepherd.pid
 
 start () {
 	ebegin "Starting shepherd"

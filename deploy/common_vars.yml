@@ -1,2 +1,3 @@
 project_root_rel: "{{ playbook_dir }}/.."
 project_root: "{{ project_root_rel | realpath }}"
+pids_dir: "{{ ansible_env.HOME }}/pids"
