@@ -84,7 +84,7 @@
         - "/etc/custom_vpn/*"
       tags:
         - vpn
-        - prepare
+        - prepare-cleanup
 
     - name: vpn | copy files to system location
       copy:

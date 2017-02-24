@@ -39,7 +39,7 @@
         - '/etc/portage/package.unmask'
       tags:
         - system
-        - prepare
+        - prepare-cleanup
 
     - name: make system symlinks
       file:
