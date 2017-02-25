@@ -97,6 +97,28 @@
       tags:
         - vpn
 
+    - name: vpn | customize OpenVPN config | automate authentication # TODO: check if "script-security 2" matters
+      lineinfile:
+        dest=/etc/custom_vpn/office.ovpn
+        regexp="^auth-user-pass"
+        line="auth-user-pass /etc/custom_vpn/auth.conf"
+      become: yes
+      tags:
+        - vpn
+
+    - name: vpn | customize OpenVPN config | fix up/down scripting
+      lineinfile:
+        dest=/etc/custom_vpn/office.ovpn
+        regexp={{ item.regexp }}
+        line={{ item.line }}
+      with_items:
+        - { regexp: "^up /etc/openvpn/update-resolv-conf", line: "up /etc/openvpn/up.sh" }
+        - { regexp: "^down /etc/openvpn/update-resolv-conf", line: "down /etc/openvpn/down.sh" }
+      become: yes
+      when: ansible_distribution == "Gentoo"
+      tags:
+        - vpn
+
     - name: vpn | restart service
       service: name=job-vpn state=restarted
       become: true
