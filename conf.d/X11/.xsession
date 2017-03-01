@@ -13,6 +13,7 @@ START_VOLUMEICON=0
 START_DROPBOX=0
 START_SSHUTTLE=0
 DISABLE_CAPSLOCK=1
+LOOP_WM=0
 LOGS_TO_KEEP=3
 
 ac_adapter=$(acpi -a | cut -d' ' -f3 | cut -d- -f1)
@@ -89,9 +90,13 @@ start-programs() {
 }
 
 wm-loop() {
-    while true; do
+    while $LOOP_WM; do
         $CURRENT_WM
     done
+    if [[ $LOOP_WM == 0 ]] ; then
+        echo "Not looping '$LOOP_WM', starting once"
+        $CURRENT_WM
+    fi
 }
 
 rotate-xsession-errors() {
