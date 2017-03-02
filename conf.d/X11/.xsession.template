@@ -1,0 +1,83 @@
+#!/bin/bash
+
+setup-agents() {
+    which ssh-agent > /dev/null && ssh_agent_binary=1
+    which gpg-agent > /dev/null && gpg_agent_binary=1
+    which keychain > /dev/null && keychain_binary=1
+
+    if [[ $keychain_binary -gt 0 ]]; then
+        keychain_agents=ssh
+        if [[ $gpg_agent_binary -gt 0 ]]; then
+            keychain_agents="$keychain_agents,gpg"
+        fi
+        eval "$(keychain --eval --agents "$keychain_agents" --quiet)"
+    else
+        if [[ $ssh_agent_binary -gt 0 ]]; then
+            eval "$(ssh-agent)"
+        fi
+        if [[ $gpg_agent_binary -gt 0 ]]; then
+            eval "$(gpg-agent --daemon)"
+        fi
+    fi
+}
+
+start-services() {
+{% for service in xsession_services %}
+{% if service.enabled and not service.heavyweight %}
+    {{ service.command }} &
+{% endif %}
+{% endfor %}
+    if [ "$ac_adapter" = "on" ]; then
+{% for service in xsession_services %}
+{% if service.enabled and service.heavyweight %}
+        {{ service.command }} &
+{% endif %}
+{% endfor %}
+    fi
+}
+
+rotate-xsession-errors() {
+    rm "${HOME}/.xsession-errors"
+
+    ls -a ~ | grep xsession-errors | sort -n -r | (i=0; while read -r f; do
+      if [ $i -lt {{ (xsession_errorlogs_to_keep-1)|int }} ]; then
+          ((i++))
+          continue
+      else
+          rm -f "$f"
+      fi
+    done)
+
+    exec > ${HOME}//.xsession-errors-`date +%Y-%m-%d-%T | tr -d '[:cntrl:]'` 2>&1
+}
+
+wm-loop() {
+    kill -9 $(ps aux | grep {{ xsession_current_wm }} | awk '{print $2}')
+    {% if xsession_loop_wm %}while {{ xsession_loop_wm }}; do
+        {{ xsession_current_wm }}
+    done
+    {% else %}echo "Not looping '{{ xsession_current_wm }}', starting once"
+    {{ xsession_current_wm }}
+    {% endif %}
+}
+
+ac_adapter=$(acpi -a | cut -d' ' -f3 | cut -d- -f1)
+
+xrdb -merge .Xresources
+xmodmap "$HOME/xmodmaprc"
+{% if xsession_disable_capslock %}
+xmodmap -e "clear Lock"
+{% endif %}
+export TZ="{{ xsession_timezone }}"
+which wmname > /dev/null 2>&1 && wmname LG3D
+source ~/common_settings
+
+rotate-xsession-errors
+
+if test -z "$DBUS_SESSION_BUS_ADDRESS"; then
+    eval "$(dbus-launch --sh-syntax --exit-with-session)"
+fi
+
+setup-agents
+start-services
+wm-loop

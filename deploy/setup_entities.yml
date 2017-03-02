@@ -186,7 +186,6 @@
       with_items:
         - { src: 'conf.d/X11/.Xresources', dest: '.Xresources' }
         - { src: 'conf.d/X11/.i3status.conf', dest: '.i3status.conf' }
-        - { src: 'conf.d/X11/.xsession', dest: '.xsession' }
         - { src: 'conf.d/X11/.xxkbrc', dest: '.xxkbrc' }
         - { src: 'conf.d/X11/categorize.cfg', dest: '.arbtt/categorize.cfg' }
         - { src: 'conf.d/X11/twmn.conf', dest: '.config/twmn/twmn.conf' }
