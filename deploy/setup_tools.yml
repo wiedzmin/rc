@@ -134,6 +134,7 @@
         force=yes
       tags:
         - cli
+        - remote
 
     - name: ripgrep | build
       shell: cargo build --release
@@ -164,6 +165,7 @@
       tags:
         - cli
         - gqs
+        - remote
 
     - name: git-quick-stats | install
       make:
@@ -187,6 +189,7 @@
         dest: /tmp/tsetup.tar.xz
       tags:
         - tg
+        - remote
 
     - name: update Telegram Desktop binaries
       unarchive:
@@ -211,6 +214,7 @@
         dest={{ ansible_env.HOME }}/.tmux/plugins/tpm
       tags:
         - tmux
+        - remote
 
     - name: imapfilter | remove old config file
       file: path="{{ imapfilter_config }}" state=absent
