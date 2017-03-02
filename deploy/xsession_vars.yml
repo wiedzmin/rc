@@ -12,7 +12,6 @@ xsession_services:
   - { command: "trayer-srg --edge top --align right --monitor primary --SetDockType true --SetPartialStrut true --expand true --widthtype request --height 15 --transparent true --tint 0x000000",
   enabled: "{{ xsession_current_wm not in ['awesome'] }}", heavyweight: False } # TODO: try to check against xsession_current_wm (enable in all but awesome and maybe some others)
   - { command: "xxkb", enabled: "{{ xsession_current_wm not in ['awesome'] }}", heavyweight: False } # TODO: try to check against xsession_current_wm (enable in all but awesome and maybe some others)
-  - { command: "udisks-glue -f", enabled: True, heavyweight: False }
   - { command: "volumeicon", enabled: False, heavyweight: False }
   - { command: "rdm", enabled: True, heavyweight: False }
   - { command: "unclutter -idle 5", enabled: True, heavyweight: False }
