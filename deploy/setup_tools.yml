@@ -1,6 +1,7 @@
 - hosts: localhost
 
   vars:
+    buildapp_repo_location: /tmp/buildapp
     ripgrep_repo_location: /tmp/ripgrep
     gqs_repo_location: /tmp/git-quick-stats
     mail_configs_dir: "{{ playbook_dir }}/../conf.d/user/mail"
@@ -17,9 +18,31 @@
       tags:
         - always
 
-    - name: accompanying tools | bootstrap Buildapp tool
-      shell: sbcl --eval "(ql:quickload 'buildapp)" --eval "(buildapp:build-buildapp \"{{ project_root }}/utils/buildapp\")"
+    - name: Buildapp | clone repo
+      git:
+        repo=https://github.com/xach/buildapp
+        dest={{ buildapp_repo_location }}
+        force=yes
       tags:
+        - buildapp
+        - infra
+        - remote
+
+    - name: Buildapp | build
+      make:
+        chdir: "{{ buildapp_repo_location }}"
+        target: buildapp
+      tags:
+        - buildapp
+        - infra
+
+    - name: Buildapp | install
+      make:
+        chdir: "{{ buildapp_repo_location }}"
+        target: install
+      become: yes
+      tags:
+        - buildapp
         - infra
 
     - name: tools | generate openrc templates
