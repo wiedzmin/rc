@@ -126,6 +126,7 @@
         - 'sys-apps/ripgrep'
         - 'app-shells/fzf'
         - 'net-misc/rclone-bin'
+        - 'app-admin/apache-tools'
       become: true
       when: ansible_distribution == "Gentoo"
       tags:
