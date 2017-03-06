@@ -1,3 +1,14 @@
 project_root_rel: "{{ playbook_dir }}/.."
 project_root: "{{ project_root_rel | realpath }}"
 pids_dir: "{{ ansible_env.HOME }}/pids"
+buildapp_repo_location: /tmp/buildapp
+ripgrep_repo_location: /tmp/ripgrep
+gqs_repo_location: /tmp/git-quick-stats
+addrlookup_repo_location: /tmp/notmuch-addrlookup-c
+mail_configs_dir: "{{ playbook_dir }}/../conf.d/user/mail"
+imapfilter_d_path: "{{ mail_configs_dir }}/imapfilter.d"
+imapfilter_config: "{{ mail_configs_dir }}/imapfilter-config.lua"
+openrc_services_list:
+  - shepherd
+  - job-vpn
+  - sshuttle

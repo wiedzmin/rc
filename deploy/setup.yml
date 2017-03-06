@@ -1,3 +1,568 @@
-- include: setup_entities.yml
+- hosts: localhost
 
-- include: setup_tools.yml
+  tasks:
+
+    - include_vars: common_vars.yml
+      tags:
+        - always
+
+    - name: ensure some system dirs exists
+      file:
+        path={{ item }}
+        state=directory
+      become: true
+      with_items:
+        - '/etc/X11'
+        - '/etc/conf.d'
+        - '/etc/portage'
+      tags:
+        - system
+        - prepare
+
+    - name: clean up system files in favor of symlinks
+      file:
+        path={{ item }}
+        state=absent
+      become: true
+      with_items:
+        - '/etc/acpi'
+        - '/etc/X11/xorg.conf.d'
+        - '/etc/conf.d/docker'
+        - '/etc/mpd.conf'
+        - '/etc/portage/package.mask'
+        - '/etc/portage/package.use'
+        - '/etc/portage/repos.conf'
+        - '/etc/portage/make.conf'
+        - '/etc/portage/package.accept_keywords'
+        - '/etc/portage/package.keywords'
+        - '/etc/portage/package.license'
+        - '/etc/portage/package.unmask'
+      tags:
+        - system
+        - prepare-cleanup
+
+    - name: make system symlinks
+      file:
+        src={{ project_root }}/{{ item.src }}
+        dest={{ item.dest }}
+        state=link
+      become: true
+      with_items:
+        - { src: 'conf.d/system/acpi', dest: '/etc/acpi' }
+        - { src: 'conf.d/X11/xorg.conf.d', dest: '/etc/X11/xorg.conf.d' }
+        - { src: 'conf.d/system/docker', dest: '/etc/conf.d/docker' }
+        - { src: 'conf.d/system/mpd.conf', dest: '/etc/mpd.conf' }
+        - { src: 'conf.d/system/portage/package.mask', dest: '/etc/portage/package.mask' }
+        - { src: 'conf.d/system/portage/package.use', dest: '/etc/portage/package.use' }
+        - { src: 'conf.d/system/portage/repos.conf', dest: '/etc/portage/repos.conf' }
+        - { src: 'conf.d/system/portage/make.conf', dest: '/etc/portage/make.conf' }
+        - { src: 'conf.d/system/portage/package.accept_keywords', dest: '/etc/portage/package.accept_keywords' }
+        - { src: 'conf.d/system/portage/package.keywords', dest: '/etc/portage/package.keywords' }
+        - { src: 'conf.d/system/portage/package.license', dest: '/etc/portage/package.license' }
+        - { src: 'conf.d/system/portage/package.unmask', dest: '/etc/portage/package.unmask' }
+        - { src: 'conf.d/system/udev.d/95-external-head-hotplug.rules', dest: '/etc/udev/rules.d/95-external-head-hotplug.rules' }
+      tags:
+        - system
+
+    - name: add overlays
+      layman:
+        name={{ item }}
+        state=present
+      with_items:
+        - booboo
+        - chaos
+        - dilfridge
+        - emacs
+        - flow
+        - go-overlay
+        - haskell
+        - jorgicio
+        - lisp
+        - mva
+        - qwin-overlay
+        - raiagent
+        # - my_local_overlay # TODO manage local overlay somehow
+      when: ansible_distribution == "Gentoo"
+      tags:
+        - system
+        - portage
+
+    # TODO think of moving this to shell level
+    # consult with "world" file
+    # reduce time for checks
+    - name: ensure some packages installed (Gentoo)
+      portage: package={{ item }} state=present
+      with_items:
+        - 'gnome-extra/nm-applet'
+        - 'media-sound/volumeicon'
+        - 'net-misc/dropbox'
+        - 'sys-apps/dbus'
+        - 'sys-fs/udisks-glue'
+        # - 'x11-apps/copyq'
+        - 'x11-apps/xmodmap'
+        - 'x11-apps/xrdb'
+        - 'x11-misc/autocutsel'
+        - 'x11-misc/kbdd'
+        - 'x11-misc/redshift'
+        - 'x11-misc/trayer-srg'
+        - 'x11-misc/unclutter'
+        - 'x11-misc/xxkb'
+        - 'x11-terms/rxvt-unicode'
+        - 'x11-misc/yeganesh'
+        - 'dev-util/rtags'
+        - 'mail-filter/imapfilter'
+        - 'app-emulation/docker'
+        - 'app-emulation/docker-compose'
+        - 'app-emulation/docker-machine'
+        - 'app-emulation/docker-swarm'
+        - 'dev-util/cargo'
+        - 'sys-power/acpi'
+        - 'sys-power/upower-pm-utils'
+        - 'app-text/pandoc' #TODO: try to keep it here or try to build in Docker container
+        - 'net-misc/urlview'
+        - 'sys-libs/gpm'
+        - 'sys-apps/fbset'
+        - 'app-doc/zeal'
+        - 'sys-apps/ripgrep'
+        - 'app-shells/fzf'
+        - 'net-misc/rclone-bin'
+        - 'app-admin/apache-tools'
+      become: true
+      when: ansible_distribution == "Gentoo"
+      tags:
+        - system
+        - portage
+
+    - name: prepare global gitconfig
+      template: src={{ project_root }}/conf.d/user/dev/gitconfig.template dest=/etc/gitconfig
+      become: true
+      tags:
+        - system
+        - dev
+
+    - name: mount portage build directory as tmpfs
+      become: true
+      lineinfile:
+        dest=/etc/fstab
+        line='tmpfs                   /var/tmp/portage/       tmpfs   uid=250,gid=250,size=10G,mode=0775      0 1'
+        state=present
+      tags:
+        - system
+        - portage
+
+    - name: symlink local overlay files
+      file:
+        src={{ project_root }}/conf.d/system/local_overlay
+        dest=/usr/local/portage
+        state=link
+      become: true
+      tags:
+        - system
+        - portage
+
+    - name: ensure some directories exist
+      file:
+        path={{ ansible_env.HOME }}/{{ item }}
+        state=directory
+      with_items:
+        - '.imapfilter'
+        - '.arbtt'
+        - '.tmux/plugins'
+        - '.ssh'
+        - '.config/twmn'
+        - '.config/i3'
+        - '.sawfish'
+        - '.local/share/applications'
+        - '.gnupg'
+        - 'pids'
+      tags:
+        - homedir
+        - prepare
+
+    - name: make homedir symlinks
+      file:
+        src={{ project_root }}/{{ item.src }}
+        dest={{ ansible_env.HOME }}/{{ item.dest }}
+        state=link
+      with_items:
+        - { src: 'conf.d/X11/.Xresources', dest: '.Xresources' }
+        - { src: 'conf.d/X11/.i3status.conf', dest: '.i3status.conf' }
+        - { src: 'conf.d/X11/.xxkbrc', dest: '.xxkbrc' }
+        - { src: 'conf.d/X11/categorize.cfg', dest: '.arbtt/categorize.cfg' }
+        - { src: 'conf.d/X11/twmn.conf', dest: '.config/twmn/twmn.conf' }
+        - { src: 'conf.d/X11/xmodmaprc', dest: 'xmodmaprc' }
+        - { src: 'conf.d/X11/i3.conf', dest: '.config/i3/config' }
+        - { src: 'conf.d/X11/.sawfishrc', dest: '.sawfish/rc' }
+        - { src: 'conf.d/user/.tmux.conf', dest: '.tmux.conf' }
+        - { src: 'conf.d/user/.urlview', dest: '.urlview' }
+        - { src: 'conf.d/user/browser/.conkerorrc', dest: '.conkerorrc' }
+        - { src: 'conf.d/user/browser/.vimperatorrc', dest: '.vimperatorrc' }
+        - { src: 'conf.d/user/common_settings', dest: 'common_settings' }
+        - { src: 'conf.d/user/common_settings_bash', dest: 'common_settings_bash' }
+        - { src: 'conf.d/user/tmux-sessions', dest: 'tmux-sessions' }
+        - { src: 'conf.d/user/dev/.pylintrc', dest: '.pylintrc' }
+        - { src: 'conf.d/user/dev/flake8', dest: '.config/flake8' }
+        - { src: 'conf.d/user/gpg-agent.conf', dest: '.gnupg/gpg-agent.conf' }
+        - { src: 'conf.d/user/mail/.mailcap', dest: '.mailcap' }
+        - { src: 'conf.d/user/mail/.mbsyncrc', dest: '.mbsyncrc' }
+        - { src: 'conf.d/user/mail/.msmtprc', dest: '.msmtprc' }
+        - { src: 'conf.d/user/ssh_config', dest: '.ssh/config' }
+        - { src: 'conf.d/user/zsh/.zsh', dest: '.zsh' }
+        - { src: 'conf.d/user/zsh/.zshrc', dest: '.zshrc' }
+        - { src: 'conf.d/user/.stalonetrayrc', dest: '.stalonetrayrc' }
+        - { src: 'conf.d/user/.gmrunrc', dest: '.gmrunrc' }
+        - { src: 'conf.d/user/emacsclient.desktop', dest: '.local/share/applications/emacsclient.desktop' }
+      tags:
+        - homedir
+
+    - stat: path={{ ansible_env.HOME }}/.bashrc
+      register: bashrc
+      tags:
+        - homedir
+        - bash
+
+    - name: bash | source common settings
+      lineinfile:
+        dest={{ ansible_env.HOME }}/.bashrc
+        line='source ~/common_settings_bash'
+        state=present
+      when:
+        bashrc.stat.exists == True
+      tags:
+        - homedir
+        - bash
+
+    - include_vars: common_vars.yml
+      tags:
+        - always
+
+    - name: Buildapp | clone repo
+      git:
+        repo=https://github.com/xach/buildapp
+        dest={{ buildapp_repo_location }}
+        force=yes
+      tags:
+        - buildapp
+        - infra
+        - remote
+
+    - name: Buildapp | build
+      make:
+        chdir: "{{ buildapp_repo_location }}"
+        target: buildapp
+      tags:
+        - buildapp
+        - infra
+
+    - name: Buildapp | install
+      make:
+        chdir: "{{ buildapp_repo_location }}"
+        target: install
+      become: yes
+      tags:
+        - buildapp
+        - infra
+
+    - name: tools | generate openrc templates
+      template: src={{ project_root }}/conf.d/system/openrc/{{ item }}.openrc dest=./{{ item }}.openrc.entry
+      with_items: "{{ openrc_services_list }}"
+      tags:
+        - openrc
+
+    - name: tools | install openrc entries
+      copy: src={{ item }}.openrc.entry dest=/etc/init.d/{{ item }} mode=0755
+      become: true
+      with_items: "{{ openrc_services_list }}"
+      tags:
+        - openrc
+
+    - name: tools | openrc local cleanup
+      file: path={{ item }}.openrc.entry state=absent
+      with_items:  "{{ openrc_services_list }}"
+      tags:
+        - openrc
+
+    - name: accompanying tools | shepherd build (mail checking tool)
+      make:
+        chdir: "{{ project_root }}/src/shepherd"
+        target: all
+      tags:
+        - shepherd
+        - mail
+
+    - name: accompanying tools | shepherd install (mail checking tool)
+      shell: "mv {{ project_root }}/src/shepherd/builds/shepherd {{ project_root }}/utils/shepherd"
+      tags:
+        - shepherd
+        - mail
+
+    - name: accompanying tools | shepherd | restart service
+      service: name=shepherd state=restarted
+      become: true
+      tags:
+        - shepherd
+        - service
+
+    - name: ensure VPN custom config directory exist
+      file:
+        path={{ item }}
+        state=directory
+        mode=0755
+        owner=octocat
+        group=octocat
+        recurse=yes
+      become: true
+      with_items:
+        - '/etc/custom_vpn'
+      tags:
+        - vpn
+        - prepare
+
+    - name: cleanup VPN custom config directory
+      file:
+        path: "{{ item }}"
+        state: absent
+      with_fileglob:
+        - "/etc/custom_vpn/*"
+      tags:
+        - vpn
+        - prepare-cleanup
+
+    - name: vpn | copy files to system location
+      copy:
+        src="{{ project_root }}/private/{{ item.src }}"
+        dest={{ item.dest }}
+      become: true
+      with_items:
+        - { src: 'current/auth.conf', dest: '/etc/custom_vpn/auth.conf' }
+        - { src: 'current/office.ovpn', dest: '/etc/custom_vpn/office.ovpn' }
+      tags:
+        - vpn
+
+    - name: vpn | customize OpenVPN config | automate authentication # TODO: check if "script-security 2" matters
+      lineinfile:
+        dest=/etc/custom_vpn/office.ovpn
+        regexp="^auth-user-pass"
+        line="auth-user-pass /etc/custom_vpn/auth.conf"
+      become: yes
+      tags:
+        - vpn
+
+    - name: vpn | customize OpenVPN config | fix up/down scripting
+      lineinfile:
+        dest=/etc/custom_vpn/office.ovpn
+        regexp={{ item.regexp }}
+        line={{ item.line }}
+      with_items:
+        - { regexp: "^up /etc/openvpn/update-resolv-conf", line: "up /etc/openvpn/up.sh" }
+        - { regexp: "^down /etc/openvpn/update-resolv-conf", line: "down /etc/openvpn/down.sh" }
+      become: yes
+      when: ansible_distribution == "Gentoo"
+      tags:
+        - vpn
+
+    - name: vpn | restart service
+      service: name=job-vpn state=restarted
+      become: true
+      tags:
+        - vpn
+        - service
+
+    - name: ripgrep | clone repository
+      git:
+        repo=https://github.com/BurntSushi/ripgrep
+        dest={{ ripgrep_repo_location }}
+        force=yes
+      tags:
+        - cli
+        - remote
+
+    - name: ripgrep | build
+      shell: cargo build --release
+      args:
+        chdir: '{{ ripgrep_repo_location }}'
+      tags:
+        - cli
+
+    - name: ripgrep | install binary
+      shell: "mv {{ ripgrep_repo_location }}/target/release/rg {{ project_root }}/utils/rg"
+      tags:
+        - cli
+
+    - name: ripgrep | make system symlinks
+      file:
+        src={{ project_root }}/utils/rg
+        dest=/usr/bin/rg
+        state=link
+      become: true
+      tags:
+        - cli
+
+    - name: git-quick-stats | clone repository
+      git:
+        repo=https://github.com/arzzen/git-quick-stats
+        dest={{ gqs_repo_location }}
+        force=yes
+      tags:
+        - cli
+        - gqs
+        - remote
+
+    - name: git-quick-stats | install
+      make:
+        chdir: "{{ gqs_repo_location }}"
+        target: install
+      become: yes
+      tags:
+        - cli
+        - gqs
+
+    - name: git-quick-stats | uninstall
+      make:
+        chdir: "{{ gqs_repo_location }}"
+        target: uninstall
+      tags:
+        - uninstall
+
+    - name: download Telegram Desktop archive
+      get_url:
+        url: https://updates.tdesktop.com/tlinux/tsetup.{{ telegram_version }}.tar.xz
+        dest: /tmp/tsetup.tar.xz
+      tags:
+        - tg
+        - remote
+
+    - name: update Telegram Desktop binaries
+      unarchive:
+        src: /tmp/tsetup.tar.xz
+        dest: /usr/local/bin
+        extra_opts:
+          - "--strip=1"
+      become: true
+      tags:
+        - tg
+
+    - name: sshuttle | restart service
+      service: name=sshuttle state=restarted
+      become: true
+      tags:
+        - sshuttle
+        - service
+
+    - name: install tmux plugin manager
+      git:
+        repo=https://github.com/tmux-plugins/tpm
+        dest={{ ansible_env.HOME }}/.tmux/plugins/tpm
+      tags:
+        - tmux
+        - remote
+
+    - name: imapfilter | remove old config file
+      file: path="{{ imapfilter_config }}" state=absent
+      tags:
+        - mail
+
+    - name: imapfilter | seed base config
+      shell: "cat {{ mail_configs_dir }}/imapfilter-base.lua >> {{ imapfilter_config }} && echo -e -n '\n' >> {{ imapfilter_config }}"
+      tags:
+        - mail
+
+    - name: imapfilter | populate with account configs
+      shell: "cat {{ item }} >> {{ imapfilter_config }} && echo -e -n '\n' >> {{ imapfilter_config }}"
+      with_fileglob:
+        - "{{ imapfilter_d_path }}/*"
+      tags:
+        - mail
+
+    - name: imapfilter | copy generated config file
+      copy: src="{{ imapfilter_config }}" dest={{ ansible_env.HOME }}/.imapfilter/config.lua
+      tags:
+        - mail
+
+    - name: imapfilter | Remove generated config file
+      file: path="{{ imapfilter_config }}" state=absent
+      tags:
+        - mail
+
+    - name: register org-protocol handler in mimeapps
+      lineinfile:
+        dest={{ ansible_env.HOME }}/.local/share/applications/mimeapps.list
+        line=x-scheme-handler/org-protocol=emacsclient.desktop
+        state=present
+      tags:
+        - assoc
+
+    - name: setup xdg-open associations
+      shell: xdg-mime default {{ item.program }}.desktop {{ item.mimetype }}
+      with_items:
+        - { program: 'firefox', mimetype: 'text/html' }
+        - { program: 'vlc', mimetype: 'video/avi' }
+        - { program: 'vlc', mimetype: 'video/mpeg' }
+        - { program: 'vlc', mimetype: 'video/x-flv' }
+        - { program: 'vlc', mimetype: 'video/mp4' }
+        - { program: 'vlc', mimetype: 'video/x-ms-wmv' }
+        - { program: 'vlc', mimetype: 'video/x-matroska' }
+        - { program: 'zathura', mimetype: 'application/pdf' }
+        - { program: 'zathura', mimetype: 'application/x-pdf' }
+        - { program: 'zathura', mimetype: 'image/vnd.djvu' }
+        - { program: 'zathura', mimetype: 'image/x-djvu' }
+        - { program: 'feh', mimetype: 'image/jpeg' }
+        - { program: 'feh', mimetype: 'image/png' }
+        - { program: 'abiword', mimetype: 'application/msword' }
+      tags:
+        - assoc
+
+    - include_vars: xsession_vars.yml
+      tags:
+        - xsession
+
+    - name: generate .xsession script
+      template: src={{ project_root }}/conf.d/X11/.xsession.template dest={{ ansible_env.HOME }}/.xsession
+      tags:
+        - xsession
+
+    - name: ensure .xsession permissions
+      file:
+        path: "{{ ansible_env.HOME }}/.xsession"
+        mode: 0755
+      tags:
+        - xsession
+
+    - name: addrlookup | clone repo
+      git:
+        repo=https://github.com/aperezdc/notmuch-addrlookup-c
+        dest={{ addrlookup_repo_location }}
+        force=yes
+      tags:
+        - notmuch
+        - remote
+
+    - name: addrlookup | build
+      shell: make
+      args:
+        chdir: '{{ addrlookup_repo_location }}'
+      tags:
+        - notmuch
+
+    - name: addrlookup | install binary
+      shell: "mv {{ addrlookup_repo_location }}/notmuch-addrlookup /usr/bin"
+      become: true
+      tags:
+        - notmuch
+
+    - name: addrlookup | ensure binary permissions
+      file:
+        path: "/usr/bin/notmuch-addrlookup"
+        mode: 0644
+        owner: root
+        group: root
+      become: true
+      tags:
+        - notmuch
+
+    - name: httplab | install
+      shell: go get github.com/gchaincl/httplab
+      tags:
+        - devtools
+
+      # TODO: https://github.com/asciimoo/wuzz - master/HEAD is broken (SIGSEGV), try later
