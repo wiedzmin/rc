@@ -342,3 +342,10 @@
       become: true
       tags:
         - notmuch
+
+    - name: httplab | install
+      shell: go get github.com/gchaincl/httplab
+      tags:
+        - devtools
+
+      # TODO: https://github.com/asciimoo/wuzz - master/HEAD is broken (SIGSEGV), try later
