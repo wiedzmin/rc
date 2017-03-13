@@ -368,36 +368,6 @@
         - vpn
         - service
 
-    - name: ripgrep | clone repository
-      git:
-        repo=https://github.com/BurntSushi/ripgrep
-        dest={{ ripgrep_repo_location }}
-        force=yes
-      tags:
-        - cli
-        - remote
-
-    - name: ripgrep | build
-      shell: cargo build --release
-      args:
-        chdir: '{{ ripgrep_repo_location }}'
-      tags:
-        - cli
-
-    - name: ripgrep | install binary
-      shell: "mv {{ ripgrep_repo_location }}/target/release/rg {{ project_root }}/utils/rg"
-      tags:
-        - cli
-
-    - name: ripgrep | make system symlinks
-      file:
-        src={{ project_root }}/utils/rg
-        dest=/usr/bin/rg
-        state=link
-      become: true
-      tags:
-        - cli
-
     - name: git-quick-stats | clone repository
       git:
         repo=https://github.com/arzzen/git-quick-stats
