@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 
 BIN_DIRS=(
+	$HOME/.tmuxifier/bin
     $HOME/bin
     $HOME/tools/bin
     $HOME/workspace/configs/rc/utils
@@ -27,3 +28,5 @@ for candidate in emacsclient vim vi; do
         break
     fi
 done
+
+eval "$(tmuxifier init -)"

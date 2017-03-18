@@ -315,6 +315,30 @@
         - tmux
         - remote
 
+    - name: tmuxifier | clone repo
+      git:
+        repo=https://github.com/jimeh/tmuxifier
+        dest="{{ tmuxifier_repo_location }}"
+        force=yes
+      tags:
+        - tmux
+        - remote
+
+    - name: tmuxifier | update configs
+      lineinfile:
+        dest: "{{ project_root }}/conf.d/user/{{ item[0] }}"
+        line: "{{ item[1].line }}"
+        insertafter: "{{ item[1].after }}"
+        state: present
+      with_nested:
+        - "{{ common_settings_basenames }}"
+        - [{ line: "\t$HOME/.tmuxifier/bin", after: "^BIN_DIRS=\\(" },
+           { line: "\neval \"$(tmuxifier init -)\"", after: "EOF"}]
+      tags:
+        - tmux
+        - debug
+    # TODO: think of way to rerun some links/path population steps after this
+
     - name: imapfilter | remove old config file
       file: path="{{ imapfilter_config }}" state=absent
       tags:
