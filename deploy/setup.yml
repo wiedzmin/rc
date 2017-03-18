@@ -11,10 +11,7 @@
         path={{ item }}
         state=directory
       become: true
-      with_items:
-        - '/etc/X11'
-        - '/etc/conf.d'
-        - '/etc/portage'
+      with_items: "{{ system_dirs }}"
       tags:
         - system
         - prepare
@@ -24,19 +21,7 @@
         path={{ item }}
         state=absent
       become: true
-      with_items:
-        - '/etc/acpi'
-        - '/etc/X11/xorg.conf.d'
-        - '/etc/conf.d/docker'
-        - '/etc/mpd.conf'
-        - '/etc/portage/package.mask'
-        - '/etc/portage/package.use'
-        - '/etc/portage/repos.conf'
-        - '/etc/portage/make.conf'
-        - '/etc/portage/package.accept_keywords'
-        - '/etc/portage/package.keywords'
-        - '/etc/portage/package.license'
-        - '/etc/portage/package.unmask'
+      with_items: "{{ entries_to_symlinks }}"
       tags:
         - system
         - prepare-cleanup
@@ -47,20 +32,7 @@
         dest={{ item.dest }}
         state=link
       become: true
-      with_items:
-        - { src: 'conf.d/system/acpi', dest: '/etc/acpi' }
-        - { src: 'conf.d/X11/xorg.conf.d', dest: '/etc/X11/xorg.conf.d' }
-        - { src: 'conf.d/system/docker', dest: '/etc/conf.d/docker' }
-        - { src: 'conf.d/system/mpd.conf', dest: '/etc/mpd.conf' }
-        - { src: 'conf.d/system/portage/package.mask', dest: '/etc/portage/package.mask' }
-        - { src: 'conf.d/system/portage/package.use', dest: '/etc/portage/package.use' }
-        - { src: 'conf.d/system/portage/repos.conf', dest: '/etc/portage/repos.conf' }
-        - { src: 'conf.d/system/portage/make.conf', dest: '/etc/portage/make.conf' }
-        - { src: 'conf.d/system/portage/package.accept_keywords', dest: '/etc/portage/package.accept_keywords' }
-        - { src: 'conf.d/system/portage/package.keywords', dest: '/etc/portage/package.keywords' }
-        - { src: 'conf.d/system/portage/package.license', dest: '/etc/portage/package.license' }
-        - { src: 'conf.d/system/portage/package.unmask', dest: '/etc/portage/package.unmask' }
-        - { src: 'conf.d/system/udev.d/95-external-head-hotplug.rules', dest: '/etc/udev/rules.d/95-external-head-hotplug.rules' }
+      with_items: "{{ system_symlinks }}"
       tags:
         - system
 
@@ -68,20 +40,7 @@
       layman:
         name={{ item }}
         state=present
-      with_items:
-        - booboo
-        - chaos
-        - dilfridge
-        - emacs
-        - flow
-        - go-overlay
-        - haskell
-        - jorgicio
-        - lisp
-        - mva
-        - qwin-overlay
-        - raiagent
-        # - my_local_overlay # TODO manage local overlay somehow
+      with_items: "{{ portage_overlays }}"
       when: ansible_distribution == "Gentoo"
       tags:
         - system
@@ -92,41 +51,7 @@
     # reduce time for checks
     - name: ensure some packages installed (Gentoo)
       portage: package={{ item }} state=present
-      with_items:
-        - 'gnome-extra/nm-applet'
-        - 'media-sound/volumeicon'
-        - 'net-misc/dropbox'
-        - 'sys-apps/dbus'
-        - 'sys-fs/udisks-glue'
-        # - 'x11-apps/copyq'
-        - 'x11-apps/xmodmap'
-        - 'x11-apps/xrdb'
-        - 'x11-misc/autocutsel'
-        - 'x11-misc/kbdd'
-        - 'x11-misc/redshift'
-        - 'x11-misc/trayer-srg'
-        - 'x11-misc/unclutter'
-        - 'x11-misc/xxkb'
-        - 'x11-terms/rxvt-unicode'
-        - 'x11-misc/yeganesh'
-        - 'dev-util/rtags'
-        - 'mail-filter/imapfilter'
-        - 'app-emulation/docker'
-        - 'app-emulation/docker-compose'
-        - 'app-emulation/docker-machine'
-        - 'app-emulation/docker-swarm'
-        - 'dev-util/cargo'
-        - 'sys-power/acpi'
-        - 'sys-power/upower-pm-utils'
-        - 'app-text/pandoc' #TODO: try to keep it here or try to build in Docker container
-        - 'net-misc/urlview'
-        - 'sys-libs/gpm'
-        - 'sys-apps/fbset'
-        - 'app-doc/zeal'
-        - 'sys-apps/ripgrep'
-        - 'app-shells/fzf'
-        - 'net-misc/rclone-bin'
-        - 'app-admin/apache-tools'
+      with_items: "{{ packages_of_interest }}"
       become: true
       when: ansible_distribution == "Gentoo"
       tags:
@@ -164,17 +89,7 @@
       file:
         path={{ ansible_env.HOME }}/{{ item }}
         state=directory
-      with_items:
-        - '.imapfilter'
-        - '.arbtt'
-        - '.tmux/plugins'
-        - '.ssh'
-        - '.config/twmn'
-        - '.config/i3'
-        - '.sawfish'
-        - '.local/share/applications'
-        - '.gnupg'
-        - 'pids'
+      with_items: "{{ homedir_subdirs }}"
       tags:
         - homedir
         - prepare
@@ -184,34 +99,7 @@
         src={{ project_root }}/{{ item.src }}
         dest={{ ansible_env.HOME }}/{{ item.dest }}
         state=link
-      with_items:
-        - { src: 'conf.d/X11/.Xresources', dest: '.Xresources' }
-        - { src: 'conf.d/X11/.i3status.conf', dest: '.i3status.conf' }
-        - { src: 'conf.d/X11/.xxkbrc', dest: '.xxkbrc' }
-        - { src: 'conf.d/X11/categorize.cfg', dest: '.arbtt/categorize.cfg' }
-        - { src: 'conf.d/X11/twmn.conf', dest: '.config/twmn/twmn.conf' }
-        - { src: 'conf.d/X11/xmodmaprc', dest: 'xmodmaprc' }
-        - { src: 'conf.d/X11/i3.conf', dest: '.config/i3/config' }
-        - { src: 'conf.d/X11/.sawfishrc', dest: '.sawfish/rc' }
-        - { src: 'conf.d/user/.tmux.conf', dest: '.tmux.conf' }
-        - { src: 'conf.d/user/.urlview', dest: '.urlview' }
-        - { src: 'conf.d/user/browser/.conkerorrc', dest: '.conkerorrc' }
-        - { src: 'conf.d/user/browser/.vimperatorrc', dest: '.vimperatorrc' }
-        - { src: 'conf.d/user/common_settings', dest: 'common_settings' }
-        - { src: 'conf.d/user/common_settings_bash', dest: 'common_settings_bash' }
-        - { src: 'conf.d/user/tmux-sessions', dest: 'tmux-sessions' }
-        - { src: 'conf.d/user/dev/.pylintrc', dest: '.pylintrc' }
-        - { src: 'conf.d/user/dev/flake8', dest: '.config/flake8' }
-        - { src: 'conf.d/user/gpg-agent.conf', dest: '.gnupg/gpg-agent.conf' }
-        - { src: 'conf.d/user/mail/.mailcap', dest: '.mailcap' }
-        - { src: 'conf.d/user/mail/.mbsyncrc', dest: '.mbsyncrc' }
-        - { src: 'conf.d/user/mail/.msmtprc', dest: '.msmtprc' }
-        - { src: 'conf.d/user/ssh_config', dest: '.ssh/config' }
-        - { src: 'conf.d/user/zsh/.zsh', dest: '.zsh' }
-        - { src: 'conf.d/user/zsh/.zshrc', dest: '.zshrc' }
-        - { src: 'conf.d/user/.stalonetrayrc', dest: '.stalonetrayrc' }
-        - { src: 'conf.d/user/.gmrunrc', dest: '.gmrunrc' }
-        - { src: 'conf.d/user/emacsclient.desktop', dest: '.local/share/applications/emacsclient.desktop' }
+      with_items: "{{ homedir_symlinks }}"
       tags:
         - homedir
 
@@ -464,21 +352,7 @@
 
     - name: setup xdg-open associations
       shell: xdg-mime default {{ item.program }}.desktop {{ item.mimetype }}
-      with_items:
-        - { program: 'firefox', mimetype: 'text/html' }
-        - { program: 'vlc', mimetype: 'video/avi' }
-        - { program: 'vlc', mimetype: 'video/mpeg' }
-        - { program: 'vlc', mimetype: 'video/x-flv' }
-        - { program: 'vlc', mimetype: 'video/mp4' }
-        - { program: 'vlc', mimetype: 'video/x-ms-wmv' }
-        - { program: 'vlc', mimetype: 'video/x-matroska' }
-        - { program: 'zathura', mimetype: 'application/pdf' }
-        - { program: 'zathura', mimetype: 'application/x-pdf' }
-        - { program: 'zathura', mimetype: 'image/vnd.djvu' }
-        - { program: 'zathura', mimetype: 'image/x-djvu' }
-        - { program: 'feh', mimetype: 'image/jpeg' }
-        - { program: 'feh', mimetype: 'image/png' }
-        - { program: 'abiword', mimetype: 'application/msword' }
+      with_items: "{{ mime_assocs }}"
       tags:
         - assoc
 
