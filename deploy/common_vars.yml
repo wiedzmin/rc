@@ -124,6 +124,7 @@ homedir_symlinks:
   - { src: 'conf.d/user/tmux-sessions', dest: 'tmux-sessions' }
   - { src: 'conf.d/user/dev/.pylintrc', dest: '.pylintrc' }
   - { src: 'conf.d/user/dev/flake8', dest: '.config/flake8' }
+  - { src: 'conf.d/user/dev/pep8', dest: '.config/pep8' }
   - { src: 'conf.d/user/gpg-agent.conf', dest: '.gnupg/gpg-agent.conf' }
   - { src: 'conf.d/user/mail/.mailcap', dest: '.mailcap' }
   - { src: 'conf.d/user/mail/.mbsyncrc', dest: '.mbsyncrc' }
