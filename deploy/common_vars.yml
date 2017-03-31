@@ -6,7 +6,7 @@ ripgrep_repo_location: /tmp/ripgrep
 gqs_repo_location: /tmp/git-quick-stats
 addrlookup_repo_location: /tmp/notmuch-addrlookup-c
 tmuxifier_repo_location: "{{ ansible_env.HOME }}/.tmuxifier"
-mail_configs_dir: "{{ playbook_dir }}/../conf.d/user/mail"
+mail_configs_dir: "{{ project_root }}/conf.d/user/mail"
 imapfilter_d_path: "{{ mail_configs_dir }}/imapfilter.d"
 imapfilter_config: "{{ mail_configs_dir }}/imapfilter-config.lua"
 openrc_services_list:
