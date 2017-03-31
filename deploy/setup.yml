@@ -434,3 +434,40 @@
         - devtools
 
       # TODO: https://github.com/asciimoo/wuzz - master/HEAD is broken (SIGSEGV), try later
+
+    - name: Zshnip | clone repo
+      git:
+        repo=https://github.com/facetframer/zshnip
+        dest={{ zshnip_repo_location }}
+        force=yes
+      tags:
+        - cli
+        - zshnip
+
+    - name: Zshnip | copy file(s)
+      copy:
+        src="{{ zshnip_repo_location }}/zshnip.zsh"
+        dest="{{ project_root }}/utils"
+      tags:
+        - cli
+        - zshnip
+
+    - name: Zshnip | configure Zsh
+      lineinfile:
+        dest="{{ project_root }}/conf.d/user/zsh/.zsh/custom"
+        line="source zshnip.zsh"
+        state=present
+      tags:
+        - cli
+        - zshnip
+
+    - name: Zshnip | configure Zsh | bind keys
+      lineinfile:
+        path: "{{ project_root }}/conf.d/user/zsh/.zsh/bindkeys"
+        line: "{{ item }}"
+      with_items:
+        - "\nbindkey '\ej' zshnip-expand-or-edit"
+        - "bindkey '\ee' zshnip-edit-and-expand"
+      tags:
+        - cli
+        - zshnip
