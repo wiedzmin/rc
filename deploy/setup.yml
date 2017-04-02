@@ -471,3 +471,47 @@
       tags:
         - cli
         - zshnip
+
+    - name: start devdns
+      docker_container:
+        name: devdns
+        image: ruudud/devdns
+        state: started
+        expose:
+          - 53:53/udp
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock
+      tags:
+        - devtools
+        - docker
+        - infra
+
+    - name: setup devdns host <-> containers resolving
+      blockinfile:
+        path: /etc/dhcp/dhclient.conf
+        block: |
+          supersede domain-name "dev";
+          prepend domain-name-servers 127.0.0.1;
+      become: true
+      tags:
+        - devtools
+        - docker
+        - infra
+
+    - name: stop devdns container
+      docker_container:
+        name: evdns"{{ item }}"
+        state: stopped
+      tags:
+        - prepare-cleanup
+
+    - name: remove devdns host <-> containers resolving
+      blockinfile:
+        path: /etc/dhcp/dhclient.conf
+        block: |
+          supersede domain-name "dev";
+          prepend domain-name-servers 127.0.0.1;
+        state: absent
+      become: true
+      tags:
+        - prepare-cleanup
