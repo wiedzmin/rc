@@ -1,4 +1,5 @@
 */**/*private
+.tramp_history
 private
 system-index.txt
 utils/buildapp
