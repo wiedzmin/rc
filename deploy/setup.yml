@@ -286,6 +286,7 @@
       get_url:
         url: https://updates.tdesktop.com/tlinux/tsetup.{{ telegram_version }}.tar.xz
         dest: /tmp/tsetup.tar.xz
+        force: yes
       tags:
         - tg
         - remote
