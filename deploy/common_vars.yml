@@ -100,6 +100,9 @@ packages_of_interest:
   - "net-irc/hexchat"
   - "app-misc/tmux"
   - "app-misc/tmux-mem-cpu-load"
+  - "x11-apps/arbtt"
+  - "dev-vcs/git-annex"
+  - "app-text/pandoc"
 homedir_subdirs:
   - '.imapfilter'
   - '.arbtt'
