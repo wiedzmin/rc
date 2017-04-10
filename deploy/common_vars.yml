@@ -97,6 +97,7 @@ packages_of_interest:
   - 'app-admin/apache-tools'
   - 'app-misc/jrnl'
   - 'app-admin/pass'
+  - "net-irc/hexchat"
 homedir_subdirs:
   - '.imapfilter'
   - '.arbtt'

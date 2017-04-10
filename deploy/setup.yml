@@ -516,3 +516,19 @@
       become: true
       tags:
         - prepare-cleanup
+
+    - name: Hexchat | download theme
+      get_url:
+        url: https://dl.hexchat.net/themes/Zenburn.hct
+        dest: /tmp/Zenburn.hct
+        force: yes
+      tags:
+        - IRC
+        - remote
+
+    - name: Hexchat | apply theme
+      unarchive:
+        src: /tmp/Zenburn.hct
+        dest: "{{ ansible_env.HOME }}/.config/hexchat"
+      tags:
+        - IRC
