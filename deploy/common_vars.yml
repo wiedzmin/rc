@@ -98,6 +98,8 @@ packages_of_interest:
   - 'app-misc/jrnl'
   - 'app-admin/pass'
   - "net-irc/hexchat"
+  - "app-misc/tmux"
+  - "app-misc/tmux-mem-cpu-load"
 homedir_subdirs:
   - '.imapfilter'
   - '.arbtt'
