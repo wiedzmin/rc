@@ -22,7 +22,7 @@
 >x11-misc/bumblebee-3.2.1
 >x11-base/xorg-server-1.19.3
 >net-misc/unison-2.32.52
->app-emulation/docker-machine-0.7.0
+>app-emulation/docker-machine-0.10.0
 >sys-devel/clang-3.8.1-r100
 >media-gfx/imagemagick-6.9.5.10
 >sys-kernel/genkernel-3.4.52.4-r2
@@ -30,7 +30,7 @@
 >virtual/libudev-215-r1
 >sys-libs/binutils-libs-2.25.1-r2
 >sys-devel/llvm-3.8.1-r2
->app-emulation/docker-17.03.0
+>app-emulation/docker-17.04.0
 >dev-python/setuptools-27.2.0
 >dev-lisp/asdf-3.1.5
 >dev-lisp/uiop-3.1.5
