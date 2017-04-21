@@ -506,6 +506,15 @@
         - devtools
         - python-libs
 
+    # TODO: make a var with pip packages and move to vars
+    - name: install python/snakeviz
+      pip:
+        name: snakeviz
+        extra_args: --user
+      tags:
+        - devtools
+        - python-libs
+
     - name: stop devdns container
       docker_container:
         name: devdns
