@@ -337,7 +337,6 @@
            { line: "\neval \"$(tmuxifier init -)\"", after: "EOF"}]
       tags:
         - tmux
-        - debug
     # TODO: think of way to rerun some links/path population steps after this
 
     - name: imapfilter | remove old config file
