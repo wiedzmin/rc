@@ -103,6 +103,9 @@ packages_of_interest:
   - "x11-apps/arbtt"
   - "dev-vcs/git-annex"
   - "app-text/pandoc"
+python_pip_packages:
+  - "importmagic"
+  - "snakeviz"
 homedir_subdirs:
   - '.imapfilter'
   - '.arbtt'

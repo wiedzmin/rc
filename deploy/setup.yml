@@ -498,19 +498,11 @@
         - docker
         - infra
 
-    - name: install python/importmagic
+    - name: install pip packages (Python)
       pip:
-        name: importmagic
+        name: "{{ item }}"
         extra_args: --user
-      tags:
-        - devtools
-        - python-libs
-
-    # TODO: make a var with pip packages and move to vars
-    - name: install python/snakeviz
-      pip:
-        name: snakeviz
-        extra_args: --user
+      with_items: "{{ python_pip_packages }}"
       tags:
         - devtools
         - python-libs
