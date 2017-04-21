@@ -508,7 +508,7 @@
 
     - name: stop devdns container
       docker_container:
-        name: evdns"{{ item }}"
+        name: devdns
         state: stopped
       tags:
         - prepare-cleanup
