@@ -498,6 +498,14 @@
         - docker
         - infra
 
+    - name: install python/importmagic
+      pip:
+        name: importmagic
+        extra_args: --user
+      tags:
+        - devtools
+        - python-libs
+
     - name: stop devdns container
       docker_container:
         name: evdns"{{ item }}"
