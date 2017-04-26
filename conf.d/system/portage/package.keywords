@@ -1,6 +1,6 @@
-x11-wm/xmonad **
-x11-wm/xmonad-extras **
-x11-wm/xmonad-contrib **
+# x11-wm/xmonad **
+# x11-wm/xmonad-extras **
+# x11-wm/xmonad-contrib **
 x11-misc/dmenu **
 =dev-vcs/gti-9999 **
 #required by dev-util/runsnakerun-2.0.0_beta4::betagarden, required by dev-util/runsnakerun (argument)

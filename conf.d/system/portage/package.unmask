@@ -1,6 +1,6 @@
->=x11-wm/xmonad-9999
->=x11-wm/xmonad-extras-9999
->=x11-wm/xmonad-contrib-9999
+# >=x11-wm/xmonad-9999
+# >=x11-wm/xmonad-extras-9999
+# >=x11-wm/xmonad-contrib-9999
 >=x11-misc/dmenu-9999
 >=net-misc/leechcraft-full-9999
 #required by =dev-haskell/time-1.4.0.1 (argument)
