@@ -108,6 +108,7 @@ packages_of_interest:
   - "dev-python/isort"
   - "dev-util/strace"
   - "dev-util/ltrace"
+  - "net-im/telegram-cli"
 python_pip_packages:
   - "importmagic"
   - "snakeviz"
