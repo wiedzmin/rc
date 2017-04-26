@@ -501,6 +501,7 @@
     - name: install pip packages (Python)
       pip:
         name: "{{ item }}"
+        state: latest
         extra_args: --user
       with_items: "{{ python_pip_packages }}"
       tags:
