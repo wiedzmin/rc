@@ -301,3 +301,9 @@ net-misc/networkmanager abi_x86_32
 # required by @selected
 # required by @world (argument)
 >=dev-libs/libunistring-0.9.7 abi_x86_32
+
+# required by net-libs/gnutls-3.5.10::gentoo[idn]
+# required by net-analyzer/wireshark-2.2.5::gentoo[ssl]
+# required by @selected
+# required by @world (argument)
+>=net-dns/libidn2-0.16-r2 abi_x86_32
