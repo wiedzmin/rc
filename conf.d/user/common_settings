@@ -7,6 +7,7 @@ BIN_DIRS=(
     $HOME/workspace/configs/rc/utils
     /usr/lib/go/bin
     $HOME/workspace/gocode/bin
+    $HOME/.local/bin
 )
 
 GOPATH=/home/octocat/workspace/gocode

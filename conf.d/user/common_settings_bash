@@ -5,6 +5,7 @@ BIN_DIRS=(
     $HOME/bin
     $HOME/tools/bin
     $HOME/workspace/configs/rc/utils
+    $HOME/.local/bin
 )
 
 # Remove dupes from 'path', which is array tied to 'PATH'
