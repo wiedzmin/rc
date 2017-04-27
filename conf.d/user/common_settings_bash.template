@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 
 BIN_DIRS=(
-	$HOME/.tmuxifier/bin
-    $HOME/bin
-    $HOME/tools/bin
-    $HOME/workspace/configs/rc/utils
-    $HOME/.local/bin
+{% for dir in bin_dirs %}
+    {{ dir }}
+{% endfor %}
 )
 
 # Remove dupes from 'path', which is array tied to 'PATH'
@@ -23,5 +21,3 @@ for candidate in emacsclient vim vi; do
         break
     fi
 done
-
-eval "$(tmuxifier init -)"

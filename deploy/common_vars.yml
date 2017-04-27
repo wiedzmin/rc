@@ -141,8 +141,6 @@ homedir_symlinks:
   - { src: 'conf.d/user/.urlview', dest: '.urlview' }
   - { src: 'conf.d/user/browser/.conkerorrc', dest: '.conkerorrc' }
   - { src: 'conf.d/user/browser/.vimperatorrc', dest: '.vimperatorrc' }
-  - { src: 'conf.d/user/common_settings', dest: 'common_settings' }
-  - { src: 'conf.d/user/common_settings_bash', dest: 'common_settings_bash' }
   - { src: 'conf.d/user/tmux-sessions', dest: 'tmux-sessions' }
   - { src: 'conf.d/user/dev/.pylintrc', dest: '.pylintrc' }
   - { src: 'conf.d/user/dev/flake8', dest: '.config/flake8' }
@@ -179,3 +177,14 @@ tg_backup_formatter: plaintext
 tg_backup_output_dir: "{{ ansible_env.HOME }}/tg_logs"
 tg_backup_kill_tg: yes
 tg_cli_port: 9009
+bin_dirs:
+  - "$HOME/bin"
+  - "$HOME/tools/bin"
+  - "$HOME/workspace/configs/rc/utils"
+  - "/usr/lib/go/bin"
+  - "$HOME/workspace/gocode/bin"
+  - "$HOME/.local/bin"
+editor_choices:
+  - "emacsclient"
+  - "vim"
+  - "vi"

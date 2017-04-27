@@ -103,6 +103,14 @@
       tags:
         - homedir
 
+    - name: instantiate common settings
+      template: src={{ project_root }}/conf.d/user/{{ item }}.template dest={{ ansible_env.HOME }}/{{ item }}
+      with_items:
+        - "{{ common_settings_basenames }}"
+      tags:
+        - homedir
+        - common-settings
+
     - stat: path={{ ansible_env.HOME }}/.bashrc
       register: bashrc
       tags:
