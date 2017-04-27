@@ -1,11 +1,11 @@
 project_root_rel: "{{ playbook_dir }}/.."
 project_root: "{{ project_root_rel | realpath }}"
 pids_dir: "{{ ansible_env.HOME }}/pids"
-buildapp_repo_location: /tmp/buildapp
-gqs_repo_location: /tmp/git-quick-stats
-addrlookup_repo_location: /tmp/notmuch-addrlookup-c
-tmuxifier_repo_location: "{{ ansible_env.HOME }}/.tmuxifier"
-zshnip_repo_location: /tmp/zshnip
+buildapp_traits: { clone_from: "https://github.com/xach/buildapp", local_path: "/tmp/buildapp" }
+gqs_traits: { clone_from: "https://github.com/arzzen/git-quick-stats", local_path: "/tmp/git-quick-stats" }
+addrlookup_traits: { clone_from: "https://github.com/aperezdc/notmuch-addrlookup-c", local_path: "/tmp/notmuch-addrlookup-c" }
+tmuxifier_traits: { clone_from: "https://github.com/jimeh/tmuxifier", local_path: "{{ ansible_env.HOME }}/.tmuxifier" }
+zshnip_traits: { clone_from: "https://github.com/facetframer/zshnip", local_path: "/tmp/zshnip" }
 mail_configs_dir: "{{ project_root }}/conf.d/user/mail"
 imapfilter_d_path: "{{ mail_configs_dir }}/imapfilter.d"
 imapfilter_config: "{{ mail_configs_dir }}/imapfilter-config.lua"

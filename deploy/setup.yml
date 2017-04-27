@@ -126,8 +126,8 @@
 
     - name: Buildapp | clone repo
       git:
-        repo=https://github.com/xach/buildapp
-        dest={{ buildapp_repo_location }}
+        repo={{ buildapp_traits.clone_from }}
+        dest={{ buildapp_traits.local_path }}
         force=yes
       tags:
         - buildapp
@@ -136,7 +136,7 @@
 
     - name: Buildapp | build
       make:
-        chdir: "{{ buildapp_repo_location }}"
+        chdir: "{{ buildapp_traits.local_path }}"
         target: buildapp
       tags:
         - buildapp
@@ -144,7 +144,7 @@
 
     - name: Buildapp | install
       make:
-        chdir: "{{ buildapp_repo_location }}"
+        chdir: "{{ buildapp_traits.local_path }}"
         target: install
       become: yes
       tags:
@@ -258,8 +258,8 @@
 
     - name: git-quick-stats | clone repository
       git:
-        repo=https://github.com/arzzen/git-quick-stats
-        dest={{ gqs_repo_location }}
+        repo={{ gqs_traits.clone_from }}
+        dest={{ gqs_traits.local_path }}
         force=yes
       tags:
         - cli
@@ -268,7 +268,7 @@
 
     - name: git-quick-stats | install
       make:
-        chdir: "{{ gqs_repo_location }}"
+        chdir: "{{ gqs_traits.local_path }}"
         target: install
       become: yes
       tags:
@@ -277,7 +277,7 @@
 
     - name: git-quick-stats | uninstall
       make:
-        chdir: "{{ gqs_repo_location }}"
+        chdir: "{{ gqs_traits.local_path }}"
         target: uninstall
       tags:
         - uninstall
@@ -318,8 +318,8 @@
 
     - name: tmuxifier | clone repo
       git:
-        repo=https://github.com/jimeh/tmuxifier
-        dest="{{ tmuxifier_repo_location }}"
+        repo={{ tmuxifier_traits.clone_from }}
+        dest={{ tmuxifier_traits.local_path }}
         force=yes
       tags:
         - tmux
@@ -398,8 +398,8 @@
 
     - name: addrlookup | clone repo
       git:
-        repo=https://github.com/aperezdc/notmuch-addrlookup-c
-        dest={{ addrlookup_repo_location }}
+        repo={{ addrlookup_traits.clone_from }}
+        dest={{ addrlookup_traits.local_path }}
         force=yes
       tags:
         - notmuch
@@ -408,12 +408,12 @@
     - name: addrlookup | build
       shell: make
       args:
-        chdir: '{{ addrlookup_repo_location }}'
+        chdir: '{{ addrlookup_traits.local_path }}'
       tags:
         - notmuch
 
     - name: addrlookup | install binary
-      shell: "mv {{ addrlookup_repo_location }}/notmuch-addrlookup /usr/bin"
+      shell: "mv {{ addrlookup_traits.local_path }}/notmuch-addrlookup /usr/bin"
       become: true
       tags:
         - notmuch
@@ -437,8 +437,8 @@
 
     - name: Zshnip | clone repo
       git:
-        repo=https://github.com/facetframer/zshnip
-        dest={{ zshnip_repo_location }}
+        repo={{ zshnip_traits.clone_from }}
+        dest={{ zshnip_traits.local_path }}
         force=yes
       tags:
         - cli
@@ -446,7 +446,7 @@
 
     - name: Zshnip | copy file(s)
       copy:
-        src="{{ zshnip_repo_location }}/zshnip.zsh"
+        src="{{ zshnip_traits.local_path }}/zshnip.zsh"
         dest="{{ project_root }}/utils"
       tags:
         - cli
