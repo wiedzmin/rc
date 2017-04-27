@@ -6,6 +6,7 @@ gqs_traits: { clone_from: "https://github.com/arzzen/git-quick-stats", local_pat
 addrlookup_traits: { clone_from: "https://github.com/aperezdc/notmuch-addrlookup-c", local_path: "/tmp/notmuch-addrlookup-c" }
 tmuxifier_traits: { clone_from: "https://github.com/jimeh/tmuxifier", local_path: "{{ ansible_env.HOME }}/.tmuxifier" }
 zshnip_traits: { clone_from: "https://github.com/facetframer/zshnip", local_path: "/tmp/zshnip" }
+thd_traits: { clone_from: "https://github.com/tvdstaaij/telegram-history-dump", local_path: "/tmp/telegram-history-dump" }
 mail_configs_dir: "{{ project_root }}/conf.d/user/mail"
 imapfilter_d_path: "{{ mail_configs_dir }}/imapfilter.d"
 imapfilter_config: "{{ mail_configs_dir }}/imapfilter-config.lua"
@@ -174,3 +175,7 @@ mime_assocs:
 common_settings_basenames:
   - common_settings
   - common_settings_bash
+tg_backup_formatter: plaintext
+tg_backup_output_dir: "{{ ansible_env.HOME }}/tg_logs"
+tg_backup_kill_tg: yes
+tg_cli_port: 9009

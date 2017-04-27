@@ -541,3 +541,32 @@
         dest: "{{ ansible_env.HOME }}/.config/hexchat"
       tags:
         - IRC
+
+    - name: THD | clone repo
+      git:
+        repo={{ thd_traits.clone_from }}
+        dest={{ thd_traits.local_path }}
+        force=yes
+      tags:
+        - cli
+        - thd
+
+    - name: THD | update config
+      template: src={{ project_root }}/conf.d/user/thd_config.template dest={{ thd_traits.local_path }}/config.yaml
+      tags:
+        - cli
+        - thd
+
+    - name: THD | start telegram-cli
+      shell: "nohup telegram-cli --json -P {{ tg_cli_port }} -v 0 &"
+      tags:
+        - cli
+        - thd
+
+    - name: THD | perform dump
+      shell: "ruby telegram-history-dump.rb{% if tg_backup_kill_tg %} --kill-tg{% endif %}"
+      args:
+        chdir: '{{ thd_traits.local_path }}'
+      tags:
+        - cli
+        - thd
