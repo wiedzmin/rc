@@ -36,6 +36,15 @@
       tags:
         - system
 
+    - name: instantiate Docker config template
+      template: src={{ project_root }}/conf.d/system/docker.template dest=/etc/conf.d/docker
+      become: true
+      tags:
+        - system
+        - docker
+
+    # TODO: set permissions on /etc/conf.d/docker
+
     - name: add overlays
       layman:
         name={{ item }}
