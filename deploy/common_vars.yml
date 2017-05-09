@@ -64,7 +64,6 @@ packages_of_interest:
   - 'media-sound/volumeicon'
   - 'net-misc/dropbox'
   - 'sys-apps/dbus'
-  - 'sys-fs/udisks-glue'
   # - 'x11-apps/copyq'
   - 'x11-apps/xmodmap'
   - 'x11-apps/xrdb'
@@ -108,6 +107,8 @@ packages_of_interest:
   - "dev-util/strace"
   - "dev-util/ltrace"
   - "net-im/telegram-cli"
+  - "sys-fs/udisks"
+  - "sys-fs/udiskie"
 python_pip_packages:
   - "importmagic"
   - "snakeviz"

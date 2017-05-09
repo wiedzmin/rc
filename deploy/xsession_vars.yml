@@ -24,3 +24,4 @@ xsession_services:
   - { command: "kbdd", enabled: "{{ xsession_current_wm not in ['xmonad', 'stumpwm'] }}", heavyweight: False } # TODO: try to check against xsession_current_wm (enable in all but stumpwm/xmonad)
 xsession_disable_capslock: yes
 xsession_timezone: Europe/Moscow
+xsession_media_mount: yes

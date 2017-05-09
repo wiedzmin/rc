@@ -139,3 +139,5 @@ net-libs/libvncserver threads -ssl gnutls
 app-admin/pass dmenu emacs importers zsh-completion
 net-irc/hexchat gtk libnotify lua
 net-im/telegram-cli lua
+gnome-base/nautilus -previewer
+gnome-base/gvfs afp archive gphoto2 fuse mtp udisks

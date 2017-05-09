@@ -276,3 +276,6 @@ x11-misc/tint2 battery examples tint2conf
 # required by @selected
 # required by @world (argument)
 >=app-text/xmlto-0.0.28-r1 text
+# required by gnome-base/nautilus-3.22.3::gentoo
+# required by gnome-base/nautilus (argument)
+>=gnome-base/gvfs-1.30.4 gtk
