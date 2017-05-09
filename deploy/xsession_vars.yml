@@ -5,7 +5,7 @@ xsession_wm_choices:
   - awesome
   - sawfish
 xsession_current_wm: "{{ xsession_wm_choices[1] }}"
-xsession_loop_wm: False
+xsession_loop_wm: no
 xsession_errorlogs_to_keep: 3
 xsession_services:
   - { command: "dbus-daemon --session", enabled: True, heavyweight: False }
@@ -22,5 +22,5 @@ xsession_services:
   - { command: "dropbox", enabled: True, heavyweight: True }
   - { command: "pulseaudio --start", enabled: True, heavyweight: False }
   - { command: "kbdd", enabled: "{{ xsession_current_wm not in ['xmonad', 'stumpwm'] }}", heavyweight: False } # TODO: try to check against xsession_current_wm (enable in all but stumpwm/xmonad)
-xsession_disable_capslock: True
+xsession_disable_capslock: yes
 xsession_timezone: Europe/Moscow
