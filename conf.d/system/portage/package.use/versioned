@@ -271,3 +271,8 @@ x11-misc/tint2 battery examples tint2conf
 # required by app-emulation/docker-1.13.0::gentoo[container-init]
 # required by app-emulation/docker (argument)
 >=sys-process/tini-0.13.2 static
+# required by x11-misc/xdg-utils-1.1.2::gentoo
+# required by www-client/google-chrome-58.0.3029.96::gentoo
+# required by @selected
+# required by @world (argument)
+>=app-text/xmlto-0.0.28-r1 text
