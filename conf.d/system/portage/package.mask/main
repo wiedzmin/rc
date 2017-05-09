@@ -17,7 +17,6 @@
 >net-libs/rb_libtorrent-0.16.19
 >net-misc/dhcpcd-6.7.1
 >sys-devel/gcc-4.9.4
->dev-libs/libxml2-2.9.3
 >media-libs/mesa-11.2.2
 >x11-misc/bumblebee-3.2.1
 >x11-base/xorg-server-1.19.3
@@ -31,9 +30,9 @@
 >sys-libs/binutils-libs-2.25.1-r2
 >sys-devel/llvm-3.8.1-r2
 >app-emulation/docker-17.04.0
->dev-python/setuptools-27.2.0
 >dev-lisp/asdf-3.1.5
 >dev-lisp/uiop-3.1.5
 >dev-perl/Mail-Box-2.118.0
 >media-sound/mpd-0.19.21-r1
 >app-crypt/gnupg-2.1.19-r2
+>=dev-python/requests-2.12
