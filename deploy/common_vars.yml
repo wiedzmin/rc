@@ -124,6 +124,7 @@ homedir_subdirs:
   - '.ssh'
   - '.config/twmn'
   - '.config/i3'
+  - '.config/dunst'
   - '.sawfish'
   - '.local/share/applications'
   - '.gnupg'
@@ -155,6 +156,7 @@ homedir_symlinks:
   - { src: 'conf.d/user/zsh/.zshrc', dest: '.zshrc' }
   - { src: 'conf.d/user/.stalonetrayrc', dest: '.stalonetrayrc' }
   - { src: 'conf.d/user/.gmrunrc', dest: '.gmrunrc' }
+  - { src: 'conf.d/X11/dunstrc', dest: '.config/dunst/dunstrc' }
   - { src: 'conf.d/user/emacsclient.desktop', dest: '.local/share/applications/emacsclient.desktop' }
 mime_assocs:
   - { program: 'firefox', mimetype: 'text/html' }
