@@ -62,7 +62,9 @@
       portage: package={{ item }} state=present
       with_items: "{{ packages_of_interest }}"
       become: true
-      when: ansible_distribution == "Gentoo"
+      when:
+        - ansible_distribution == "Gentoo"
+        - check_packages_installed
       tags:
         - system
         - portage

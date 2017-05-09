@@ -188,3 +188,4 @@ editor_choices:
   - "emacsclient"
   - "vim"
   - "vi"
+check_packages_installed: no
