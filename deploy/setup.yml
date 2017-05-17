@@ -6,6 +6,12 @@
       tags:
         - always
 
+    - name: register current time
+      shell: 'date +%Y%m%d%H%M%S'
+      register: current_run_timestamp
+      tags:
+        - always
+
     - name: ensure some system dirs exists
       file:
         path={{ item }}
