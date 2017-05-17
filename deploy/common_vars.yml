@@ -109,6 +109,7 @@ packages_of_interest:
   - "sys-fs/udisks"
   - "sys-fs/udiskie"
   - "x11-misc/xprintidle"
+  - "dev-python/blockdiag"
 python_pip_packages:
   - "importmagic"
   - "snakeviz"

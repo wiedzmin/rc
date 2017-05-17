@@ -141,3 +141,4 @@ net-irc/hexchat gtk libnotify lua
 net-im/telegram-cli -lua # configure: error: unrecognized option: `-lm' in some overlays, may be fixed later
 gnome-base/nautilus -previewer
 gnome-base/gvfs afp archive gphoto2 fuse mtp udisks
+dev-python/pillow truetype
