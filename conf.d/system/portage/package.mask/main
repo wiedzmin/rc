@@ -36,3 +36,4 @@
 >media-sound/mpd-0.19.21-r1
 >app-crypt/gnupg-2.1.19-r2
 >=dev-python/requests-2.12
+>x11-misc/i3status-2.11
