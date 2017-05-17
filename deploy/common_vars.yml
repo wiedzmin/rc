@@ -110,6 +110,7 @@ packages_of_interest:
   - "sys-fs/udiskie"
   - "x11-misc/xprintidle"
   - "dev-python/blockdiag"
+  - "app-office/ledger"
 python_pip_packages:
   - "importmagic"
   - "snakeviz"
