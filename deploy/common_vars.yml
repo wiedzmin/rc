@@ -113,6 +113,9 @@ packages_of_interest:
   - "x11-misc/xprintidle"
   - "dev-python/blockdiag"
   - "app-office/ledger"
+  - "app-misc/workrave"
+  - "app-misc/wmname"
+  - "x11-misc/dex"
   - "app-portage/fetchcommandwrapper"
 python_pip_packages:
   - "importmagic"
