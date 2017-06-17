@@ -1,5 +1,5 @@
 !URxvt.depth: 32
-URxvt*font: xft:IosevkaCC-10:weight=bold
+URxvt*font: xft:mononoki-10:weight=bold
 URxvt*letterSpace: -1
 ! URxvt.foreground: #f6f0e8
 URxvt.foreground: #dcdccc
