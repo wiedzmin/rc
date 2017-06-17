@@ -143,3 +143,4 @@ gnome-base/nautilus -previewer
 gnome-base/gvfs afp archive gphoto2 fuse mtp udisks
 dev-python/pillow truetype
 x11-wm/awesome luajit
+net-misc/connman iptables
