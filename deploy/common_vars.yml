@@ -58,6 +58,7 @@ portage_overlays:
   - qwin-overlay
   - raiagent
   - posativ
+  - bar
   # - my_local_overlay # TODO manage local overlay somehow
 packages_of_interest:
   - 'gnome-extra/nm-applet'
