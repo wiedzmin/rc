@@ -599,3 +599,4 @@
         - thd
 
     # TODO: setup znc on octocat.ru
+    # TODO: think of fonts setup automating (e.g. dowloading, copying, updating fontcache, whatever)
