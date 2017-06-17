@@ -154,3 +154,10 @@
 # /etc/portage/package.mask/main:
 # >app-text/pandoc-1.11.1-r1
 =dev-haskell/pandoc-types-1.16.1-r1
+# required by dev-python/cryptography-1.9::gentoo[python_targets_python2_7,python_targets_python3_4,-python_targets_python3_5,-python_targets_python3_6]
+# required by dev-python/paramiko-2.1.2::gentoo
+# required by dev-vcs/bzr-2.7.0::gentoo[sftp]
+# required by @selected
+# required by @world (argument)
+# /etc/portage/package.mask/main:
+=dev-python/cffi-1.10.0
