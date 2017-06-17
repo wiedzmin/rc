@@ -112,6 +112,7 @@ packages_of_interest:
   - "x11-misc/xprintidle"
   - "dev-python/blockdiag"
   - "app-office/ledger"
+  - "app-portage/fetchcommandwrapper"
 python_pip_packages:
   - "importmagic"
   - "snakeviz"
