@@ -126,6 +126,7 @@ homedir_subdirs:
   - '.ssh'
   - '.config/twmn'
   - '.config/i3'
+  - '.config/rofi'
   - '.config/dunst'
   - '.sawfish'
   - '.local/share/applications'
@@ -139,6 +140,7 @@ homedir_symlinks:
   - { src: 'conf.d/X11/twmn.conf', dest: '.config/twmn/twmn.conf' }
   - { src: 'conf.d/X11/xmodmaprc', dest: 'xmodmaprc' }
   - { src: 'conf.d/X11/i3.conf', dest: '.config/i3/config' }
+  - { src: 'conf.d/X11/rofi.conf', dest: '.config/rofi/config' }
   - { src: 'conf.d/X11/.sawfishrc', dest: '.sawfish/rc' }
   - { src: 'conf.d/user/.tmux.conf', dest: '.tmux.conf' }
   - { src: 'conf.d/user/.urlview', dest: '.urlview' }
