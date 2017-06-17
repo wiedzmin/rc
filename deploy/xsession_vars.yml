@@ -4,7 +4,7 @@ xsession_wm_choices:
   - i3
   - awesome
   - sawfish
-xsession_current_wm: "{{ xsession_wm_choices[1] }}"
+xsession_current_wm: "{{ xsession_wm_choices[3] }}"
 xsession_loop_wm: no
 xsession_errorlogs_to_keep: 3
 xsession_services:
