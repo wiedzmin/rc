@@ -51,16 +51,6 @@
 
     # TODO: set permissions on /etc/conf.d/docker
 
-    - name: add overlays
-      layman:
-        name={{ item }}
-        state=present
-      with_items: "{{ portage_overlays }}"
-      when: ansible_distribution == "Gentoo"
-      tags:
-        - system
-        - portage
-
     # TODO think of moving this to shell level
     # consult with "world" file
     # reduce time for checks
@@ -81,26 +71,6 @@
       tags:
         - system
         - dev
-
-    - name: mount portage build directory as tmpfs
-      become: true
-      lineinfile:
-        dest=/etc/fstab
-        line='tmpfs                   /var/tmp/portage/       tmpfs   uid=250,gid=250,size=10G,mode=0775      0 1'
-        state=present
-      tags:
-        - system
-        - portage
-
-    - name: symlink local overlay files
-      file:
-        src={{ project_root }}/conf.d/system/local_overlay
-        dest=/usr/local/portage
-        state=link
-      become: true
-      tags:
-        - system
-        - portage
 
     - name: ensure some directories exist
       file:

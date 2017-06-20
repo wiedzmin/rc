@@ -18,49 +18,16 @@ openrc_services_list:
 system_dirs:
   - '/etc/X11'
   - '/etc/conf.d'
-  - '/etc/portage'
 entries_to_symlinks:
   - '/etc/acpi'
   - '/etc/X11/xorg.conf.d'
   - '/etc/conf.d/docker'
   - '/etc/mpd.conf'
-  - '/etc/portage/package.mask'
-  - '/etc/portage/package.use'
-  - '/etc/portage/repos.conf'
-  - '/etc/portage/make.conf'
-  - '/etc/portage/package.accept_keywords'
-  - '/etc/portage/package.keywords'
-  - '/etc/portage/package.license'
-  - '/etc/portage/package.unmask'
 system_symlinks:
   - { src: 'conf.d/system/acpi', dest: '/etc/acpi' }
   - { src: 'conf.d/X11/xorg.conf.d', dest: '/etc/X11/xorg.conf.d' }
   - { src: 'conf.d/system/mpd.conf', dest: '/etc/mpd.conf' }
-  - { src: 'conf.d/system/portage/package.mask', dest: '/etc/portage/package.mask' }
-  - { src: 'conf.d/system/portage/package.use', dest: '/etc/portage/package.use' }
-  - { src: 'conf.d/system/portage/repos.conf', dest: '/etc/portage/repos.conf' }
-  - { src: 'conf.d/system/portage/make.conf', dest: '/etc/portage/make.conf' }
-  - { src: 'conf.d/system/portage/package.accept_keywords', dest: '/etc/portage/package.accept_keywords' }
-  - { src: 'conf.d/system/portage/package.keywords', dest: '/etc/portage/package.keywords' }
-  - { src: 'conf.d/system/portage/package.license', dest: '/etc/portage/package.license' }
-  - { src: 'conf.d/system/portage/package.unmask', dest: '/etc/portage/package.unmask' }
   - { src: 'conf.d/system/udev.d/95-external-head-hotplug.rules', dest: '/etc/udev/rules.d/95-external-head-hotplug.rules' }
-portage_overlays:
-  - booboo
-  - chaos
-  - dilfridge
-  - emacs
-  - flow
-  - go-overlay
-  - haskell
-  - jorgicio
-  - lisp
-  - mva
-  - qwin-overlay
-  - raiagent
-  - posativ
-  - bar
-  # - my_local_overlay # TODO manage local overlay somehow
 packages_of_interest:
   - 'gnome-extra/nm-applet'
   - 'media-sound/volumeicon'
@@ -114,9 +81,6 @@ packages_of_interest:
   - "dev-python/blockdiag"
   - "app-office/ledger"
   - "app-misc/workrave"
-  - "app-misc/wmname"
-  - "x11-misc/dex"
-  - "app-portage/fetchcommandwrapper"
 python_pip_packages:
   - "importmagic"
   - "snakeviz"
