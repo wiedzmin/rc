@@ -11,34 +11,16 @@ mail_configs_dir: "{{ project_root }}/conf.d/user/mail"
 imapfilter_d_path: "{{ mail_configs_dir }}/imapfilter.d"
 imapfilter_config: "{{ mail_configs_dir }}/imapfilter-config.lua"
 system_dirs:
-  - '/etc/X11'
   - '/etc/conf.d'
 entries_to_symlinks:
   - '/etc/acpi'
-  - '/etc/X11/xorg.conf.d'
   - '/etc/conf.d/docker'
   - '/etc/mpd.conf'
 system_symlinks:
   - { src: 'conf.d/system/acpi', dest: '/etc/acpi' }
-  - { src: 'conf.d/X11/xorg.conf.d', dest: '/etc/X11/xorg.conf.d' }
   - { src: 'conf.d/system/mpd.conf', dest: '/etc/mpd.conf' }
-  - { src: 'conf.d/system/udev.d/95-external-head-hotplug.rules', dest: '/etc/udev/rules.d/95-external-head-hotplug.rules' }
 packages_of_interest:
-  - 'gnome-extra/nm-applet'
-  - 'media-sound/volumeicon'
-  - 'net-misc/dropbox'
   - 'sys-apps/dbus'
-  # - 'x11-apps/copyq'
-  - 'x11-apps/xmodmap'
-  - 'x11-apps/xrdb'
-  - 'x11-misc/autocutsel'
-  - 'x11-misc/kbdd'
-  - 'x11-misc/redshift'
-  - 'x11-misc/trayer-srg'
-  - 'x11-misc/unclutter'
-  - 'x11-misc/xxkb'
-  - 'x11-terms/rxvt-unicode'
-  - 'x11-misc/yeganesh'
   - 'dev-util/rtags'
   - 'mail-filter/imapfilter'
   - 'app-emulation/docker'
@@ -61,7 +43,6 @@ packages_of_interest:
   - "net-irc/hexchat"
   - "app-misc/tmux"
   - "app-misc/tmux-mem-cpu-load"
-  - "x11-apps/arbtt"
   - "dev-vcs/git-annex"
   - "app-text/pandoc"
   - "app-misc/jq"
@@ -72,7 +53,6 @@ packages_of_interest:
   - "net-im/telegram-cli"
   - "sys-fs/udisks"
   - "sys-fs/udiskie"
-  - "x11-misc/xprintidle"
   - "dev-python/blockdiag"
   - "app-office/ledger"
   - "app-misc/workrave"
@@ -86,30 +66,13 @@ python_pip_packages:
   - "traad"
 homedir_subdirs:
   - '.imapfilter'
-  - '.arbtt'
   - '.tmux/plugins'
   - '.ssh'
-  - '.config/twmn'
-  - '.config/i3'
-  - '.config/rofi'
-  - '.config/dunst'
-  - '.sawfish'
   - '.local/share/applications'
   - '.gnupg'
 homedir_symlinks:
-  - { src: 'conf.d/X11/.Xresources', dest: '.Xresources' }
-  - { src: 'conf.d/X11/.i3status.conf', dest: '.i3status.conf' }
-  - { src: 'conf.d/X11/.xxkbrc', dest: '.xxkbrc' }
-  - { src: 'conf.d/X11/categorize.cfg', dest: '.arbtt/categorize.cfg' }
-  - { src: 'conf.d/X11/twmn.conf', dest: '.config/twmn/twmn.conf' }
-  - { src: 'conf.d/X11/xmodmaprc', dest: 'xmodmaprc' }
-  - { src: 'conf.d/X11/i3.conf', dest: '.config/i3/config' }
-  - { src: 'conf.d/X11/rofi.conf', dest: '.config/rofi/config' }
-  - { src: 'conf.d/X11/.sawfishrc', dest: '.sawfish/rc' }
   - { src: 'conf.d/user/.tmux.conf', dest: '.tmux.conf' }
   - { src: 'conf.d/user/.urlview', dest: '.urlview' }
-  - { src: 'conf.d/user/browser/.conkerorrc', dest: '.conkerorrc' }
-  - { src: 'conf.d/user/browser/.vimperatorrc', dest: '.vimperatorrc' }
   - { src: 'conf.d/user/tmux-sessions', dest: 'tmux-sessions' }
   - { src: 'conf.d/user/dev/.pylintrc', dest: '.pylintrc' }
   - { src: 'conf.d/user/dev/flake8', dest: '.config/flake8' }
@@ -122,10 +85,6 @@ homedir_symlinks:
   - { src: 'conf.d/user/ssh_config', dest: '.ssh/config' }
   - { src: 'conf.d/user/zsh/.zsh', dest: '.zsh' }
   - { src: 'conf.d/user/zsh/.zshrc', dest: '.zshrc' }
-  - { src: 'conf.d/user/.stalonetrayrc', dest: '.stalonetrayrc' }
-  - { src: 'conf.d/user/.gmrunrc', dest: '.gmrunrc' }
-  - { src: 'conf.d/X11/dunstrc', dest: '.config/dunst/dunstrc' }
-  - { src: 'conf.d/user/emacsclient.desktop', dest: '.local/share/applications/emacsclient.desktop' }
 mime_assocs:
   - { program: 'firefox', mimetype: 'text/html' }
   - { program: 'vlc', mimetype: 'video/avi' }

@@ -1,0 +1,64 @@
+---
+
+- include_vars: xsession.yml
+
+- name: register current time
+  shell: 'date +%Y%m%d%H%M%S'
+  register: current_run_timestamp
+  tags:
+    - always
+
+- name: ensure some system dirs exists
+  file:
+    path={{ item }}
+    state=directory
+  become: true
+  with_items: "{{ system_dirs }}"
+  when:
+    - "'bootstrap' in actions"
+
+- name: ensure home subdirs exist
+  file:
+    path={{ ansible_env.HOME }}/{{ item }}
+    state=directory
+  with_items: "{{ homedir_subdirs }}"
+  when:
+    - "'bootstrap' in actions"
+
+- name: copy system files
+  copy:
+    src: "{{ role_path }}/files/{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: 0755
+  become: true
+  with_items: "{{ system_files }}"
+  when:
+    - "'setup' in actions"
+
+# TODO think of moving this to shell level
+# consult with "world" file
+# reduce time for checks
+- name: ensure some packages installed
+  portage: package={{ item }} state=present
+  with_items: "{{ packages_of_interest }}"
+  become: true
+  when:
+    - "'setup' in actions"
+    - check_packages_installed
+
+- name: copy homedir files
+  copy:
+    src: "{{ role_path }}/files/{{ item.src }}"
+    dest: "{{ ansible_env.HOME }}/{{ item.dest }}"
+    mode: 0755
+  with_items: "{{ homedir_files }}"
+  when:
+    - "'setup' in actions"
+
+- name: generate .xsession script
+  copy:
+    content: "{{ lookup('template', '.xsession.template') }}"
+    dest: "{{ ansible_env.HOME }}/.xsession"
+    mode: 0755
+  when:
+    - "'xsession' in actions"

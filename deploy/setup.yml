@@ -279,22 +279,6 @@
       tags:
         - assoc
 
-    - include_vars: xsession_vars.yml
-      tags:
-        - xsession
-
-    - name: generate .xsession script
-      template: src={{ project_root }}/conf.d/X11/.xsession.template dest={{ ansible_env.HOME }}/.xsession
-      tags:
-        - xsession
-
-    - name: ensure .xsession permissions
-      file:
-        path: "{{ ansible_env.HOME }}/.xsession"
-        mode: 0755
-      tags:
-        - xsession
-
     - name: addrlookup | clone repo
       git:
         repo={{ addrlookup_traits.clone_from }}

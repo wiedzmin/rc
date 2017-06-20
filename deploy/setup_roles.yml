@@ -8,3 +8,8 @@
       remote_domain: <example.com> # substitute for real value
       restart: yes
       actions: [] # TODO: provide "dry-run" for testing
+    - role: x11
+      actions:
+        - bootstrap
+        - setup
+        - xsession

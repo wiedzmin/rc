@@ -1,0 +1,51 @@
+packages_of_interest:
+  - 'app-misc/wmname'
+  - 'gnome-extra/nm-applet'
+  - 'media-sound/volumeicon'
+  - 'net-misc/dropbox'
+  - 'x11-apps/arbtt'
+  - 'x11-apps/xmodmap'
+  - 'x11-apps/xrdb'
+  - 'x11-misc/autocutsel'
+  - 'x11-misc/dex'
+  - 'x11-misc/kbdd'
+  - 'x11-misc/redshift'
+  - 'x11-misc/trayer-srg'
+  - 'x11-misc/unclutter'
+  - 'x11-misc/xprintidle'
+  - 'x11-misc/xxkb'
+  - 'x11-misc/yeganesh'
+  - 'x11-terms/rxvt-unicode'
+homedir_subdirs:
+  - '.config/dunst'
+  - '.config/i3'
+  - '.config/rofi'
+  - '.config/twmn'
+  - '.sawfish'
+system_dirs:
+  - '/etc/X11/xorg.conf.d'
+  - '/etc/udev/rules.d'
+system_files:
+  - { src: 'udev.d/95-external-head-hotplug.rules', dest: '/etc/udev/rules.d/95-external-head-hotplug.rules' }
+  - { src: 'xorg.conf.d/20opengl.conf', dest: '/etc/X11/xorg.conf.d/20opengl.conf' }
+  - { src: 'xorg.conf.d/input.conf', dest: '/etc/X11/xorg.conf.d/input.conf' }
+  - { src: 'xorg.conf.d/synaptics.conf', dest: '/etc/X11/xorg.conf.d/synaptics.conf' }
+homedir_files:
+  - { src: '.Xresources', dest: '.Xresources' }
+  - { src: '.gmrunrc', dest: '.gmrunrc' }
+  - { src: '.i3status.conf', dest: '.i3status.conf' }
+  - { src: '.sawfishrc', dest: '.sawfish/rc' }
+  - { src: '.stalonetrayrc', dest: '.stalonetrayrc' }
+  - { src: '.xxkbrc', dest: '.xxkbrc' }
+  - { src: 'browser/.conkerorrc', dest: '.conkerorrc' }
+  - { src: 'browser/.vimperatorrc', dest: 'vimperatorrc' }
+  - { src: 'categorize.cfg', dest: '.arbtt/categorize.cfg' }
+  - { src: 'dunstrc', dest: '.config/dunst/dunstrc' }
+  - { src: 'emacsclient.desktop', dest: '.local/share/applications/emacsclient.desktop' }
+  - { src: 'i3.conf', dest: '.config/i3/config' }
+  - { src: 'rofi.conf', dest: '.config/rofi/config' }
+  - { src: 'twmn.conf', dest: '.config/twmn/twmn.conf' }
+  - { src: 'xmobarrc', dest: '.xmonad/xmobarrc' } # TODO: abstract away
+  - { src: 'xmobarrc-noinet', dest: '.xmonad/xmobarrc-noinet' } # TODO: abstract away
+  - { src: 'xmobarrc.xmonad.old', dest: '.xmonad/xmobarrc.xmonad.old' } # TODO: abstract away
+check_packages_installed: no
