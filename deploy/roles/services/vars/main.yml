@@ -1,0 +1,9 @@
+---
+
+pids_dir: "{{ ansible_env.HOME }}/pids"
+openrc_services_list:
+  - job-vpn
+  - shepherd
+  - sshuttle
+homedir_subdirs:
+  - 'pids'

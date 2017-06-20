@@ -1,6 +1,6 @@
 #!/sbin/openrc-run
 
-DAEMON={{ project_root }}/utils/shepherd
+DAEMON=/usr/local/bin/shepherd
 PIDFILE={{ pids_dir }}/shepherd.pid
 
 start () {
