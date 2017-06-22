@@ -1,0 +1,197 @@
+---
+
+- name: register current time
+  shell: 'date +%Y%m%d%H%M%S'
+  register: current_run_timestamp
+  tags:
+    - always
+
+# TODO think of moving this to shell level
+# consult with "world" file
+# reduce time for checks
+- name: ensure some packages installed
+  portage: package={{ item }} state=present
+  with_items: "{{ packages_of_interest }}"
+  become: true
+  when:
+    - "'setup' in actions"
+    - check_packages_installed
+
+- name: git-quick-stats | clone repository
+  git:
+    repo={{ gqs_traits.clone_from }}
+    dest={{ gqs_traits.local_path }}
+    force=yes
+  when:
+    - "'setup' in actions"
+
+- name: git-quick-stats | install
+  make:
+    chdir: "{{ gqs_traits.local_path }}"
+    target: install
+  become: yes
+  when:
+    - "'setup' in actions"
+
+- name: git-quick-stats | uninstall
+  make:
+    chdir: "{{ gqs_traits.local_path }}"
+    target: uninstall
+  when:
+    - False # invoke directly
+
+- name: download Telegram Desktop archive
+  get_url:
+    url: https://updates.tdesktop.com/tlinux/tsetup.{{ telegram_version }}.tar.xz
+    dest: /tmp/tsetup.tar.xz
+    force: yes
+  when:
+    - "'setup' in actions"
+
+- name: update Telegram Desktop binaries
+  unarchive:
+    src: /tmp/tsetup.tar.xz
+    dest: /usr/local/bin
+    extra_opts:
+      - "--strip=1"
+  become: true
+  when:
+    - "'setup' in actions"
+
+- name: tmuxifier | clone repo
+  git:
+    repo={{ tmuxifier_traits.clone_from }}
+    dest={{ tmuxifier_traits.local_path }}
+    force=yes
+  when:
+    - "'setup' in actions"
+
+- name: tmuxifier | update configs
+  blockinfile:
+    dest: "{{ ansible_env.HOME }}/{{ item[0] }}"
+    insertafter: "{{ item[1].after }}"
+    block: |
+      {{ item[1].block }}
+    marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item[1].idx }}"
+    state: present
+  with_nested:
+    - "{{ common_settings_basenames }}"
+    - [{ idx: 1,  block: "    $HOME/.tmuxifier/bin", after: "^BIN_DIRS=\\(" },
+    { idx: 2, block: "eval \"$(tmuxifier init -)\"", after: "EOF"}]
+  when:
+    - "'setup' in actions"
+    # TODO: think of way to rerun some links/path population steps after this
+
+- name: addrlookup | clone repo
+  git:
+    repo={{ addrlookup_traits.clone_from }}
+    dest={{ addrlookup_traits.local_path }}
+    force=yes
+  when:
+    - "'setup' in actions"
+
+- name: addrlookup | build
+  shell: make
+  args:
+    chdir: '{{ addrlookup_traits.local_path }}'
+  when:
+    - "'setup' in actions"
+
+- name: addrlookup | install binary
+  shell: "mv {{ addrlookup_traits.local_path }}/notmuch-addrlookup /usr/local/bin"
+  become: true
+  when:
+    - "'setup' in actions"
+
+- name: addrlookup | ensure binary permissions
+  file:
+    path: "/usr/local/bin/notmuch-addrlookup"
+    mode: 0644
+    owner: root
+    group: root
+  become: true
+  when:
+    - "'setup' in actions"
+
+- name: httplab | install
+  shell: go get github.com/gchaincl/httplab
+  when:
+    - "'setup' in actions"
+
+# TODO: https://github.com/asciimoo/wuzz - master/HEAD is broken (SIGSEGV), try later
+
+- name: Zshnip | clone repo
+  git:
+    repo={{ zshnip_traits.clone_from }}
+    dest={{ zshnip_traits.local_path }}
+    force=yes
+  when:
+    - "'setup' in actions"
+
+- name: Zshnip | copy file(s)
+  copy:
+    src="{{ zshnip_traits.local_path }}/zshnip.zsh"
+    dest="/usr/local/bin"
+  when:
+    - "'setup' in actions"
+
+- name: Zshnip | configure Zsh
+  lineinfile:
+    dest="{{ ansible_env.HOME }}/.zsh/custom"
+    line="source zshnip.zsh"
+    state=present
+  when:
+    - "'setup' in actions"
+
+- name: Zshnip | configure Zsh | bind keys
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.zsh/bindkeys"
+    line: "{{ item }}"
+  with_items:
+    - "\nbindkey '\ej' zshnip-expand-or-edit"
+    - "bindkey '\ee' zshnip-edit-and-expand"
+  when:
+    - "'setup' in actions"
+
+- name: Hexchat | download theme
+  get_url:
+    url: https://dl.hexchat.net/themes/Zenburn.hct
+    dest: /tmp/Zenburn.hct
+    force: yes
+  when:
+    - "'setup' in actions"
+
+- name: Hexchat | apply theme
+  unarchive:
+    src: /tmp/Zenburn.hct
+    dest: "{{ ansible_env.HOME }}/.config/hexchat"
+  when:
+    - "'setup' in actions"
+
+- name: THD | clone repo
+  git:
+    repo={{ thd_traits.clone_from }}
+    dest={{ thd_traits.local_path }}
+    force=yes
+  when:
+    - "'setup' in actions"
+
+- name: THD | update config
+  template: src={{ role_path }}/files/thd_config.template dest={{ thd_traits.local_path }}/config.yaml
+  when:
+    - "'setup' in actions"
+
+- name: THD | start telegram-cli
+  shell: "nohup telegram-cli --json -P {{ tg_cli_port }} -v 0 &"
+  when:
+    - "'setup' in actions"
+
+- name: THD | perform dump
+  shell: "ruby telegram-history-dump.rb{% if tg_backup_kill_tg %} --kill-tg{% endif %}"
+  args:
+    chdir: '{{ thd_traits.local_path }}'
+  when:
+    - "'setup' in actions"
+
+# TODO: setup znc on octocat.ru
+# TODO: think of fonts setup automating (e.g. dowloading, copying, updating fontcache, whatever)
