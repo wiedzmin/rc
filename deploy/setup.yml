@@ -1,79 +1,29 @@
 - hosts: localhost
-
-  tasks:
-
-    - include_vars: common_vars.yml
-      tags:
-        - always
-
-    - name: register current time
-      shell: 'date +%Y%m%d%H%M%S'
-      register: current_run_timestamp
-      tags:
-        - always
-
-    - name: ensure some system dirs exists
-      file:
-        path={{ item }}
-        state=directory
-      become: true
-      with_items: "{{ system_dirs }}"
-      tags:
-        - system
-        - prepare
-
-    - name: clean up system files in favor of symlinks
-      file:
-        path={{ item }}
-        state=absent
-      become: true
-      with_items: "{{ entries_to_symlinks }}"
-      tags:
-        - system
-        - prepare-cleanup
-
-    - name: make system symlinks
-      file:
-        src={{ project_root }}/{{ item.src }}
-        dest={{ item.dest }}
-        state=link
-      become: true
-      with_items: "{{ system_symlinks }}"
-      tags:
-        - system
-
-    # TODO think of moving this to shell level
-    # consult with "world" file
-    # reduce time for checks
-    - name: ensure some packages installed (Gentoo)
-      portage: package={{ item }} state=present
-      with_items: "{{ packages_of_interest }}"
-      become: true
-      when:
-        - ansible_distribution == "Gentoo"
-        - check_packages_installed
-      tags:
-        - system
-        - portage
-
-    - name: ensure some directories exist
-      file:
-        path={{ ansible_env.HOME }}/{{ item }}
-        state=directory
-      with_items: "{{ homedir_subdirs }}"
-      tags:
-        - homedir
-        - prepare
-
-    - name: make homedir symlinks
-      file:
-        src={{ project_root }}/{{ item.src }}
-        dest={{ ansible_env.HOME }}/{{ item.dest }}
-        state=link
-      with_items: "{{ homedir_symlinks }}"
-      tags:
-        - homedir
-
-    - include_vars: common_vars.yml
-      tags:
-        - always
+  roles:
+    - role: portage
+      actions:
+        - bootstrap
+        - setup
+    - role: services
+      remote_domain: <example.com> # substitute for real value
+      restart: yes
+      actions: [] # TODO: provide "dry-run" for testing
+    - role: x11
+      actions:
+        - bootstrap
+        - setup
+        - xsession
+    - role: workplace
+      actions:
+        - bootstrap
+        - setup
+    - role: dev
+      docker_options: --insecure-registry example.com:5000 # substitute for real value
+      actions:
+        - bootstrap
+        - setup
+    - role: tools
+      telegram_version: 1.1.7
+      actions:
+        - bootstrap
+        - setup
