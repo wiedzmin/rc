@@ -1,0 +1,141 @@
+---
+
+- name: register current time
+  shell: 'date +%Y%m%d%H%M%S'
+  register: current_run_timestamp
+  tags:
+    - always
+
+- name: ensure some system dirs exists
+  file:
+    path={{ item }}
+    state=directory
+  become: true
+  with_items: "{{ system_dirs }}"
+  when:
+    - "'bootstrap' in actions"
+
+- name: ensure home subdirs exist
+  file:
+    path={{ ansible_env.HOME }}/{{ item }}
+    state=directory
+  with_items: "{{ homedir_subdirs }}"
+  when:
+    - "'bootstrap' in actions"
+
+- name: copy system files
+  copy:
+    src: "{{ role_path }}/files/{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: 0755
+  become: true
+  with_items: "{{ system_files }}"
+  when:
+    - "'setup' in actions"
+
+# TODO think of moving this to shell level
+# consult with "world" file
+# reduce time for checks
+- name: ensure some packages installed
+  portage: package={{ item }} state=present
+  with_items: "{{ packages_of_interest }}"
+  become: true
+  when:
+    - "'setup' in actions"
+    - check_packages_installed
+
+- name: copy homedir files
+  copy:
+    src: "{{ role_path }}/files/{{ item.src }}"
+    dest: "{{ ansible_env.HOME }}/{{ item.dest }}"
+    mode: 0755
+  with_items: "{{ homedir_files }}"
+  when:
+    - "'setup' in actions"
+
+- name: instantiate common settings
+  copy:
+    content: "{{ lookup('template', '{{ item }}.template') }}"
+    dest: "{{ ansible_env.HOME }}/{{ item }}"
+    mode: 0755
+  with_items:
+    - "{{ common_settings_basenames }}"
+  when:
+    - "'setup' in actions"
+
+- stat: path={{ ansible_env.HOME }}/.bashrc
+  register: bashrc
+  when:
+    - "'setup' in actions"
+
+- name: bash | source common settings
+  lineinfile:
+    dest={{ ansible_env.HOME }}/.bashrc
+    line='source ~/common_settings_bash'
+    state=present
+  when:
+    - bashrc.stat.exists == True
+    - "'setup' in actions"
+
+- name: accompanying tools | shepherd build (mail checking tool)
+  make:
+    chdir: "{{ project_root }}/src/shepherd"
+    target: all
+  when:
+    - False # TODO: temporarily disabled due to errors
+    # - "'setup' in actions"
+
+- name: accompanying tools | shepherd install (mail checking tool)
+  shell: "mv {{ project_root }}/src/shepherd/builds/shepherd /usr/local/bin/shepherd"
+  become: yes
+  when:
+    - False # TODO: temporarily disabled due to errors
+    # - "'setup' in actions"
+
+- name: install tmux plugin manager
+  git:
+    repo=https://github.com/tmux-plugins/tpm
+    dest={{ ansible_env.HOME }}/.tmux/plugins/tpm
+  when:
+    - "'setup' in actions"
+
+- name: imapfilter | remove old config file
+  file: path="{{ imapfilter_config }}" state=absent
+  when:
+    - "'setup' in actions"
+
+- name: imapfilter | seed base config
+  shell: "cat {{ mail_configs_dir }}/imapfilter-base.lua >> {{ imapfilter_config }} && echo -e -n '\n' >> {{ imapfilter_config }}"
+  when:
+    - "'setup' in actions"
+
+- name: imapfilter | populate with account configs
+  shell: "cat {{ item }} >> {{ imapfilter_config }} && echo -e -n '\n' >> {{ imapfilter_config }}"
+  with_fileglob:
+    - "{{ imapfilter_d_path }}/*"
+  when:
+    - "'setup' in actions"
+
+- name: imapfilter | copy generated config file
+  copy: src="{{ imapfilter_config }}" dest={{ ansible_env.HOME }}/.imapfilter/config.lua
+  when:
+    - "'setup' in actions"
+
+- name: imapfilter | Remove generated config file
+  file: path="{{ imapfilter_config }}" state=absent
+  when:
+    - "'setup' in actions"
+
+- name: register org-protocol handler in mimeapps
+  lineinfile:
+    dest={{ ansible_env.HOME }}/.local/share/applications/mimeapps.list
+    line=x-scheme-handler/org-protocol=emacsclient.desktop
+    state=present
+  when:
+    - "'setup' in actions"
+
+- name: setup xdg-open associations
+  shell: xdg-mime default {{ item.program }}.desktop {{ item.mimetype }}
+  with_items: "{{ mime_assocs }}"
+  when:
+    - "'setup' in actions"

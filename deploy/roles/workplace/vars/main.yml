@@ -1,0 +1,90 @@
+---
+
+project_root_rel: "{{ playbook_dir }}/.."
+project_root: "{{ project_root_rel | realpath }}"
+mail_configs_dir: "{{ role_path }}/files/mail"
+imapfilter_d_path: "{{ mail_configs_dir }}/imapfilter.d"
+imapfilter_config: "{{ mail_configs_dir }}/imapfilter-config.lua"
+system_dirs:
+  - '/etc/acpi'
+  - '/etc/acpi/actions'
+  - '/etc/acpi/events'
+system_files:
+  - { src: 'acpi/actions/powerbtn.sh', dest: '/etc/acpi/actions/powerbtn.sh' }
+  - { src: 'acpi/events/battery', dest: '/etc/acpi/events/battery' }
+  - { src: 'acpi/events/default', dest: '/etc/acpi/events/default' }
+  - { src: 'acpi/events/lid', dest: '/etc/acpi/events/lid' }
+  - { src: 'acpi/events/power', dest: '/etc/acpi/events/power' }
+  - { src: 'acpi/events/sleep', dest: '/etc/acpi/events/sleep' }
+  - { src: 'acpi/default.sh', dest: '/etc/acpi/default.sh' }
+  - { src: 'acpi/lid.sh', dest: '/etc/acpi/lid.sh' }
+  - { src: 'acpi/power.sh', dest: '/etc/acpi/power.sh' }
+  - { src: 'acpi/sleep.sh', dest: '/etc/acpi/sleep.sh' }
+  - { src: 'mpd.conf', dest: '/etc/mpd.conf' }
+packages_of_interest:
+  - "app-misc/tmux"
+  - "app-misc/tmux-mem-cpu-load"
+  - "app-text/pandoc"
+  - "dev-vcs/git-annex"
+  - "net-im/telegram-cli"
+  - "net-irc/hexchat"
+  - "sys-fs/udiskie"
+  - "sys-fs/udisks"
+  - 'app-admin/pass'
+  - 'app-misc/jrnl'
+  - 'app-shells/fzf'
+  - 'mail-filter/imapfilter'
+  - 'net-misc/urlview'
+  - 'sys-apps/dbus'
+  - 'sys-apps/fbset'
+  - 'sys-libs/gpm'
+  - 'sys-power/acpi'
+  - 'sys-power/upower-pm-utils'
+homedir_subdirs:
+  - '.gnupg'
+  - '.imapfilter'
+  - '.local/share/applications'
+  - '.ssh'
+  - '.tmux/plugins'
+  - '.zsh'
+homedir_files:
+  - { src: '.tmux.conf', dest: '.tmux.conf' }
+  - { src: '.urlview', dest: '.urlview' }
+  - { src: 'gpg-agent.conf', dest: '.gnupg/gpg-agent.conf' }
+  - { src: 'mail/.mailcap', dest: '.mailcap' }
+  - { src: 'mail/.mbsyncrc', dest: '.mbsyncrc' }
+  - { src: 'mail/.msmtprc', dest: '.msmtprc' }
+  - { src: 'ssh_config', dest: '.ssh/config' }
+  - { src: 'tmux-sessions', dest: 'tmux-sessions' }
+  - { src: 'zsh/.zsh', dest: '' }
+  - { src: 'zsh/.zshrc', dest: '.zshrc' }
+mime_assocs:
+  - { program: 'abiword', mimetype: 'application/msword' }
+  - { program: 'feh', mimetype: 'image/jpeg' }
+  - { program: 'feh', mimetype: 'image/png' }
+  - { program: 'firefox', mimetype: 'text/html' }
+  - { program: 'vlc', mimetype: 'video/avi' }
+  - { program: 'vlc', mimetype: 'video/mp4' }
+  - { program: 'vlc', mimetype: 'video/mpeg' }
+  - { program: 'vlc', mimetype: 'video/x-flv' }
+  - { program: 'vlc', mimetype: 'video/x-matroska' }
+  - { program: 'vlc', mimetype: 'video/x-ms-wmv' }
+  - { program: 'zathura', mimetype: 'application/pdf' }
+  - { program: 'zathura', mimetype: 'application/x-pdf' }
+  - { program: 'zathura', mimetype: 'image/vnd.djvu' }
+  - { program: 'zathura', mimetype: 'image/x-djvu' }
+common_settings_basenames:
+  - common_settings
+  - common_settings_bash
+editor_choices:
+  - "emacsclient"
+  - "vim"
+  - "vi"
+bin_dirs:
+  - "$HOME/bin"
+  - "$HOME/tools/bin"
+  - "$HOME/workspace/configs/rc/utils"
+  - "/usr/lib/go/bin"
+  - "$HOME/workspace/gocode/bin"
+  - "$HOME/.local/bin"
+check_packages_installed: no

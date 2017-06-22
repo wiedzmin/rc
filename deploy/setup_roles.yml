@@ -13,3 +13,7 @@
         - bootstrap
         - setup
         - xsession
+    - role: workplace
+      actions:
+        - bootstrap
+        - setup

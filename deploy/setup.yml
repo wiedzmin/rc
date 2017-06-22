@@ -90,31 +90,6 @@
       tags:
         - homedir
 
-    - name: instantiate common settings
-      template: src={{ project_root }}/conf.d/user/{{ item }}.template dest={{ ansible_env.HOME }}/{{ item }}
-      with_items:
-        - "{{ common_settings_basenames }}"
-      tags:
-        - homedir
-        - common-settings
-
-    - stat: path={{ ansible_env.HOME }}/.bashrc
-      register: bashrc
-      tags:
-        - homedir
-        - bash
-
-    - name: bash | source common settings
-      lineinfile:
-        dest={{ ansible_env.HOME }}/.bashrc
-        line='source ~/common_settings_bash'
-        state=present
-      when:
-        bashrc.stat.exists == True
-      tags:
-        - homedir
-        - bash
-
     - include_vars: common_vars.yml
       tags:
         - always
@@ -145,20 +120,6 @@
       tags:
         - buildapp
         - infra
-
-    - name: accompanying tools | shepherd build (mail checking tool)
-      make:
-        chdir: "{{ project_root }}/src/shepherd"
-        target: all
-      tags:
-        - shepherd
-        - mail
-
-    - name: accompanying tools | shepherd install (mail checking tool)
-      shell: "mv {{ project_root }}/src/shepherd/builds/shepherd {{ project_root }}/utils/shepherd"
-      tags:
-        - shepherd
-        - mail
 
     - name: git-quick-stats | clone repository
       git:
@@ -205,14 +166,6 @@
       tags:
         - tg
 
-    - name: install tmux plugin manager
-      git:
-        repo=https://github.com/tmux-plugins/tpm
-        dest={{ ansible_env.HOME }}/.tmux/plugins/tpm
-      tags:
-        - tmux
-        - remote
-
     - name: tmuxifier | clone repo
       git:
         repo={{ tmuxifier_traits.clone_from }}
@@ -237,47 +190,6 @@
       tags:
         - tmux
     # TODO: think of way to rerun some links/path population steps after this
-
-    - name: imapfilter | remove old config file
-      file: path="{{ imapfilter_config }}" state=absent
-      tags:
-        - mail
-
-    - name: imapfilter | seed base config
-      shell: "cat {{ mail_configs_dir }}/imapfilter-base.lua >> {{ imapfilter_config }} && echo -e -n '\n' >> {{ imapfilter_config }}"
-      tags:
-        - mail
-
-    - name: imapfilter | populate with account configs
-      shell: "cat {{ item }} >> {{ imapfilter_config }} && echo -e -n '\n' >> {{ imapfilter_config }}"
-      with_fileglob:
-        - "{{ imapfilter_d_path }}/*"
-      tags:
-        - mail
-
-    - name: imapfilter | copy generated config file
-      copy: src="{{ imapfilter_config }}" dest={{ ansible_env.HOME }}/.imapfilter/config.lua
-      tags:
-        - mail
-
-    - name: imapfilter | Remove generated config file
-      file: path="{{ imapfilter_config }}" state=absent
-      tags:
-        - mail
-
-    - name: register org-protocol handler in mimeapps
-      lineinfile:
-        dest={{ ansible_env.HOME }}/.local/share/applications/mimeapps.list
-        line=x-scheme-handler/org-protocol=emacsclient.desktop
-        state=present
-      tags:
-        - assoc
-
-    - name: setup xdg-open associations
-      shell: xdg-mime default {{ item.program }}.desktop {{ item.mimetype }}
-      with_items: "{{ mime_assocs }}"
-      tags:
-        - assoc
 
     - name: addrlookup | clone repo
       git:
