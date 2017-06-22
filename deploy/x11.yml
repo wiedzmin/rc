@@ -1,0 +1,7 @@
+- hosts: localhost
+  roles:
+    - role: x11
+      actions:
+        - bootstrap
+        - setup
+        - xsession

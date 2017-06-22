@@ -1,0 +1,7 @@
+- hosts: localhost
+  roles:
+    - role: dev
+      docker_options: --insecure-registry example.com:5000 # substitute for real value
+      actions:
+        - bootstrap
+        - setup
