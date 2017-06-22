@@ -53,6 +53,16 @@
   when:
     - "'setup' in actions"
 
+- name: copy custom scripts
+  copy:
+    src: "{{ role_path }}/files/scripts/{{ item }}"
+    dest: "/usr/local/bin/{{ item }}"
+    mode: 0755
+  with_items: "{{ custom_scripts }}"
+  become: yes
+  when:
+    - "'setup' in actions"
+
 - name: instantiate common settings
   copy:
     content: "{{ lookup('template', '{{ item }}.template') }}"

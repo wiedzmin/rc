@@ -58,6 +58,13 @@ homedir_files:
   - { src: 'tmux-sessions', dest: 'tmux-sessions' }
   - { src: 'zsh/.zsh', dest: '' }
   - { src: 'zsh/.zshrc', dest: '.zshrc' }
+custom_scripts:
+  - "hddtemp"
+  - "sshuttle-down"
+  - "status_bat_info"
+  - "status_cpu_temp"
+  - "status_uptime"
+  - "statusbar"
 mime_assocs:
   - { program: 'abiword', mimetype: 'application/msword' }
   - { program: 'feh', mimetype: 'image/jpeg' }
