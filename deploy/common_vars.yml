@@ -1,6 +1,5 @@
 project_root_rel: "{{ playbook_dir }}/.."
 project_root: "{{ project_root_rel | realpath }}"
-buildapp_traits: { clone_from: "https://github.com/xach/buildapp", local_path: "/tmp/buildapp" }
 gqs_traits: { clone_from: "https://github.com/arzzen/git-quick-stats", local_path: "/tmp/git-quick-stats" }
 addrlookup_traits: { clone_from: "https://github.com/aperezdc/notmuch-addrlookup-c", local_path: "/tmp/notmuch-addrlookup-c" }
 tmuxifier_traits: { clone_from: "https://github.com/jimeh/tmuxifier", local_path: "{{ ansible_env.HOME }}/.tmuxifier" }
@@ -9,40 +8,9 @@ thd_traits: { clone_from: "https://github.com/tvdstaaij/telegram-history-dump", 
 ffdc_traits: { clone_from: "https://github.com/Unode/firefox_decrypt", local_path: "/tmp/firefox_decrypt" }
 system_dirs:
   - '/etc/conf.d'
-entries_to_symlinks:
-  - '/etc/conf.d/docker'
 packages_of_interest:
-  - 'dev-util/rtags'
-  - 'app-emulation/docker'
-  - 'app-emulation/docker-compose'
-  - 'app-emulation/docker-machine'
-  - 'app-emulation/docker-swarm'
-  - 'dev-util/cargo'
-  - 'app-doc/zeal'
-  - 'sys-apps/ripgrep'
   - 'net-misc/rclone-bin'
-  - 'app-admin/apache-tools'
-  - "app-misc/jq"
-  - "app-benchmarks/wrk"
-  - "dev-python/isort"
-  - "dev-util/strace"
-  - "dev-util/ltrace"
-  - "dev-python/blockdiag"
   - "app-office/ledger"
-  - "app-misc/workrave"
-python_pip_packages:
-  - "importmagic"
-  - "snakeviz"
-  - "jedi"
-  - "flake8"
-  - "autopep8"
-  - "yapf"
-  - "traad"
-homedir_symlinks:
-  - { src: 'conf.d/user/dev/.pylintrc', dest: '.pylintrc' }
-  - { src: 'conf.d/user/dev/flake8', dest: '.config/flake8' }
-  - { src: 'conf.d/user/dev/pep8', dest: '.config/pep8' }
-  - { src: 'conf.d/user/dev/isort.cfg', dest: '.isort.cfg' }
 tg_backup_formatter: plaintext
 tg_backup_output_dir: "{{ ansible_env.HOME }}/tg_logs"
 tg_backup_kill_tg: yes

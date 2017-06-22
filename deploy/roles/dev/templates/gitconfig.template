@@ -15,4 +15,4 @@
 [push]
 	default = current
 [commit]
-	template = {{ project_root }}/conf.d/user/dev/git-commit-template
+	template = {{ ansible_env.HOME }}/git-commit-template

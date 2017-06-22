@@ -1,0 +1,121 @@
+---
+
+- name: register current time
+  shell: 'date +%Y%m%d%H%M%S'
+  register: current_run_timestamp
+  tags:
+    - always
+
+- name: instantiate Docker config
+  copy:
+    content: "{{ lookup('template', 'docker.template') }}"
+    dest: "/etc/conf.d/docker"
+    mode: 0500
+    owner: root
+    group: root
+  become: yes
+  when:
+    - "'setup' in actions"
+
+# TODO think of moving this to shell level
+# consult with "world" file
+# reduce time for checks
+- name: ensure some packages installed
+  portage: package={{ item }} state=present
+  with_items: "{{ packages_of_interest }}"
+  become: yes
+  when:
+    - "'setup' in actions"
+    - check_packages_installed
+
+- name: copy homedir files
+  copy:
+    src: "{{ role_path }}/files/{{ item.src }}"
+    dest: "{{ ansible_env.HOME }}/{{ item.dest }}"
+    mode: 0755
+  with_items: "{{ homedir_files }}"
+  when:
+    - "'setup' in actions"
+
+- name: prepare global gitconfig
+  copy:
+    content: "{{ lookup('template', 'gitconfig.template') }}"
+    dest: "/etc/gitconfig"
+    mode: 0544
+    owner: root
+    group: root
+  become: yes
+  when:
+    - "'setup' in actions"
+
+- name: Buildapp | clone repo
+  git:
+    repo={{ buildapp_traits.clone_from }}
+    dest={{ buildapp_traits.local_path }}
+    force=yes
+  when:
+    - "'setup' in actions"
+
+- name: Buildapp | build
+  make:
+    chdir: "{{ buildapp_traits.local_path }}"
+    target: buildapp
+  when:
+    - "'setup' in actions"
+
+- name: Buildapp | install
+  make:
+    chdir: "{{ buildapp_traits.local_path }}"
+    target: install
+  become: yes
+  when:
+    - "'setup' in actions"
+
+- name: start devdns
+  docker_container:
+    name: devdns
+    image: ruudud/devdns
+    state: started
+    expose:
+      - 53:53/udp
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  when:
+    - False # invoke directly
+
+- name: setup devdns host <-> containers resolving
+  blockinfile:
+    path: /etc/dhcp/dhclient.conf
+    block: |
+      supersede domain-name "dev";
+      prepend domain-name-servers 127.0.0.1;
+  become: yes
+  when:
+    - False # invoke directly
+
+- name: install pip packages (Python)
+  pip:
+    name: "{{ item }}"
+    state: latest
+    extra_args: --user
+  with_items: "{{ python_pip_packages }}"
+  when:
+    - "'setup' in actions"
+
+- name: stop devdns container
+  docker_container:
+    name: devdns
+    state: stopped
+  when:
+    - False # invoke directly
+
+- name: remove devdns host <-> containers resolving
+  blockinfile:
+    path: /etc/dhcp/dhclient.conf
+    block: |
+      supersede domain-name "dev";
+      prepend domain-name-servers 127.0.0.1;
+    state: absent
+  become: yes
+  when:
+    - False # invoke directly

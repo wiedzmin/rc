@@ -42,15 +42,6 @@
       tags:
         - system
 
-    - name: instantiate Docker config template
-      template: src={{ project_root }}/conf.d/system/docker.template dest=/etc/conf.d/docker
-      become: true
-      tags:
-        - system
-        - docker
-
-    # TODO: set permissions on /etc/conf.d/docker
-
     # TODO think of moving this to shell level
     # consult with "world" file
     # reduce time for checks
@@ -64,13 +55,6 @@
       tags:
         - system
         - portage
-
-    - name: prepare global gitconfig
-      template: src={{ project_root }}/conf.d/user/dev/gitconfig.template dest=/etc/gitconfig
-      become: true
-      tags:
-        - system
-        - dev
 
     - name: ensure some directories exist
       file:
@@ -93,33 +77,6 @@
     - include_vars: common_vars.yml
       tags:
         - always
-
-    - name: Buildapp | clone repo
-      git:
-        repo={{ buildapp_traits.clone_from }}
-        dest={{ buildapp_traits.local_path }}
-        force=yes
-      tags:
-        - buildapp
-        - infra
-        - remote
-
-    - name: Buildapp | build
-      make:
-        chdir: "{{ buildapp_traits.local_path }}"
-        target: buildapp
-      tags:
-        - buildapp
-        - infra
-
-    - name: Buildapp | install
-      make:
-        chdir: "{{ buildapp_traits.local_path }}"
-        target: install
-      become: yes
-      tags:
-        - buildapp
-        - infra
 
     - name: git-quick-stats | clone repository
       git:
@@ -266,60 +223,6 @@
       tags:
         - cli
         - zshnip
-
-    - name: start devdns
-      docker_container:
-        name: devdns
-        image: ruudud/devdns
-        state: started
-        expose:
-          - 53:53/udp
-        volumes:
-          - /var/run/docker.sock:/var/run/docker.sock
-      tags:
-        - devtools
-        - docker
-        - infra
-
-    - name: setup devdns host <-> containers resolving
-      blockinfile:
-        path: /etc/dhcp/dhclient.conf
-        block: |
-          supersede domain-name "dev";
-          prepend domain-name-servers 127.0.0.1;
-      become: true
-      tags:
-        - devtools
-        - docker
-        - infra
-
-    - name: install pip packages (Python)
-      pip:
-        name: "{{ item }}"
-        state: latest
-        extra_args: --user
-      with_items: "{{ python_pip_packages }}"
-      tags:
-        - devtools
-        - python-libs
-
-    - name: stop devdns container
-      docker_container:
-        name: devdns
-        state: stopped
-      tags:
-        - prepare-cleanup
-
-    - name: remove devdns host <-> containers resolving
-      blockinfile:
-        path: /etc/dhcp/dhclient.conf
-        block: |
-          supersede domain-name "dev";
-          prepend domain-name-servers 127.0.0.1;
-        state: absent
-      become: true
-      tags:
-        - prepare-cleanup
 
     - name: Hexchat | download theme
       get_url:
