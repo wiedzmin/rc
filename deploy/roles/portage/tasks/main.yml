@@ -1,7 +1,7 @@
 ---
 
 - name: register current time
-  shell: 'date +%Y%m%d%H%M%S'
+  shell: "date +%Y%m%d%H%M%S"
   register: current_run_timestamp
   tags:
     - always
@@ -11,7 +11,7 @@
     path: "{{ item }}"
     state: directory
     mode: 0755
-  become: true
+  become: yes
   with_items: "{{ system_dirs }}"
   when:
     - "'bootstrap' in actions"
@@ -21,7 +21,7 @@
     src: "{{ role_path }}/files/{{ item }}"
     dest: "/etc/portage/{{ item }}"
     mode: 0755
-  become: true
+  become: yes
   with_items: "{{ portage_files }}"
   when:
     - "'setup' in actions"
@@ -30,7 +30,7 @@
   portage:
     package: app-portage/layman
     state: present
-  become: true
+  become: yes
   when:
     - "'setup' in actions"
     - check_packages_installed
@@ -40,45 +40,46 @@
     src: "{{ role_path }}/files/layman.cfg"
     dest: "/etc/layman/layman.cfg"
     mode: 0755
-  become: true
+  become: yes
   when:
     - "'setup' in actions"
 
 - name: ensure overlays
   layman:
-    name={{ item }}
-    state=present
+    name: "{{ item }}"
+    state: present
   become: yes
   with_items: "{{ portage_overlays }}"
   when:
-    # - ansible_distribution == "Gentoo"
     - "'setup' in actions"
 
 # TODO think of moving this to shell level
 # consult with "world" file
 # reduce time for checks
-- name: ensure some packages installed (Gentoo)
-  portage: package={{ item }} state=present
+- name: ensure some packages installed
+  portage:
+    package: "{{ item }}"
+    state: present
   with_items: "{{ packages_of_interest }}"
-  become: true
+  become: yes
   when:
     - "'setup' in actions"
     - check_packages_installed
 
 - name: symlink local overlay files # TODO: think of copy instead of linking
   file:
-    src={{ role_path }}/files/local_overlay
-    dest=/usr/local/portage
-    state=link
-  become: true
+    src: "{{ role_path }}/files/local_overlay"
+    dest: /usr/local/portage
+    state: link
+  become: yes
   when:
     - "'setup' in actions"
 
 - name: mount portage build directory as tmpfs
-  become: true
   lineinfile:
-    dest=/etc/fstab
-    line='tmpfs                   /var/tmp/portage/       tmpfs   uid=250,gid=250,size=10G,mode=0775      0 1'
-    state=present
+    dest: /etc/fstab
+    line: 'tmpfs                   /var/tmp/portage/       tmpfs   uid=250,gid=250,size=10G,mode=0775      0 1'
+    state: present
+  become: yes
   when:
     - "'setup' in actions"

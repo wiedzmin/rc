@@ -1,24 +1,24 @@
 ---
 
 system_dirs:
-  - '/etc/portage'
-  - '/etc/portage/package.mask'
-  - '/etc/portage/package.use'
-  - '/etc/portage/repos.conf'
+  - "/etc/portage"
+  - "/etc/portage/package.mask"
+  - "/etc/portage/package.use"
+  - "/etc/portage/repos.conf"
 portage_files:
-  - 'make.conf'
-  - 'package.accept_keywords'
-  - 'package.keywords'
-  - 'package.license'
-  - 'package.mask/emul-linux'
-  - 'package.mask/kernels'
-  - 'package.mask/main'
-  - 'package.unmask'
-  - 'package.use/abi_x86_32'
-  - 'package.use/main'
-  - 'package.use/ruby23'
-  - 'package.use/versioned'
-  - 'repos.conf/gentoo.conf'
+  - "make.conf"
+  - "package.accept_keywords"
+  - "package.keywords"
+  - "package.license"
+  - "package.mask/emul-linux"
+  - "package.mask/kernels"
+  - "package.mask/main"
+  - "package.unmask"
+  - "package.use/abi_x86_32"
+  - "package.use/main"
+  - "package.use/ruby23"
+  - "package.use/versioned"
+  - "repos.conf/gentoo.conf"
 portage_overlays:
   - bar
   - chaos
@@ -33,7 +33,6 @@ portage_overlays:
   - posativ
   - qwin-overlay
   - raiagent
-  # - my_local_overlay # TODO manage local overlay somehow
 packages_of_interest:
   - "app-admin/haskell-updater"
   - "app-portage/fetchcommandwrapper"
