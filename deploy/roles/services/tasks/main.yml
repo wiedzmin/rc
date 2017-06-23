@@ -31,7 +31,7 @@
 
 - name: vpn | copy files to system location
   copy:
-    src: "{{ project_root }}/private/current/{{ item }}"
+    src: "{{ project_root }}/private/vpn/current/{{ item }}"
     dest: "{{ custom_vpn_datadir }}/{{ item }}"
   become: yes
   with_items:
