@@ -1,22 +1,22 @@
 ---
 
 - name: register current time
-  shell: 'date +%Y%m%d%H%M%S'
+  shell: "date +%Y%m%d%H%M%S"
   register: current_run_timestamp
   tags:
     - always
 
 - name: ensure VPN custom config directory exist
   file:
-    path={{ item }}
-    state=directory
-    mode=0755
-    owner=octocat
-    group=octocat
-    recurse=yes
-  become: true
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+    owner: "{{ user }}"
+    group: "{{ group }}"
+    recurse: yes
+  become: yes
   with_items:
-    - '/etc/custom_vpn'
+    - "{{ custom_vpn_datadir }}"
   when:
     - "'prepare_vpn' in actions"
 
@@ -25,35 +25,35 @@
     path: "{{ item }}"
     state: absent
   with_fileglob:
-    - "/etc/custom_vpn/*"
+    - "{{ custom_vpn_datadir }}/*"
   when:
     - "'prepare_vpn' in actions"
 
 - name: vpn | copy files to system location
   copy:
-    src="{{ project_root }}/private/{{ item.src }}"
-    dest={{ item.dest }}
-  become: true
+    src: "{{ project_root }}/private/current/{{ item }}"
+    dest: "{{ custom_vpn_datadir }}/{{ item }}"
+  become: yes
   with_items:
-    - { src: 'current/auth.conf', dest: '/etc/custom_vpn/auth.conf' }
-    - { src: 'current/office.ovpn', dest: '/etc/custom_vpn/office.ovpn' }
+    - "auth.conf"
+    - "office.ovpn"
   when:
     - "'prepare_vpn' in actions"
 
 - name: vpn | customize OpenVPN config | automate authentication # TODO: check if "script-security 2" matters
   lineinfile:
-    dest=/etc/custom_vpn/office.ovpn
-    regexp="^auth-user-pass"
-    line="auth-user-pass /etc/custom_vpn/auth.conf"
+    dest: "{{ custom_vpn_datadir }}/office.ovpn"
+    regexp: "^auth-user-pass"
+    line: "auth-user-pass {{ custom_vpn_datadir }}/auth.conf"
   become: yes
   when:
     - "'prepare_vpn' in actions"
 
 - name: vpn | customize OpenVPN config | fix up/down scripting
   lineinfile:
-    dest=/etc/custom_vpn/office.ovpn
-    regexp={{ item.regexp }}
-    line={{ item.line }}
+    dest: "{{ custom_vpn_datadir }}/office.ovpn"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
   with_items:
     - { regexp: "^up /etc/openvpn/update-resolv-conf", line: "up /etc/openvpn/up.sh" }
     - { regexp: "^down /etc/openvpn/update-resolv-conf", line: "down /etc/openvpn/down.sh" }
@@ -65,36 +65,44 @@
 - name: install openrc entries
   copy:
     content: "{{ lookup('template', '{{ item }}.openrc') }}"
-    dest: /etc/init.d/{{ item }}
+    dest: "/etc/init.d/{{ item }}"
     mode: 0755
-  become: true
+  become: yes
   with_items: "{{ openrc_services_list }}"
   when:
     - "'setup' in actions"
 
 - name: openrc local cleanup
-  file: path={{ item }}.openrc.entry state=absent
+  file:
+    path: "{{ item }}.openrc.entry"
+    state: absent
   with_items:  "{{ openrc_services_list }}"
   when:
     - "'setup' in actions"
 
 - name: accompanying tools | shepherd | restart service
-  service: name=shepherd state=restarted
-  become: true
+  service:
+    name: shepherd
+    state: restarted
+  become: yes
   when:
     - "'setup' in actions"
     - restart
 
 - name: vpn | restart service
-  service: name=job-vpn state=restarted
-  become: true
+  service:
+    name: job-vpn
+    state: restarted
+  become: yes
   when:
     - "'setup' in actions"
     - restart
 
 - name: sshuttle | restart service
-  service: name=sshuttle state=restarted
-  become: true
+  service:
+    name: sshuttle
+    state: restarted
+  become: yes
   when:
     - "'setup' in actions"
     - restart

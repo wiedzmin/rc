@@ -1,11 +1,11 @@
 #!/sbin/openrc-run
 
-DAEMON=/usr/local/bin/shepherd
+DAEMON={{ binaries_prefix }}/shepherd
 PIDFILE={{ pids_dir }}/shepherd.pid
 
 start () {
 	ebegin "Starting shepherd"
-	start-stop-daemon --background --start -u octocat:octocat --exec ${DAEMON} \
+	start-stop-daemon --background --start -u {{ user_name }}:{{ user_group }} --exec ${DAEMON} \
         --make-pidfile --pidfile ${PIDFILE}
 	eend $? "Failed to start shepherd"
 }

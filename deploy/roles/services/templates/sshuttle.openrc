@@ -1,12 +1,12 @@
 #!/sbin/openrc-run
 
-DAEMON=/usr/bin/sshuttle
+DAEMON=sshuttle
 DAEMON_OPTS="-r {{ remote_domain }} 0/0 --daemon"
 PIDFILE={{ pids_dir }}/sshuttle.pid
 
 start () {
 	ebegin "Starting Sshuttle"
-	start-stop-daemon --background --start -u octocat:octocat --exec ${DAEMON} \
+	start-stop-daemon --background --start -u {{ user_name }}:{{ group_group }} --exec ${DAEMON} \
         --make-pidfile --pidfile ${PIDFILE} -- ${DAEMON_OPTS}
 	eend $? "Failed to start Sshuttle"
 }

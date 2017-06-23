@@ -6,4 +6,8 @@ openrc_services_list:
   - shepherd
   - sshuttle
 homedir_subdirs:
-  - 'pids'
+  - "pids"
+binaries_prefix: /usr/local/bin
+custom_vpn_datadir: /etc/custom_vpn
+user_name: octocat
+user_group: octocat
