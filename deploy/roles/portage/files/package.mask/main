@@ -33,3 +33,5 @@
 >media-sound/mpd-0.19.21-r1
 >=dev-python/requests-2.12
 >x11-misc/i3status-2.11
+>dev-vcs/hub-2.2.9
+>media-fonts/iosevka-1.8.4
