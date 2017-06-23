@@ -1,7 +1,7 @@
 ---
 
 - name: register current time
-  shell: 'date +%Y%m%d%H%M%S'
+  shell: "date +%Y%m%d%H%M%S"
   register: current_run_timestamp
   tags:
     - always
@@ -10,7 +10,9 @@
 # consult with "world" file
 # reduce time for checks
 - name: ensure some packages installed
-  portage: package={{ item }} state=present
+  portage:
+    package: "{{ item }}"
+    state: present
   with_items: "{{ packages_of_interest }}"
   become: yes
   when:
@@ -50,9 +52,9 @@
 
 - name: Buildapp | clone repo
   git:
-    repo={{ buildapp_traits.clone_from }}
-    dest={{ buildapp_traits.local_path }}
-    force=yes
+    repo: "{{ buildapp_traits.clone_from }}"
+    dest: "{{ buildapp_traits.local_path }}"
+    force: yes
   when:
     - "'setup' in actions"
 
