@@ -9,11 +9,11 @@ zshnip_traits: { clone_from: "https://github.com/facetframer/zshnip", local_path
 thd_traits: { clone_from: "https://github.com/tvdstaaij/telegram-history-dump", local_path: "/tmp/telegram-history-dump" }
 ffdc_traits: { clone_from: "https://github.com/Unode/firefox_decrypt", local_path: "/tmp/firefox_decrypt" }
 packages_of_interest_:
-  - "net-misc/rclone-bin"
   - "app-office/ledger"
-  - "dev-python/watchdog"
   - "dev-python/appdirs"
+  - "dev-python/watchdog"
   - "media-gfx/plantuml"
+  - "net-misc/rclone-bin"
 common_settings_basenames:
   - common_settings
   - common_settings_bash
