@@ -1,5 +1,6 @@
 */**/*private
 .tramp_history
+deploy/inventory.ini
 private
 system-index.txt
 utils/buildapp

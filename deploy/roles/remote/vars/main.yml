@@ -1,0 +1,7 @@
+---
+
+project_root_rel: "{{ playbook_dir }}/.."
+project_root: "{{ project_root_rel | realpath }}"
+server_domain_name: octocat.ru
+user_name: octocat
+user_group: octocat

@@ -1,0 +1,35 @@
+---
+
+- name: ensure certs dir
+  file:
+    path: "{{ ansible_env.HOME }}/certs"
+    state: directory
+    mode: 0755
+  when:
+    - "'bootstrap' in actions"
+
+- name: copy TLS data
+  copy:
+    src: "{{ project_root }}/private/certs/{{ server_domain_name }}.{{ item }}"
+    dest: "{{ ansible_env.HOME }}/certs"
+    owner: "{{ user_name }}"
+    group: "{{ user_group }}"
+    mode: 0644
+  with_items:
+    - "crt"
+    - "key"
+
+- name: start Docker registry
+  docker_container:
+    name: registry
+    image: registry:2
+    state: started
+    restart: yes
+    restart_policy: always
+    ports:
+      - "5000:5000"
+    volumes:
+      - "{{ ansible_env.HOME }}/certs:/certs"
+    env:
+      REGISTRY_HTTP_TLS_CERTIFICATE: "/certs/{{ server_domain_name }}.crt"
+      REGISTRY_HTTP_TLS_KEY: "/certs/{{ server_domain_name }}.key"

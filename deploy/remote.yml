@@ -1,0 +1,6 @@
+- hosts: botservers
+  roles:
+    - role: remote
+      actions:
+        - bootstrap
+        - setup
