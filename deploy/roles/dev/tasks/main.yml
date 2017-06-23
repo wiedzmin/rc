@@ -6,17 +6,6 @@
   tags:
     - always
 
-- name: instantiate Docker config
-  copy:
-    content: "{{ lookup('template', 'docker.template') }}"
-    dest: "/etc/conf.d/docker"
-    mode: 0500
-    owner: root
-    group: root
-  become: yes
-  when:
-    - "'setup' in actions"
-
 # TODO think of moving this to shell level
 # consult with "world" file
 # reduce time for checks
@@ -27,6 +16,17 @@
   when:
     - "'setup' in actions"
     - check_packages_installed
+
+- name: instantiate Docker config
+  copy:
+    content: "{{ lookup('template', 'docker.template') }}"
+    dest: "/etc/conf.d/docker"
+    mode: 0500
+    owner: root
+    group: root
+  become: yes
+  when:
+    - "'setup' in actions"
 
 - name: copy homedir files
   copy:
