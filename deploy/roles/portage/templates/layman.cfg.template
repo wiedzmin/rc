@@ -18,7 +18,7 @@ installed : %(storage)s/installed.db
 #-----------------------------------------------------------
 # Prompt the user if they are installing unofficial overlays
 
-check_official : No
+check_official : {{ overlays_check_official | bool | capitalize }}
 
 # This has been renamed from the following
 # old name  : value use it for updating to new one above

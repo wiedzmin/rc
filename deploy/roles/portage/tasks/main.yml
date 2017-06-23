@@ -35,9 +35,9 @@
     - "'setup' in actions"
     - check_packages_installed
 
-- name: copy Layman config
+- name: instantiate Layman config
   copy:
-    src: "{{ role_path }}/files/layman.cfg"
+    content: "{{ lookup('template', 'layman.cfg.template') }}"
     dest: "/etc/layman/layman.cfg"
     mode: 0755
   become: yes

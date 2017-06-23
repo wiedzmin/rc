@@ -33,6 +33,7 @@ portage_overlays:
   - posativ
   - qwin-overlay
   - raiagent
+overlays_check_official: no
 packages_of_interest:
   - "app-admin/haskell-updater"
   - "app-portage/fetchcommandwrapper"
