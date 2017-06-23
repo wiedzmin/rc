@@ -2,34 +2,34 @@
 
 buildapp_traits: { clone_from: "https://github.com/xach/buildapp", local_path: "/tmp/buildapp" }
 packages_of_interest:
-  - 'dev-util/rtags'
-  - 'app-emulation/docker'
-  - 'app-emulation/docker-compose'
-  - 'app-emulation/docker-machine'
-  - 'app-emulation/docker-swarm'
-  - 'dev-util/cargo'
-  - 'app-doc/zeal'
-  - 'sys-apps/ripgrep'
-  - 'app-admin/apache-tools'
-  - "app-misc/jq"
+  - "app-admin/apache-tools"
   - "app-benchmarks/wrk"
-  - "dev-python/isort"
-  - "dev-util/strace"
-  - "dev-util/ltrace"
-  - "dev-python/blockdiag"
+  - "app-doc/zeal"
+  - "app-emulation/docker"
+  - "app-emulation/docker-compose"
+  - "app-emulation/docker-machine"
+  - "app-emulation/docker-swarm"
+  - "app-misc/jq"
   - "app-misc/workrave"
+  - "dev-python/blockdiag"
+  - "dev-python/isort"
+  - "dev-util/cargo"
+  - "dev-util/ltrace"
+  - "dev-util/rtags"
+  - "dev-util/strace"
+  - "sys-apps/ripgrep"
 python_pip_packages:
-  - "importmagic"
-  - "snakeviz"
-  - "jedi"
-  - "flake8"
   - "autopep8"
-  - "yapf"
+  - "flake8"
+  - "importmagic"
+  - "jedi"
+  - "snakeviz"
   - "traad"
+  - "yapf"
 homedir_files:
   - { src: '.pylintrc', dest: '.pylintrc' }
   - { src: 'flake8', dest: '.config/flake8' }
-  - { src: 'pep8', dest: '.config/pep8' }
-  - { src: 'isort.cfg', dest: '.isort.cfg' }
   - { src: 'git-commit-template', dest: 'git-commit-template' }
+  - { src: 'isort.cfg', dest: '.isort.cfg' }
+  - { src: 'pep8', dest: '.config/pep8' }
 check_packages_installed: no
