@@ -19,7 +19,6 @@ portage_files:
   - 'package.use/ruby23'
   - 'package.use/versioned'
   - 'repos.conf/gentoo.conf'
-  - 'repos.conf/layman.conf'
 portage_overlays:
   - bar
   - chaos

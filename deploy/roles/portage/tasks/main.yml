@@ -26,16 +26,33 @@
   when:
     - "'setup' in actions"
 
-- name: add overlays
+- name: ensure Layman installed
+  portage:
+    package: app-portage/layman
+    state: present
+  become: true
+  when:
+    - "'setup' in actions"
+    - check_packages_installed
+
+- name: copy Layman config
+  copy:
+    src: "{{ role_path }}/files/layman.cfg"
+    dest: "/etc/layman/layman.cfg"
+    mode: 0755
+  become: true
+  when:
+    - "'setup' in actions"
+
+- name: ensure overlays
   layman:
     name={{ item }}
     state=present
   become: yes
   with_items: "{{ portage_overlays }}"
   when:
-    - False # temporarily disabled because of errors
     # - ansible_distribution == "Gentoo"
-    # - "'setup' in actions"
+    - "'setup' in actions"
 
 # TODO think of moving this to shell level
 # consult with "world" file
