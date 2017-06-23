@@ -53,6 +53,19 @@
   when:
     - "'setup' in actions"
 
+- name: fix overlays permissions
+  file:
+    path: "/var/lib/layman/{{ item }}"
+    owner: portage
+    group: portage
+    mode: 0755
+    recurse: yes
+  become: yes
+  # become_user: portage
+  with_items: "{{ portage_overlays }}"
+  when:
+    - "'setup' in actions"
+
 # TODO think of moving this to shell level
 # consult with "world" file
 # reduce time for checks
