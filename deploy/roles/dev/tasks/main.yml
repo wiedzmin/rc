@@ -77,7 +77,7 @@
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
   when:
-    - False # invoke directly
+    - "'devdns_start' in actions"
 
 - name: setup devdns host <-> containers resolving
   blockinfile:
@@ -87,7 +87,7 @@
       prepend domain-name-servers 127.0.0.1;
   become: yes
   when:
-    - False # invoke directly
+    - "'devdns_start' in actions"
 
 - name: install pip packages (Python)
   pip:
@@ -103,7 +103,7 @@
     name: devdns
     state: stopped
   when:
-    - False # invoke directly
+    - "'devdns_stop' in actions"
 
 - name: remove devdns host <-> containers resolving
   blockinfile:
@@ -114,4 +114,4 @@
     state: absent
   become: yes
   when:
-    - False # invoke directly
+    - "'devdns_stop' in actions"

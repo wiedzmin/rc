@@ -5,3 +5,5 @@
       actions:
         - bootstrap
         - setup
+        - devdns_start
+        # - devdns_stop
