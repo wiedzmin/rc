@@ -56,17 +56,13 @@
   when:
     - "'setup' in actions"
 
-- name: Buildapp | build
+- name: Buildapp
   make:
     chdir: "{{ buildapp_traits.local_path }}"
-    target: buildapp
-  when:
-    - "'setup' in actions"
-
-- name: Buildapp | install
-  make:
-    chdir: "{{ buildapp_traits.local_path }}"
-    target: install
+    target: "{{ item }}"
+  with_items:
+    - buildapp
+    - install
   become: yes
   when:
     - "'setup' in actions"
