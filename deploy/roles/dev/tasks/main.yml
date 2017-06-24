@@ -27,8 +27,16 @@
     owner: root
     group: root
   become: yes
+  register: docker_config
   when:
     - "'setup' in actions"
+
+- name: restart Docker service
+  shell: rc-service docker restart
+  become: yes
+  when:
+    - "'setup' in actions"
+    - docker_config.changed
 
 - name: copy homedir files
   copy:
