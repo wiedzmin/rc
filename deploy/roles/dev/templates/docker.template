@@ -20,4 +20,4 @@
 #DOCKERD_BINARY="/usr/bin/dockerd"
 
 # any other random options you want to pass to docker
-DOCKER_OPTS="{{ docker_options }}"
+DOCKER_OPTS="{% if insecure_docker %}{{ docker_options }}{% endif  %}"

@@ -33,3 +33,4 @@ homedir_files:
   - { src: 'isort.cfg', dest: '.isort.cfg' }
   - { src: 'pep8', dest: '.config/pep8' }
 check_packages_installed: no
+insecure_docker: no
