@@ -41,6 +41,7 @@ alias -g GDP='git log --no-merges --graph --abbrev-commit'
 alias -g PU='sudo vim /etc/portage/package.use'
 alias -g PM='sudo vim /etc/portage/package.mask'
 alias -g EU='equery uses'
+alias -g EB='equery_belongs(){sudo equery belongs `which $1` }; equery_belongs'
 alias -g GL='genlop -l | grep'
 alias -g GLC='genlop -c'
 
