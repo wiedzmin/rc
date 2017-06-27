@@ -50,6 +50,7 @@
     state: present
   become: yes
   with_items: "{{ portage_overlays }}"
+  register: overlays
   when:
     - "'setup' in actions"
 
@@ -65,6 +66,11 @@
   with_items: "{{ portage_overlays }}"
   when:
     - "'setup' in actions"
+
+- name: update portage tree status
+  shell: eix-update
+  become: yes
+  when: overlays.changed
 
 # TODO think of moving this to shell level
 # consult with "world" file
