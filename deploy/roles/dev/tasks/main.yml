@@ -77,28 +77,6 @@
   when:
     - "'setup' in actions"
 
-- name: start devdns
-  docker_container:
-    name: devdns
-    image: ruudud/devdns
-    state: started
-    expose:
-      - 53:53/udp
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-  when:
-    - "'devdns_start' in actions"
-
-- name: setup devdns host <-> containers resolving
-  blockinfile:
-    path: /etc/dhcp/dhclient.conf
-    block: |
-      supersede domain-name "dev";
-      prepend domain-name-servers 127.0.0.1;
-  become: yes
-  when:
-    - "'devdns_start' in actions"
-
 - name: install pip packages (Python)
   pip:
     name: "{{ item }}"
@@ -107,21 +85,3 @@
   with_items: "{{ python_pip_packages }}"
   when:
     - "'setup' in actions"
-
-- name: stop devdns container
-  docker_container:
-    name: devdns
-    state: stopped
-  when:
-    - "'devdns_stop' in actions"
-
-- name: remove devdns host <-> containers resolving
-  blockinfile:
-    path: /etc/dhcp/dhclient.conf
-    block: |
-      supersede domain-name "dev";
-      prepend domain-name-servers 127.0.0.1;
-    state: absent
-  become: yes
-  when:
-    - "'devdns_stop' in actions"
