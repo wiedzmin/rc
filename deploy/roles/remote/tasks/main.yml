@@ -1,5 +1,21 @@
 ---
 
+- name: ensure Mobile Shell (mosh) is installed
+  apt:
+    name: mosh
+    state: latest
+  become: yes
+  when:
+    - "'bootstrap' in actions"
+  # TODO: think of respecting "ansible_distribution" value (apt/portage/package therefore)
+
+- name: ensure proper locale is installed remotely
+  shell: locale-gen {{ remote_locale }}
+  become: yes
+  when:
+    - "'bootstrap' in actions"
+  # TODO: think of respecting "ansible_distribution" value (apt/portage/package therefore)
+
 - name: ensure certs dir
   file:
     path: "{{ ansible_env.HOME }}/certs"
