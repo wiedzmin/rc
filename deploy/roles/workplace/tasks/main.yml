@@ -157,3 +157,25 @@
   with_items: "{{ mime_assocs }}"
   when:
     - "'setup' in actions"
+
+- name: backup bookmarks
+  copy:
+    src: "{{ item }}"
+    dest: "{{ role_path }}/files/{{ item | basename }}"
+    mode: 0755
+  with_items:
+    - "{{ emacs_bookmarks_file }}"
+    - "{{ shell_bookmarks_file }}"
+  when:
+    - "'backup' in actions"
+
+- name: restore bookmarks
+  copy:
+    src: "{{ role_path }}/files/{{ item | basename }}"
+    dest: "{{ item }}"
+    mode: 0755
+  with_items:
+    - "{{ emacs_bookmarks_file }}"
+    - "{{ shell_bookmarks_file }}"
+  when:
+    - "'restore' in actions"

@@ -94,3 +94,6 @@ bin_dirs:
   - "$HOME/workspace/gocode/bin"
   - "$HOME/.local/bin"
 check_packages_installed: no
+emacs_config_dir: "{{ ansible_env.HOME }}/.emacs.d"
+emacs_bookmarks_file: "{{ emacs_config_dir }}/data/bookmark-default.el"
+shell_bookmarks_file: "{{ ansible_env.HOME }}/.bookmarks"

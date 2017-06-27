@@ -4,3 +4,5 @@
       actions:
         - bootstrap
         - setup
+        - backup
+        - restore
