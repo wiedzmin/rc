@@ -32,6 +32,7 @@ packages_of_interest:
   - "mail-filter/imapfilter"
   - "net-im/telegram-cli"
   - "net-irc/hexchat"
+  - "net-misc/mosh"
   - "net-misc/urlview"
   - "sys-apps/dbus"
   - "sys-apps/fbset"
