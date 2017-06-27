@@ -145,3 +145,4 @@ dev-python/pillow truetype
 x11-wm/awesome luajit
 net-misc/connman iptables
 net-misc/dropbox -X
+media-sound/ario ausioscrobbler libnotify taglib
