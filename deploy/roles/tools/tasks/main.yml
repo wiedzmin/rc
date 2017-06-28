@@ -134,6 +134,8 @@
   copy:
     src: "{{ zshnip_traits.local_path }}/zshnip.zsh"
     dest: "/usr/local/bin"
+    mode: 0755
+  become: yes
   when:
     - "'setup' in actions"
 
