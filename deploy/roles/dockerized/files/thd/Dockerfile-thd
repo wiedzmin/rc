@@ -1,0 +1,27 @@
+FROM ubuntu:xenial
+
+RUN apt-get update && apt-get install -y \
+    git ruby-full libreadline-dev libconfig-dev \
+    libssl-dev lua5.2 liblua5.2-dev libevent-dev \
+    libjansson-dev libpython-dev make
+
+ENV TGCLI_PATH="/opt/tgcli"
+ENV THD_PATH="/opt/thd"
+ENV TGCLI_PORT="9009"
+
+RUN mkdir -p ${TGCLI_PATH}
+RUN mkdir -p ${THD_PATH}
+RUN mkdir -p /etc/telegram-cli
+# RUN mkdir -p /tg-logs
+
+RUN git clone --recursive https://github.com/vysheng/tg.git ${TGCLI_PATH} 
+RUN git clone --recursive https://github.com/tvdstaaij/telegram-history-dump ${THD_PATH}
+
+RUN cd ${TGCLI_PATH} && ./configure && make
+RUN cp /${TGCLI_PATH}/bin/telegram-cli /usr/bin/
+RUN cp /${TGCLI_PATH}/tg-server.pub /etc/telegram-cli/server.pub
+
+COPY thd.sh /usr/bin/
+COPY thd_config.yaml ${THD_PATH}/config.yaml
+
+WORKDIR ${THD_PATH}

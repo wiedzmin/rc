@@ -3,3 +3,8 @@
 zeal_version: 0.3.1
 zeal_cache: foobar # not decided yet
 zeal_docsets: foobar # not decided yet
+thd_tmp_dir: "/tmp/thd"
+tg_backup_formatter: plaintext
+tg_backup_base_dir: "/telegram-logs/tg_logs"
+tg_backup_kill_tg: yes
+tg_cli_port: 9009

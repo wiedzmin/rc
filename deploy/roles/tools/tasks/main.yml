@@ -172,33 +172,5 @@
   when:
     - "'setup' in actions"
 
-- name: THD | clone repo
-  git:
-    repo: "{{ thd_traits.clone_from }}"
-    dest: "{{ thd_traits.local_path }}"
-    force: yes
-  when:
-    - "'setup' in actions"
-
-- name: THD | update config
-  copy:
-    content: "{{ lookup('template', 'thd_config.template') }}"
-    dest: "{{ thd_traits.local_path }}/config.yaml"
-    mode: 0755
-  when:
-    - "'setup' in actions"
-
-- name: THD | start telegram-cli
-  shell: "nohup telegram-cli --json -P {{ tg_cli_port }} -v 0 &"
-  when:
-    - "'setup' in actions"
-
-- name: THD | perform dump
-  shell: "ruby telegram-history-dump.rb{% if tg_backup_kill_tg %} --kill-tg{% endif %}"
-  args:
-    chdir: '{{ thd_traits.local_path }}'
-  when:
-    - "'setup' in actions"
-
 # TODO: setup znc on octocat.ru
 # TODO: think of fonts setup automating (e.g. dowloading, copying, updating fontcache, whatever)

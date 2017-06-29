@@ -1,5 +1,11 @@
 ---
 
+- name: register current time
+  shell: "date +%Y%m%d%H%M%S"
+  register: current_run_timestamp
+  tags:
+    - always
+
 - name: allow Docker to connect to local X server
   shell: xhost +local:dockerfile
 
@@ -58,3 +64,29 @@
   become: yes
   tags:
     - devdns_stop
+
+- name: THD | prepare temporary dir
+  copy:
+    src: "{{ item.src }}/"
+    dest: "{{ item.dest }}"
+    mode: 0755
+  with_items:
+    - { src: "{{ role_path }}/files/thd", dest: "{{ thd_tmp_dir }}" }
+    - { src: "{{ playbook_dir }}/../private/telegram", dest: "{{ thd_tmp_dir }}/private"}
+  tags:
+    - thd
+
+- name: THD | update config
+  copy:
+    content: "{{ lookup('template', 'thd_config.template') }}"
+    dest: "{{ thd_tmp_dir }}/thd_config.yaml"
+    mode: 0755
+  tags:
+    - thd
+
+- name: THD | start service
+  docker_service:
+    project_src: "{{ thd_tmp_dir }}"
+    build: yes
+  tags:
+    - thd

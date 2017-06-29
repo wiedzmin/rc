@@ -1,0 +1,10 @@
+version: '2'
+services:
+  telegram-backup:
+    build:
+      context: .
+      dockerfile: ./Dockerfile-thd
+    volumes:
+      - ./private:/root/.telegram-cli
+      - ${HOME}/telegram-logs:/telegram-logs
+    command: thd.sh

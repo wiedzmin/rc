@@ -56,7 +56,7 @@
   # Target directory for the backup files
   # If this is a relative path it will be relative to the script's directory
   # Absolute path starts with '/' or '~'
-  backup_dir: '{{ tg_backup_output_dir }}-{{ current_run_timestamp.stdout }}'
+  backup_dir: '{{ tg_backup_base_dir }}-{{ current_run_timestamp.stdout }}'
 
   # Data file naming style:
   # True for "My_Chat_Name.jsonl", false for "193044.jsonl" (fixed id)
