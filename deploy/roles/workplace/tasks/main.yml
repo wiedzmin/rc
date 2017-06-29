@@ -89,20 +89,27 @@
     - bashrc.stat.exists == True
     - "'setup' in actions"
 
+
+- name: accompanying tools | shepherd build (mail checking tool)
+  git:
+    repo: "{{ shepherd_traits.clone_from }}"
+    dest: "{{ shepherd_traits.local_path }}"
+    force: yes
+  tags:
+    - shepherd
+
 - name: accompanying tools | shepherd build (mail checking tool)
   make:
-    chdir: "{{ project_root }}/src/shepherd"
+    chdir: "{{ shepherd_traits.local_path }}"
     target: all
-  when:
-    - False # TODO: temporarily disabled due to errors
-    # - "'setup' in actions"
+  tags:
+    - shepherd
 
 - name: accompanying tools | shepherd install (mail checking tool)
-  shell: "mv {{ project_root }}/src/shepherd/builds/shepherd /usr/local/bin/shepherd"
+  shell: "mv {{ shepherd_traits.local_path }}/builds/shepherd /usr/local/bin/shepherd"
   become: yes
-  when:
-    - False # TODO: temporarily disabled due to errors
-    # - "'setup' in actions"
+  tags:
+    - shepherd
 
 - name: install tmux plugin manager
   git:
