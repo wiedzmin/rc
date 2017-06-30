@@ -16,7 +16,6 @@ portage_files:
   - "package.unmask"
   - "package.use/abi_x86_32"
   - "package.use/main"
-  - "package.use/ruby23"
   - "package.use/versioned"
   - "repos.conf/gentoo.conf"
 portage_overlays:
