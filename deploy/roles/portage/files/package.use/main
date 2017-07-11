@@ -20,7 +20,7 @@ app-office/ledger emacs gnuplot xml
 app-portage/layman mercurial subversion
 app-shells/fzf tmux vim zsh-completion
 app-text/ghostscript-gpl cups
-app-text/poppler cairo
+app-text/poppler cairo tiff
 app-text/texlive doc dvi2tty dvipdfm graphics png pstricks science truetype luatex xetex l10n_ru
 app-text/texlive-core xetex
 app-text/zathura-meta cb djvu postscript
@@ -146,3 +146,4 @@ x11-wm/awesome luajit
 net-misc/connman iptables
 net-misc/dropbox -X
 media-sound/ario ausioscrobbler libnotify taglib
+net-print/cups-filters jpeg pdf tiff
