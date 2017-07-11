@@ -9,6 +9,7 @@ packages_of_interest:
   - "app-emulation/docker-compose"
   - "app-emulation/docker-machine"
   - "app-emulation/docker-swarm"
+  - "app-misc/exercism"
   - "app-misc/jq"
   - "app-misc/workrave"
   - "dev-python/blockdiag"
