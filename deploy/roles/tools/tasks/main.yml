@@ -60,6 +60,8 @@
   tags:
     - tg
 
+# TODO: think of TG themes automation
+
 - name: tmuxifier | clone repo
   git:
     repo: "{{ tmuxifier_traits.clone_from }}"
