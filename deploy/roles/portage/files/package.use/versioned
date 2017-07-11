@@ -2,11 +2,8 @@
 >=dev-libs/libdbusmenu-12.10.2-r1 gtk3
 >=media-libs/mesa-9999 gles2
 >=dev-libs/libdbusmenu-12.10.2-r1 gtk3
->=media-libs/mesa-9999 gles2
 >=media-libs/gexiv2-0.6.1 introspection
 >=media-libs/gegl-0.3.4 cairo
->=dev-python/PyQt5-5.5.1 widgets gui
->=dev-qt/qtwebkit-5.5.1-r1 printsupport
 >=media-sound/pulseaudio-8.0 gnome
 
 # required by dev-qt/qtwebkit-5.4.2::gentoo
@@ -50,14 +47,6 @@ x11-misc/tint2 battery examples tint2conf
 # required by @selected
 # required by @world (argument)
 >=app-emacs/emacs-common-gentoo-1.5 games
-# required by net-im/skype-4.3.0.37-r6::gentoo
-# required by @selected
-# required by @world (argument)
->=dev-qt/qtwebkit-4.8.7:4 -exceptions
-# required by dev-db/mysql-5.6.29::gentoo
-# required by virtual/mysql-5.6-r8::gentoo
-# required by dev-perl/DBD-mysql-4.32.0-r1::gentoo
->=virtual/libmysqlclient-18 abi_x86_32
 # required by media-libs/phonon-vlc-0.9.0::gentoo
 >=media-libs/phonon-4.9.0 qt4
 # required by app-editors/neovim-0.1.4::gentoo
