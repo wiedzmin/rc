@@ -46,6 +46,15 @@
     - "'setup' in actions"
     - check_packages_installed
 
+- name: install pip packages (Python)
+  pip:
+    name: "{{ item }}"
+    state: latest
+    extra_args: --user
+  with_items: "{{ python_pip_packages }}"
+  when:
+    - "'setup' in actions"
+
 - name: copy homedir files
   copy:
     src: "{{ role_path }}/files/{{ item.src }}"
