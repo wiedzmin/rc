@@ -7,6 +7,7 @@ addrlookup_traits: { clone_from: "https://github.com/aperezdc/notmuch-addrlookup
 tmuxifier_traits: { clone_from: "https://github.com/jimeh/tmuxifier", local_path: "{{ ansible_env.HOME }}/.tmuxifier" }
 zshnip_traits: { clone_from: "https://github.com/facetframer/zshnip", local_path: "/tmp/zshnip" }
 ffdc_traits: { clone_from: "https://github.com/Unode/firefox_decrypt", local_path: "/tmp/firefox_decrypt" }
+hr_traits: { clone_from: "https://github.com/LuRsT/hr", local_path: "/tmp/hr" }
 packages_of_interest_:
   - "app-office/ledger"
   - "dev-python/appdirs"
