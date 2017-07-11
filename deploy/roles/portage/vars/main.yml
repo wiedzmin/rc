@@ -22,6 +22,7 @@ portage_overlays:
   - bar
   - chaos
   - dilfridge
+  - docker
   - emacs
   - flow
   - go-overlay
