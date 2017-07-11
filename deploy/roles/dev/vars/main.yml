@@ -17,7 +17,9 @@ packages_of_interest:
   - "dev-util/ltrace"
   - "dev-util/rtags"
   - "dev-util/strace"
+  - "sys-apps/highway"
   - "sys-apps/ripgrep"
+  - "net-misc/httpie"
 python_pip_packages:
   - "autopep8"
   - "flake8"
