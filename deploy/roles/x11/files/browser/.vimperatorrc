@@ -86,7 +86,7 @@ map щс oc
     invoke_org_capture = function () {
         location.href='org-protocol://capture?url='+
               encodeURIComponent(location.href)+'&title='+
-              encodeURIComponent(document.title)+'&body'+
+              encodeURIComponent(document.title)+'&body='+
               encodeURIComponent(window.getSelection())
     }
 EOJS
