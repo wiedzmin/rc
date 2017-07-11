@@ -47,8 +47,8 @@
     url: "https://updates.tdesktop.com/tlinux/tsetup.{{ telegram_version }}.tar.xz"
     dest: /tmp/tsetup.tar.xz
     force: yes
-  when:
-    - "'setup' in actions"
+  tags:
+    - tg
 
 - name: update Telegram Desktop binaries
   unarchive:
@@ -57,8 +57,8 @@
     extra_opts:
       - "--strip=1"
   become: yes
-  when:
-    - "'setup' in actions"
+  tags:
+    - tg
 
 - name: tmuxifier | clone repo
   git:
