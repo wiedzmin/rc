@@ -6,6 +6,7 @@ packages_of_interest:
   - "x11-apps/arbtt"
   - "x11-apps/xmodmap"
   - "x11-apps/xrdb"
+  - "x11-libs/xosd"
   - "x11-misc/autocutsel"
   - "x11-misc/dex"
   - "x11-misc/kbdd"
