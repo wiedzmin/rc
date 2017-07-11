@@ -38,7 +38,7 @@ homedir_files:
   - { src: ".stalonetrayrc", dest: ".stalonetrayrc" }
   - { src: ".xxkbrc", dest: ".xxkbrc" }
   - { src: "browser/.conkerorrc", dest: ".conkerorrc" }
-  - { src: "browser/.vimperatorrc", dest: "vimperatorrc" }
+  - { src: "browser/.vimperatorrc", dest: ".vimperatorrc" }
   - { src: "categorize.cfg", dest: ".arbtt/categorize.cfg" }
   - { src: "dunstrc", dest: ".config/dunst/dunstrc" }
   - { src: "emacsclient.desktop", dest: ".local/share/applications/emacsclient.desktop" }
