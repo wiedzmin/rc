@@ -8,6 +8,7 @@ tmuxifier_traits: { clone_from: "https://github.com/jimeh/tmuxifier", local_path
 zshnip_traits: { clone_from: "https://github.com/facetframer/zshnip", local_path: "/tmp/zshnip" }
 ffdc_traits: { clone_from: "https://github.com/Unode/firefox_decrypt", local_path: "/tmp/firefox_decrypt" }
 hr_traits: { clone_from: "https://github.com/LuRsT/hr", local_path: "/tmp/hr" }
+tbdiff_traits: { clone_from: "https://github.com/trast/tbdiff", local_path: "/tmp/tbdiff" }
 packages_of_interest_:
   - "app-office/ledger"
   - "dev-python/appdirs"
@@ -17,4 +18,7 @@ packages_of_interest_:
 common_settings_basenames:
   - common_settings
   - common_settings_bash
+user_name: octocat
+user_group: octocat
+binaries_prefix: /usr/local/bin
 check_packages_installed: no
