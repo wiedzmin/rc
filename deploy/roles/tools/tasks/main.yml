@@ -35,6 +35,16 @@
   when:
     - "'setup' in actions"
 
+- name: git-quick-stats | set permissions
+  file:
+    path: "{{ binaries_prefix }}/git-quick-stats"
+    mode: 0755
+    owner: "{{ user_name }}"
+    group: "{{ user_group }}"
+  become: yes
+  when:
+    - "'setup' in actions"
+
 - name: git-quick-stats | uninstall
   make:
     chdir: "{{ gqs_traits.local_path }}"
