@@ -38,4 +38,5 @@ packages_of_interest:
   - "app-admin/haskell-updater"
   - "app-portage/fetchcommandwrapper"
   - "app-admin/python-updater"
+  - "app-portage/mirrorselect"
 check_packages_installed: no
