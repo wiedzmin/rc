@@ -9,7 +9,7 @@ zshnip_traits: { clone_from: "https://github.com/facetframer/zshnip", local_path
 ffdc_traits: { clone_from: "https://github.com/Unode/firefox_decrypt", local_path: "/tmp/firefox_decrypt" }
 hr_traits: { clone_from: "https://github.com/LuRsT/hr", local_path: "/tmp/hr" }
 tbdiff_traits: { clone_from: "https://github.com/trast/tbdiff", local_path: "/tmp/tbdiff" }
-packages_of_interest_:
+packages_of_interest:
   - "app-office/ledger"
   - "dev-python/appdirs"
   - "dev-python/watchdog"
