@@ -121,7 +121,7 @@ x11-libs/gdk-pixbuf jpeg
 x11-libs/libxcb xkb
 x11-libs/wxGTK tiff
 x11-misc/dmenu xft xinerama
-x11-misc/dzen xinerama xpm
+x11-misc/dzen xft xinerama xpm
 x11-misc/redshift geoclue gtk
 x11-misc/rofi i3 windowmode
 x11-misc/slim branding
