@@ -4,7 +4,7 @@ xsession_wm_choices:
   - sawfish
   - stumpwm
   - xmonad
-xsession_current_wm: "{{ xsession_wm_choices[0] }}"
+xsession_current_wm: "{{ xsession_wm_choices[3] }}"
 xsession_loop_wm: no
 xsession_errorlogs_to_keep: 3
 xsession_services:
