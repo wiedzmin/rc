@@ -147,3 +147,4 @@ net-misc/connman iptables
 net-misc/dropbox -X
 media-sound/ario ausioscrobbler libnotify taglib
 net-print/cups-filters jpeg pdf tiff
+dev-libs/protobuf emacs
