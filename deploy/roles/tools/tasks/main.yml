@@ -96,37 +96,6 @@
     - "'setup' in actions"
     # TODO: think of way to rerun some links/path population steps after this
 
-- name: addrlookup | clone repo
-  git:
-    repo: "{{ addrlookup_traits.clone_from }}"
-    dest: "{{ addrlookup_traits.local_path }}"
-    force: yes
-  when:
-    - "'setup' in actions"
-
-- name: addrlookup | build
-  shell: make
-  args:
-    chdir: "{{ addrlookup_traits.local_path }}"
-  when:
-    - "'setup' in actions"
-
-- name: addrlookup | install binary
-  shell: "mv {{ addrlookup_traits.local_path }}/notmuch-addrlookup /usr/local/bin"
-  become: yes
-  when:
-    - "'setup' in actions"
-
-- name: addrlookup | ensure binary permissions
-  file:
-    path: "/usr/local/bin/notmuch-addrlookup"
-    mode: 0644
-    owner: root
-    group: root
-  become: yes
-  when:
-    - "'setup' in actions"
-
 - name: httplab | install
   shell: go get github.com/gchaincl/httplab
   when:
