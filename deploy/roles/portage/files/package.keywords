@@ -11,3 +11,4 @@ x11-misc/dmenu **
 app-editors/emacs-vcs **
 # required by dev-vcs/git-extras (argument)
 =dev-vcs/git-extras-9999 **
+=net-mail/notmuch-9999 **
