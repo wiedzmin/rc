@@ -17,6 +17,7 @@ packages_of_interest:
   - "x11-misc/xxkb"
   - "x11-misc/yeganesh"
   - "x11-terms/rxvt-unicode"
+  - "x11-misc/dzen"
 homedir_subdirs:
   - ".config/dunst"
   - ".config/i3"
