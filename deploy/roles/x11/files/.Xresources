@@ -82,3 +82,5 @@ xterm*color14: #F0E68C
 !white
 xterm*color7: #DDDDDD
 xterm*color15: #FFFFFF
+
+dzen2.font: xft:IosevkaCC-10:weight=bold
