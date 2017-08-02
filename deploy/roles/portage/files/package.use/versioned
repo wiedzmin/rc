@@ -92,3 +92,6 @@ x11-misc/tint2 battery examples tint2conf
 # required by gnome-base/nautilus-3.22.3::gentoo
 # required by gnome-base/nautilus (argument)
 >=gnome-base/gvfs-1.30.4 gtk
+# required by dev-lua/luvit-0.8.2::gentoo[-bundled-libs]
+# required by dev-lua/luvit (argument)
+>=dev-lang/luajit-2.0.4 lua52compat
