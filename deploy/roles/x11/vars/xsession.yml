@@ -12,7 +12,7 @@ xsession_services:
   - { command: "autocutsel -buttonup", enabled: yes, heavyweight: no }
   - { command: "dbus-daemon --session", enabled: yes, heavyweight: no }
   - { command: "dropbox", enabled: yes, heavyweight: yes }
-  - { command: "kbdd", enabled: yes, heavyweight: no }
+  - { command: "kbdd", enabled: "{{ xsession_current_wm not in ['stumpwm', 'xmonad'] }}", heavyweight: no }
   - { command: "nm-applet", enabled: yes, heavyweight: no }
   - { command: "pulseaudio --start", enabled: yes, heavyweight: no }
   - { command: "rdm", enabled: yes, heavyweight: no }
