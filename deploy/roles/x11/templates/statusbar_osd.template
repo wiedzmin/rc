@@ -1,0 +1,19 @@
+#!/bin/bash
+
+CUR_DATE=`date`
+CPU_USAGE=`grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage "%"}'`
+CPU_TEMP=`sensors | grep Package | awk '{print $4}'`
+ROOT_FREE=`df --output=avail -h / | sed -e '1d' -e 's/[^0-9]//g'`GB
+
+RESULT="$CUR_DATE
+$CPU_USAGE
+$CPU_TEMP
+$ROOT_FREE"
+echo "$RESULT" | osd_cat -d {{ osd_delay }} -i {{ osd_x_offset_1 }} -o {{ osd_y_offset_1 }} -c {{ osd_color }} -f '{{ osd_font }}'
+
+# TODO: dhcp status
+# TODO: vpn status
+# TODO: battery status
+# TODO: pulseaudio volume
+
+

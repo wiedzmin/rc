@@ -51,3 +51,13 @@ homedir_files:
   - { src: "xmobarrc-noinet", dest: ".xmonad/xmobarrc-noinet" } # TODO: abstract away
   - { src: "xmobarrc.xmonad.old", dest: ".xmonad/xmobarrc.xmonad.old" } # TODO: abstract away
 check_packages_installed: no
+binaries_prefix: /usr/local/bin
+user_name: octocat
+user_group: octocat
+osd_delay: 2
+osd_font: "-*-fixed-*-*-*-*-24-*-*-*-*-*-*-*"
+osd_color: green
+osd_x_offset_1: 1000
+osd_y_offset_1: 600
+osd_x_offset_2: 1000
+osd_y_offset_2: 600

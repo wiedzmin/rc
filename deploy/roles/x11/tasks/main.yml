@@ -57,6 +57,16 @@
   when:
     - "'setup' in actions"
 
+- name: generate OSD statusbar script
+  copy:
+    content: "{{ lookup('template', 'statusbar_osd.template') }}"
+    dest: "{{ binaries_prefix }}/statusbar_osd"
+    mode: 0755
+    owner: "{{ user_name }}"
+    group: "{{ user_group }}"
+  when:
+    - "'setup' in actions"
+
 - name: generate .xsession script
   copy:
     content: "{{ lookup('template', '.xsession.template') }}"
