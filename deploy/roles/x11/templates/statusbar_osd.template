@@ -4,16 +4,15 @@ CUR_DATE=`date`
 CPU_USAGE=`grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage "%"}'`
 CPU_TEMP=`sensors | grep Package | awk '{print $4}'`
 ROOT_FREE=`df --output=avail -h / | sed -e '1d' -e 's/[^0-9]//g'`GB
+VPN_STATUS=`/etc/init.d/{{ vpn_service_name }} status | cut -f 4 -d " "`
+SOUND_STATUS=`amixer sget Master | grep "\[" -m 1 | cut -f 7,8 -d " "`
+CPU_USAGE=`cat <(grep 'cpu ' /proc/stat) <(sleep {{ cpu_usage_interval }} && grep 'cpu ' /proc/stat) | awk -v RS="" '{print ($13-$2+$15-$4)*100/($13-$2+$15-$4+$16-$5)}'`
 
 RESULT="$CUR_DATE
-$CPU_USAGE
-$CPU_TEMP
-$ROOT_FREE"
-echo "$RESULT" | osd_cat -d {{ osd_delay }} -i {{ osd_x_offset_1 }} -o {{ osd_y_offset_1 }} -c {{ osd_color }} -f '{{ osd_font }}'
-
-# TODO: dhcp status
-# TODO: vpn status
-# TODO: battery status
-# TODO: pulseaudio volume
-
-
+$ROOT_FREE
+CPU: $CPU_USAGE / `status_cpu_temp`
+bat: `status_bat_info`
+PA: ${SOUND_STATUS}
+VPN status: $VPN_STATUS"
+echo "$RESULT" | osd_cat -d {{ osd_delay }} -i {{ osd_x_offset_1 }} -o {{ osd_y_offset_1 }} -c {{ osd_color }} -f '{{ osd_font }}' &
+echo "$RESULT" | osd_cat -d {{ osd_delay }} -i {{ osd_x_offset_2 }} -o {{ osd_y_offset_2 }} -c {{ osd_color }} -f '{{ osd_font }}' &
