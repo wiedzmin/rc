@@ -198,3 +198,23 @@
     - tbdiff
   when:
     - "'setup' in actions"
+
+- name: exa | clone repository
+  git:
+    repo: "{{ exa_traits.clone_from }}"
+    dest: "{{ exa_traits.local_path }}"
+    force: yes
+  tags:
+    - exa
+  when:
+    - "'setup' in actions"
+
+- name: exa | install
+  make:
+    chdir: "{{ exa_traits.local_path }}"
+    target: install
+  become: yes
+  tags:
+    - exa
+  when:
+    - "'setup' in actions"

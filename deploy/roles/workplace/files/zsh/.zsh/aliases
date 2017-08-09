@@ -55,12 +55,12 @@ alias -g DPI='docker_name_ip(){ docker ps --format "{{.Names}}" | grep $@ | xarg
 
 alias -g untar='tar xvvf'
 
-alias ls='ls -F --color=auto'
-alias ll='ls -l'
-alias la='ls -A'
-alias li='ls -ial'
-alias lsd='ls -ld *(-/DN)'
-alias lsa='ls -ld .*'
+alias ls='exa -F --color=auto'
+alias ll='exa -l'
+alias la='exa -A'
+alias li='exa -ial'
+alias lsd='exa -ld *(-/DN)'
+alias lsa='exa -ld .*'
 
 #handy patching aliases
 alias ptch='patch -Ntbp0 < '
