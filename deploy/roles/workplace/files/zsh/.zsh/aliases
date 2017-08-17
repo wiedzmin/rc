@@ -44,6 +44,8 @@ alias -g EU='equery uses'
 alias -g EB='equery_belongs(){sudo equery belongs `which $1` }; equery_belongs'
 alias -g GL='genlop -l | grep'
 alias -g GLC='genlop -c'
+alias -g MRP='equery list --portage-tree --mask-reason'
+
 
 alias -g DSH='docker_shell(){ docker exec -it $1 /bin/bash }; docker_shell'
 alias -g DRM='docker_stop_rm(){ docker stop $@ && docker rm $@ }; docker_stop_rm'
