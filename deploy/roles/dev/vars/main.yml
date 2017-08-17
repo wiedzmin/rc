@@ -23,6 +23,7 @@ packages_of_interest:
   - "net-misc/httpie"
   - "dev-lua/luvit"
   # - "app-forensics/afl" # broken at the moment --> temporarily disabled
+  # - "app-forensics/sleuthkit" # broken at the moment --> temporarily disabled
 python_pip_packages:
   - "autopep8"
   - "flake8"
