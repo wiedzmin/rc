@@ -57,6 +57,7 @@ wm-loop() {
         {{ xsession_current_wm }}
     done
     {% else %}echo "Not looping '{{ xsession_current_wm }}', starting once"
+    export CURRENT_WM={{ xsession_current_wm }}
     {{ xsession_current_wm }}
     {% endif %}
 }

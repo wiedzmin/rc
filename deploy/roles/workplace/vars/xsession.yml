@@ -24,7 +24,6 @@ xsession_services:
   - { command: "unclutter -idle 5", enabled: yes, heavyweight: no }
   - { command: "volumeicon", enabled: no, heavyweight: no }
   - { command: "xxkb", enabled: "{{ xsession_current_wm not in ['awesome', 'stumpwm'] }}", heavyweight: no } # TODO: try to check against xsession_current_wm (enable in all but awesome and maybe some others)
-  - { command: "sh -c 'i3status | dzen2 -fn Consolas:size=11 -xs 1 -w {{ xsession_lvds_width - 120 }}'", enabled: no, heavyweight: no } # TODO: try to check against xsession_current_wm (enable in all but awesome and maybe some others)
 xsession_disable_capslock: yes
 xsession_timezone: Europe/Moscow
 xsession_media_mount: yes
