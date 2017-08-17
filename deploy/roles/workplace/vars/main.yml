@@ -105,3 +105,4 @@ emacs_bookmarks_file: "{{ emacs_config_dir }}/data/bookmark-default.el"
 shell_bookmarks_file: "{{ ansible_env.HOME }}/.bookmarks"
 python_pip_packages:
   - "imapautofiler"
+  - "rst2pdf"
