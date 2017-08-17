@@ -56,7 +56,7 @@ user_name: octocat
 user_group: octocat
 osd_delay: 2
 osd_font: "-*-fixed-*-*-*-*-24-*-*-*-*-*-*-*"
-osd_color: white
+osd_color: green
 osd_x_offset_1: 1000
 osd_y_offset_1: 600
 osd_x_offset_2: 1400
