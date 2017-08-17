@@ -39,4 +39,5 @@ packages_of_interest:
   - "app-portage/fetchcommandwrapper"
   - "app-admin/python-updater"
   - "app-portage/mirrorselect"
+  - "app-portage/repoman"
 check_packages_installed: no
