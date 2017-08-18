@@ -201,8 +201,16 @@
     content: "{{ lookup('template', '.xsession.template') }}"
     dest: "{{ ansible_env.HOME }}/.xsession"
     mode: 0755
+  register: xsession_script
   when:
     - "'xsession' in actions"
+
+- name: remove tangled Emacs config
+  file:
+    path: "{{ emacs_config_name_tangled }}"
+    state: absent
+  when:
+    - xsession_script.changed
 
 - name: backup bookmarks
   copy:

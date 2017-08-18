@@ -148,6 +148,8 @@ bin_dirs:
   - "$HOME/.local/bin"
 check_packages_installed: no
 emacs_config_dir: "{{ ansible_env.HOME }}/.emacs.d"
+emacs_config_name_literal: "{{ emacs_config_dir }}/config.org"
+emacs_config_name_tangled: "{{ emacs_config_dir }}/config.el"
 emacs_bookmarks_file: "{{ emacs_config_dir }}/data/bookmark-default.el"
 shell_bookmarks_file: "{{ ansible_env.HOME }}/.bookmarks"
 export_variables:
@@ -159,6 +161,7 @@ export_variables:
   - { name: "BOOKMARKFILE", value: "{{ shell_bookmarks_file }}" }
   - { name: "GTAGSLIBPATH", value: "$HOME/.gtags/" }
   - { name: "FZF_ZSH", value: "/usr/share/zsh/site-contrib/fzf.zsh" }
+  - { name: "CURRENT_WM", value: "{{ xsession_current_wm }}" }
 python_pip_packages:
   - "imapautofiler"
   - "rst2pdf"
