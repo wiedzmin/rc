@@ -150,6 +150,15 @@ check_packages_installed: no
 emacs_config_dir: "{{ ansible_env.HOME }}/.emacs.d"
 emacs_bookmarks_file: "{{ emacs_config_dir }}/data/bookmark-default.el"
 shell_bookmarks_file: "{{ ansible_env.HOME }}/.bookmarks"
+export_variables:
+  - { name: "GREP_OPTIONS", value: "--color=auto" }
+  - { name: "GREP_COLOR", value: "'1;32'" }
+  - { name: "SHELL", value: "/bin/bash" }
+  - { name: "GOPATH", value: "$HOME/workspace/gocode" }
+  - { name: "XAUTHORITY", value: "$HOME/.Xauthority" }
+  - { name: "BOOKMARKFILE", value: "{{ shell_bookmarks_file }}" }
+  - { name: "GTAGSLIBPATH", value: "$HOME/.gtags/" }
+  - { name: "FZF_ZSH", value: "/usr/share/zsh/site-contrib/fzf.zsh" }
 python_pip_packages:
   - "imapautofiler"
   - "rst2pdf"

@@ -6,6 +6,10 @@ BIN_DIRS=(
 {% endfor %}
 )
 
+{% for var in export_variables %}
+export {{ var.name }}={{ var.value }}
+{% endfor %}
+
 # Remove dupes from 'path', which is array tied to 'PATH'
 # typeset -U path
 for dir in $BIN_DIRS; do
@@ -21,3 +25,5 @@ for candidate in emacsclient vim vi; do
         break
     fi
 done
+
+unset GREP_OPTIONS

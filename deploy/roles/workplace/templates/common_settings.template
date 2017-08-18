@@ -6,7 +6,9 @@ BIN_DIRS=(
 {% endfor %}
 )
 
-GOPATH=/home/octocat/workspace/gocode
+{% for var in export_variables %}
+export {{ var.name }}={{ var.value }}
+{% endfor %}
 
 # Remove dupes from 'path', which is array tied to 'PATH'
 typeset -U path
@@ -25,3 +27,7 @@ for candidate in emacsclient vim vi; do
         break
     fi
 done
+
+export ZBEEP=$'\e[?5h\e[?5l'
+
+unset GREP_OPTIONS
