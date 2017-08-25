@@ -98,3 +98,11 @@ x11-misc/tint2 battery examples tint2conf
 # required by dev-lua/luvit-0.8.2::gentoo[-bundled-libs]
 # required by dev-lua/luvit (argument)
 >=dev-lang/luajit-2.0.4 lua52compat
+
+# required by virtual/ffmpeg-9-r2::gentoo[-libav]
+# required by www-client/palemoon-bin-27.4.1::palemoon
+# required by www-client/palemoon-bin (argument)
+>=media-video/ffmpeg-3.3.3 x264
+# required by www-client/palemoon-bin-27.4.1::palemoon
+# required by www-client/palemoon-bin (argument)
+>=virtual/ffmpeg-9-r2 x264

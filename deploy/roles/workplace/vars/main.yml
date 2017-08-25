@@ -92,8 +92,7 @@ homedir_files:
   - { src: ".tmux.conf", dest: ".tmux.conf" }
   - { src: ".urlview", dest: ".urlview" }
   - { src: ".xxkbrc", dest: ".xxkbrc" }
-  - { src: "browser/.conkerorrc", dest: ".conkerorrc" }
-  - { src: "browser/.vimperatorrc", dest: ".vimperatorrc" }
+  - { src: "browser/.pentadactylrc", dest: ".pentadactylrc" }
   - { src: "categorize.cfg", dest: ".arbtt/categorize.cfg" }
   - { src: "dunstrc", dest: ".config/dunst/dunstrc" }
   - { src: "emacsclient.desktop", dest: ".local/share/applications/emacsclient.desktop" }
@@ -122,7 +121,7 @@ mime_assocs:
   - { program: "abiword", mimetype: "application/msword" }
   - { program: "feh", mimetype: "image/jpeg" }
   - { program: "feh", mimetype: "image/png" }
-  - { program: "firefox", mimetype: "text/html" }
+  - { program: "palemoon-bin", mimetype: "text/html" }
   - { program: "vlc", mimetype: "video/avi" }
   - { program: "vlc", mimetype: "video/mp4" }
   - { program: "vlc", mimetype: "video/mpeg" }

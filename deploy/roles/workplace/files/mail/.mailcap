@@ -2,7 +2,7 @@ application/pdf; /usr/bin/zathura %s; test=test "$DISPLAY" != ""; description=Po
 application/x-pdf; /usr/bin/zathura %s; test=test "$DISPLAY" != ""; description=Portable Document Format; nametemplate=%s.pdf
 image/vnd.djvu; /usr/bin/zathura %s; test=test "$DISPLAY" != ""; description=DjVu Format; nametemplate=%s.djvu
 image/x-djvu; /usr/bin/zathura %s; test=test "$DISPLAY" != ""; description=DjVu Format; nametemplate=%s.djvu
-text/html; /usr/bin/firefox %s; test=test "$DISPLAY" != "" ; description=HyperText; nametemplate=%s.htm
+text/html; /usr/bin/palemoon-bin %s; test=test "$DISPLAY" != "" ; description=HyperText; nametemplate=%s.htm
 video/avi; /usr/bin/vlc %s; test=test "$DISPLAY" != "" ; description=Video; nametemplate=%s.avi
 video/mpeg; /usr/bin/vlc %s; test=test "$DISPLAY" != "" ; description=Video; nametemplate=%s.mpeg
 video/x-flv; /usr/bin/vlc %s; test=test "$DISPLAY" != "" ; description=Video; nametemplate=%s.flv
