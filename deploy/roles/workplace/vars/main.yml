@@ -164,7 +164,6 @@ export_variables:
 python_pip_packages:
   - "imapautofiler"
   - "rst2pdf"
-check_packages_installed: no
 binaries_prefix: /usr/local/bin
 user_name: octocat
 user_group: octocat
