@@ -95,7 +95,7 @@ set! browser.tabs.closeWindowWithLastTab=false
 set newtab=all
 
 imap <C-х> <C-[>
-noremap <A-w> Y
+map -builtin <A-w> Y
 map -builtin <A-x> :
 map oc -js invoke_org_capture()
 map gr :source ~/.pentadactylrc
