@@ -96,6 +96,8 @@ set newtab=all
 
 imap <C-х> <C-[>
 map -builtin <A-w> Y
+map -builtin <C-Right> <C-Tab>
+map -builtin <C-Left> <C-S-Tab>
 map -builtin <A-x> :
 map oc -js invoke_org_capture()
 map gr :source ~/.pentadactylrc
