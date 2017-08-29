@@ -16,6 +16,7 @@ setup-agents() {
             eval "$(ssh-agent)"
         fi
         if [[ $gpg_agent_binary -gt 0 ]]; then
+            eval "$(gpgconf --kill gpg-agent)"
             eval "$(gpg-agent --daemon)"
         fi
     fi
