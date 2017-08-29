@@ -87,12 +87,12 @@ js <<EOJS
 EOJS
 
 js editor.defaultRegister="+"
-set editor="emacsclient" " C-e invokes editor in text fields
-set incfind " Show pattern matches as you type,
-set hlfind " Highlight previous search pattern matches,
-set findcase=smart " Ignore case in search unless pattern has uppercase chars
-set! browser.tabs.closeWindowWithLastTab=false " Do not close the window if last tab is closed.
-set newtab=all " Ex commands output in a new tab by default (prefs, addons...)
+set editor="emacsclient"
+set incfind
+set hlfind
+set findcase=smart
+set! browser.tabs.closeWindowWithLastTab=false
+set newtab=all
 
 imap <C-х> <C-[>
 noremap <A-w> Y
