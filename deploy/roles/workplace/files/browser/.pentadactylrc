@@ -93,6 +93,7 @@ set hlfind
 set findcase=smart
 set! browser.tabs.closeWindowWithLastTab=false
 set newtab=all
+set guioptions=bCrsB
 
 imap <C-х> <C-[>
 map -builtin <A-w> Y
