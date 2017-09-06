@@ -12,6 +12,7 @@ system_dirs:
   - "/etc/acpi/actions"
   - "/etc/acpi/events"
   - "/etc/udev/rules.d"
+  - "/usr/share/genkernel/defaults"
 system_files:
   - { src: "acpi/actions/powerbtn.sh", dest: "/etc/acpi/actions/powerbtn.sh" }
   - { src: "acpi/default.sh", dest: "/etc/acpi/default.sh" }
@@ -28,6 +29,7 @@ system_files:
   - { src: "xorg.conf.d/20opengl.conf", dest: "/etc/X11/xorg.conf.d/20opengl.conf" }
   - { src: "xorg.conf.d/input.conf", dest: "/etc/X11/xorg.conf.d/input.conf" }
   - { src: "xorg.conf.d/synaptics.conf", dest: "/etc/X11/xorg.conf.d/synaptics.conf" }
+  - { src: "genkernel/modules_load", dest: "/usr/share/genkernel/defaults/modules_load" }
 packages_of_interest:
   - "app-admin/pass"
   - "app-misc/jrnl"
