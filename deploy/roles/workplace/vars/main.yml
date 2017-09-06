@@ -85,6 +85,7 @@ homedir_subdirs:
   - ".zsh"
 homedir_files:
   - { src: ".Xresources", dest: ".Xresources" }
+  - { src: ".urxvtrc", dest: ".urxvtrc" }
   - { src: ".gmrunrc", dest: ".gmrunrc" }
   - { src: ".i3status.conf", dest: ".i3status.conf" }
   - { src: ".sawfishrc", dest: ".sawfish/rc" }

@@ -1,0 +1,80 @@
+! URxvt.depth: 32
+URxvt*font: xft:IosevkaCC-10:weight=bold
+! URxvt.font: xft:DejaVu Sans Mono:pixelsize=13,xft:Bitstream Vera Sans Mono
+! URxvt.font: xft:XFTMONOFONT,xft:Monospace
+! URxvt.font: xft:Terminus:slant=0:weight=80:width=100:pixelsize=14
+URxvt.geometry: 80x27
+! URxvt.lineSpace: 0
+URxvt*letterSpace: -1
+! URxvt.foreground: #f6f0e8
+URxvt.foreground: #dcdccc
+URxvt*background: #1A1A1A
+! URxvt.background: rgba:3f00/3f00/3f00/dddd
+urgentOnBell: True
+visualBell: True
+! URxvt*saveLines: 65535
+! URxvt.scrollstyle: plain
+URxvt.scrollBar: false
+! do not scroll with output
+URxvt*scrollTtyOutput: false
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+URxvt*scrollWithBuffer: true
+! scroll back to the bottom on keypress
+URxvt*scrollTtyKeypress: true
+URxvt.secondaryScreen: 1
+URxvt.secondaryScroll: 0
+! URxvt*secondaryScroll: True
+URxvt.perl-ext-common: default,matcher,clipboard
+Urxvt*perl-lib: /usr/lib/urxvt/perl/
+URxvt.url-launcher: /usr/bin/firefox
+URxvt.matcher.button: 1
+URxvt.keysym.C-Delete: perl:matcher:last
+URxvt.keysym.M-Delete: perl:matcher:list
+URxvt.perl-ext: default,keyboard-select,url-select
+!URxvt.perl-ext: selection,mark-yank-urls
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.keysym.M-w: perl:clipboard:copy
+URxvt.keysym.C-y: perl:clipboard:paste
+URxvt.url-select.launcher: /usr/bin/firefox -new-tab
+URxvt.url-select.underline: true
+URxvt.keysym.F11: perl:fullscreen:switch
+! URxvt.urlLauncher: x-www-browser
+
+URxvt*colorUL: #c5f779
+URxvt*underlineColor: #c5f779
+
+URxvt*color0: #3f3f3f
+URxvt*color1: #705050
+URxvt*color2: #60b48a
+URxvt*color3: #dfaf8f
+URxvt*color4: #506070
+URxvt*color5: #dc8cc3
+URxvt*color6: #8cd0d3
+URxvt*color7: #DCDCCC
+
+URxvt*color8: #709080
+URxvt*color9: #cc9393
+URxvt*color10: #7f9f7f
+URxvt*color11: #f0dfaf
+URxvt*color12: #94bff3
+URxvt*color13: #ec93d3
+URxvt*color14: #93e0e3
+URxvt*color15: #ffffff
+
+! URxvt.fading: 40
+! URxvt.shading: 100
+! URxvt.transparent: false
+! URxvt.fadeColor: #666666
+! URxvt.tintColor: #354040
+! URxvt.cursorBlink: false
+
+! russian utf-8
+! URxvt.matcher.pattern.0:  (?:https?:\\/\\/|ftp:\\/\\/|news:\\/\\/|mailto:|file:\\/\\/|\\bwww\\.)\n\
+!                            [a-zA-Z0-9\\x{0410}-\\x{044F}\\-\\@;\\/?:&=%\\$_.+!*\\x27,~#]*\n\
+!                            (\n\
+!                              \\([a-zA-Z0-9\\x{0410}-\\x{044F}\\-\\@;\\/?:&=%\\$_.+!*\\x27,~#]*\\)| # Allow a pair of matched parentheses\n\
+!                              [a-zA-Z0-9\\x{0410}-\\x{044F}\\-\\@;\\/?:&=%\\$_+*~]  # exclude some trailing characters (heuristic)\n\
+!                            )+
+
+! URxvt.keysym.M-u: perl:mark-yank-urls:activate_mark_mode
+! URxvt.underlineURLs: true
