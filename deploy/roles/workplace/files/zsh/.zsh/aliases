@@ -55,6 +55,8 @@ alias -g DPA='docker ps -a'
 alias -g DL='docker logs'
 alias -g DPI='docker_name_ip(){ docker ps --format "{{.Names}}" | grep $@ | xargs docker inspect -f "{{.Name}} {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" | column -t -s" " }; docker_name_ip'
 
+alias -g TF='tail -f'
+
 alias -g untar='tar xvvf'
 
 alias ls='exa -F --color=auto'
