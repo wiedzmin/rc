@@ -96,6 +96,7 @@ set newtab=all
 set guioptions=bCrsB
 
 imap <C-х> <C-[>
+map -builtin <A-ц> Y
 map -builtin <A-w> Y
 map -builtin <C-Right> <C-Tab>
 map -builtin <C-Left> <C-S-Tab>
