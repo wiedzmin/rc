@@ -205,6 +205,15 @@
   when:
     - "'xsession' in actions"
 
+- name: instantiate templated configs
+  copy:
+    content: "{{ lookup('template', '{{ item.src }}') }}"
+    dest: "{{ ansible_env.HOME }}/{{ item.dest }}"
+    mode: 0755
+  with_items: "{{ templated_configs }}"
+  when:
+    - "'setup' in actions"
+
 - name: remove tangled Emacs config
   file:
     path: "{{ emacs_config_name_tangled }}"

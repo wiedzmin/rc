@@ -5,6 +5,8 @@ project_root: "{{ project_root_rel | realpath }}"
 mail_configs_dir: "{{ role_path }}/files/mail"
 imapfilter_d_path: "{{ mail_configs_dir }}/imapfilter.d"
 imapfilter_config: "{{ mail_configs_dir }}/imapfilter-config.lua"
+default_browser_executable: palemoon-bin
+default_browser_cliargs: -new-tab
 shepherd_traits: { clone_from: "https://github.com/wiedzmin/shepherd", local_path: "/tmp/shepherd" }
 system_dirs:
   - "/etc/X11/xorg.conf.d"
@@ -97,7 +99,6 @@ homedir_files:
   - { src: ".xxkbrc", dest: ".xxkbrc" }
   - { src: "browser/.pentadactylrc", dest: ".pentadactylrc" }
   - { src: "categorize.cfg", dest: ".arbtt/categorize.cfg" }
-  - { src: "dunstrc", dest: ".config/dunst/dunstrc" }
   - { src: "emacsclient.desktop", dest: ".local/share/applications/emacsclient.desktop" }
   - { src: "gpg-agent.conf", dest: ".gnupg/gpg-agent.conf" }
   - { src: "i3.conf", dest: ".config/i3/config" }
@@ -113,6 +114,8 @@ homedir_files:
   - { src: "xmobarrc.xmonad.old", dest: ".xmonad/xmobarrc.xmonad.old" } # TODO: abstract away
   - { src: "zsh/.zsh", dest: "" }
   - { src: "zsh/.zshrc", dest: ".zshrc" }
+templated_configs:
+  - { src: "dunstrc.template", dest: ".config/dunst/dunstrc" }
 custom_scripts:
   - "hddtemp"
   - "sshuttle-down"
@@ -124,7 +127,7 @@ mime_assocs:
   - { program: "abiword", mimetype: "application/msword" }
   - { program: "feh", mimetype: "image/jpeg" }
   - { program: "feh", mimetype: "image/png" }
-  - { program: "palemoon-bin", mimetype: "text/html" }
+  - { program: "{{ default_browser_executable }}", mimetype: "text/html" }
   - { program: "vlc", mimetype: "video/avi" }
   - { program: "vlc", mimetype: "video/mp4" }
   - { program: "vlc", mimetype: "video/mpeg" }
