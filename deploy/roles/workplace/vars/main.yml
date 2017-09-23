@@ -9,6 +9,8 @@ default_browser_executable: palemoon-bin
 default_browser_cliargs: -new-tab
 shepherd_traits: { clone_from: "https://github.com/wiedzmin/shepherd", local_path: "/tmp/shepherd" }
 buildapp_traits: { clone_from: "https://github.com/xach/buildapp", local_path: "/tmp/buildapp" }
+virtualenvs_subdir: ".virtualenvs"
+workspace_path: "{{ ansible_env.HOME }}/workspace"
 system_dirs:
   - "/etc/X11/xorg.conf.d"
   - "/etc/acpi"
@@ -110,6 +112,8 @@ homedir_subdirs:
   - ".ssh"
   - ".tmux/plugins"
   - ".zsh"
+  - "{{ virtualenvs_subdir }}"
+  - "{{ workspace_path }}/python"
 homedir_files:
   - { src: ".Xresources", dest: ".Xresources" }
   - { src: ".gmrunrc", dest: ".gmrunrc" }
@@ -195,6 +199,8 @@ export_variables:
   - { name: "GTAGSLIBPATH", value: "$HOME/.gtags/" }
   - { name: "FZF_ZSH", value: "/usr/share/zsh/site-contrib/fzf.zsh" }
   - { name: "CURRENT_WM", value: "{{ xsession_current_wm }}" }
+  - { name: "WORKON_HOME", value: "$HOME/{{ virtualenvs_subdir }}" }
+  - { name: "PROJECT_HOME", value: "{{ workspace_path }}/python" }
 python_pip_packages:
   - "autopep8"
   - "flake8"
@@ -205,6 +211,7 @@ python_pip_packages:
   - "rst2pdf"
   - "snakeviz"
   - "traad"
+  - "virtualenvwrapper"
   - "yapf"
 binaries_prefix: /usr/local/bin
 user_name: octocat

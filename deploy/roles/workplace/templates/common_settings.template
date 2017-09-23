@@ -31,3 +31,5 @@ done
 export ZBEEP=$'\e[?5h\e[?5l'
 
 unset GREP_OPTIONS
+
+source `which virtualenvwrapper.sh`
