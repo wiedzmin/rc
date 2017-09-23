@@ -149,3 +149,4 @@ media-sound/ario ausioscrobbler libnotify taglib
 net-print/cups-filters jpeg pdf tiff
 dev-libs/protobuf emacs
 app-emulation/qemu -opengl
+app-emulation/libvirt qemu udev
