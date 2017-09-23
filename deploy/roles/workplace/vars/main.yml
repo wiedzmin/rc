@@ -8,6 +8,7 @@ imapfilter_config: "{{ mail_configs_dir }}/imapfilter-config.lua"
 default_browser_executable: palemoon-bin
 default_browser_cliargs: -new-tab
 shepherd_traits: { clone_from: "https://github.com/wiedzmin/shepherd", local_path: "/tmp/shepherd" }
+buildapp_traits: { clone_from: "https://github.com/xach/buildapp", local_path: "/tmp/buildapp" }
 system_dirs:
   - "/etc/X11/xorg.conf.d"
   - "/etc/acpi"
@@ -33,13 +34,32 @@ system_files:
   - { src: "xorg.conf.d/synaptics.conf", dest: "/etc/X11/xorg.conf.d/synaptics.conf" }
   - { src: "genkernel/modules_load", dest: "/usr/share/genkernel/defaults/modules_load" }
 packages_of_interest:
+  # - "app-forensics/afl" # broken at the moment --> temporarily disabled
+  # - "app-forensics/sleuthkit" # broken at the moment --> temporarily disabled
+  - "app-admin/apache-tools"
   - "app-admin/pass"
+  - "app-benchmarks/wrk"
+  - "app-doc/zeal"
+  - "app-emulation/docker"
+  - "app-emulation/docker-compose"
+  - "app-emulation/docker-machine"
+  - "app-emulation/docker-swarm"
+  - "app-misc/exercism"
+  - "app-misc/jq"
   - "app-misc/jrnl"
   - "app-misc/tmux"
   - "app-misc/tmux-mem-cpu-load"
   - "app-misc/wmname"
+  - "app-misc/workrave"
   - "app-shells/fzf"
   - "app-text/pandoc"
+  - "dev-lua/luvit"
+  - "dev-python/blockdiag"
+  - "dev-python/isort"
+  - "dev-util/cargo"
+  - "dev-util/ltrace"
+  - "dev-util/rtags"
+  - "dev-util/strace"
   - "dev-vcs/git-annex"
   - "gnome-extra/nm-applet"
   - "mail-filter/imapfilter"
@@ -50,11 +70,14 @@ packages_of_interest:
   - "net-im/telegram-cli"
   - "net-irc/hexchat"
   - "net-misc/dropbox"
+  - "net-misc/httpie"
   - "net-misc/mosh"
   - "net-misc/urlview"
   - "sys-apps/dbus"
   - "sys-apps/fbset"
+  - "sys-apps/highway"
   - "sys-apps/lm_sensors"
+  - "sys-apps/ripgrep"
   - "sys-fs/udiskie"
   - "sys-fs/udisks"
   - "sys-libs/gpm"
@@ -89,13 +112,13 @@ homedir_subdirs:
   - ".zsh"
 homedir_files:
   - { src: ".Xresources", dest: ".Xresources" }
-  - { src: ".urxvtrc", dest: ".urxvtrc" }
   - { src: ".gmrunrc", dest: ".gmrunrc" }
   - { src: ".i3status.conf", dest: ".i3status.conf" }
   - { src: ".sawfishrc", dest: ".sawfish/rc" }
   - { src: ".stalonetrayrc", dest: ".stalonetrayrc" }
   - { src: ".tmux.conf", dest: ".tmux.conf" }
   - { src: ".urlview", dest: ".urlview" }
+  - { src: ".urxvtrc", dest: ".urxvtrc" }
   - { src: ".xxkbrc", dest: ".xxkbrc" }
   - { src: "browser/.pentadactylrc", dest: ".pentadactylrc" }
   - { src: "categorize.cfg", dest: ".arbtt/categorize.cfg" }
@@ -114,6 +137,11 @@ homedir_files:
   - { src: "xmobarrc.xmonad.old", dest: ".xmonad/xmobarrc.xmonad.old" } # TODO: abstract away
   - { src: "zsh/.zsh", dest: "" }
   - { src: "zsh/.zshrc", dest: ".zshrc" }
+  - { src: '.pylintrc', dest: '.pylintrc' }
+  - { src: 'flake8', dest: '.config/flake8' }
+  - { src: 'git-commit-template', dest: 'git-commit-template' }
+  - { src: 'isort.cfg', dest: '.isort.cfg' }
+  - { src: 'pep8', dest: '.config/pep8' }
 templated_configs:
   - { src: "dunstrc.template", dest: ".config/dunst/dunstrc" }
 custom_scripts:
@@ -168,8 +196,16 @@ export_variables:
   - { name: "FZF_ZSH", value: "/usr/share/zsh/site-contrib/fzf.zsh" }
   - { name: "CURRENT_WM", value: "{{ xsession_current_wm }}" }
 python_pip_packages:
+  - "autopep8"
+  - "flake8"
   - "imapautofiler"
+  - "importmagic"
+  - "jedi"
+  - "olefile"
   - "rst2pdf"
+  - "snakeviz"
+  - "traad"
+  - "yapf"
 binaries_prefix: /usr/local/bin
 user_name: octocat
 user_group: octocat
@@ -183,3 +219,4 @@ osd_y_offset_2: 1000
 vpn_service_name: job-vpn
 cpu_usage_interval: 0.1
 palemoon_profiles_basedir: "{{ ansible_env.HOME}}/.moonchild productions/pale moon"
+insecure_docker: no
