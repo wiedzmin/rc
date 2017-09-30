@@ -17,6 +17,7 @@ portage_files:
   - "package.use/abi_x86_32"
   - "package.use/main"
   - "package.use/versioned"
+  - "package.use/python_versions"
   - "repos.conf/gentoo.conf"
 portage_overlays:
   - bar
