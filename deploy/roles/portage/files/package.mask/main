@@ -19,7 +19,6 @@
 >net-misc/unison-2.32.52
 >app-emulation/docker-machine-0.10.0
 >sys-devel/clang-3.8.1-r100
->media-gfx/imagemagick-6.9.5.10
 >sys-kernel/genkernel-3.4.52.4-r2
 >sys-libs/binutils-libs-2.25.1-r2
 >sys-devel/llvm-3.8.1-r2
