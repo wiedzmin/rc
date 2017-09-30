@@ -227,3 +227,17 @@ vpn_service_name: job-vpn
 cpu_usage_interval: 0.1
 palemoon_profiles_basedir: "{{ ansible_env.HOME}}/.moonchild productions/pale moon"
 insecure_docker: no
+default_user_name: octocat
+default_user_groups:
+  - bumblebee
+  - docker
+  - libvirt
+  - plugdev
+  - scanner
+  - vboxusers
+  - video
+  - wheel
+user_shells:
+  - bash
+  - zsh
+default_user_shell: zsh

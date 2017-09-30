@@ -8,6 +8,21 @@
   tags:
     - always
 
+- name: shells | collect binaries
+  shell: "which {{ item }}"
+  register: user_shell_binaries
+  with_items:
+    - "{{ user_shells }}"
+  tags:
+    - always
+
+- name: Populate shell binaries
+  set_fact:
+    user_shell_binaries: "{{ user_shell_binaries | default({}) | combine( {item.item: item.stdout} ) }}"
+  with_items: "{{ user_shell_binaries.results }}"
+  tags:
+    - always
+
 - name: ensure some system dirs exists
   file:
     path: "{{ item }}"
@@ -32,6 +47,15 @@
     mode: 0755
   become: yes
   with_items: "{{ system_files }}"
+  when:
+    - "'setup' in actions"
+
+- name: ensure default user traits
+  user:
+    name: "{{ default_user_name }}"
+    shell: "{{ user_shell_binaries[default_user_shell] }}"
+    groups: "{{ default_user_groups | join(',') }}"
+  become: yes
   when:
     - "'setup' in actions"
 
