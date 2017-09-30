@@ -57,6 +57,7 @@ packages_of_interest:
   - "app-text/pandoc"
   - "dev-lua/luvit"
   - "dev-python/blockdiag"
+  - "dev-python/mypy"
   - "dev-util/cargo"
   - "dev-util/ltrace"
   - "dev-util/rtags"
