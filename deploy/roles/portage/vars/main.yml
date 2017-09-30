@@ -31,7 +31,6 @@ portage_overlays:
   - jorgicio
   - lisp
   - mva
-  - posativ
   - qwin-overlay
   - raiagent
   - palemoon
