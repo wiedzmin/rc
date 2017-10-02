@@ -56,6 +56,8 @@ alias -g DL='docker logs'
 alias -g DPI='docker_name_ip(){ docker ps --format "{{.Names}}" | grep $@ | xargs docker inspect -f "{{.Name}} {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" | column -t -s" " }; docker_name_ip'
 alias -g DIM='docker inspect -f "{{ .Mounts }}"'
 
+alias -g jcurl='curl_jq(){ curl $@ | jq . }; curl_jq'
+
 alias -g TF='tail -f'
 
 alias -g untar='tar xvvf'
