@@ -9,6 +9,9 @@ default_browser_executable: palemoon-bin
 default_browser_cliargs: -new-tab
 shepherd_traits: { clone_from: "https://github.com/wiedzmin/shepherd", local_path: "/tmp/shepherd" }
 buildapp_traits: { clone_from: "https://github.com/xach/buildapp", local_path: "/tmp/buildapp" }
+go_fonts_traits: { clone_from: "https://go.googlesource.com/image", local_path: "/tmp/go-fonts" }
+go_fonts_ttf_subpath: "font/gofont/ttfs"
+fonts_ttf_location: "/usr/share/fonts/TTF"
 virtualenvs_subdir: ".virtualenvs"
 workspace_path: "{{ ansible_env.HOME }}/workspace"
 system_dirs:
