@@ -1,5 +1,5 @@
 ! URxvt.depth: 32
-URxvt*font: xft:IosevkaCC-10:weight=bold
+URxvt*font: xft:IosevkaCC-11:weight=bold
 ! URxvt.font: xft:DejaVu Sans Mono:pixelsize=13,xft:Bitstream Vera Sans Mono
 ! URxvt.font: xft:XFTMONOFONT,xft:Monospace
 ! URxvt.font: xft:Terminus:slant=0:weight=80:width=100:pixelsize=14
