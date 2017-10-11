@@ -119,7 +119,6 @@ homedir_subdirs:
   - "{{ virtualenvs_subdir }}"
   - "{{ workspace_path }}/python"
 homedir_files:
-  - { src: ".Xresources", dest: ".Xresources" }
   - { src: ".gmrunrc", dest: ".gmrunrc" }
   - { src: ".i3status.conf", dest: ".i3status.conf" }
   - { src: ".sawfishrc", dest: ".sawfish/rc" }
@@ -151,7 +150,24 @@ homedir_files:
   - { src: 'pep8', dest: '.config/pep8' }
 templated_configs:
   - { src: "dunstrc.template", dest: ".config/dunst/dunstrc" }
+  - { src: ".Xresources.template", dest: ".Xresources" }
   - { src: ".urxvtrc.template", dest: ".urxvtrc" }
+  - { src: ".xftrc.template", dest: ".xftrc" }
+  - { src: ".emacsrc.template", dest: ".emacsrc" }
+xresources_subconfigs: # FIXME: remove duplication somehow
+  - { file: ".urxvtrc", enabled: yes }
+  - { file: ".xftrc", enabled: yes }
+  - { file: ".emacsrc", enabled: yes }
+xft_fonts:
+  - "Consolas:size=12"
+  - "PTMono:size=12"
+  - "Hack:size=12"
+  - "IosevkaCC-8:weight=bold"
+  - "mononoki-10:weight=bold"
+  - "Fantasque Sans Mono:style=Bold:size=14"
+  - "Go Mono:style=Bold:size=12"
+  - "Input Mono:weight=Bold:size=11"
+xft_font_current: "{{ xft_fonts.3 }}"
 custom_scripts:
   - "hddtemp"
   - "sshuttle-down"

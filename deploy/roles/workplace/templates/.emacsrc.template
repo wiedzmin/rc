@@ -1,0 +1,8 @@
+!Emacs*useXIM:false
+Emacs.FontBackend: xft,x
+Emacs*XlwMenu.font: XFTMONOFONT
+Emacs.dialog*.font: XFTMONOFONT
+Emacs*Paned*XlwMenu.background: gray90
+Emacs*Paned*XlwMenu.foreground: black
+Emacs.fullscreen: maximized
+Emacs.Font: XFTMONOFONT
