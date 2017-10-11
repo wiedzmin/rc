@@ -106,3 +106,7 @@ x11-misc/tint2 battery examples tint2conf
 # required by www-client/palemoon-bin-27.4.1::palemoon
 # required by www-client/palemoon-bin (argument)
 >=virtual/ffmpeg-9-r2 x264
+
+# required by dev-lua/luacheck-0.20.0::gentoo
+# required by dev-lua/luacheck (argument)
+>=dev-lua/luafilesystem-1.6.3 luajit
