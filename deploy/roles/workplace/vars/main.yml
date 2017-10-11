@@ -125,7 +125,6 @@ homedir_files:
   - { src: ".stalonetrayrc", dest: ".stalonetrayrc" }
   - { src: ".tmux.conf", dest: ".tmux.conf" }
   - { src: ".urlview", dest: ".urlview" }
-  - { src: ".urxvtrc", dest: ".urxvtrc" }
   - { src: ".xxkbrc", dest: ".xxkbrc" }
   - { src: "browser/.pentadactylrc", dest: ".pentadactylrc" }
   - { src: "categorize.cfg", dest: ".arbtt/categorize.cfg" }
@@ -151,6 +150,7 @@ homedir_files:
   - { src: 'pep8', dest: '.config/pep8' }
 templated_configs:
   - { src: "dunstrc.template", dest: ".config/dunst/dunstrc" }
+  - { src: ".urxvtrc.template", dest: ".urxvtrc" }
 custom_scripts:
   - "hddtemp"
   - "sshuttle-down"

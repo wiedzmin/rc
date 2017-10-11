@@ -36,7 +36,8 @@ URxvt.perl-ext: default,keyboard-select,url-select
 URxvt.keysym.M-u: perl:url-select:select_next
 URxvt.keysym.M-w: perl:clipboard:copy
 URxvt.keysym.C-y: perl:clipboard:paste
-URxvt.url-select.launcher: /usr/bin/firefox -new-tab
+URxvt.url-select.launcher: {{ default_browser_executable }} {{ default_browser_cliargs }}
+
 URxvt.url-select.underline: true
 URxvt.keysym.F11: perl:fullscreen:switch
 ! URxvt.urlLauncher: x-www-browser
