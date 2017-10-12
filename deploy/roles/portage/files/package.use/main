@@ -129,7 +129,7 @@ x11-misc/xmobar inotify mail mpd mpris timezone wifi xft
 x11-misc/xscreensaver jpeg
 x11-plugins/vicious contrib
 x11-terms/gnome-terminal -gnome-shell -nautilus
-x11-terms/rxvt-unicode blink fading-colors startup-notification unicode3 xft
+x11-terms/rxvt-unicode 256-color blink fading-colors pixbuf startup-notification unicode3 xft
 x11-wm/enlightenment xcomposite xinerama xrandr
 x11-wm/notion xinerama
 x11-wm/sawfish emacs xinerama
