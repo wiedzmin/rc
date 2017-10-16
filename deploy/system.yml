@@ -1,6 +1,6 @@
 - hosts: localhost
   roles:
-    - role: portage
+    - role: system
       actions:
         - bootstrap
         - setup

@@ -20,6 +20,8 @@ portage_files:
   - "package.use/python_versions"
   - "repos.conf/gentoo.conf"
   - "package.env"
+aux_files:
+  - "rc.conf"
 portage_overlays:
   - bar
   - chaos

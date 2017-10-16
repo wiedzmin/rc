@@ -16,13 +16,23 @@
   when:
     - "'bootstrap' in actions"
 
-- name: copy files
+- name: copy Portage files
   copy:
-    src: "{{ role_path }}/files/{{ item }}"
+    src: "{{ role_path }}/files/portage/{{ item }}"
     dest: "/etc/portage/{{ item }}"
     mode: 0755
   become: yes
   with_items: "{{ portage_files }}"
+  when:
+    - "'setup' in actions"
+
+- name: copy auxillary files
+  copy:
+    src: "{{ role_path }}/files/{{ item }}"
+    dest: "/etc/{{ item }}"
+    mode: 0755
+  become: yes
+  with_items: "{{ aux_files }}"
   when:
     - "'setup' in actions"
 
@@ -87,7 +97,7 @@
 
 - name: symlink local overlay files # TODO: think of copy instead of linking
   file:
-    src: "{{ role_path }}/files/local_overlay"
+    src: "{{ role_path }}/files/portage/local_overlay"
     dest: /usr/local/portage
     state: link
   become: yes
