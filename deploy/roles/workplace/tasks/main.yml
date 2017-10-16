@@ -335,3 +335,11 @@
 # shell: rc-update add {{ item.name }} {{ item.level }}
 # with_items: {{ rc_update_items }}
 # and maybe export and delete all previous data before this
+
+- name: add private hosts
+  blockinfile:
+    dest: /etc/hosts
+    block: "{{ private_hosts_data }}"
+  become: yes
+  when:
+    - "'setup' in actions"

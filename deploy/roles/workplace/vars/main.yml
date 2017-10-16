@@ -264,3 +264,4 @@ user_shells:
   - bash
   - zsh
 default_user_shell: zsh
+private_hosts_data: "{{ lookup('file', '{{ role_path }}/files/_private_/hosts') }}"
