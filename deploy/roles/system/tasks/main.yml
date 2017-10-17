@@ -95,11 +95,13 @@
     - "'setup' in actions"
     - check_packages_installed
 
-- name: symlink local overlay files # TODO: think of copy instead of linking
-  file:
-    src: "{{ role_path }}/files/portage/local_overlay"
+- name: copy local overlay files
+  copy:
+    src: "{{ role_path }}/files/portage/local_overlay/"
     dest: /usr/local/portage
-    state: link
+    owner: portage
+    group: portage
+    mode: 0755
   become: yes
   when:
     - "'setup' in actions"
