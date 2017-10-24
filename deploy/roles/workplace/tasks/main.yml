@@ -343,3 +343,10 @@
   become: yes
   when:
     - "'setup' in actions"
+
+- name: install Go packages form source
+  command: "go get -u {{ item.url }}"
+  with_items: "{{ go_package_urls }}"
+  become: "{{ item.become }}"
+  tags:
+    - golang

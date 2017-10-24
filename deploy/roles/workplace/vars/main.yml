@@ -267,3 +267,16 @@ user_shells:
   - zsh
 default_user_shell: zsh
 private_hosts_data: "{{ lookup('file', '{{ role_path }}/files/_private_/hosts') }}"
+go_package_urls:
+  - { url: "github.com/nsf/gocode", become: no }
+  - { url: "github.com/rogpeppe/godef", become: no }
+  - { url: "github.com/jstemmer/gotags", become: no }
+  - { url: "github.com/kisielk/errcheck", become: no }
+  - { url: "golang.org/x/tools/cmd/guru", become: no }
+  - { url: "github.com/golang/lint/golint", become: no }
+  - { url: "golang.org/x/tools/cmd/gorename", become: no }
+  - { url: "golang.org/x/tools/cmd/goimports", become: no }
+  - { url: "golang.org/x/tools/cmd/godoc", become: yes }
+  - { url: "github.com/alecthomas/gometalinter", become: no }
+  - { url: "github.com/godoctor/godoctor", become: no }
+  - { url: "github.com/smartystreets/goconvey", become: no }
