@@ -146,7 +146,6 @@ homedir_files:
   - { src: "xmobarrc-noinet", dest: ".xmonad/xmobarrc-noinet" } # TODO: abstract away
   - { src: "xmobarrc.xmonad.old", dest: ".xmonad/xmobarrc.xmonad.old" } # TODO: abstract away
   - { src: "zsh/.zsh", dest: "" }
-  - { src: "zsh/.zshrc", dest: ".zshrc" }
   - { src: '.pylintrc', dest: '.pylintrc' }
   - { src: 'flake8', dest: '.config/flake8' }
   - { src: 'git-commit-template', dest: 'git-commit-template' }
@@ -280,3 +279,19 @@ go_package_urls:
   - { url: "github.com/alecthomas/gometalinter", become: no }
   - { url: "github.com/godoctor/godoctor", become: no }
   - { url: "github.com/smartystreets/goconvey", become: no }
+oh_my_zsh_plugins_enabled:
+  - dircycle
+  - fasd
+  - nyan
+  - urltools
+  - zsh-syntax-highlighting
+  - sudo
+  - fzf-marks
+  - docker
+  - docker-compose
+  - emacs
+  - pip
+  - virtualenvwrapper
+  - virtualenv
+  - git-prompt
+  - golang

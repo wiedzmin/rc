@@ -110,6 +110,14 @@
   when:
     - "'setup' in actions"
 
+- name: instantiate .zshrc
+  copy:
+    content: "{{ lookup('template', '.zshrc.template') }}"
+    dest: "{{ ansible_env.HOME }}/.zshrc"
+    mode: 0755
+  when:
+    - "'setup' in actions"
+
 - stat: path={{ ansible_env.HOME }}/.bashrc
   register: bashrc
   when:
