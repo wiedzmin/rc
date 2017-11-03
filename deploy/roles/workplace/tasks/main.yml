@@ -352,7 +352,7 @@
   when:
     - "'setup' in actions"
 
-- name: install Go packages form source
+- name: install Go packages from source
   command: "go get -u {{ item.url }}"
   with_items: "{{ go_package_urls }}"
   become: "{{ item.become }}"
