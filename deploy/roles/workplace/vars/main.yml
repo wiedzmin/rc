@@ -111,6 +111,7 @@ packages_of_interest:
 packages_disabled:
   - "app-forensics/afl" # broken at the moment
   - "app-forensics/sleuthkit" # broken at the moment
+  - "dev-vcs/git-extras" # later
 homedir_subdirs:
   - ".config/dunst"
   - ".config/i3"
