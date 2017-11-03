@@ -56,3 +56,5 @@ else
 fi
 
 eval "$(direnv hook zsh)"
+
+# TODO: automate oh-my-zsh deployment
