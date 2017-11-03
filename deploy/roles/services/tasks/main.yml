@@ -3,8 +3,7 @@
 - name: register current time
   shell: "date +%Y%m%d%H%M%S"
   register: current_run_timestamp
-  tags:
-    - always
+  tags: [always]
 
 - name: ensure VPN custom config directory exist
   file:

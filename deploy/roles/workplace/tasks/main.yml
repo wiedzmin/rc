@@ -5,23 +5,20 @@
 - name: register current time
   shell: "date +%Y%m%d%H%M%S"
   register: current_run_timestamp
-  tags:
-    - always
+  tags: [always]
 
 - name: shells | collect binaries
   shell: "which {{ item }}"
   register: user_shell_binaries
   with_items:
     - "{{ user_shells }}"
-  tags:
-    - always
+  tags: [always]
 
 - name: Populate shell binaries
   set_fact:
     user_shell_binaries: "{{ user_shell_binaries | default({}) | combine( {item.item: item.stdout} ) }}"
   with_items: "{{ user_shell_binaries.results }}"
-  tags:
-    - always
+  tags: [always]
 
 - name: ensure some system dirs exists
   file:
@@ -137,21 +134,18 @@
     repo: "{{ shepherd_traits.clone_from }}"
     dest: "{{ shepherd_traits.local_path }}"
     force: yes
-  tags:
-    - shepherd
+  tags: [shepherd]
 
 - name: accompanying tools | shepherd build (mail checking tool)
   make:
     chdir: "{{ shepherd_traits.local_path }}"
     target: all
-  tags:
-    - shepherd
+  tags: [shepherd]
 
 - name: accompanying tools | shepherd install (mail checking tool)
   shell: "mv {{ shepherd_traits.local_path }}/builds/shepherd /usr/local/bin/shepherd"
   become: yes
-  tags:
-    - shepherd
+  tags: [shepherd]
 
 - name: install tmux plugin manager
   git:
@@ -166,15 +160,13 @@
     state: absent
   when:
     - "'setup' in actions"
-  tags:
-    - imapfilter
+  tags: [imapfilter]
 
 - name: imapfilter | seed base config
   shell: "cat {{ mail_configs_dir }}/imapfilter-base.lua >> {{ imapfilter_config }} && echo -e -n '\n' >> {{ imapfilter_config }}"
   when:
     - "'setup' in actions"
-  tags:
-    - imapfilter
+  tags: [imapfilter]
 
 - name: imapfilter | populate with account configs
   shell: "cat {{ item }} >> {{ imapfilter_config }} && echo -e -n '\n' >> {{ imapfilter_config }}"
@@ -182,8 +174,7 @@
     - "{{ imapfilter_d_path }}/*"
   when:
     - "'setup' in actions"
-  tags:
-    - imapfilter
+  tags: [imapfilter]
 
 - name: imapfilter | copy generated config file
   copy:
@@ -191,8 +182,7 @@
     dest: "{{ ansible_env.HOME }}/.imapfilter/config.lua"
   when:
     - "'setup' in actions"
-  tags:
-    - imapfilter
+  tags: [imapfilter]
 
 - name: imapfilter | Remove generated config file
   file:
@@ -200,8 +190,7 @@
     state: absent
   when:
     - "'setup' in actions"
-  tags:
-    - imapfilter
+  tags: [imapfilter]
 
 - name: register org-protocol handler in mimeapps
   lineinfile:
@@ -356,8 +345,7 @@
   command: "go get -u {{ item.url }}"
   with_items: "{{ go_package_urls }}"
   become: "{{ item.become }}"
-  tags:
-    - golang
+  tags: [golang]
 
 - name: symlink Go tools binaries to mainstream path
   file:
@@ -367,8 +355,7 @@
   with_fileglob:
     - "{{ go_bin_path }}/*"
   become: yes
-  tags:
-    - golang
+  tags: [golang]
 
 - name: setup gometalinter
   shell: gometalinter --install --update
@@ -377,5 +364,4 @@
         - gometalinter
       paths:
         - "{{ go_bin_path }}"
-  tags:
-    - golang
+  tags: [golang]
