@@ -54,3 +54,5 @@ else
     source ~/.zsh/custom
     source ~/.zsh/bindkeys
 fi
+
+eval "$(direnv hook zsh)"

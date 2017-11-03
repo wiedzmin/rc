@@ -106,6 +106,7 @@ packages_of_interest:
   - "x11-misc/xxkb"
   - "x11-misc/yeganesh"
   - "x11-terms/rxvt-unicode"
+  - "dev-util/direnv"
 packages_disabled:
   - "app-forensics/afl" # broken at the moment
   - "app-forensics/sleuthkit" # broken at the moment
