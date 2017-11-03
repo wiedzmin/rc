@@ -283,6 +283,7 @@ go_package_urls:
   - { url: "github.com/alecthomas/gometalinter", become: no }
   - { url: "github.com/godoctor/godoctor", become: no }
   - { url: "github.com/smartystreets/goconvey", become: no }
+go_bin_path: "{{ ansible_env.HOME }}/workspace/gocode/bin"
 oh_my_zsh_plugins_enabled:
   - dircycle
   - fasd
