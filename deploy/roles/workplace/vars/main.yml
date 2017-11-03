@@ -39,8 +39,6 @@ system_files:
   - { src: "xorg.conf.d/synaptics.conf", dest: "/etc/X11/xorg.conf.d/synaptics.conf" }
   - { src: "genkernel/modules_load", dest: "/usr/share/genkernel/defaults/modules_load" }
 packages_of_interest:
-  # - "app-forensics/afl" # broken at the moment --> temporarily disabled
-  # - "app-forensics/sleuthkit" # broken at the moment --> temporarily disabled
   - "app-admin/apache-tools"
   - "app-admin/pass"
   - "app-benchmarks/wrk"
@@ -108,6 +106,9 @@ packages_of_interest:
   - "x11-misc/xxkb"
   - "x11-misc/yeganesh"
   - "x11-terms/rxvt-unicode"
+packages_disabled:
+  - "app-forensics/afl" # broken at the moment
+  - "app-forensics/sleuthkit" # broken at the moment
 homedir_subdirs:
   - ".config/dunst"
   - ".config/i3"
