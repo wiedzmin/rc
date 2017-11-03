@@ -358,3 +358,14 @@
   become: "{{ item.become }}"
   tags:
     - golang
+
+- name: symlink Go tools binaries to mainstream path
+  file:
+    src: "{{ item }}"
+    dest: "/usr/bin/{{ item | basename }}"
+    state: link
+  with_fileglob:
+    - "{{ ansible_env.HOME }}/workspace/gocode/bin/*"
+  become: yes
+  tags:
+    - golang
