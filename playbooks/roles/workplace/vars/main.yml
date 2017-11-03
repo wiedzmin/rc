@@ -269,7 +269,7 @@ user_shells:
   - bash
   - zsh
 default_user_shell: zsh
-private_hosts_data: "{{ lookup('file', '{{ role_path }}/files/_private_/hosts') }}"
+private_hosts_data: "{{ lookup('file', '{{ playbook_dir }}/../private/work_hosts') }}"
 go_package_urls:
   - { url: "github.com/nsf/gocode", become: no }
   - { url: "github.com/rogpeppe/godef", become: no }
