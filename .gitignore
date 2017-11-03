@@ -1,7 +1,7 @@
 */**/*private
 *bookmark*
 .tramp_history
-deploy/inventory.ini
+inventory.ini
 private
 system-index.txt
 utils/buildapp
