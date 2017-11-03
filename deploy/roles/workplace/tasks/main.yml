@@ -369,3 +369,13 @@
   become: yes
   tags:
     - golang
+
+- name: setup gometalinter
+  shell: gometalinter --install --update
+  with_first_found:
+    - files:
+        - gometalinter
+      paths:
+        - "{{ go_bin_path }}"
+  tags:
+    - golang
