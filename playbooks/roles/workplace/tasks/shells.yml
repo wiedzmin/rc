@@ -1,0 +1,53 @@
+- include_vars: xsession.yml
+  tags: [shells]
+
+- name: shells | collect binaries
+  tags: [shells]
+  shell: "which {{ item }}"
+  register: user_shell_binaries
+  with_items:
+    - "{{ user_shells }}"
+
+- name: Populate shell binaries
+  tags: [shells]
+  set_fact:
+    user_shell_binaries: "{{ user_shell_binaries | default({}) | combine( {item.item: item.stdout} ) }}"
+  with_items: "{{ user_shell_binaries.results }}"
+
+- name: ensure default user traits
+  tags: [shells]
+  user:
+    name: "{{ default_user_name }}"
+    shell: "{{ user_shell_binaries[default_user_shell] }}"
+    groups: "{{ default_user_groups | join(',') }}"
+  become: yes
+
+- name: instantiate common settings
+  tags: [shells]
+  copy:
+    content: "{{ lookup('template', 'shell/{{ item }}.template') }}"
+    dest: "{{ ansible_env.HOME }}/{{ item }}"
+    mode: 0755
+  with_items:
+    - "{{ common_settings_basenames }}"
+
+- name: instantiate .zshrc
+  tags: [shells, zsh]
+  copy:
+    content: "{{ lookup('template', 'shell/.zshrc.template') }}"
+    dest: "{{ ansible_env.HOME }}/.zshrc"
+    mode: 0755
+
+- name: check if .bashrc exists
+  tags: [shells, bash]
+  stat: path={{ ansible_env.HOME }}/.bashrc
+  register: bashrc
+
+- name: source common settings
+  tags: [shells, bash]
+  lineinfile:
+    dest: "{{ ansible_env.HOME }}/.bashrc"
+    line: "source ~/common_settings_bash"
+    state: present
+  when:
+    - bashrc.stat.exists == True

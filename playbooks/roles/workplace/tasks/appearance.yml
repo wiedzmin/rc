@@ -1,0 +1,16 @@
+- include_vars: appearance.yml
+  tags: [appearance]
+
+- name: Go fonts | clone repo
+  tags: [appearance, fonts]
+  git:
+    repo: "{{ go_fonts_traits.clone_from }}"
+    dest: "{{ go_fonts_traits.local_path }}"
+    force: yes
+
+- name: Go fonts | install
+  tags: [appearance, fonts]
+  copy:
+    src: "{{ go_fonts_traits.local_path }}/{{ go_fonts_ttf_subpath }}"
+    dest: "{{ fonts_ttf_location }}"
+  become: yes

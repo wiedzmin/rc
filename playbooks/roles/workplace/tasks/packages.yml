@@ -1,0 +1,20 @@
+# TODO think of moving this to shell level
+# consult with "world" file
+# reduce time for checks
+- name: ensure some packages installed
+  tags: [packages, system]
+  portage:
+    package: "{{ item }}"
+    state: present
+  with_items: "{{ packages_of_interest }}"
+  become: yes
+  when:
+    - check_packages_installed
+
+- name: install pip packages (Python)
+  tags: [packages, python]
+  pip:
+    name: "{{ item }}"
+    state: latest
+    extra_args: --user
+  with_items: "{{ python_pip_packages }}"

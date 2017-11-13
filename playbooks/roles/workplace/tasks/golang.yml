@@ -1,0 +1,27 @@
+- include_vars: golang.yml
+  tags: [golang]
+
+- name: install Go packages from source
+  tags: [golang]
+  command: "go get -u {{ item.url }}"
+  with_items: "{{ go_package_urls }}"
+  become: "{{ item.become }}"
+
+- name: symlink Go tools binaries to mainstream path
+  tags: [golang]
+  file:
+    src: "{{ item }}"
+    dest: "/usr/bin/{{ item | basename }}"
+    state: link
+  with_fileglob:
+    - "{{ go_bin_path }}/*"
+  become: yes
+
+- name: setup gometalinter
+  tags: [golang]
+  shell: gometalinter --install --update
+  with_first_found:
+    - files:
+        - gometalinter
+      paths:
+        - "{{ go_bin_path }}"

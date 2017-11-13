@@ -1,0 +1,27 @@
+- name: instantiate Docker config
+  tags: [dev, docker]
+  copy:
+    content: "{{ lookup('template', 'dev/docker.template') }}"
+    dest: "/etc/conf.d/docker"
+    mode: 0500
+    owner: root
+    group: root
+  become: yes
+  register: docker_config
+
+- name: restart Docker service
+  tags: [dev, docker]
+  shell: rc-service docker restart
+  become: yes
+  when:
+    - docker_config.changed
+
+- name: prepare global gitconfig
+  tags: [dev, git]
+  copy:
+    content: "{{ lookup('template', 'dev/gitconfig.template') }}"
+    dest: "/etc/gitconfig"
+    mode: 0544
+    owner: root
+    group: root
+  become: yes

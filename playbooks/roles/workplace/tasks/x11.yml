@@ -1,0 +1,39 @@
+- include_vars: xsession.yml
+  tags: [always]
+
+- name: register org-protocol handler in mimeapps
+  tags: [x11]
+  lineinfile:
+    dest: "{{ ansible_env.HOME }}/.local/share/applications/mimeapps.list"
+    line: x-scheme-handler/org-protocol=emacsclient.desktop
+    state: present
+
+- name: setup xdg-open associations
+  tags: [x11]
+  shell: "xdg-mime default {{ item.program }}.desktop {{ item.mimetype }}"
+  with_items: "{{ mime_assocs }}"
+
+- name: generate OSD statusbar script
+  tags: [x11]
+  copy:
+    content: "{{ lookup('template', 'x11/statusbar_osd.template') }}"
+    dest: "{{ binaries_prefix }}/statusbar_osd"
+    mode: 0755
+    owner: "{{ user_name }}"
+    group: "{{ user_group }}"
+
+- name: generate .xsession script
+  tags: [x11]
+  copy:
+    content: "{{ lookup('template', 'x11/.xsession.template') }}"
+    dest: "{{ ansible_env.HOME }}/.xsession"
+    mode: 0755
+  register: xsession_script
+
+- name: remove tangled Emacs config
+  tags: [x11]
+  file:
+    path: "{{ emacs_config_name_tangled }}"
+    state: absent
+  when:
+    - xsession_script.changed

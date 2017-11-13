@@ -1,0 +1,14 @@
+- name: ensure some system dirs exists
+  tags: [paths, system]
+  file:
+    path: "{{ item }}"
+    state: directory
+  become: yes
+  with_items: "{{ system_dirs }}"
+
+- name: ensure home subdirs exist
+  tags: [paths, home]
+  file:
+    path: "{{ ansible_env.HOME }}/{{ item }}"
+    state: directory
+  with_items: "{{ homedir_subdirs }}"

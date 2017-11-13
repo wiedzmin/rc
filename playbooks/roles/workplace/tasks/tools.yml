@@ -1,0 +1,68 @@
+- name: accompanying tools | shepherd build (mail checking tool)
+  tags: [tools, shepherd]
+  git:
+    repo: "{{ shepherd_traits.clone_from }}"
+    dest: "{{ shepherd_traits.local_path }}"
+    force: yes
+
+- name: accompanying tools | shepherd build (mail checking tool)
+  tags: [tools, shepherd]
+  make:
+    chdir: "{{ shepherd_traits.local_path }}"
+    target: all
+
+- name: accompanying tools | shepherd install (mail checking tool)
+  tags: [tools, shepherd]
+  shell: "mv {{ shepherd_traits.local_path }}/builds/shepherd /usr/local/bin/shepherd"
+  become: yes
+
+- name: install tmux plugin manager
+  tags: [tools, tmux]
+  git:
+    repo: https://github.com/tmux-plugins/tpm
+    dest: "{{ ansible_env.HOME }}/.tmux/plugins/tpm"
+
+- name: imapfilter | remove old config file
+  tags: [tools, imapfilter]
+  file:
+    path: "{{ imapfilter_config }}"
+    state: absent
+
+- name: imapfilter | seed base config
+  tags: [tools, imapfilter]
+  shell: "cat {{ mail_configs_dir }}/imapfilter-base.lua >> {{ imapfilter_config }} && echo -e -n '\n' >> {{ imapfilter_config }}"
+
+- name: imapfilter | populate with account configs
+  tags: [tools, imapfilter]
+  shell: "cat {{ item }} >> {{ imapfilter_config }} && echo -e -n '\n' >> {{ imapfilter_config }}"
+  with_fileglob:
+    - "{{ imapfilter_d_path }}/*"
+
+- name: imapfilter | copy generated config file
+  tags: [tools, imapfilter]
+  copy:
+    src: "{{ imapfilter_config }}"
+    dest: "{{ ansible_env.HOME }}/.imapfilter/config.lua"
+
+- name: imapfilter | Remove generated config file
+  tags: [tools, imapfilter]
+  file:
+    path: "{{ imapfilter_config }}"
+    state: absent
+
+- name: Buildapp | clone repo
+  tags: [tools, buildapp]
+  git:
+    repo: "{{ buildapp_traits.clone_from }}"
+    dest: "{{ buildapp_traits.local_path }}"
+    force: yes
+
+- name: Buildapp
+  tags: [tools, buildapp]
+  make:
+    chdir: "{{ buildapp_traits.local_path }}"
+    target: "{{ item }}"
+  with_items:
+    - buildapp
+    - install
+  become: yes

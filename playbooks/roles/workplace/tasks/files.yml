@@ -1,0 +1,36 @@
+- include_vars: files.yml
+  tags: [files]
+
+- name: copy system files
+  tags: [files, system]
+  copy:
+    src: "{{ role_path }}/files/{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: 0755
+  become: yes
+  with_items: "{{ system_files }}"
+
+- name: copy homedir files
+  tags: [files, home]
+  copy:
+    src: "{{ role_path }}/files/{{ item.src }}"
+    dest: "{{ ansible_env.HOME }}/{{ item.dest }}"
+    mode: 0755
+  with_items: "{{ homedir_files }}"
+
+- name: copy custom scripts
+  tags: [files, scripts]
+  copy:
+    src: "{{ role_path }}/files/scripts/{{ item }}"
+    dest: "/usr/local/bin/{{ item }}"
+    mode: 0755
+  with_items: "{{ custom_scripts }}"
+  become: yes
+
+- name: instantiate templated configs
+  tags: [files, templated]
+  copy:
+    content: "{{ lookup('template', '{{ item.src }}') }}"
+    dest: "{{ ansible_env.HOME }}/{{ item.dest }}"
+    mode: 0755
+  with_items: "{{ templated_configs }}"
