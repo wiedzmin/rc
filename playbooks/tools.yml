@@ -1,7 +1,0 @@
-- hosts: localhost
-  roles:
-    - role: tools
-      telegram_version: 1.1.7
-      actions:
-        - bootstrap
-        - setup

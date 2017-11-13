@@ -1,5 +1,14 @@
-shepherd_traits: { clone_from: "https://github.com/wiedzmin/shepherd", local_path: "/tmp/shepherd" }
 imapfilter_config: "{{ mail_configs_dir }}/imapfilter-config.lua"
 mail_configs_dir: "{{ role_path }}/files/mail"
 imapfilter_d_path: "{{ mail_configs_dir }}/imapfilter.d"
 buildapp_traits: { clone_from: "https://github.com/xach/buildapp", local_path: "/tmp/buildapp" }
+shepherd_traits: { clone_from: "https://github.com/wiedzmin/shepherd", local_path: "/tmp/shepherd" }
+gqs_traits: { clone_from: "https://github.com/arzzen/git-quick-stats", local_path: "/tmp/git-quick-stats" }
+addrlookup_traits: { clone_from: "https://github.com/aperezdc/notmuch-addrlookup-c", local_path: "/tmp/notmuch-addrlookup-c" }
+tmuxifier_traits: { clone_from: "https://github.com/jimeh/tmuxifier", local_path: "{{ ansible_env.HOME }}/.tmuxifier" }
+zshnip_traits: { clone_from: "https://github.com/facetframer/zshnip", local_path: "/tmp/zshnip" }
+ffdc_traits: { clone_from: "https://github.com/Unode/firefox_decrypt", local_path: "/tmp/firefox_decrypt" }
+hr_traits: { clone_from: "https://github.com/LuRsT/hr", local_path: "/tmp/hr" }
+tbdiff_traits: { clone_from: "https://github.com/trast/tbdiff", local_path: "/tmp/tbdiff" }
+exa_traits: { clone_from: "https://github.com/ogham/exa.git", local_path: "/tmp/exa" }
+telegram_version: 1.1.23

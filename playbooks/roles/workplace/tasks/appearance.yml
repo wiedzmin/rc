@@ -14,3 +14,5 @@
     src: "{{ go_fonts_traits.local_path }}/{{ go_fonts_ttf_subpath }}"
     dest: "{{ fonts_ttf_location }}"
   become: yes
+
+# TODO: think of fonts setup automating (e.g. dowloading, copying, updating fontcache, whatever)
