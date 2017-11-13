@@ -1,0 +1,48 @@
+- include_vars: "{{ item }}"
+  tags: [services]
+  with_items:
+    - vpn.yml
+    - paths.yml
+    - services.yml
+
+- name: install openrc entry
+  tags: [services, shepherd]
+  copy:
+    content: "{{ lookup('template', 'services/shepherd.openrc') }}"
+    dest: "/etc/init.d/shepherd"
+    mode: 0755
+  become: yes
+
+- name: openrc local cleanup
+  tags: [services, shepherd. cleanup]
+  file:
+    path: "shepherd.openrc.entry"
+    state: absent
+
+- name: restart service
+  tags: [services, shepherd]
+  service:
+    name: shepherd
+    state: restarted
+  become: yes
+
+- name: install openrc entry
+  tags: [services, sshuttle]
+  copy:
+    content: "{{ lookup('template', 'services/sshuttle.openrc') }}"
+    dest: "/etc/init.d/sshuttle"
+    mode: 0755
+  become: yes
+
+- name: openrc local cleanup
+  tags: [services, sshuttle, cleanup]
+  file:
+    path: "sshuttle.openrc.entry"
+    state: absent
+
+- name: restart service
+  tags: [services, sshuttle]
+  service:
+    name: sshuttle
+    state: restarted
+  become: yes

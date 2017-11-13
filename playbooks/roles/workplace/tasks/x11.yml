@@ -3,6 +3,9 @@
   with_items:
     - xsession.yml
     - x11.yml
+    - paths.yml
+    - vpn.yml
+    - misc.yml
 
 - name: register org-protocol handler in mimeapps
   tags: [x11]

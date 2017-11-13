@@ -1,6 +1,0 @@
-- hosts: localhost
-  roles:
-    - role: services
-      remote_domain: <example.com> # substitute for real value
-      restart: yes
-      actions: [] # TODO: provide "dry-run" for testing

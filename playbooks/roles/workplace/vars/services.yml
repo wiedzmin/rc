@@ -1,0 +1,1 @@
+remote_domain: "{{ lookup('file', '{{ playbook_dir }}/../private/remote_domain') }}"

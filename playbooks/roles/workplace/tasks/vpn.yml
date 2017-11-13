@@ -1,54 +1,51 @@
----
-
-- name: register current time
-  shell: "date +%Y%m%d%H%M%S"
-  register: current_run_timestamp
-  tags: [always]
+- include_vars: "{{ item }}"
+  tags: [vpn, services]
+  with_items:
+    - misc.yml
+    - vpn.yml
+    - paths.yml
 
 - name: ensure VPN custom config directory exist
+  tags: [vpn, paths]
   file:
     path: "{{ item }}"
     state: directory
     mode: 0755
-    owner: "{{ user }}"
-    group: "{{ group }}"
+    owner: "{{ user_name }}"
+    group: "{{ user_group }}"
     recurse: yes
   become: yes
   with_items:
     - "{{ custom_vpn_datadir }}"
-  when:
-    - "'prepare_vpn' in actions"
 
 - name: cleanup VPN custom config directory
+  tags: [vpn, cleanup]
   file:
     path: "{{ item }}"
     state: absent
   with_fileglob:
     - "{{ custom_vpn_datadir }}/*"
-  when:
-    - "'prepare_vpn' in actions"
 
 - name: vpn | copy files to system location
+  tags: [vpn, files]
   copy:
-    src: "{{ project_root }}/private/vpn/current/{{ item }}"
+    src: "{{ playbook_dir }}/../private/vpn/current/{{ item }}"
     dest: "{{ custom_vpn_datadir }}/{{ item }}"
   become: yes
   with_items:
     - "auth.conf"
     - "office.ovpn"
-  when:
-    - "'prepare_vpn' in actions"
 
 - name: vpn | customize OpenVPN config | automate authentication # TODO: check if "script-security 2" matters
+  tags: [vpn]
   lineinfile:
     dest: "{{ custom_vpn_datadir }}/office.ovpn"
     regexp: "^auth-user-pass"
     line: "auth-user-pass {{ custom_vpn_datadir }}/auth.conf"
   become: yes
-  when:
-    - "'prepare_vpn' in actions"
 
 - name: vpn | customize OpenVPN config | fix up/down scripting
+  tags: [vpn]
   lineinfile:
     dest: "{{ custom_vpn_datadir }}/office.ovpn"
     regexp: "{{ item.regexp }}"
@@ -58,50 +55,24 @@
     - { regexp: "^down /etc/openvpn/update-resolv-conf", line: "down /etc/openvpn/down.sh" }
   become: yes
   when: ansible_distribution == "Gentoo"
-  when:
-    - "'prepare_vpn' in actions"
 
-- name: install openrc entries
+- name: install openrc entry
+  tags: [vpn, services]
   copy:
-    content: "{{ lookup('template', '{{ item }}.openrc') }}"
-    dest: "/etc/init.d/{{ item }}"
+    content: "{{ lookup('template', 'services/{{ vpn_service_name }}.openrc') }}"
+    dest: "/etc/init.d/{{ vpn_service_name }}"
     mode: 0755
   become: yes
-  with_items: "{{ openrc_services_list }}"
-  when:
-    - "'setup' in actions"
 
 - name: openrc local cleanup
+  tags: [vpn, services, cleanup]
   file:
-    path: "{{ item }}.openrc.entry"
+    path: "{{ vpn_service_name }}.openrc.entry"
     state: absent
-  with_items:  "{{ openrc_services_list }}"
-  when:
-    - "'setup' in actions"
-
-- name: accompanying tools | shepherd | restart service
-  service:
-    name: shepherd
-    state: restarted
-  become: yes
-  when:
-    - "'setup' in actions"
-    - restart
 
 - name: vpn | restart service
+  tags: [vpn, services]
   service:
-    name: job-vpn
+    name: "{{ vpn_service_name }}"
     state: restarted
   become: yes
-  when:
-    - "'setup' in actions"
-    - restart
-
-- name: sshuttle | restart service
-  service:
-    name: sshuttle
-    state: restarted
-  become: yes
-  when:
-    - "'setup' in actions"
-    - restart

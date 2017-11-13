@@ -3,6 +3,7 @@
   with_items:
     - files.yml
     - x11.yml
+    - vpn.yml
 
 - name: copy system files
   tags: [files, system]

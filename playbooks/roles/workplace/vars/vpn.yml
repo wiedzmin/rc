@@ -1,0 +1,2 @@
+custom_vpn_datadir: /etc/custom_vpn
+vpn_service_name: job-vpn

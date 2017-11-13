@@ -21,3 +21,7 @@ homedir_subdirs:
   - ".zsh"
   - "{{ virtualenvs_subdir }}"
   - "{{ workspace_path }}/python"
+  - "pids"
+binaries_prefix: /usr/local/bin
+emacs_config_dir: "{{ ansible_env.HOME }}/.emacs.d"
+pids_dir: "{{ ansible_env.HOME }}/pids"

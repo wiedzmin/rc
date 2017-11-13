@@ -13,11 +13,6 @@ mime_assocs:
   - { program: "zathura", mimetype: "application/x-pdf" }
   - { program: "zathura", mimetype: "image/vnd.djvu" }
   - { program: "zathura", mimetype: "image/x-djvu" }
-user_name: octocat
-user_group: octocat
-emacs_config_dir: "{{ ansible_env.HOME }}/.emacs.d"
-emacs_config_name_literal: "{{ emacs_config_dir }}/config.org"
-emacs_config_name_tangled: "{{ emacs_config_dir }}/config.el"
 default_browser_executable: palemoon-bin
 default_browser_cliargs: -new-tab
 osd_delay: 2
@@ -27,6 +22,4 @@ osd_x_offset_1: 1000
 osd_y_offset_1: 600
 osd_x_offset_2: 1400
 osd_y_offset_2: 1000
-binaries_prefix: /usr/local/bin
-vpn_service_name: job-vpn
 cpu_usage_interval: 0.1

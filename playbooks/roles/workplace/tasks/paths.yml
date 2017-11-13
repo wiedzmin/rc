@@ -1,5 +1,9 @@
-- include_vars: paths.yml
-  tags: [paths]
+- include_vars: "{{ item }}"
+  tags: [paths, services]
+  with_items:
+    - paths.yml
+    - vpn.yml
+    - misc.yml
 
 - name: ensure some system dirs exists
   tags: [paths, system]
