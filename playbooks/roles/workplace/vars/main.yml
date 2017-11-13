@@ -156,11 +156,11 @@ homedir_files:
   - { src: 'isort.cfg', dest: '.isort.cfg' }
   - { src: 'pep8', dest: '.config/pep8' }
 templated_configs:
-  - { src: "dunstrc.template", dest: ".config/dunst/dunstrc" }
-  - { src: ".Xresources.template", dest: ".Xresources" }
-  - { src: ".urxvtrc.template", dest: ".urxvtrc" }
-  - { src: ".xftrc.template", dest: ".xftrc" }
-  - { src: ".emacsrc.template", dest: ".emacsrc" }
+  - { src: "x11/dunstrc.template", dest: ".config/dunst/dunstrc" }
+  - { src: "resources/.Xresources.template", dest: ".Xresources" }
+  - { src: "resources/.urxvtrc.template", dest: ".urxvtrc" }
+  - { src: "resources/.xftrc.template", dest: ".xftrc" }
+  - { src: "resources/.emacsrc.template", dest: ".emacsrc" }
 xresources_subconfigs: # FIXME: remove duplication somehow
   - { file: ".urxvtrc", enabled: yes }
   - { file: ".xftrc", enabled: yes }

@@ -99,7 +99,7 @@
 
 - name: instantiate common settings
   copy:
-    content: "{{ lookup('template', '{{ item }}.template') }}"
+    content: "{{ lookup('template', 'shell/{{ item }}.template') }}"
     dest: "{{ ansible_env.HOME }}/{{ item }}"
     mode: 0755
   with_items:
@@ -109,7 +109,7 @@
 
 - name: instantiate .zshrc
   copy:
-    content: "{{ lookup('template', '.zshrc.template') }}"
+    content: "{{ lookup('template', 'shell/.zshrc.template') }}"
     dest: "{{ ansible_env.HOME }}/.zshrc"
     mode: 0755
   when:
@@ -208,7 +208,7 @@
 
 - name: generate OSD statusbar script
   copy:
-    content: "{{ lookup('template', 'statusbar_osd.template') }}"
+    content: "{{ lookup('template', 'x11/statusbar_osd.template') }}"
     dest: "{{ binaries_prefix }}/statusbar_osd"
     mode: 0755
     owner: "{{ user_name }}"
@@ -218,7 +218,7 @@
 
 - name: generate .xsession script
   copy:
-    content: "{{ lookup('template', '.xsession.template') }}"
+    content: "{{ lookup('template', 'x11/.xsession.template') }}"
     dest: "{{ ansible_env.HOME }}/.xsession"
     mode: 0755
   register: xsession_script
@@ -265,7 +265,7 @@
 
 - name: instantiate Docker config
   copy:
-    content: "{{ lookup('template', 'docker.template') }}"
+    content: "{{ lookup('template', 'dev/docker.template') }}"
     dest: "/etc/conf.d/docker"
     mode: 0500
     owner: root
@@ -284,7 +284,7 @@
 
 - name: prepare global gitconfig
   copy:
-    content: "{{ lookup('template', 'gitconfig.template') }}"
+    content: "{{ lookup('template', 'dev/gitconfig.template') }}"
     dest: "/etc/gitconfig"
     mode: 0544
     owner: root
