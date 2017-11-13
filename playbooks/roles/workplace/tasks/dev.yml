@@ -1,3 +1,6 @@
+- include_vars: dev.yml
+  tags: [dev]
+
 - name: instantiate Docker config
   tags: [dev, docker]
   copy:

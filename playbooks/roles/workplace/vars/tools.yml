@@ -1,0 +1,5 @@
+shepherd_traits: { clone_from: "https://github.com/wiedzmin/shepherd", local_path: "/tmp/shepherd" }
+imapfilter_config: "{{ mail_configs_dir }}/imapfilter-config.lua"
+mail_configs_dir: "{{ role_path }}/files/mail"
+imapfilter_d_path: "{{ mail_configs_dir }}/imapfilter.d"
+buildapp_traits: { clone_from: "https://github.com/xach/buildapp", local_path: "/tmp/buildapp" }

@@ -1,0 +1,55 @@
+user_shells:
+  - bash
+  - zsh
+default_user_name: octocat
+default_user_groups:
+  - bumblebee
+  - docker
+  - libvirt
+  - plugdev
+  - scanner
+  - vboxusers
+  - video
+  - wheel
+default_user_shell: zsh
+common_settings_basenames:
+  - common_settings
+  - common_settings_bash
+bin_dirs:
+  - "$HOME/bin"
+  - "$HOME/tools/bin"
+  - "/usr/lib/go/bin"
+  - "$HOME/workspace/gocode/bin"
+  - "$HOME/.local/bin"
+export_variables:
+  - { name: "GREP_OPTIONS", value: "--color=auto" }
+  - { name: "GREP_COLOR", value: "'1;32'" }
+  - { name: "SHELL", value: "/bin/bash" }
+  - { name: "GOPATH", value: "$HOME/workspace/gocode" }
+  - { name: "XAUTHORITY", value: "$HOME/.Xauthority" }
+  - { name: "BOOKMARKFILE", value: "{{ shell_bookmarks_file }}" }
+  - { name: "GTAGSLIBPATH", value: "$HOME/.gtags/" }
+  - { name: "FZF_ZSH", value: "/usr/share/zsh/site-contrib/fzf.zsh" }
+  - { name: "CURRENT_WM", value: "{{ xsession_current_wm }}" }
+  - { name: "WORKON_HOME", value: "$HOME/{{ virtualenvs_subdir }}" }
+  - { name: "PROJECT_HOME", value: "{{ workspace_path }}/python" }
+editor_choices:
+  - "emacsclient"
+  - "vim"
+  - "vi"
+oh_my_zsh_plugins_enabled:
+  - dircycle
+  - fasd
+  - nyan
+  - urltools
+  - zsh-syntax-highlighting
+  - sudo
+  - fzf-marks
+  - docker
+  - docker-compose
+  - emacs
+  - pip
+  - virtualenvwrapper
+  - virtualenv
+  - git-prompt
+  - golang

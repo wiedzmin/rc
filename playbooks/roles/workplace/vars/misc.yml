@@ -1,0 +1,1 @@
+private_hosts_data: "{{ lookup('file', '{{ playbook_dir }}/../private/work_hosts') }}"

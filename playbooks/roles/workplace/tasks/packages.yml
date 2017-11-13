@@ -1,3 +1,6 @@
+- include_vars: packages.yml
+  tags: [packages]
+
 # TODO think of moving this to shell level
 # consult with "world" file
 # reduce time for checks

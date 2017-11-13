@@ -20,7 +20,7 @@ for ((i=1; i<= $#BIN_DIRS; i++)) do
     done
 done
 
-for candidate in emacsclient vim vi; do
+for candidate in {{ editor_choices | join(" ") }} ; do
     if [[ ! -z $(which $candidate) ]]; then
         export VISUAL=$candidate
         export EDITOR=$candidate

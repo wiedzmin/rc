@@ -1,5 +1,10 @@
-- include_vars: xsession.yml
+- include_vars: "{{ item }}"
   tags: [shells]
+  with_items:
+    - paths.yml
+    - xsession.yml
+    - shells.yml
+    - bookmarks.yml
 
 - name: shells | collect binaries
   tags: [shells]

@@ -1,0 +1,3 @@
+go_fonts_traits: { clone_from: "https://go.googlesource.com/image", local_path: "/tmp/go-fonts" }
+go_fonts_ttf_subpath: "font/gofont/ttfs"
+fonts_ttf_location: "/usr/share/fonts/TTF"

@@ -1,5 +1,8 @@
-- include_vars: xsession.yml
-  tags: [always]
+- include_vars: "{{ item }}"
+  tags: [x11]
+  with_items:
+    - xsession.yml
+    - x11.yml
 
 - name: register org-protocol handler in mimeapps
   tags: [x11]

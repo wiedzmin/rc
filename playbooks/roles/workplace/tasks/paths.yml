@@ -1,3 +1,6 @@
+- include_vars: paths.yml
+  tags: [paths]
+
 - name: ensure some system dirs exists
   tags: [paths, system]
   file:

@@ -1,3 +1,6 @@
+- include_vars: tools.yml
+  tags: [tools]
+
 - name: accompanying tools | shepherd build (mail checking tool)
   tags: [tools, shepherd]
   git:

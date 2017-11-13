@@ -1,5 +1,8 @@
-- include_vars: files.yml
+- include_vars: "{{ item }}"
   tags: [files]
+  with_items:
+    - files.yml
+    - x11.yml
 
 - name: copy system files
   tags: [files, system]
