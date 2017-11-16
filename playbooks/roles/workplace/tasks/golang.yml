@@ -1,11 +1,21 @@
 - include_vars: golang.yml
   tags: [golang]
 
+- name: check packages installed
+  tags: [golang]
+  stat:
+    path: "{{ go_src_path }}/{{ item.url }}"
+  register: packages_paths
+  with_items: "{{ go_package_urls }}"
+
 - name: install Go packages from source
   tags: [golang]
-  command: "go get -u {{ item.url }}"
-  with_items: "{{ go_package_urls }}"
-  become: "{{ item.become }}"
+  command: "go get -u {{ item.0.url }}"
+  with_together:
+    - "{{ go_package_urls }}"
+    - "{{ packages_paths.results }}"
+  become: "{{ item.0.become }}"
+  when: "not item.1.stat.exists"
 
 - name: symlink Go tools binaries to mainstream path
   tags: [golang]
