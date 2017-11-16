@@ -42,7 +42,6 @@ overlays_check_official: no
 packages_of_interest:
   - "app-admin/haskell-updater"
   - "app-portage/fetchcommandwrapper"
-  - "app-admin/python-updater"
   - "app-portage/mirrorselect"
   - "app-portage/repoman"
 check_packages_installed: no
