@@ -37,6 +37,7 @@ portage_overlays:
   - qwin-overlay
   - raiagent
   - palemoon
+  - nirvana
 overlays_check_official: no
 packages_of_interest:
   - "app-admin/haskell-updater"
