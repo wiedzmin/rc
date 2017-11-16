@@ -152,3 +152,4 @@ app-emulation/qemu -opengl
 app-emulation/libvirt qemu udev
 dev-python/netaddr -cli # too deep and nonrelevant dependencies graph (ipython -> PyQT)
 dev-lua/luacheck luajit
+media-gfx/sane-backends usb

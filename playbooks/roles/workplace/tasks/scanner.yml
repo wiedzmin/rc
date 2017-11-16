@@ -1,0 +1,35 @@
+- include_vars: scanner.yml
+  tags: [scanner]
+
+- name: instantiate SANE/dll.conf
+  tags: [scanner]
+  copy:
+    content: "{{ lookup('template', 'scanner/dll.conf.j2') }}"
+    dest: "/etc/sane.d/dll.conf"
+    mode: 0644
+    owner: root
+    group: root
+  become: yes
+
+- name: Epson | ensure SANE resources dir exists
+  tags: [scanner]
+  file:
+    path: /usr/share/sane/snapscan
+    state: directory
+    mode: 0755
+
+- name: Epson | copy firmware
+  tags: [scanner]
+  copy:
+    src: "{{ playbook_dir }}/../private/scanner/{{ epson_firmware_filename }}"
+    dest: "/usr/share/sane/snapscan/{{ epson_firmware_filename }}"
+    mode: 0755
+  become: yes
+
+- name: Epson | register firmware in SANE
+  tags: [scanner]
+  lineinfile:
+    dest: /etc/sane.d/snapscan.conf
+    regexp: "^firmware /usr/share/sane"
+    line: "firmware /usr/share/sane/snapscan/Esfw52.bin"
+  become: yes

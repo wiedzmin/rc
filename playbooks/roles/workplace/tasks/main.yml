@@ -13,3 +13,4 @@
 - import_tasks: misc.yml
 - import_tasks: vpn.yml
 - import_tasks: services.yml
+- import_tasks: scanner.yml
