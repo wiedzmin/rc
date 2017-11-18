@@ -71,3 +71,4 @@ xft_fonts:
   - "Go Mono:style=Bold:size=12"
   - "Input Mono:weight=Bold:size=11"
 xft_font_current: "{{ xft_fonts.3 }}"
+# TODO: try to automate http://input.fontbureau.com/download/ with tools like headlesss browsers, etc.
