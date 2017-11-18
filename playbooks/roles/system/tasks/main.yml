@@ -44,14 +44,31 @@
     mode: 0755
   become: yes
 
-- name: ensure overlays
+- name: get installed overlays
+  tags: [portage, overlays]
+  find:
+    paths: "{{ overlays_data_location }}"
+    file_type: directory
+  register: overlays_installed
+
+- name: ensure needed overlays
   tags: [portage, overlays]
   layman:
     name: "{{ item }}"
     state: present
   become: yes
   with_items: "{{ portage_overlays }}"
-  register: overlays
+  register: overlays_needed
+
+- name: remove obsolete overlays
+  tags: [portage, overlays]
+  layman:
+    name: "{{ item.path | basename }}"
+    state: absent
+  become: yes
+  with_items: "{{ overlays_installed.files }}"
+  when: "item.path | basename not in portage_overlays"
+  register: overlays_removed
 
 - name: fix overlays permissions
   tags: [portage, overlays]
@@ -64,12 +81,13 @@
   become: yes
   with_items: "{{ portage_overlays }}"
   when:
+    - overlays_needed.changed
 
 - name: update portage tree status
   tags: [portage, overlays]
   shell: eix-update
   become: yes
-  when: overlays.changed
+  when: overlays_needed.changed or overlays_removed.changed
 
 # TODO think of moving this to shell level
 # consult with "world" file
