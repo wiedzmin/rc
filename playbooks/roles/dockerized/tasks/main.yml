@@ -81,3 +81,5 @@
     project_src: "{{ thd_tmp_dir }}"
     build: yes
   tags: [thd]
+
+# TODO: think of syncing telegram logs somewhere
