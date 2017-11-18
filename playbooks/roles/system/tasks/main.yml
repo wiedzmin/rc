@@ -6,64 +6,60 @@
   tags: [always]
 
 - name: ensure some system dirs exists
+  tags: [portage, bootstrap]
   file:
     path: "{{ item }}"
     state: directory
     mode: 0755
   become: yes
   with_items: "{{ system_dirs }}"
-  when:
-    - "'bootstrap' in actions"
 
 - name: copy Portage files
+  tags: [portage]
   copy:
     src: "{{ role_path }}/files/portage/{{ item }}"
     dest: "/etc/portage/{{ item }}"
     mode: 0755
   become: yes
   with_items: "{{ portage_files }}"
-  when:
-    - "'setup' in actions"
 
 - name: copy auxillary files
+  tags: [aux]
   copy:
     src: "{{ role_path }}/files/{{ item }}"
     dest: "/etc/{{ item }}"
     mode: 0755
   become: yes
   with_items: "{{ aux_files }}"
-  when:
-    - "'setup' in actions"
 
 - name: ensure Layman installed
+  tags: [portage]
   portage:
     package: app-portage/layman
     state: present
   become: yes
   when:
-    - "'setup' in actions"
     - check_packages_installed
 
 - name: instantiate Layman config
+  tags: [portage, overlays]
   copy:
     content: "{{ lookup('template', 'layman.cfg.template') }}"
     dest: "/etc/layman/layman.cfg"
     mode: 0755
   become: yes
-  when:
-    - "'setup' in actions"
 
 - name: ensure overlays
+  tags: [portage, overlays]
   layman:
     name: "{{ item }}"
     state: present
   become: yes
   with_items: "{{ portage_overlays }}"
   register: overlays
-  when:
-    - "'setup' in actions"
 
 - name: fix overlays permissions
+  tags: [portage, overlays]
   file:
     path: "{{ overlays_data_location }}/{{ item }}"
     owner: portage
@@ -74,9 +70,9 @@
   # become_user: portage
   with_items: "{{ portage_overlays }}"
   when:
-    - "'setup' in actions"
 
 - name: update portage tree status
+  tags: [portage, overlays]
   shell: eix-update
   become: yes
   when: overlays.changed
@@ -85,16 +81,17 @@
 # consult with "world" file
 # reduce time for checks
 - name: ensure some packages installed
+  tags: [portage]
   portage:
     package: "{{ item }}"
     state: present
   with_items: "{{ packages_of_interest }}"
   become: yes
   when:
-    - "'setup' in actions"
     - check_packages_installed
 
 - name: copy local overlay files
+  tags: [portage, overlays]
   copy:
     src: "{{ role_path }}/files/portage/local_overlay/"
     dest: /usr/local/portage
@@ -102,14 +99,11 @@
     group: portage
     mode: 0755
   become: yes
-  when:
-    - "'setup' in actions"
 
 - name: mount portage build directory as tmpfs
+  tags: [portage]
   lineinfile:
     dest: /etc/fstab
     line: 'tmpfs                   /var/tmp/portage/       tmpfs   uid=250,gid=250,size=10G,mode=0775      0 1'
     state: present
   become: yes
-  when:
-    - "'setup' in actions"
