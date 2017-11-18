@@ -65,7 +65,7 @@
 
 - name: fix overlays permissions
   file:
-    path: "/var/lib/layman/{{ item }}"
+    path: "{{ overlays_data_location }}/{{ item }}"
     owner: portage
     group: portage
     mode: 0755

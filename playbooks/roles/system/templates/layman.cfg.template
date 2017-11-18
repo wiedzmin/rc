@@ -2,7 +2,7 @@
 #-----------------------------------------------------------
 # Defines the directory where overlays should be installed
 
-storage   : /var/lib/layman
+storage   : {{ overlays_data_location }}
 
 #-----------------------------------------------------------
 # Remote overlay lists will be stored here
