@@ -27,5 +27,3 @@ for candidate in emacsclient vim vi; do
 done
 
 unset GREP_OPTIONS
-
-source `which virtualenvwrapper.sh`
