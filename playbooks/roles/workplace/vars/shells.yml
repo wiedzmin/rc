@@ -37,6 +37,7 @@ editor_choices:
   - "emacsclient"
   - "vim"
   - "vi"
+use_oh_my_zsh: yes
 oh_my_zsh_plugins_enabled:
   - dircycle
   - fasd
