@@ -2,7 +2,7 @@ imapfilter_config: "{{ mail_configs_dir }}/imapfilter-config.lua"
 mail_configs_dir: "{{ role_path }}/files/mail"
 imapfilter_d_path: "{{ mail_configs_dir }}/imapfilter.d"
 buildapp_traits: { clone_from: "https://github.com/xach/buildapp", local_path: "/tmp/buildapp" }
-shepherd_traits: { clone_from: "https://github.com/wiedzmin/shepherd", local_path: "/tmp/shepherd" }
+shepherd_traits: { clone_from: "https://github.com/wiedzmin/shepherd", local_path: "/tmp/shepherd", binary: "shepherd" }
 gqs_traits: { clone_from: "https://github.com/arzzen/git-quick-stats", local_path: "/tmp/git-quick-stats" }
 addrlookup_traits: { clone_from: "https://github.com/aperezdc/notmuch-addrlookup-c", local_path: "/tmp/notmuch-addrlookup-c" }
 tmuxifier_traits: { clone_from: "https://github.com/jimeh/tmuxifier", local_path: "{{ ansible_env.HOME }}/.tmuxifier" }

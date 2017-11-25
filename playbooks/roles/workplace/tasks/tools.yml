@@ -6,23 +6,30 @@
     - paths.yml
     - shells.yml
 
-- name: accompanying tools | shepherd build (mail checking tool)
+- name: accompanying tools | shepherd (scheduling) | get
   tags: [tools, shepherd]
   git:
     repo: "{{ shepherd_traits.clone_from }}"
     dest: "{{ shepherd_traits.local_path }}"
     force: yes
 
-- name: accompanying tools | shepherd build (mail checking tool)
+- name: accompanying tools | shepherd (scheduling) | build
   tags: [tools, shepherd]
-  make:
+  shell: go build -o shepherd main.go
+  args:
     chdir: "{{ shepherd_traits.local_path }}"
-    target: all
 
-- name: accompanying tools | shepherd install (mail checking tool)
+- name: accompanying tools | shepherd (scheduling) | install
   tags: [tools, shepherd]
-  shell: "mv {{ shepherd_traits.local_path }}/builds/shepherd /usr/local/bin/shepherd"
+  shell: "mv {{ shepherd_traits.local_path }}/{{ shepherd_traits.binary }} {{ binaries_prefix }}/{{ shepherd_traits.binary }}"
   become: yes
+
+- name: accompanying tools | shepherd (scheduling) | copy jobs definitions
+  tags: [tools, shepherd]
+  copy:
+    src: "{{ playbook_dir }}/../private/shepherd-jobs"
+    dest: "/home/octocat/shepherd-jobs.yml"
+    mode: 0755
 
 - name: install tmux plugin manager
   tags: [tools, tmux]
