@@ -9,7 +9,6 @@ HISTSIZE=100000
 SAVEHIST=100000
 
 source ~/common_settings
-source ~/.zsh/variables
 
 if [[ "$TERM" == "dumb" ]]
 then
