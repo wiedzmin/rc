@@ -53,3 +53,4 @@ oh_my_zsh_plugins_enabled:
   - virtualenv
   - git-prompt
   - golang
+stumpwm_config_path: "{{ ansible_env.HOME}}/.stumpwm.d"

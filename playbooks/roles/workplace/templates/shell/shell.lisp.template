@@ -1,0 +1,9 @@
+(in-package #:stumpwm)
+
+;; set shell
+(setf *shell-program* "{{ user_shell_binaries[default_user_shell] }}")
+(setf (getenv "SHELL") "{{ user_shell_binaries[default_user_shell] }}")
+
+;; set path
+(let ((path-orig (getenv "PATH")))
+  (setf (getenv "PATH") (format nil "~a:~a" path-orig "{{ bin_dirs | join(':') }}")))

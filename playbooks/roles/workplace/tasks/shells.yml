@@ -56,3 +56,10 @@
     state: present
   when:
     - bashrc.stat.exists == True
+
+- name: generate shell settings for StumpWM
+  tags: [shells, stumpwm]
+  copy:
+    content: "{{ lookup('template', 'shell/shell.lisp.template') }}"
+    dest: "{{ stumpwm_config_path }}/shell.lisp"
+    mode: 0755
