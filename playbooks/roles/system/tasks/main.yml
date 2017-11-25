@@ -113,9 +113,10 @@
   become: yes
 
 - name: mount portage build directory as tmpfs
-  tags: [portage]
+  tags: [aux]
   lineinfile:
     dest: /etc/fstab
-    line: 'tmpfs                   /var/tmp/portage/       tmpfs   uid=250,gid=250,size=10G,mode=0775      0 1'
+    line: 'tmpfs                   {{ item.path}}       tmpfs   uid={{ item.uid }},gid={{item.gid}},size={{ item.size }},mode={{ item.mode }}      0 1'
     state: present
   become: yes
+  with_items: "{{ tmpfs_dirs }}"

@@ -46,3 +46,6 @@ packages_of_interest:
   - "app-portage/mirrorselect"
   - "app-portage/repoman"
 check_packages_installed: no
+tmpfs_dirs:
+  - { path: "/var/tmp/portage/", uid: "250", gid: "250", size: "10G", mode: "0755"}
+  - { path: "{{ ansible_env.HOME }}/.cache", uid: "1000", gid: "1000", size: "2G", mode: "0755"} # TODO: maybe connect with users data (ids, binaries, paths, etc.)
