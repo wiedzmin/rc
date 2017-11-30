@@ -28,6 +28,7 @@ packages_of_interest:
   - "dev-util/cargo"
   - "dev-util/debugedit"
   - "dev-util/direnv"
+  - "dev-util/gengetopt"
   - "dev-util/ltrace"
   - "dev-util/rtags"
   - "dev-util/strace"
