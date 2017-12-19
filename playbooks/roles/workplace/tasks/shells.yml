@@ -36,13 +36,6 @@
   with_items:
     - "{{ common_settings_basenames }}"
 
-- name: instantiate .zshrc
-  tags: [shells, zsh]
-  copy:
-    content: "{{ lookup('template', 'shell/.zshrc.template') }}"
-    dest: "{{ ansible_env.HOME }}/.zshrc"
-    mode: 0755
-
 - name: check if .bashrc exists
   tags: [shells, bash]
   stat: path={{ ansible_env.HOME }}/.bashrc
@@ -62,4 +55,22 @@
   copy:
     content: "{{ lookup('template', 'shell/shell.lisp.template') }}"
     dest: "{{ stumpwm_config_path }}/shell.lisp"
+    mode: 0755
+
+- name: Antibody | generate plugins list
+  tags: [shells, zsh]
+  copy:
+    content: "{{ lookup('template', 'shell/zsh.plugins.template') }}"
+    dest: "{{ zsh_plugins_list_location }}"
+    mode: 0755
+
+- name: Antibody | bundle plugins statically
+  tags: [shells, zsh]
+  shell: "antibody bundle < {{ zsh_plugins_list_location }} > {{ zsh_plugins_antibody_script }}"
+
+- name: instantiate .zshrc
+  tags: [shells, zsh]
+  copy:
+    content: "{{ lookup('template', 'shell/.zshrc.template') }}"
+    dest: "{{ ansible_env.HOME }}/.zshrc"
     mode: 0755

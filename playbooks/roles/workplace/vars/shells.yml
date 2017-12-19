@@ -38,20 +38,27 @@ editor_choices:
   - "vim"
   - "vi"
 use_oh_my_zsh: yes
+zsh_plugins:
+  - b4b4r07/enhancd
+  - marzocchi/zsh-notify
+  - piotryordanov/fzf-mpd
+  - urbainvaes/fzf-marks
+  - zsh-users/zsh-syntax-highlighting
 oh_my_zsh_plugins_enabled:
   - dircycle
-  - fasd
-  - nyan
-  - urltools
-  - zsh-syntax-highlighting
-  - sudo
-  - fzf-marks
   - docker
   - docker-compose
   - emacs
-  - pip
-  - virtualenvwrapper
-  - virtualenv
+  - fasd
   - git-prompt
   - golang
+  - nyan
+  - pip
+  - sudo
+  - urltools
+  - virtualenv
+  - virtualenvwrapper
+oh_my_zsh_chosen_theme: clean
+zsh_plugins_list_location: /tmp/zsh_plugins
+zsh_plugins_antibody_script: "{{ zsh_subconfig_path }}/plugins.sh"
 stumpwm_config_path: "{{ ansible_env.HOME}}/.stumpwm.d"

@@ -1,5 +1,6 @@
 workspace_path: "{{ ansible_env.HOME }}/workspace"
 virtualenvs_subdir: ".virtualenvs"
+zsh_subconfig_path: "{{ ansible_env.HOME}}/.zsh"
 system_dirs:
   - "/etc/X11/xorg.conf.d"
   - "/etc/acpi"
@@ -18,7 +19,7 @@ homedir_subdirs:
   - ".sawfish"
   - ".ssh"
   - ".tmux/plugins"
-  - ".zsh"
+  - "{{ zsh_subconfig_path }}"
   - "{{ virtualenvs_subdir }}"
   - "{{ workspace_path }}/python"
   - "pids"

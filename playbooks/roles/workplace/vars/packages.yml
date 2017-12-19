@@ -17,6 +17,7 @@ packages_of_interest:
   - "app-misc/wmname"
   - "app-misc/workrave"
   - "app-office/ledger"
+  - "app-shells/antibody"
   - "app-shells/fzf"
   - "app-text/pandoc"
   - "dev-lua/luacheck"
