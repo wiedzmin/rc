@@ -27,6 +27,8 @@ else
 {% else %}
     source ~/.zsh/promptdefs
 {% endif %}
+    # ~/.cache is on tmpfs so check+recreate on system restart
+    ! test -d {{ zsh_plugins_antibody_cache_dir }} && {{ zsh_plugins_antibody_bundle_command }}
     source {{ zsh_plugins_antibody_script }}
 
     source ~/.zsh/setopts

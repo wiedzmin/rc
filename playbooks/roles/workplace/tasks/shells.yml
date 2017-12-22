@@ -66,7 +66,7 @@
 
 - name: Antibody | bundle plugins statically
   tags: [shells, zsh]
-  shell: "antibody bundle < {{ zsh_plugins_list_location }} > {{ zsh_plugins_antibody_script }}"
+  shell: "{{ zsh_plugins_antibody_bundle_command }}"
 
 - name: instantiate .zshrc
   tags: [shells, zsh]
