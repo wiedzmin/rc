@@ -1,14 +1,25 @@
-- include_vars: misc.yml
+- include_vars: "{{ item }}"
   tags: [misc]
+  with_items:
+    - misc.yml
+    - "{{ playbook_dir }}/../private/work_hosts.yml"
 
 # TODO: put rc-update data under version control, e.g.:
 # shell: rc-update add {{ item.name }} {{ item.level }}
 # with_items: {{ rc_update_items }}
 # and maybe export and delete all previous data before this
 
-- name: add private hosts
+# - name: add private hosts
+#   tags: [misc]
+#   blockinfile:
+#     dest: /etc/hosts
+#     block: "{{ private_hosts_data }}"
+#   become: yes
+
+- name: net | instantiate hosts file
   tags: [misc]
-  blockinfile:
-    dest: /etc/hosts
-    block: "{{ private_hosts_data }}"
+  copy:
+    content: "{{ lookup('template', 'net/hosts.template') }}"
+    dest: "/etc/hosts"
+    mode: 0644
   become: yes
