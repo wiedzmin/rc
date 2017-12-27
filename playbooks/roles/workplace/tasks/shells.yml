@@ -74,3 +74,10 @@
     content: "{{ lookup('template', 'shell/.zshrc.template') }}"
     dest: "{{ ansible_env.HOME }}/.zshrc"
     mode: 0755
+
+- name: tmux | instantiate sessions script
+  tags: [shell, tmux]
+  copy:
+    content: "{{ lookup('template', 'shell/tmux-sessions.template') }}"
+    dest: "{{ ansible_env.HOME }}/tmux-sessions"
+    mode: 0755

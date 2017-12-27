@@ -37,6 +37,10 @@ editor_choices:
   - "emacsclient"
   - "vim"
   - "vi"
+tmux_predefined_sessions:
+  - "work"
+  - "self"
+default_tmux_session: "{{ tmux_predefined_sessions[-1] }}"
 use_oh_my_zsh: yes
 zsh_plugins:
   - b4b4r07/enhancd
