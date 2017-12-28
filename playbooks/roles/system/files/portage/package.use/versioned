@@ -131,3 +131,9 @@ x11-misc/tint2 battery examples tint2conf
 # required by media-gfx/simple-scan-3.24.1::gentoo
 # required by media-gfx/simple-scan (argument)
 >=virtual/libusb-1-r2 udev
+
+# required by dev-ruby/rdoc-6.0.0::gentoo[ruby_targets_ruby23]
+# required by dev-lang/ruby-2.2.9::gentoo[rdoc]
+# required by app-emulation/vagrant-2.0.1-r1::gentoo[ruby_targets_ruby22]
+# required by app-emulation/vagrant (argument)
+>=dev-ruby/kpeg-1.1.0 ruby_targets_ruby23
