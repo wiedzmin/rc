@@ -72,7 +72,7 @@ media-libs/mesa gbm
 media-libs/sdl-image jpeg
 media-libs/sdl2-image jpeg
 media-libs/swfdec ffmpeg gstreamer gtk
-media-sound/mpd aac cdio flac inotify lastfmradio mikmod modplug musepack sndfile soundcloud twolame wavpack wildmidi -ffmpeg
+media-sound/mpd aac cdio flac inotify lastfmradio mikmod modplug musepack sndfile soundcloud twolame wavpack wildmidi -ffmpeg -cdio
 media-sound/pulseaudio equalizer
 media-sound/sox flac twolame wavpack
 media-sound/volumeicon libnotify
