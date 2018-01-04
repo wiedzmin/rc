@@ -1,0 +1,1 @@
+stumpwm_traits: { clone_from: "https://github.com/wiedzmin/stumpwm", local_path: "/tmp/stumpwm-git" }

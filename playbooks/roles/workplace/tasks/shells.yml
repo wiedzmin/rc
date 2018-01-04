@@ -51,7 +51,7 @@
     - bashrc.stat.exists == True
 
 - name: generate shell settings for StumpWM
-  tags: [shells, stumpwm]
+  tags: [shells]
   copy:
     content: "{{ lookup('template', 'shell/shell.lisp.template') }}"
     dest: "{{ stumpwm_config_path }}/shell.lisp"

@@ -1,0 +1,50 @@
+- include_vars: "{{ item }}"
+  tags: [stumpwm]
+  with_items:
+    # - shells.yml
+    - wm.yml
+
+- name: stumpwm | clone repo
+  tags: [stumpwm]
+  git:
+    repo: "{{ stumpwm_traits.clone_from }}"
+    dest: "{{ stumpwm_traits.local_path }}"
+    force: yes
+
+- name: stumpwm | check configure script
+  tags: [stumpwm]
+  stat: path={{ stumpwm_traits.local_path }}/configure
+  register: stumpwm_configure
+
+- name: stumpwm | maybe autoconf
+  tags: [stumpwm]
+  shell: autoconf
+  args:
+    chdir: "{{ stumpwm_traits.local_path }}"
+  when:
+    - stumpwm_configure.stat.exists == False
+
+- name: stumpwm | configure
+  tags: [stumpwm]
+  shell: ./configure
+  args:
+    chdir: "{{ stumpwm_traits.local_path }}"
+
+- name: stumpwm | patch binary image creation
+  tags: [stumpwm]
+  lineinfile:
+    path: "{{ stumpwm_traits.local_path }}/make-image.lisp"
+    insertafter: ":executable t"
+    line: "                                    :compression t"
+
+- name: stumpwm | build
+  tags: [stumpwm]
+  make:
+    chdir: "{{ stumpwm_traits.local_path }}"
+
+- name: stumpwm | install
+  tags: [stumpwm]
+  make:
+    chdir: "{{ stumpwm_traits.local_path }}"
+    target: install
+  become: yes
