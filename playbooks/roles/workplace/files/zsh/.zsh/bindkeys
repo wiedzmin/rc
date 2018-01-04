@@ -16,8 +16,11 @@ bindkey '^R' fzf-history-widget
 zle -N jump
 bindkey '^xjj' jump
 
-zle -N cd::cd
-bindkey '^xd' cd::cd
+# NOTE: it looks like encapsulation violation but
+# previous code stopped working for some reason,
+# most likely because of zsh plugins setup changes
+zle -N __enhancd::cd
+bindkey "^xd" __enhancd::cd
 
 bindkey -r '^g'
 
