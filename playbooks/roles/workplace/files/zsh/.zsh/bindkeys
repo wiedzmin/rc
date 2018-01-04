@@ -5,16 +5,16 @@ bindkey ' ' magic-space # also do history expansion on space
 zle -N fbr
 bindkey "^]c" fbr
 zle -N fco
-bindkey '^]t' fco
+bindkey "^]t" fco
 zle -N fcoc
-bindkey '^]l' fcoc
+bindkey "^]l" fcoc
 zle -N fshow
-bindkey '^]s' fshow
+bindkey "^]s" fshow
 zle -N fzf-history-widget
-bindkey '^R' fzf-history-widget
+bindkey "^R" fzf-history-widget
 
 zle -N jump
-bindkey '^xjj' jump
+bindkey "^xjj" jump
 
 # NOTE: it looks like encapsulation violation but
 # previous code stopped working for some reason,
@@ -22,7 +22,7 @@ bindkey '^xjj' jump
 zle -N __enhancd::cd
 bindkey "^xd" __enhancd::cd
 
-bindkey -r '^g'
+bindkey -r "^g"
 
-bindkey 'j' zshnip-expand-or-edit
-bindkey 'e' zshnip-edit-and-expand
+bindkey "j" zshnip-expand-or-edit
+bindkey "e" zshnip-edit-and-expand
