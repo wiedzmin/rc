@@ -53,27 +53,5 @@ custom_scripts:
   - "statusbar"
 templated_configs:
   - { src: "x11/dunstrc.template", dest: ".config/dunst/dunstrc" }
-  - { src: "resources/.Xresources.template", dest: ".Xresources" }
-  - { src: "resources/.urxvtrc.template", dest: ".urxvtrc" }
-  - { src: "resources/.xftrc.template", dest: ".xftrc" }
-  - { src: "resources/.emacsrc.template", dest: ".emacsrc" }
-xresources_subconfigs: # FIXME: remove duplication somehow
-  - { file: ".urxvtrc", enabled: yes }
-  - { file: ".xftrc", enabled: yes }
-  - { file: ".emacsrc", enabled: yes }
-xft_fonts:
-  - { name: "Consolas", is_bold: yes, bold_keyword: "style"}
-  - { name: "PTMono", is_bold: yes, bold_keyword: "style"}
-  - { name: "Hack", is_bold: yes, bold_keyword: "style"}
-  - { name: "IosevkaCC", is_bold: yes, bold_keyword: "weight"}
-  - { name: "mononoki", is_bold: yes, bold_keyword: "weight"}
-  - { name: "Fantasque Sans Mono", is_bold: yes, bold_keyword: "style"}
-  - { name: "Go Mono", is_bold: yes, bold_keyword: "style"}
-  - { name: "Input Mono", is_bold: yes, bold_keyword: "weight"}
-  - { name: "Noto Mono", is_bold: yes, bold_keyword: "style"}
-  - { name: "Fira Code", is_bold: yes, bold_keyword: "weight"}
-xft_font_current: "{{ xft_fonts.9 }}"
-xft_font_size_app: 12
-xft_font_size_term: 9
 
 # TODO: try to automate http://input.fontbureau.com/download/ with tools like headlesss browsers, etc.

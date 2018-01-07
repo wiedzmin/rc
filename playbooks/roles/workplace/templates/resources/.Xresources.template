@@ -11,9 +11,9 @@
 #define FG_BASE #000000
 #define BG_BASE #FFFAFA
 
-{% for subconfig in xresources_subconfigs %}
-{% if subconfig.enabled %}
-#include "{{ subconfig.file }}"
+{% for config in resources_configs %}
+{% if config.enabled is defined and config.enabled %}
+#include "{{ config.dest }}"
 {% endif %}
 {% endfor %}
 

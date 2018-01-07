@@ -13,8 +13,6 @@ mime_assocs:
   - { program: "zathura", mimetype: "application/x-pdf" }
   - { program: "zathura", mimetype: "image/vnd.djvu" }
   - { program: "zathura", mimetype: "image/x-djvu" }
-default_browser_executable: palemoon-bin
-default_browser_cliargs: -new-tab
 osd_delay: 2
 osd_font: "-*-fixed-*-*-*-*-24-*-*-*-*-*-*-*"
 osd_color: green

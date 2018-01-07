@@ -1,6 +1,7 @@
 - include_vars: "{{ item }}"
   tags: [x11]
   with_items:
+    - common.yml
     - xsession.yml
     - x11.yml
     - paths.yml

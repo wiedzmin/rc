@@ -1,0 +1,2 @@
+default_browser_executable: palemoon-bin
+default_browser_cliargs: -new-tab

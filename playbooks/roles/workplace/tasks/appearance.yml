@@ -1,5 +1,18 @@
-- include_vars: appearance.yml
+- include_vars: "{{ item }}"
   tags: [appearance]
+  with_items:
+    - common.yml
+    - appearance.yml
+
+- name: instantiate resources configs
+  tags: [appearance, configs]
+  copy:
+    content: "{{ lookup('template', '{{ item.src }}') }}"
+    dest: "{{ ansible_env.HOME }}/{{ item.dest }}"
+    mode: 0755
+  with_items: "{{ resources_configs }}"
+
+# TODO: generalize fonts installation
 
 - name: Go fonts | clone repo
   tags: [appearance, fonts]
