@@ -25,6 +25,7 @@ export_variables:
   - { name: "GREP_OPTIONS", value: "--color=auto" }
   - { name: "GREP_COLOR", value: "'1;32'" }
   - { name: "SHELL", value: "/bin/bash" }
+  - { name: "GOROOT", value: "/usr/lib/go" }
   - { name: "GOPATH", value: "$HOME/workspace/gocode" }
   - { name: "XAUTHORITY", value: "$HOME/.Xauthority" }
   - { name: "BOOKMARKFILE", value: "{{ shell_bookmarks_file }}" }
