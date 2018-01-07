@@ -70,6 +70,8 @@ xft_fonts:
   - "mononoki-10:style=bold"
   - "Fantasque Sans Mono:style=Bold:size=14"
   - "Go Mono:style=Bold:size=12"
-xft_font_current: "{{ xft_fonts.3 }}"
   - "Input Mono:style=Bold:size=11"
+  - "Noto Mono:style=Bold:size=12"
+  - "Fira Code:style=Bold:size=11"
+xft_font_current: "{{ xft_fonts.10 }}"
 # TODO: try to automate http://input.fontbureau.com/download/ with tools like headlesss browsers, etc.
