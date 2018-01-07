@@ -49,6 +49,7 @@ zsh_plugins:
   - piotryordanov/fzf-mpd
   - urbainvaes/fzf-marks
   - zsh-users/zsh-syntax-highlighting
+  - zsh-users/zaw
 oh_my_zsh_plugins_enabled:
   - dircycle
   - docker
