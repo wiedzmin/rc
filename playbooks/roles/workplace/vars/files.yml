@@ -63,12 +63,13 @@ xresources_subconfigs: # FIXME: remove duplication somehow
   - { file: ".emacsrc", enabled: yes }
 xft_fonts:
   - "Consolas:size=12"
+  - "Consolas:style=Bold:size=10"
   - "PTMono:size=12"
   - "Hack:size=12"
-  - "IosevkaCC-8:weight=bold"
-  - "mononoki-10:weight=bold"
+  - "IosevkaCC-8:style=bold"
+  - "mononoki-10:style=bold"
   - "Fantasque Sans Mono:style=Bold:size=14"
   - "Go Mono:style=Bold:size=12"
-  - "Input Mono:weight=Bold:size=11"
 xft_font_current: "{{ xft_fonts.3 }}"
+  - "Input Mono:style=Bold:size=11"
 # TODO: try to automate http://input.fontbureau.com/download/ with tools like headlesss browsers, etc.
