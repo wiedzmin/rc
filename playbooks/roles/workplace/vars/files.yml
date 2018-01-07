@@ -62,16 +62,18 @@ xresources_subconfigs: # FIXME: remove duplication somehow
   - { file: ".xftrc", enabled: yes }
   - { file: ".emacsrc", enabled: yes }
 xft_fonts:
-  - "Consolas:size=12"
-  - "Consolas:style=Bold:size=10"
-  - "PTMono:size=12"
-  - "Hack:size=12"
-  - "IosevkaCC-8:style=bold"
-  - "mononoki-10:style=bold"
-  - "Fantasque Sans Mono:style=Bold:size=14"
-  - "Go Mono:style=Bold:size=12"
-  - "Input Mono:style=Bold:size=11"
-  - "Noto Mono:style=Bold:size=12"
-  - "Fira Code:style=Bold:size=11"
-xft_font_current: "{{ xft_fonts.10 }}"
+  - { name: "Consolas", is_bold: yes, bold_keyword: "style"}
+  - { name: "PTMono", is_bold: yes, bold_keyword: "style"}
+  - { name: "Hack", is_bold: yes, bold_keyword: "style"}
+  - { name: "IosevkaCC", is_bold: yes, bold_keyword: "weight"}
+  - { name: "mononoki", is_bold: yes, bold_keyword: "weight"}
+  - { name: "Fantasque Sans Mono", is_bold: yes, bold_keyword: "style"}
+  - { name: "Go Mono", is_bold: yes, bold_keyword: "style"}
+  - { name: "Input Mono", is_bold: yes, bold_keyword: "weight"}
+  - { name: "Noto Mono", is_bold: yes, bold_keyword: "style"}
+  - { name: "Fira Code", is_bold: yes, bold_keyword: "weight"}
+xft_font_current: "{{ xft_fonts.9 }}"
+xft_font_size_app: 12
+xft_font_size_term: 9
+
 # TODO: try to automate http://input.fontbureau.com/download/ with tools like headlesss browsers, etc.

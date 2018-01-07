@@ -1,9 +1,5 @@
 ! URxvt.depth: 32
-!URxvt*font: xft:Input Mono:weight=Bold:size=9
-URxvt*font: xft:IosevkaCC-11:weight=bold
-! URxvt.font: xft:DejaVu Sans Mono:pixelsize=13,xft:Bitstream Vera Sans Mono
-! URxvt.font: xft:XFTMONOFONT,xft:Monospace
-! URxvt.font: xft:Terminus:slant=0:weight=80:width=100:pixelsize=14
+URxvt.font: xft:{{ xft_font_current.name }}{% if xft_font_current.is_bold %}:{{ xft_font_current.bold_keyword }}=Bold{% endif %}:size={{ xft_font_size_term }}
 URxvt.geometry: 80x27
 ! URxvt.lineSpace: 0
 URxvt*letterSpace: -1
