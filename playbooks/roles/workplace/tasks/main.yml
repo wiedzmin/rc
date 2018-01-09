@@ -6,7 +6,6 @@
 - import_tasks: shells.yml
 - import_tasks: tools.yml
 - import_tasks: x11.yml
-- import_tasks: bookmarks.yml
 - import_tasks: dev.yml
 - import_tasks: appearance.yml
 - import_tasks: golang.yml

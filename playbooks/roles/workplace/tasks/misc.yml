@@ -2,6 +2,7 @@
   tags: [misc]
   with_items:
     - misc.yml
+    - paths.yml
     - "{{ playbook_dir }}/../private/work_hosts.yml"
 
 # TODO: put rc-update data under version control, e.g.:
@@ -23,3 +24,17 @@
     dest: "/etc/hosts"
     mode: 0644
   become: yes
+
+- name: backup Emacs bookmarks
+  tags: [misc, backup]
+  copy:
+    src: "{{ emacs_config_dir }}/data/bookmark-default.el"
+    dest: "{{ playbook_dir }}/../private/bookmarks/bookmark-default.el"
+    mode: 0755
+
+- name: restore Emacs bookmarks
+  tags: [misc, restore]
+  copy:
+    src: "{{ playbook_dir }}/../private/bookmarks/bookmark-default.el"
+    dest: "{{ emacs_config_dir }}/data/bookmark-default.el"
+    mode: 0755

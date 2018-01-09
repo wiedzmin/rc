@@ -1,10 +1,10 @@
 - include_vars: "{{ item }}"
   tags: [shells]
   with_items:
+    - common.yml
     - paths.yml
     - xsession.yml
     - shells.yml
-    - bookmarks.yml
 
 - name: shells | collect binaries
   tags: [shells]
@@ -80,4 +80,18 @@
   copy:
     content: "{{ lookup('template', 'shell/tmux-sessions.template') }}"
     dest: "{{ ansible_env.HOME }}/tmux-sessions"
+    mode: 0755
+
+- name: backup bookmarks
+  tags: [shells, backup]
+  copy:
+    src: "{{ ansible_env.HOME }}/.bookmarks"
+    dest: "{{ playbook_dir }}/../private/bookmarks/.bookmarks"
+    mode: 0755
+
+- name: restore bookmarks
+  tags: [shells, restore]
+  copy:
+    src: "{{ playbook_dir }}/../private/bookmarks/.bookmarks"
+    dest: "{{ ansible_env.HOME }}/.bookmarks"
     mode: 0755
