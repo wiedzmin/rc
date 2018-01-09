@@ -22,11 +22,6 @@ homedir_files:
   - { src: "ssh_config", dest: ".ssh/config" }
   - { src: "tmux-sessions", dest: "tmux-sessions" }
   - { src: "zsh/.zsh", dest: "" }
-  - { src: '.pylintrc', dest: '.pylintrc' }
-  - { src: 'flake8', dest: '.config/flake8' }
-  - { src: 'git-commit-template', dest: 'git-commit-template' }
-  - { src: 'isort.cfg', dest: '.isort.cfg' }
-  - { src: 'pep8', dest: '.config/pep8' }
 custom_scripts:
   - "hddtemp"
   - "sshuttle-down"

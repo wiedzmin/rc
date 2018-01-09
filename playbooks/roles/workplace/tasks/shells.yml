@@ -5,6 +5,7 @@
     - paths.yml
     - xsession.yml
     - shells.yml
+    - dev.yml
 
 - name: shells | collect binaries
   tags: [shells]

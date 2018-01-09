@@ -1,5 +1,3 @@
-workspace_path: "{{ ansible_env.HOME }}/workspace"
-virtualenvs_subdir: ".virtualenvs"
 zsh_subconfig_path: "{{ ansible_env.HOME}}/.zsh"
 system_dirs:
   - "/etc/acpi"
@@ -13,8 +11,6 @@ homedir_subdirs:
   - ".ssh"
   - ".tmux/plugins"
   - "{{ zsh_subconfig_path }}"
-  - "{{ virtualenvs_subdir }}"
-  - "{{ workspace_path }}/python"
   - "pids"
 binaries_prefix: /usr/local/bin
 emacs_config_dir: "{{ ansible_env.HOME }}/.emacs.d"
