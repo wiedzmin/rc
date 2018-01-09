@@ -7,6 +7,30 @@
     - shells.yml
     - dev.yml
 
+- name: ensure home subdirs exist
+  tags: [shells, home]
+  file:
+    path: "{{ ansible_env.HOME }}/{{ item }}"
+    state: directory
+  with_items: "{{ shells_homedir_subdirs }}"
+
+- name: copy homedir files
+  tags: [shells, home]
+  copy:
+    src: "{{ role_path }}/files/{{ item.src }}"
+    dest: "{{ ansible_env.HOME }}/{{ item.dest }}"
+    mode: 0755
+  with_items: "{{ shells_homedir_files }}"
+
+- name: copy custom scripts
+  tags: [shells, scripts]
+  copy:
+    src: "{{ role_path }}/files/scripts/{{ item }}"
+    dest: "/usr/local/bin/{{ item }}"
+    mode: 0755
+  with_items: "{{ shells_custom_scripts }}"
+  become: yes
+
 - name: shells | collect binaries
   tags: [shells]
   shell: "which {{ item }}"

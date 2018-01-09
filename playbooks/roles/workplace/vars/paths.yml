@@ -1,4 +1,3 @@
-zsh_subconfig_path: "{{ ansible_env.HOME}}/.zsh"
 system_dirs:
   - "/etc/acpi"
   - "/etc/acpi/actions"
@@ -10,7 +9,6 @@ homedir_subdirs:
   - ".imapfilter"
   - ".ssh"
   - ".tmux/plugins"
-  - "{{ zsh_subconfig_path }}"
   - "pids"
 binaries_prefix: /usr/local/bin
 emacs_config_dir: "{{ ansible_env.HOME }}/.emacs.d"

@@ -13,21 +13,12 @@ system_files:
   - { src: "udev.d/95-external-head-hotplug.rules", dest: "/etc/udev/rules.d/95-external-head-hotplug.rules" }
   - { src: "genkernel/modules_load", dest: "/usr/share/genkernel/defaults/modules_load" }
 homedir_files:
-  - { src: ".tmux.conf", dest: ".tmux.conf" }
-  - { src: ".urlview", dest: ".urlview" }
   - { src: "gpg-agent.conf", dest: ".gnupg/gpg-agent.conf" }
   - { src: "mail/.mailcap", dest: ".mailcap" }
   - { src: "mail/.mbsyncrc", dest: ".mbsyncrc" }
   - { src: "mail/.msmtprc", dest: ".msmtprc" }
   - { src: "ssh_config", dest: ".ssh/config" }
-  - { src: "tmux-sessions", dest: "tmux-sessions" }
-  - { src: "zsh/.zsh", dest: "" }
 custom_scripts:
-  - "hddtemp"
   - "sshuttle-down"
-  - "status_bat_info"
-  - "status_cpu_temp"
-  - "status_uptime"
-  - "statusbar"
 
 # TODO: try to automate http://input.fontbureau.com/download/ with tools like headlesss browsers, etc.
