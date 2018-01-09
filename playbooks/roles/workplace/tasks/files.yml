@@ -30,11 +30,3 @@
     mode: 0755
   with_items: "{{ custom_scripts }}"
   become: yes
-
-- name: instantiate templated configs
-  tags: [files, templated]
-  copy:
-    content: "{{ lookup('template', '{{ item.src }}') }}"
-    dest: "{{ ansible_env.HOME }}/{{ item.dest }}"
-    mode: 0755
-  with_items: "{{ templated_configs }}"

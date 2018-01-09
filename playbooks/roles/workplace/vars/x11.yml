@@ -1,3 +1,33 @@
+x11_system_dirs:
+  - "/etc/X11/xorg.conf.d"
+x11_homedir_subdirs:
+  - ".config/dunst"
+  - ".config/i3"
+  - ".config/rofi"
+  - ".config/twmn"
+  - ".local/share/applications"
+  - ".sawfish"
+x11_system_files:
+  - { src: "xorg.conf.d/20opengl.conf", dest: "/etc/X11/xorg.conf.d/20opengl.conf" }
+  - { src: "xorg.conf.d/input.conf", dest: "/etc/X11/xorg.conf.d/input.conf" }
+  - { src: "xorg.conf.d/synaptics.conf", dest: "/etc/X11/xorg.conf.d/synaptics.conf" }
+x11_homedir_files:
+  - { src: ".gmrunrc", dest: ".gmrunrc" }
+  - { src: ".i3status.conf", dest: ".i3status.conf" }
+  - { src: ".sawfishrc", dest: ".sawfish/rc" }
+  - { src: ".stalonetrayrc", dest: ".stalonetrayrc" }
+  - { src: ".xxkbrc", dest: ".xxkbrc" }
+  - { src: "browser/.pentadactylrc", dest: ".pentadactylrc" }
+  - { src: "categorize.cfg", dest: ".arbtt/categorize.cfg" }
+  - { src: "i3.conf", dest: ".config/i3/config" }
+  - { src: "rofi.conf", dest: ".config/rofi/config" }
+  - { src: "twmn.conf", dest: ".config/twmn/twmn.conf" }
+  - { src: "xmobarrc", dest: ".xmonad/xmobarrc" } # TODO: abstract away
+  - { src: "xmobarrc-noinet", dest: ".xmonad/xmobarrc-noinet" } # TODO: abstract away
+  - { src: "xmobarrc.xmonad.old", dest: ".xmonad/xmobarrc.xmonad.old" } # TODO: abstract away
+  - { src: "emacsclient.desktop", dest: ".local/share/applications/emacsclient.desktop" }
+x11_templated_configs:
+  - { src: "x11/dunstrc.template", dest: ".config/dunst/dunstrc" }
 mime_assocs:
   - { program: "abiword", mimetype: "application/msword" }
   - { program: "feh", mimetype: "image/jpeg" }

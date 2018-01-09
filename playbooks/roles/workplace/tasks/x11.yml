@@ -8,6 +8,46 @@
     - vpn.yml
     - misc.yml
 
+- name: ensure some system dirs exists
+  tags: [x11, system]
+  file:
+    path: "{{ item }}"
+    state: directory
+  become: yes
+  with_items: "{{ x11_system_dirs }}"
+
+- name: ensure home subdirs exist
+  tags: [x11, home]
+  file:
+    path: "{{ ansible_env.HOME }}/{{ item }}"
+    state: directory
+  with_items: "{{ x11_homedir_subdirs }}"
+
+- name: copy system files
+  tags: [x11, system]
+  copy:
+    src: "{{ role_path }}/files/{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: 0755
+  become: yes
+  with_items: "{{ x11_system_files }}"
+
+- name: copy homedir files
+  tags: [x11, home]
+  copy:
+    src: "{{ role_path }}/files/{{ item.src }}"
+    dest: "{{ ansible_env.HOME }}/{{ item.dest }}"
+    mode: 0755
+  with_items: "{{ x11_homedir_files }}"
+
+- name: instantiate templated configs
+  tags: [x11, templated]
+  copy:
+    content: "{{ lookup('template', '{{ item.src }}') }}"
+    dest: "{{ ansible_env.HOME }}/{{ item.dest }}"
+    mode: 0755
+  with_items: "{{ x11_templated_configs }}"
+
 - name: register org-protocol handler in mimeapps
   tags: [x11]
   lineinfile:
