@@ -26,6 +26,7 @@
   with_fileglob:
     - "{{ go_bin_path }}/*"
   become: yes
+  ignore_errors: yes
 
 - name: setup gometalinter
   tags: [golang]
