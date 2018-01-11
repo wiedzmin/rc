@@ -154,3 +154,4 @@ dev-python/netaddr -cli # too deep and nonrelevant dependencies graph (ipython -
 dev-lua/luacheck luajit
 media-gfx/sane-backends usb
 www-client/palemoon -alsa
+media-libs/libgphoto2 -cameras_ax203 -cameras_st2205

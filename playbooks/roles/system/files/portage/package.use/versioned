@@ -24,17 +24,6 @@
 # required by media-libs/phonon-4.8.3-r1::gentoo[vlc]
 x11-misc/tint2 battery examples tint2conf
 
-# required by media-libs/libgphoto2-2.5.8::gentoo
-# required by media-gfx/gphotofs-0.5::gentoo
-# required by media-gfx/gphotofs (argument)
->=virtual/libusb-1-r2 abi_x86_32
-
-# required by x11-libs/cairo-1.14.2-r1::gentoo
-# required by x11-libs/pango-1.36.8-r1::gentoo
-# required by x11-wm/awesome-3.5.6-r1::gentoo
-# required by @selected
-# required by @world (argument)
->=sys-libs/binutils-libs-2.25.1-r1 abi_x86_32
 
 # required by app-emulation/docker-1.11.0::gentoo[seccomp]
 # required by @selected

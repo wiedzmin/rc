@@ -14,7 +14,6 @@ portage_files:
   - "package.mask/kernels"
   - "package.mask/main"
   - "package.unmask"
-  - "package.use/abi_x86_32"
   - "package.use/main"
   - "package.use/versioned"
   - "package.use/python_versions"
@@ -39,6 +38,7 @@ portage_overlays:
   - raiagent
   - nirvana
   - octopus
+  - palemoon
 overlays_check_official: no
 packages_of_interest:
   - "app-admin/haskell-updater"
