@@ -11,6 +11,7 @@ system_files:
   - { src: "acpi/sleep.sh", dest: "/etc/acpi/sleep.sh" }
   - { src: "mpd.conf", dest: "/etc/mpd.conf" }
   - { src: "udev.d/95-external-head-hotplug.rules", dest: "/etc/udev/rules.d/95-external-head-hotplug.rules" }
+  - { src: "udev.d/99-dev-input-group.rules", dest: "/etc/udev/rules.d/99-dev-input-group.rules" }
   - { src: "genkernel/modules_load", dest: "/usr/share/genkernel/defaults/modules_load" }
 homedir_files:
   - { src: "gpg-agent.conf", dest: ".gnupg/gpg-agent.conf" }

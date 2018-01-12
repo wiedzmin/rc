@@ -10,6 +10,7 @@ default_user_groups:
   - scanner
   - vboxusers
   - video
+  - input
   - wheel
 default_user_shell: zsh
 common_settings_basenames:

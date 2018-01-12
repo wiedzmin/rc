@@ -112,7 +112,7 @@ www-client/uzbl gtk3 vim-syntax helpers
 www-plugins/adobe-flash debug
 www-plugins/google-talkplugin libnotify
 x11-apps/xdpyinfo xinerama dga
-x11-base/xorg-server kdrive xvfb xephyr
+x11-base/xorg-server kdrive xvfb xephyr -suid
 x11-drivers/nvidia-drivers acpi gtk2
 x11-drivers/xf86-video-intel uxa xvmc
 x11-libs/cairo xcb
