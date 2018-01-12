@@ -31,7 +31,7 @@ dev-lang/gforth emacs
 dev-lang/go bash-completion emacs vim-syntax zsh-completion
 dev-lang/php cgi curl gd postgres xmlrpc
 dev-lang/python sqlite tk
-dev-lang/rust clang
+dev-lang/rust -clang
 dev-libs/elfutils static-libs
 dev-libs/keybinder lua
 dev-libs/libpcre pcre16
