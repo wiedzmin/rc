@@ -155,3 +155,18 @@ dev-lua/luacheck luajit
 media-gfx/sane-backends usb
 www-client/palemoon -alsa
 media-libs/libgphoto2 -cameras_ax203 -cameras_st2205
+sys-libs/libseccomp static-libs
+media-libs/gexiv2 introspection
+media-libs/gegl cairo
+media-sound/pulseaudio gnome
+dev-libs/boehm-gc threads
+app-emacs/emacs-common-gentoo games
+dev-libs/gmime smime
+media-libs/libmypaint gegl
+dev-libs/libpcre2 pcre16 pcre32
+app-text/xmlto text
+gnome-base/gvfs gtk
+dev-lua/luvit bundled-libs
+media-video/ffmpeg x264
+dev-lua/luafilesystem luajit
+dev-libs/libusb udev

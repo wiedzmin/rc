@@ -17,6 +17,7 @@ portage_files:
   - "package.use/main"
   - "package.use/versioned"
   - "package.use/python_versions"
+  - "package.use/ruby_versions"
   - "repos.conf/gentoo.conf"
   - "package.env"
 overlays_data_location: /var/lib/layman
