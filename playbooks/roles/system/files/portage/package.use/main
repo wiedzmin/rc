@@ -58,7 +58,7 @@ media-fonts/powerline-fonts anonymouspro dejavusansmono droidsansmono inconsolat
 media-gfx/darktable -kde
 media-gfx/exiv2 xmp
 media-gfx/fbv jpeg png
-media-gfx/gimp jpeg -webkit
+media-gfx/gimp jpeg2k pdf postscript udev webp wmf -alsa -webkit
 media-gfx/imagemagick corefonts djvu fftw graphviz hdri jpeg jpeg2k lzma postscript raw tiff truetype xml
 media-gfx/scrot bash-completion
 media-gfx/splashutils fbcondecor
