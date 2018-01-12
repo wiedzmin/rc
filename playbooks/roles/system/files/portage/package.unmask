@@ -161,8 +161,3 @@
 # required by @world (argument)
 # /etc/portage/package.mask/main:
 =dev-python/cffi-1.10.0
-# required by net-im/skypeforlinux-8.11.0.4::gentoo
-# required by @selected
-# required by @world (argument)
-# /etc/portage/package.mask/main:
-=media-libs/libv4l-1.12.5
