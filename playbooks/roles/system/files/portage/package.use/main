@@ -9,7 +9,7 @@ app-editors/emacs-vcs Xaw3d games gif gnutls gsettings -gtk -gtk3 gzip-el imagem
 app-editors/gvim cscope gtk lua neXt tcl
 app-editors/vim cscope lua tcl vim-pager
 app-emacs/whizzytex advi doc examples gv xdvi
-app-emulation/docker overlay device-mapper -aufs
+app-emulation/docker overlay device-mapper
 app-emulation/virtualbox extensions qt4 vnc
 app-laptop/laptop-mode-tools acpi apm bluetooth
 app-misc/cdargs emacs
