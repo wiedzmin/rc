@@ -1,7 +1,7 @@
 #!/sbin/openrc-run
 
 DAEMON=sshuttle
-DAEMON_OPTS="-r {{ remote_domain }} 0/0 --daemon"
+DAEMON_OPTS="-r {{ remote_domain }} 0/0"
 PIDFILE={{ pids_dir }}/sshuttle.pid
 
 start () {
