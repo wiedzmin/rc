@@ -138,6 +138,7 @@ sys-apps/qingy emacs directfb gpm
 sys-apps/usermode-utilities fuse
 sys-block/gparted reiserfs
 sys-boot/grub doc mount truetype
+sys-devel/gcc graphite pie
 sys-devel/llvm clang
 sys-libs/libseccomp static-libs
 virtual/libusb udev
