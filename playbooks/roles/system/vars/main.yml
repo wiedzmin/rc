@@ -10,7 +10,6 @@ portage_files:
   - "package.accept_keywords"
   - "package.keywords"
   - "package.license"
-  - "package.mask/emul-linux"
   - "package.mask/kernels"
   - "package.mask/main"
   - "package.unmask"
