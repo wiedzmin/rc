@@ -16,5 +16,6 @@ go_package_urls:
   - { url: "github.com/fatih/gomodifytags", become: no }
   - { url: "github.com/davidrjenni/reftools/cmd/fillstruct", become: no }
   - { url: "github.com/davidrjenni/reftools/cmd/fillswitch", become: no }
+  - { url: "github.com/motemen/gore", become: no }
 go_bin_path: "{{ ansible_env.HOME }}/workspace/gocode/bin"
 go_src_path: "{{ ansible_env.HOME }}/workspace/gocode/src"
