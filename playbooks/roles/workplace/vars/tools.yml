@@ -11,4 +11,4 @@ ffdc_traits: { clone_from: "https://github.com/Unode/firefox_decrypt", local_pat
 hr_traits: { clone_from: "https://github.com/LuRsT/hr", local_path: "/tmp/hr" }
 tbdiff_traits: { clone_from: "https://github.com/trast/tbdiff", local_path: "/tmp/tbdiff" }
 exa_traits: { clone_from: "https://github.com/ogham/exa.git", local_path: "/tmp/exa" }
-telegram_version: 1.1.23
+telegram_version: 1.2.6 # TODO: consider moving this to private area
