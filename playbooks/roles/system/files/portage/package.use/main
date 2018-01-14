@@ -1,5 +1,6 @@
 app-admin/conky curl hddtemp moc mpd rss thinkpad truetype vim-syntax wifi
 app-admin/hddtemp network-cron
+app-admin/pass dmenu emacs importers zsh-completion
 app-arch/p7zip -kde
 app-crypt/gcr gtk
 app-crypt/pinentry gnome-keyring emacs
@@ -8,8 +9,11 @@ app-editors/emacs Xaw3d dynamic-loading gif gnutls gsettings -gtk -gtk3 gzip-el 
 app-editors/emacs-vcs Xaw3d games gif gnutls gsettings -gtk -gtk3 gzip-el imagemagick jpeg libxml2 sound source tiff toolkit-scroll-bars xft
 app-editors/gvim cscope gtk lua neXt tcl
 app-editors/vim cscope lua tcl vim-pager
+app-emacs/emacs-common-gentoo games
 app-emacs/whizzytex advi doc examples gv xdvi
 app-emulation/docker overlay device-mapper
+app-emulation/libvirt qemu udev
+app-emulation/qemu -opengl
 app-emulation/virtualbox extensions qt4 vnc
 app-laptop/laptop-mode-tools acpi apm bluetooth
 app-misc/cdargs emacs
@@ -23,6 +27,7 @@ app-text/ghostscript-gpl cups
 app-text/poppler cairo tiff
 app-text/texlive doc dvi2tty dvipdfm graphics png pstricks science truetype luatex xetex l10n_ru
 app-text/texlive-core xetex
+app-text/xmlto text
 app-text/zathura-meta cb djvu postscript
 dev-haskell/hlint emacs hoogle
 dev-java/sun-jre-bin nsplugin
@@ -32,16 +37,26 @@ dev-lang/go bash-completion emacs vim-syntax zsh-completion
 dev-lang/php cgi curl gd postgres xmlrpc
 dev-lang/python sqlite tk
 dev-lang/rust -clang
+dev-libs/boehm-gc threads
 dev-libs/elfutils static-libs
+dev-libs/gmime smime
 dev-libs/keybinder lua
 dev-libs/libpcre pcre16
+dev-libs/libpcre2 pcre16 pcre32
 dev-libs/librep emacs
+dev-libs/libusb udev
+dev-libs/protobuf emacs
 dev-lisp/sbcl source threads
+dev-lua/luacheck luajit
+dev-lua/luafilesystem luajit
+dev-lua/luvit bundled-libs
 dev-ml/camlimages truetype tiff jpeg postscript
 dev-python/PyQt5 network printsupport
 dev-python/bpython gtk
 dev-python/ipython emacs examples notebook
+dev-python/netaddr -cli # too deep and nonrelevant dependencies graph (ipython -> PyQT)
 dev-python/numpy lapack
+dev-python/pillow truetype
 dev-python/pip zsh-completion
 dev-scheme/guile emacs networking
 dev-tcltk/tclx threads tk
@@ -50,6 +65,9 @@ dev-util/quilt emacs graphviz
 dev-util/strace aio
 dev-vcs/git cgi emacs gtk highlight tk
 dev-vcs/mercurial emacs gpg tk zsh-completion
+gnome-base/gvfs afp archive gphoto2 fuse mtp udisks
+gnome-base/gvfs gtk
+gnome-base/nautilus -previewer
 gnome-extra/nm-applet bluetooth modemmanager
 gnome-extra/zenity -webkit
 lxde-base/lxpanel wifi
@@ -60,34 +78,47 @@ media-gfx/exiv2 xmp
 media-gfx/fbv jpeg png
 media-gfx/gimp jpeg2k pdf postscript udev webp wmf -alsa -webkit
 media-gfx/imagemagick corefonts djvu fftw graphviz hdri jpeg jpeg2k lzma postscript raw tiff truetype xml
+media-gfx/sane-backends usb
 media-gfx/scrot bash-completion
 media-gfx/splashutils fbcondecor
 media-libs/freetype infinality -cleartype_hinting
 media-libs/gd truetype jpeg fontconfig
+media-libs/gegl cairo
+media-libs/gexiv2 introspection
 media-libs/harfbuzz icu
 media-libs/imlib2 jpeg
 media-libs/libcanberra gtk
+media-libs/libgphoto2 -cameras_ax203 -cameras_st2205
+media-libs/libmypaint gegl
 media-libs/libpng apng
 media-libs/mesa gbm
 media-libs/sdl-image jpeg
 media-libs/sdl2-image jpeg
 media-libs/swfdec ffmpeg gstreamer gtk
+media-sound/ario ausioscrobbler libnotify taglib
 media-sound/mpd aac cdio flac inotify lastfmradio mikmod modplug musepack sndfile soundcloud twolame wavpack wildmidi -ffmpeg -cdio
 media-sound/pulseaudio equalizer
+media-sound/pulseaudio gnome
 media-sound/sox flac twolame wavpack
 media-sound/volumeicon libnotify
 media-sound/xmms2 flac mp3
 media-video/ffmpeg threads mp3 twolame
+media-video/ffmpeg x264
 media-video/vlc -ncurses xml directfb matroska -libav
 net-analyzer/mtr -gtk
 net-im/skype pulseaudio
+net-im/telegram-cli -lua # configure: error: unrecognized option: `-lm' in some overlays, may be fixed later
+net-irc/hexchat gtk libnotify lua
 net-libs/gnutls pkcs11 -crywrap
 net-libs/libproxy -webkit
+net-libs/libvncserver threads -ssl gnutls
 net-libs/rb_libtorrent -python  # temporarily turn python bindings off, until root cause of build failure wiil found
 net-mail/isync sasl ssl
 net-mail/mu emacs
 net-mail/notmuch doc emacs mutt
 net-mail/offlineimap doc sqlite
+net-misc/connman iptables
+net-misc/dropbox -X
 net-misc/networkmanager bluetooth nss modemmanager -gnutls -wext
 net-misc/networkmanager-openvpn gtk
 net-misc/openvpn passwordsave
@@ -95,6 +126,7 @@ net-misc/unison gtk threads
 net-misc/whois idn
 net-misc/wicd gtk
 net-p2p/syncthing tools
+net-print/cups-filters jpeg pdf tiff
 net-wireless/wpa_supplicant -qt4 -qt5
 sci-mathematics/maxima emacs latex sbcl tk
 sci-mathematics/octave gui
@@ -107,7 +139,10 @@ sys-apps/usermode-utilities fuse
 sys-block/gparted reiserfs
 sys-boot/grub doc mount truetype
 sys-devel/llvm clang
+sys-libs/libseccomp static-libs
+virtual/libusb udev
 www-client/firefox jemalloc hwaccel l10n_ru pgo wifi
+www-client/palemoon -alsa
 www-client/uzbl gtk3 vim-syntax helpers
 www-plugins/adobe-flash debug
 www-plugins/google-talkplugin libnotify
@@ -130,44 +165,9 @@ x11-misc/xscreensaver jpeg
 x11-plugins/vicious contrib
 x11-terms/gnome-terminal -gnome-shell -nautilus
 x11-terms/rxvt-unicode 256-color blink fading-colors pixbuf startup-notification unicode3 xft
+x11-wm/awesome luajit
 x11-wm/enlightenment xcomposite xinerama xrandr
 x11-wm/notion xinerama
 x11-wm/sawfish emacs xinerama
 x11-wm/stumpwm sbcl
 x11-wm/xmonad-contrib xft
-net-libs/libvncserver threads -ssl gnutls
-app-admin/pass dmenu emacs importers zsh-completion
-net-irc/hexchat gtk libnotify lua
-net-im/telegram-cli -lua # configure: error: unrecognized option: `-lm' in some overlays, may be fixed later
-gnome-base/nautilus -previewer
-gnome-base/gvfs afp archive gphoto2 fuse mtp udisks
-dev-python/pillow truetype
-x11-wm/awesome luajit
-net-misc/connman iptables
-net-misc/dropbox -X
-media-sound/ario ausioscrobbler libnotify taglib
-net-print/cups-filters jpeg pdf tiff
-dev-libs/protobuf emacs
-app-emulation/qemu -opengl
-app-emulation/libvirt qemu udev
-dev-python/netaddr -cli # too deep and nonrelevant dependencies graph (ipython -> PyQT)
-dev-lua/luacheck luajit
-media-gfx/sane-backends usb
-www-client/palemoon -alsa
-media-libs/libgphoto2 -cameras_ax203 -cameras_st2205
-sys-libs/libseccomp static-libs
-media-libs/gexiv2 introspection
-media-libs/gegl cairo
-media-sound/pulseaudio gnome
-dev-libs/boehm-gc threads
-app-emacs/emacs-common-gentoo games
-dev-libs/gmime smime
-media-libs/libmypaint gegl
-dev-libs/libpcre2 pcre16 pcre32
-app-text/xmlto text
-gnome-base/gvfs gtk
-dev-lua/luvit bundled-libs
-media-video/ffmpeg x264
-dev-lua/luafilesystem luajit
-dev-libs/libusb udev
-virtual/libusb udev
