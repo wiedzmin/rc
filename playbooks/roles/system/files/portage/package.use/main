@@ -170,3 +170,4 @@ dev-lua/luvit bundled-libs
 media-video/ffmpeg x264
 dev-lua/luafilesystem luajit
 dev-libs/libusb udev
+virtual/libusb udev
