@@ -67,6 +67,8 @@ zsh_plugins:
   - zsh-users/zsh-syntax-highlighting
   - zsh-users/zaw
   - voronkovich/project.plugin.zsh
+  - mafredri/zsh-async
+  - wiedzmin/zsh-fuzzy-search-and-edit
 oh_my_zsh_plugins_enabled:
   - dircycle
   - docker
