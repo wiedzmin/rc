@@ -20,3 +20,13 @@ xft_font_size_term: 9
 go_fonts_traits: { clone_from: "https://go.googlesource.com/image", local_path: "/tmp/go-fonts" }
 go_fonts_ttf_subpath: "font/gofont/ttfs"
 fonts_ttf_location: "/usr/share/fonts/TTF"
+fonts_related_links_try:
+  - https://github.com/gabrielelana/awesome-terminal-fonts
+  - https://github.com/ztomer/fantasque_awesome_powerline
+  - https://github.com/belluzj/fantasque-sans
+  - http://sourcefoundry.org/hack/
+  - http://input.fontbureau.com/
+  - http://larsenwork.com/monoid/
+  - https://github.com/ryanoasis/nerd-fonts
+  - https://github.com/powerline/fonts
+  - http://files.ax86.net/terminus-ttf/
