@@ -27,4 +27,6 @@ bindkey -r "^g"
 bindkey "j" zshnip-expand-or-edit
 bindkey "e" zshnip-edit-and-expand
 
-bindkey "^P" fuzzy-search-and-edit
+bindkey "^qs" fuzzy-search-and-edit
+zle -N fe
+bindkey "^qe" fe
