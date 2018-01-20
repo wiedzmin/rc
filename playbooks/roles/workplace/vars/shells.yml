@@ -70,6 +70,7 @@ zsh_plugins:
   - mafredri/zsh-async
   - wiedzmin/zsh-fuzzy-search-and-edit
   - unixorn/git-extra-commands
+  - RobSis/zsh-reentry-hook
 oh_my_zsh_plugins_enabled:
   - dircycle
   - docker
