@@ -95,3 +95,4 @@ python_pip_packages:
   - "virtualenvwrapper"
   - "yapf"
   - "jmespath"
+  - "GitPython"

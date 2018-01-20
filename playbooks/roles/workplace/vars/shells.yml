@@ -69,6 +69,7 @@ zsh_plugins:
   - voronkovich/project.plugin.zsh
   - mafredri/zsh-async
   - wiedzmin/zsh-fuzzy-search-and-edit
+  - unixorn/git-extra-commands
 oh_my_zsh_plugins_enabled:
   - dircycle
   - docker
