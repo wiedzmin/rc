@@ -11,7 +11,7 @@ app-editors/gvim cscope gtk lua neXt tcl
 app-editors/vim cscope lua tcl vim-pager
 app-emacs/emacs-common-gentoo games
 app-emacs/whizzytex advi doc examples gv xdvi
-app-emulation/docker overlay device-mapper
+app-emulation/docker overlay device-mapper zsh-completion
 app-emulation/libvirt qemu udev
 app-emulation/qemu -opengl
 app-emulation/virtualbox extensions qt4 vnc
