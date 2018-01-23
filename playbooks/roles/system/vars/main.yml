@@ -5,6 +5,7 @@ system_dirs:
   - "/etc/portage/package.mask"
   - "/etc/portage/package.use"
   - "/etc/portage/repos.conf"
+  - "/etc/portage/env"
 portage_files:
   - "make.conf"
   - "package.accept_keywords"
@@ -19,6 +20,8 @@ portage_files:
   - "package.use/ruby_versions"
   - "repos.conf/gentoo.conf"
   - "package.env"
+  - "env/debugsyms"
+  - "env/installsources"
 overlays_data_location: /var/lib/layman
 aux_files:
   - "rc.conf"
