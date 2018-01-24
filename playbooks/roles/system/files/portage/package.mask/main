@@ -4,7 +4,6 @@
 >dev-haskell/pandoc-types-1.10
 >dev-haskell/tagsoup-0.12.8
 >dev-haskell/xml-types-0.3.3
->dev-libs/gmp-5.1.3-r1
 >dev-libs/icu-55.1
 >dev-lisp/cl-launch-2.36
 >dev-python/cffi-1.4.2

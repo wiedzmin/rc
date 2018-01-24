@@ -41,6 +41,7 @@ dev-lang/rust -clang
 dev-libs/boehm-gc threads
 dev-libs/elfutils static-libs
 dev-libs/gmime smime
+dev-libs/gmp pgo
 dev-libs/keybinder lua
 dev-libs/libpcre pcre16
 dev-libs/libpcre2 pcre16 pcre32
