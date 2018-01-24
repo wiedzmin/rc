@@ -9,6 +9,7 @@ app-editors/emacs Xaw3d dynamic-loading gif gnutls gsettings -gtk -gtk3 gzip-el 
 app-editors/emacs-vcs Xaw3d games gif gnutls gsettings -gtk -gtk3 gzip-el imagemagick jpeg libxml2 sound source tiff toolkit-scroll-bars xft
 app-editors/gvim cscope gtk lua neXt tcl
 app-editors/vim cscope lua tcl vim-pager
+app-emacs/auctex preview-latex
 app-emacs/emacs-common-gentoo games
 app-emacs/whizzytex advi doc examples gv xdvi
 app-emulation/docker overlay device-mapper zsh-completion
