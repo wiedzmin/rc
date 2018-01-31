@@ -22,4 +22,4 @@ homedir_files:
 custom_scripts:
   - "sshuttle-down"
 
-# TODO: try to automate http://input.fontbureau.com/download/ with tools like headlesss browsers, etc.
+# TODO: try to automate http://input.fontbureau.com/download/ with tools like headless browsers, etc.
