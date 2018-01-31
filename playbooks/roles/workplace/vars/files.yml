@@ -6,6 +6,8 @@ system_files:
   - { src: "acpi/events/lid", dest: "/etc/acpi/events/lid" }
   - { src: "acpi/events/power", dest: "/etc/acpi/events/power" }
   - { src: "acpi/events/sleep", dest: "/etc/acpi/events/sleep" }
+  - { src: "acpi/events/thinkpad-dock", dest: "/etc/acpi/events/thinkpad-dock" }
+  - { src: "acpi/events/thinkpad-undock", dest: "/etc/acpi/events/thinkpad-undock" }
   - { src: "acpi/lid.sh", dest: "/etc/acpi/lid.sh" }
   - { src: "acpi/power.sh", dest: "/etc/acpi/power.sh" }
   - { src: "acpi/sleep.sh", dest: "/etc/acpi/sleep.sh" }
