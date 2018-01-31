@@ -62,7 +62,6 @@ use_oh_my_zsh: yes
 zsh_plugins:
   - b4b4r07/enhancd
   - marzocchi/zsh-notify
-  - piotryordanov/fzf-mpd
   - urbainvaes/fzf-marks
   - zsh-users/zsh-syntax-highlighting
   - zsh-users/zaw
