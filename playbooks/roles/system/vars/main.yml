@@ -39,7 +39,6 @@ portage_overlays:
   - mva
   - qwin-overlay
   - raiagent
-  - nirvana
   - octopus
   - palemoon
 overlays_check_official: no
