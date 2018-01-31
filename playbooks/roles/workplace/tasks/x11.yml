@@ -77,6 +77,16 @@
     mode: 0755
   register: xsession_script
 
+- name: copy xrandr scripts
+  tags: [x11, scripts]
+  copy:
+    content: "{{ lookup('template', 'x11/xrandr/{{ item | basename }}') }}"
+    dest: "/usr/local/bin/{{ item | basename }}"
+    mode: 0755
+  with_fileglob:
+    - "{{ role_path }}/templates/x11/xrandr/*"
+  become: yes
+
 - name: remove tangled Emacs config
   tags: [x11]
   file:

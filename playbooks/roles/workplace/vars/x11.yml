@@ -51,3 +51,6 @@ osd_y_offset_1: 600
 osd_x_offset_2: 1400
 osd_y_offset_2: 1000
 cpu_usage_interval: 0.1
+xrandr_vga_output: VGA1
+xrandr_internal_output: LVDS1
+xrandr_vga_rotation: left
