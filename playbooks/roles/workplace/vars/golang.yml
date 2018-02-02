@@ -17,5 +17,10 @@ go_package_urls:
   - { url: "github.com/davidrjenni/reftools/cmd/fillstruct", become: no }
   - { url: "github.com/davidrjenni/reftools/cmd/fillswitch", become: no }
   - { url: "github.com/motemen/gore", become: no }
+  - { url: "github.com/golang/dep/cmd/dep", become: no }
+  - { url: "github.com/davecheney/prdeps", become: no }
+  - { url: "github.com/stretchr/gorc", become: no }
+  - { url: "github.com/davecheney/graphpkg", become: no }
+  - { url: "github.com/Masterminds/glide", become: no }
 go_bin_path: "{{ ansible_env.HOME }}/workspace/gocode/bin"
 go_src_path: "{{ ansible_env.HOME }}/workspace/gocode/src"

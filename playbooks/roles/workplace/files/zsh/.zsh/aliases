@@ -73,6 +73,10 @@ alias li='exa -ial'
 alias lsd='exa -ld *(-/DN)'
 alias lsa='exa -ld .*'
 
+# TODO: make shorter
+alias godeps='prdeps $(go list)'
+alias godepsa='prdeps $(go list ./...)'
+
 #handy patching aliases
 alias ptch='patch -Ntbp0 < '
 alias uptch='patch -NRtbp0 < '
