@@ -40,7 +40,6 @@ portage_overlays:
   - qwin-overlay
   - raiagent
   - octopus
-  - palemoon
 overlays_check_official: no
 packages_of_interest:
   - "app-admin/haskell-updater"
