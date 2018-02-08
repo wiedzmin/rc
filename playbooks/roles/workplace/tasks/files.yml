@@ -21,12 +21,3 @@
     dest: "{{ ansible_env.HOME }}/{{ item.dest }}"
     mode: 0755
   with_items: "{{ homedir_files }}"
-
-- name: copy custom scripts
-  tags: [files, scripts]
-  copy:
-    src: "{{ role_path }}/files/scripts/{{ item }}"
-    dest: "/usr/local/bin/{{ item }}"
-    mode: 0755
-  with_items: "{{ custom_scripts }}"
-  become: yes

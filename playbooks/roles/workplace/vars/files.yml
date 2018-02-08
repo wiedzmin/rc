@@ -21,7 +21,5 @@ homedir_files:
   - { src: "mail/.mbsyncrc", dest: ".mbsyncrc" }
   - { src: "mail/.msmtprc", dest: ".msmtprc" }
   - { src: "ssh_config", dest: ".ssh/config" }
-custom_scripts:
-  - "sshuttle-down"
 
 # TODO: try to automate http://input.fontbureau.com/download/ with tools like headless browsers, etc.
