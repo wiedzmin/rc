@@ -145,7 +145,7 @@ sys-devel/gcc go graphite mpx pie pgo
 sys-devel/llvm clang
 sys-libs/libseccomp static-libs
 virtual/libusb udev
-www-client/firefox jemalloc hwaccel l10n_ru pgo wifi
+www-client/firefox jemalloc hwaccel l10n_ru startup-notification wifi
 www-client/palemoon -alsa
 www-client/uzbl gtk3 vim-syntax helpers
 www-plugins/adobe-flash debug
