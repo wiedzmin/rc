@@ -26,18 +26,12 @@ overlays_data_location: /var/lib/layman
 aux_files:
   - "rc.conf"
 portage_overlays:
-  - bar
-  - chaos
   - dilfridge
-  - docker
   - emacs
-  - flow
   - go-overlay
   - haskell
-  - jorgicio
   - lisp
   - mva
-  - qwin-overlay
   - raiagent
   - octopus
 overlays_check_official: no
