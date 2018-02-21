@@ -6,7 +6,7 @@ resources_configs:
 xft_fonts:
   - { name: "Consolas", is_bold: yes, bold_keyword: "style"}
   - { name: "PTMono", is_bold: yes, bold_keyword: "style"}
-  - { name: "Hack", is_bold: yes, bold_keyword: "style"}
+  - { name: "Hack", is_bold: yes, bold_keyword: "weight"}
   - { name: "IosevkaCC", is_bold: yes, bold_keyword: "weight"}
   - { name: "mononoki", is_bold: yes, bold_keyword: "weight"}
   - { name: "Fantasque Sans Mono", is_bold: yes, bold_keyword: "style"}
