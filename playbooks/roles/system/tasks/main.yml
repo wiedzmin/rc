@@ -12,11 +12,22 @@
 - name: copy Portage files
   tags: [portage]
   copy:
-    src: "{{ role_path }}/files/portage/{{ item }}"
-    dest: "/etc/portage/{{ item }}"
+    src: "{{ role_path }}/files/portage/{{ item.name }}"
+    dest: "/etc/portage/{{ item.name }}"
     mode: 0755
   become: yes
   with_items: "{{ portage_files }}"
+  when: item.lookup is not defined
+
+- name: instantiate portage templates
+  tags: [portage]
+  copy:
+    content: "{{ lookup('template', '{{ role_path }}/files/portage/{{ item.name }}') }}"
+    dest: "/etc/portage/{{ item.name }}"
+    mode: 0755
+  become: yes
+  with_items: "{{ portage_files }}"
+  when: item.lookup is defined and item.lookup == "template"
 
 - name: copy auxillary files
   tags: [aux]
