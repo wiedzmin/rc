@@ -106,7 +106,7 @@
   tags: [portage, overlays]
   copy:
     src: "{{ role_path }}/files/portage/local_overlay/"
-    dest: /usr/local/portage
+    dest: "{{ local_overlay_data_location }}"
     owner: portage
     group: portage
     mode: 0755

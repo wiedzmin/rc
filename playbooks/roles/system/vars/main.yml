@@ -23,6 +23,7 @@ portage_files:
   - "env/debugsyms"
   - "env/installsources"
 overlays_data_location: /var/lib/layman
+local_overlay_data_location: /usr/local/portage
 aux_files:
   - "rc.conf"
 portage_overlays:
