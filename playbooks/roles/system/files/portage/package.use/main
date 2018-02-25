@@ -2,6 +2,7 @@ app-admin/conky curl hddtemp moc mpd rss thinkpad truetype vim-syntax wifi
 app-admin/hddtemp network-cron
 app-admin/pass dmenu emacs importers zsh-completion
 app-arch/p7zip -kde
+app-arch/upx-ucl lzma zlib
 app-crypt/gcr gtk
 app-crypt/pinentry gnome-keyring emacs
 app-crypt/qca gpg
