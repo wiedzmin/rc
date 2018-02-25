@@ -71,16 +71,8 @@ zsh_plugins:
   - unixorn/git-extra-commands
   - RobSis/zsh-reentry-hook
 oh_my_zsh_plugins_enabled:
-  - dircycle
-  - docker
-  - docker-compose
   - emacs
-  - fasd
-  - git-prompt
-  - golang
-  - nyan
   - pip
-  - sudo
   - urltools
   - virtualenv
   - virtualenvwrapper
