@@ -116,6 +116,7 @@ net-libs/gnutls pkcs11 -crywrap
 net-libs/libproxy -webkit
 net-libs/libvncserver threads -ssl gnutls
 net-libs/rb_libtorrent -python  # temporarily turn python bindings off, until root cause of build failure wiil found
+net-libs/webkit-gtk egl geolocation gstreamer introspection jit libnotify opengl webgl
 net-mail/isync sasl ssl
 net-mail/mu emacs
 net-mail/notmuch doc emacs mutt
