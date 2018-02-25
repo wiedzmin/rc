@@ -56,5 +56,5 @@ xrandr_internal_output: LVDS1
 xrandr_vga_rotation: left
 xrandr_dock_left_output: HDMI2
 xrandr_dock_left_rotation: normal
-xrandr_dock_right_output: VGA1
+xrandr_dock_right_output: HDMI3
 xrandr_dock_right_rotation: left
