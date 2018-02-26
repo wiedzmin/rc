@@ -108,6 +108,19 @@
     dest: "{{ ansible_env.HOME }}/.zshrc"
     mode: 0755
 
+- name: docker-machine | clone
+  tags: [shells, zsh]
+  git:
+    repo: "{{ docker_machine_traits.clone_from }}"
+    dest: "{{ docker_machine_traits.local_path }}"
+    force: yes
+
+- name: docker-machine | install Zsh completions
+  tags: [shells, zsh]
+  copy:
+    src: "{{ docker_machine_traits.local_path }}/contrib/completion/zsh/_docker-machine"
+    dest: "{{ zsh_subconfig_path }}/completion/_docker-machine"
+
 - name: tmux | instantiate sessions script
   tags: [shell, tmux]
   copy:
