@@ -65,7 +65,7 @@ dev-scheme/guile emacs networking
 dev-tcltk/tclx threads tk
 dev-util/global emacs vim
 dev-util/quilt emacs graphviz
-dev-util/strace aio
+dev-util/strace aio unwind
 dev-vcs/git cgi emacs gtk highlight tk
 dev-vcs/mercurial emacs gpg tk zsh-completion
 gnome-base/gvfs afp archive gphoto2 fuse mtp udisks
