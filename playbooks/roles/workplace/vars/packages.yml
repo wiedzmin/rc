@@ -1,6 +1,7 @@
 check_packages_installed: no
 packages_of_interest:
   - "app-admin/apache-tools"
+  - "app-admin/kubectx"
   - "app-admin/pass"
   - "app-admin/vault"
   - "app-arch/upx-ucl"          # or proprietary-like app-arch/upx-bin + try to build from https://github.com/upx/upx
