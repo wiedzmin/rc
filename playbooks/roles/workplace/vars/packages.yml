@@ -55,6 +55,7 @@ packages_of_interest:
   - "net-misc/rclone-bin"
   - "net-misc/urlview"
   - "sys-apps/dbus"
+  - "sys-apps/exa"
   - "sys-apps/fbset"
   - "sys-apps/highway"
   - "sys-apps/lm_sensors"

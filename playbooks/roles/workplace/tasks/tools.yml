@@ -235,17 +235,3 @@
     owner: "{{ user_name }}"
     group: "{{ user_group }}"
   become: yes
-
-- name: exa | clone repository
-  tags: [tools, exa]
-  git:
-    repo: "{{ exa_traits.clone_from }}"
-    dest: "{{ exa_traits.local_path }}"
-    force: yes
-
-- name: exa | install
-  tags: [tools, exa]
-  make:
-    chdir: "{{ exa_traits.local_path }}"
-    target: install
-  become: yes
