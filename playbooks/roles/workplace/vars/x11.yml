@@ -10,6 +10,7 @@ x11_homedir_subdirs:
 x11_system_files:
   - { src: "xorg.conf.d/10-input.conf", dest: "/etc/X11/xorg.conf.d/10-input.conf" }
   - { src: "xorg.conf.d/15-synaptics.conf", dest: "/etc/X11/xorg.conf.d/15-synaptics.conf" }
+  - { src: "xorg.conf.d/17-intel-modesetting.conf", dest: "/etc/X11/xorg.conf.d/17-intel-modesetting.conf" }
   - { src: "xorg.conf.d/20-opengl.conf", dest: "/etc/X11/xorg.conf.d/20-opengl.conf" }
 x11_homedir_files:
   - { src: ".gmrunrc", dest: ".gmrunrc" }
@@ -51,10 +52,10 @@ osd_y_offset_1: 600
 osd_x_offset_2: 1400
 osd_y_offset_2: 1000
 cpu_usage_interval: 0.1
-xrandr_vga_output: VGA1
-xrandr_internal_output: LVDS1
+xrandr_vga_output: VGA-1
+xrandr_internal_output: LVDS-1
 xrandr_vga_rotation: left
-xrandr_dock_left_output: HDMI2
+xrandr_dock_left_output: HDMI-2
 xrandr_dock_left_rotation: normal
-xrandr_dock_right_output: HDMI3
+xrandr_dock_right_output: HDMI-3
 xrandr_dock_right_rotation: left

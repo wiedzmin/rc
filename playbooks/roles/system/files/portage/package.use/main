@@ -155,7 +155,6 @@ www-plugins/google-talkplugin libnotify
 x11-apps/xdpyinfo xinerama dga
 x11-base/xorg-server kdrive xvfb xephyr -suid
 x11-drivers/nvidia-drivers acpi gtk2
-x11-drivers/xf86-video-intel uxa xvmc
 x11-libs/cairo xcb
 x11-libs/fltk xft xinerama
 x11-libs/gdk-pixbuf jpeg
@@ -177,3 +176,4 @@ x11-wm/notion xinerama
 x11-wm/sawfish emacs xinerama
 x11-wm/stumpwm sbcl
 x11-wm/xmonad-contrib xft
+x11-apps/intel-gpu-tools sound udev xrandr xv

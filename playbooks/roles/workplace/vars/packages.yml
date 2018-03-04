@@ -67,6 +67,7 @@ packages_of_interest:
   - "sys-power/acpi"
   - "sys-power/upower-pm-utils"
   - "x11-apps/arbtt"
+  - "x11-apps/intel-gpu-tools"
   - "x11-apps/xmodmap"
   - "x11-apps/xrdb"
   - "x11-libs/xosd"
