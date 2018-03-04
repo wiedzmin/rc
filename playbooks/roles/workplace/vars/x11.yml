@@ -8,9 +8,9 @@ x11_homedir_subdirs:
   - ".local/share/applications"
   - ".sawfish"
 x11_system_files:
-  - { src: "xorg.conf.d/20opengl.conf", dest: "/etc/X11/xorg.conf.d/20opengl.conf" }
-  - { src: "xorg.conf.d/input.conf", dest: "/etc/X11/xorg.conf.d/input.conf" }
-  - { src: "xorg.conf.d/synaptics.conf", dest: "/etc/X11/xorg.conf.d/synaptics.conf" }
+  - { src: "xorg.conf.d/10-input.conf", dest: "/etc/X11/xorg.conf.d/10-input.conf" }
+  - { src: "xorg.conf.d/15-synaptics.conf", dest: "/etc/X11/xorg.conf.d/15-synaptics.conf" }
+  - { src: "xorg.conf.d/20-opengl.conf", dest: "/etc/X11/xorg.conf.d/20-opengl.conf" }
 x11_homedir_files:
   - { src: ".gmrunrc", dest: ".gmrunrc" }
   - { src: ".i3status.conf", dest: ".i3status.conf" }

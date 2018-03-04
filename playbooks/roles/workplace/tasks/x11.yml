@@ -30,7 +30,7 @@
     dest: "{{ item.dest }}"
     mode: 0755
   become: yes
-  with_items: "{{ x11_system_files }}"
+  with_items: "{{ x11_system_files }}" # TODO: think of cleanup beforehand
 
 - name: copy homedir files
   tags: [x11, home]
