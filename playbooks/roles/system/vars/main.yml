@@ -7,7 +7,7 @@ system_dirs:
   - "/etc/portage/repos.conf"
   - "/etc/portage/env"
 portage_files:
-  - { name: "make.conf" }
+  - { name: "make.conf", lookup: "template" }
   - { name: "package.accept_keywords" }
   - { name: "package.keywords" }
   - { name: "package.license" }
@@ -30,6 +30,11 @@ portage_tree_sync_uris:
   - rsync://rsync.fi.gentoo.org/gentoo-portage/
   - rsync://rsync.ru.gentoo.org/gentoo-portage/
 portage_tree_sync_uri_current: "{{ portage_tree_sync_uris[2] }}"
+portage_distfiles_mirrors:
+  - http://mirror.yandex.ru/gentoo-distfiles/
+  - ftp://mirror.yandex.ru/gentoo-distfiles/
+  - ftp://gentoo.bloodhost.ru/
+  - ftp://gentoo.bloodhost.ru/
 overlays_data_location: /var/lib/layman
 local_overlay_data_location: /usr/local/portage
 aux_files:
