@@ -91,16 +91,16 @@ packages_disabled:
   - "dev-vcs/git-extras" # later
   - "app-crypt/hashcat"
 python_pip_packages:
+  - "GitPython"
   - "autopep8"
   - "flake8"
   - "imapautofiler"
   - "importmagic"
   - "isort"
+  - "jmespath"
   - "olefile"
   - "rst2pdf"
   - "snakeviz"
   - "traad"
   - "virtualenvwrapper"
   - "yapf"
-  - "jmespath"
-  - "GitPython"
