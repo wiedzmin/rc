@@ -120,3 +120,5 @@
     state: present
   become: yes
   with_items: "{{ tmpfs_dirs }}"
+
+# TODO: https://wiki.gentoo.org/wiki/Intel#Brightness_does_not_change_with_keyboard_shortcuts
