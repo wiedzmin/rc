@@ -18,7 +18,7 @@ x11_homedir_files:
   - { src: ".sawfishrc", dest: ".sawfish/rc" }
   - { src: ".stalonetrayrc", dest: ".stalonetrayrc" }
   - { src: ".xxkbrc", dest: ".xxkbrc" }
-  - { src: "browser/.pentadactylrc", dest: ".pentadactylrc" }
+  - { src: "browser/.surfingkeysrc", dest: ".surfingkeysrc" }
   - { src: "categorize.cfg", dest: ".arbtt/categorize.cfg" }
   - { src: "i3.conf", dest: ".config/i3/config" }
   - { src: "rofi.conf", dest: ".config/rofi/config" }

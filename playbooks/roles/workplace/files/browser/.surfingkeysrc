@@ -1,0 +1,12 @@
+Hints.characters = '0123456789';
+
+map('<Ctrl-.>', 'R'); // replace T with gt
+map('<Ctrl-,>', 'E');
+map('u', 'X');
+map('d', 'x');
+map('b', 'T');
+
+mapkey('sz', 'Save to Pocket', function() {
+  const url = `https://getpocket.com/save?url=${location.href}&title=${document.title}`
+  window.open(url, "_blank").focus()
+});
