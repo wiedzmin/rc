@@ -115,8 +115,8 @@ portage_overlays:
   - haskell
   - lisp
   - mva
-  - raiagent
   - octopus
+  - soft
 overlays_check_official: no
 packages_of_interest:
   - "app-admin/haskell-updater"
