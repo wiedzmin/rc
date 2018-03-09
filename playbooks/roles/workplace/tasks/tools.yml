@@ -6,36 +6,12 @@
     - paths.yml
     - shells.yml
 
-- name: accompanying tools | shepherd (scheduling) | get
-  tags: [tools, shepherd]
-  git:
-    repo: "{{ shepherd_traits.clone_from }}"
-    dest: "{{ shepherd_traits.local_path }}"
-    force: yes
-
-- name: accompanying tools | shepherd (scheduling) | build
-  tags: [tools, shepherd]
-  shell: go build -o shepherd main.go
-  args:
-    chdir: "{{ shepherd_traits.local_path }}"
-
-- name: accompanying tools | shepherd (scheduling) | install
-  tags: [tools, shepherd]
-  shell: "mv {{ shepherd_traits.local_path }}/{{ shepherd_traits.binary }} {{ binaries_prefix }}/{{ shepherd_traits.binary }}"
-  become: yes
-
 - name: accompanying tools | shepherd (scheduling) | copy jobs definitions
   tags: [tools, shepherd]
   copy:
     src: "{{ playbook_dir }}/../private/shepherd-jobs"
     dest: "/home/octocat/shepherd-jobs.yml"
     mode: 0755
-
-- name: install tmux plugin manager
-  tags: [tools, tmux]
-  git:
-    repo: https://github.com/tmux-plugins/tpm
-    dest: "{{ ansible_env.HOME }}/.tmux/plugins/tpm"
 
 - name: imapfilter | remove old config file
   tags: [tools, imapfilter]
@@ -65,79 +41,6 @@
     path: "{{ imapfilter_config }}"
     state: absent
 
-- name: Buildapp | clone repo
-  tags: [tools, buildapp]
-  git:
-    repo: "{{ buildapp_traits.clone_from }}"
-    dest: "{{ buildapp_traits.local_path }}"
-    force: yes
-
-- name: Buildapp
-  tags: [tools, buildapp]
-  make:
-    chdir: "{{ buildapp_traits.local_path }}"
-    target: "{{ item }}"
-  with_items:
-    - buildapp
-    - install
-  become: yes
-
-- name: git-quick-stats | clone repository
-  tags: [tools, gqs]
-  git:
-    repo: "{{ gqs_traits.clone_from }}"
-    dest: "{{ gqs_traits.local_path }}"
-    force: yes
-
-- name: git-quick-stats | install
-  tags: [tools, gqs]
-  make:
-    chdir: "{{ gqs_traits.local_path }}"
-    target: install
-  become: yes
-
-- name: git-quick-stats | set permissions
-  tags: [tools, gqs]
-  file:
-    path: "{{ binaries_prefix }}/git-quick-stats"
-    mode: 0755
-    owner: "{{ user_name }}"
-    group: "{{ user_group }}"
-  become: yes
-
-- name: git-quick-stats | uninstall
-  tags: [tools, gqs]
-  make:
-    chdir: "{{ gqs_traits.local_path }}"
-    target: uninstall
-  when:
-    - False # invoke directly
-
-- name: download Telegram Desktop archive
-  tags: [tools, tg]
-  get_url:
-    url: "https://updates.tdesktop.com/tlinux/tsetup.{{ telegram_version }}.tar.xz"
-    dest: /tmp/tsetup.tar.xz
-    force: yes
-
-- name: update Telegram Desktop binaries
-  tags: [tools, tg]
-  unarchive:
-    src: /tmp/tsetup.tar.xz
-    dest: /usr/local/bin
-    extra_opts:
-      - "--strip=1"
-  become: yes
-
-# TODO: think of TG themes automation
-
-- name: tmuxifier | clone repo
-  tags: [tools, tmuxifier]
-  git:
-    repo: "{{ tmuxifier_traits.clone_from }}"
-    dest: "{{ tmuxifier_traits.local_path }}"
-    force: yes
-
 - name: tmuxifier | update configs
   tags: [tools, tmuxifier]
   blockinfile:
@@ -152,27 +55,6 @@
     - [{ idx: 1,  block: "    $HOME/.tmuxifier/bin", after: "^BIN_DIRS=\\(" },
     { idx: 2, block: "eval \"$(tmuxifier init -)\"", after: "EOF"}]
     # TODO: think of way to rerun some links/path population steps after this
-
-- name: httplab | install
-  tags: [tools, golang]
-  shell: go get github.com/gchaincl/httplab
-
-# TODO: https://github.com/asciimoo/wuzz - master/HEAD is broken (SIGSEGV), try later
-
-- name: Zshnip | clone repo
-  tags: [tools, zshnip]
-  git:
-    repo: "{{ zshnip_traits.clone_from }}"
-    dest: "{{ zshnip_traits.local_path }}"
-    force: yes
-
-- name: Zshnip | copy file(s)
-  tags: [tools, zshnip]
-  copy:
-    src: "{{ zshnip_traits.local_path }}/zshnip.zsh"
-    dest: "/usr/local/bin"
-    mode: 0755
-  become: yes
 
 - name: Zshnip | configure Zsh
   tags: [tools, zshnip]
@@ -204,34 +86,3 @@
     dest: "{{ ansible_env.HOME }}/.config/hexchat"
 
 # TODO: setup znc on octocat.ru
-
-- name: hr | clone repository
-  tags: [tools, hr]
-  git:
-    repo: "{{ hr_traits.clone_from }}"
-    dest: "{{ hr_traits.local_path }}"
-    force: yes
-
-- name: hr | install
-  tags: [tools, hr]
-  make:
-    chdir: "{{ hr_traits.local_path }}"
-    target: install
-  become: yes
-
-- name: tbdiff | clone repository
-  tags: [tools, tbdiff]
-  git:
-    repo: "{{ tbdiff_traits.clone_from }}"
-    dest: "{{ tbdiff_traits.local_path }}"
-    force: yes
-
-- name: tbdiff | install
-  tags: [tools, tbdiff]
-  copy:
-    src: "{{ tbdiff_traits.local_path }}/git-tbdiff.py"
-    dest: "/usr/local/bin/git-tbdiff"
-    mode: 0755
-    owner: "{{ user_name }}"
-    group: "{{ user_group }}"
-  become: yes

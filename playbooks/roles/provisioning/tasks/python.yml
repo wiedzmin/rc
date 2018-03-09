@@ -1,0 +1,12 @@
+---
+
+- include_vars: python.yml
+  tags: [python]
+
+- name: install pip packages (Python)
+  tags: [python]
+  pip:
+    name: "{{ item }}"
+    state: latest
+    extra_args: --user
+  with_items: "{{ python_pip_packages }}"

@@ -1,18 +1,20 @@
+---
+
 - include_vars: golang.yml
   tags: [golang]
 
 - name: check packages installed
   tags: [golang]
   stat:
-    path: "{{ go_src_path }}/{{ item.url }}"
+    path: "{{ golang_src_path }}/{{ item.url }}"
   register: packages_paths
-  with_items: "{{ go_package_urls }}"
+  with_items: "{{ golang_package_urls }}"
 
 - name: install Go packages from source
   tags: [golang]
   command: "go get -u {{ item.0.url }}"
   with_together:
-    - "{{ go_package_urls }}"
+    - "{{ golang_package_urls }}"
     - "{{ packages_paths.results }}"
   become: "{{ item.0.become }}"
   when: "not item.1.stat.exists"
@@ -24,7 +26,7 @@
     dest: "/usr/bin/{{ item | basename }}"
     state: link
   with_fileglob:
-    - "{{ go_bin_path }}/*"
+    - "{{ golang_bin_path }}/*"
   become: yes
   ignore_errors: yes
 
@@ -35,4 +37,4 @@
     - files:
         - gometalinter
       paths:
-        - "{{ go_bin_path }}"
+        - "{{ golang_bin_path }}"

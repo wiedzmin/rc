@@ -1,14 +1,12 @@
 ---
 
 - import_tasks: paths.yml
-- import_tasks: packages.yml
 - import_tasks: files.yml
 - import_tasks: shells.yml
 - import_tasks: tools.yml
 - import_tasks: x11.yml
 - import_tasks: dev.yml
 - import_tasks: appearance.yml
-- import_tasks: golang.yml
 - import_tasks: misc.yml
 - import_tasks: vpn.yml
 - import_tasks: services.yml

@@ -1,5 +1,7 @@
-check_packages_installed: no
-packages_of_interest:
+---
+
+emerge_check_packages_installed: no
+emerge_packages_of_interest:
   - "app-admin/apache-tools"
   - "app-admin/kubectx"
   - "app-admin/pass"
@@ -84,23 +86,8 @@ packages_of_interest:
   - "x11-misc/xxkb"
   - "x11-misc/yeganesh"
   - "x11-terms/rxvt-unicode"
-packages_disabled:
+emerge_packages_disabled:
   - "app-forensics/afl" # broken at the moment
   - "app-forensics/sleuthkit" # broken at the moment
   - "dev-vcs/git-extras" # later
   - "app-crypt/hashcat"
-python_pip_packages:
-  - "GitPython"
-  - "autopep8"
-  - "flake8"
-  - "imapautofiler"
-  - "importmagic"
-  - "isort"
-  - "jedi"
-  - "jmespath"
-  - "olefile"
-  - "rst2pdf"
-  - "snakeviz"
-  - "traad"
-  - "virtualenvwrapper"
-  - "yapf"

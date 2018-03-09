@@ -2,7 +2,7 @@
 #-----------------------------------------------------------
 # Defines the directory where overlays should be installed
 
-storage   : {{ overlays_data_location }}
+storage   : {{ portage_overlays_data_location }}
 
 #-----------------------------------------------------------
 # Remote overlay lists will be stored here
@@ -18,7 +18,7 @@ installed : %(storage)s/installed.db
 #-----------------------------------------------------------
 # Prompt the user if they are installing unofficial overlays
 
-check_official : {{ overlays_check_official | bool | capitalize }}
+check_official : {{ portage_overlays_check_official | bool | capitalize }}
 
 # This has been renamed from the following
 # old name  : value use it for updating to new one above

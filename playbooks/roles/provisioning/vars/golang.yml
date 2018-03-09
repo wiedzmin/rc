@@ -1,4 +1,6 @@
-go_package_urls:
+---
+
+golang_package_urls:
   - { url: "github.com/nsf/gocode", become: no }
   - { url: "github.com/rogpeppe/godef", become: no }
   - { url: "github.com/jstemmer/gotags", become: no }
@@ -22,5 +24,5 @@ go_package_urls:
   - { url: "github.com/stretchr/gorc", become: no }
   - { url: "github.com/davecheney/graphpkg", become: no }
   - { url: "github.com/Masterminds/glide", become: no }
-go_bin_path: "{{ ansible_env.HOME }}/workspace/gocode/bin"
-go_src_path: "{{ ansible_env.HOME }}/workspace/gocode/src"
+golang_bin_path: "{{ ansible_env.HOME }}/workspace/gocode/bin"
+golang_src_path: "{{ ansible_env.HOME }}/workspace/gocode/src"

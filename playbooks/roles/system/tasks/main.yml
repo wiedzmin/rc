@@ -1,23 +1,5 @@
 ---
 
-- name: ensure some system dirs exists
-  tags: [portage, bootstrap]
-  file:
-    path: "{{ item }}"
-    state: directory
-    mode: 0755
-  become: yes
-  with_items: "{{ system_dirs }}"
-
-- name: (maybe) instantiate portage templates
-  tags: [portage]
-  copy:
-    content: "{{ lookup('template', 'portage/{{ item }}') }}"
-    dest: "/etc/portage/{{ item }}"
-    mode: 0755
-  become: yes
-  with_items: "{{ portage_files }}"
-
 - name: copy auxillary files
   tags: [aux]
   copy:
@@ -27,98 +9,12 @@
   become: yes
   with_items: "{{ aux_files }}"
 
-- name: ensure Layman installed
-  tags: [portage]
-  portage:
-    package: app-portage/layman
-    state: present
-  become: yes
-  when:
-    - check_packages_installed
-
-- name: instantiate Layman config
-  tags: [portage, overlays]
-  copy:
-    content: "{{ lookup('template', 'layman/layman.cfg.template') }}"
-    dest: "/etc/layman/layman.cfg"
-    mode: 0755
-  become: yes
-
-- name: get installed overlays
-  tags: [portage, overlays]
-  find:
-    paths: "{{ overlays_data_location }}"
-    file_type: directory
-  register: overlays_installed
-
-- name: ensure needed overlays
-  tags: [portage, overlays]
-  layman:
-    name: "{{ item }}"
-    state: present
-  become: yes
-  with_items: "{{ portage_overlays }}"
-  register: overlays_needed
-
-- name: remove obsolete overlays
-  tags: [portage, overlays]
-  layman:
-    name: "{{ item.path | basename }}"
-    state: absent
-  become: yes
-  with_items: "{{ overlays_installed.files }}"
-  when: "item.path | basename not in portage_overlays"
-  register: overlays_removed
-
-- name: fix overlays permissions
-  tags: [portage, overlays]
-  file:
-    path: "{{ overlays_data_location }}/{{ item }}"
-    owner: portage
-    group: portage
-    mode: 0755
-    recurse: yes
-  become: yes
-  with_items: "{{ portage_overlays }}"
-  when:
-    - overlays_needed.changed
-
-- name: update portage tree status
-  tags: [portage, overlays]
-  shell: eix-update
-  become: yes
-  when: overlays_needed.changed or overlays_removed.changed
-
-# TODO think of moving this to shell level
-# consult with "world" file
-# reduce time for checks
-- name: ensure some packages installed
-  tags: [portage]
-  portage:
-    package: "{{ item }}"
-    state: present
-  with_items: "{{ packages_of_interest }}"
-  become: yes
-  when:
-    - check_packages_installed
-
-- name: copy local overlay files
-  tags: [portage, overlays]
-  copy:
-    src: "{{ role_path }}/files/portage/local_overlay/"
-    dest: "{{ local_overlay_data_location }}"
-    owner: portage
-    group: portage
-    mode: 0755
-  become: yes
-
-- name: mount portage build directory as tmpfs
+- name: mount user cache directory as tmpfs
   tags: [aux]
   lineinfile:
     dest: /etc/fstab
-    line: 'tmpfs                   {{ item.path}}       tmpfs   uid={{ item.uid }},gid={{item.gid}},size={{ item.size }},mode={{ item.mode }}      0 1'
+    line: 'tmpfs                   {{ user_cache_dir.path }}       tmpfs   uid={{ user_cache_dir.uid }},gid={{ user_cache_dir.gid }},size={{ user_cache_dir.size }},mode={{ user_cache_dir.mode }}      0 1'
     state: present
   become: yes
-  with_items: "{{ tmpfs_dirs }}"
 
 # TODO: https://wiki.gentoo.org/wiki/Intel#Brightness_does_not_change_with_keyboard_shortcuts
