@@ -7,21 +7,21 @@ system_dirs:
   - "/etc/portage/repos.conf"
   - "/etc/portage/env"
 portage_files:
-  - { name: "make.conf", lookup: "template" }
-  - { name: "package.accept_keywords" }
-  - { name: "package.keywords" }
-  - { name: "package.license" }
-  - { name: "package.mask/kernels" }
-  - { name: "package.mask/main" }
-  - { name: "package.unmask" }
-  - { name: "package.use/main" }
-  - { name: "package.use/versioned" }
-  - { name: "package.use/python_versions" }
-  - { name: "package.use/ruby_versions" }
-  - { name: "repos.conf/gentoo.conf", lookup: "template" }
-  - { name: "package.env" }
-  - { name: "env/debugsyms" }
-  - { name: "env/installsources" }
+  - "make.conf"
+  - "package.accept_keywords"
+  - "package.keywords"
+  - "package.license"
+  - "package.mask/kernels"
+  - "package.mask/main"
+  - "package.unmask"
+  - "package.use/main"
+  - "package.use/versioned"
+  - "package.use/python_versions"
+  - "package.use/ruby_versions"
+  - "repos.conf/gentoo.conf"
+  - "package.env"
+  - "env/debugsyms"
+  - "env/installsources"
 portage_tree_sync_type: rsync
 portage_tree_sync_uris:
   - rsync://mirror.yandex.ru/gentoo-portage/

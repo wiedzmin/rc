@@ -130,7 +130,7 @@ net-misc/unison gtk threads
 net-misc/whois idn
 net-misc/wicd gtk
 net-p2p/syncthing tools
-net-print/cups-filters jpeg pdf tiff
+net-print/cups-filters jpeg -pdf tiff
 net-wireless/wpa_supplicant -qt4 -qt5
 sci-mathematics/maxima emacs latex sbcl tk
 sci-mathematics/octave gui

@@ -9,30 +9,19 @@
   become: yes
   with_items: "{{ system_dirs }}"
 
-- name: copy Portage files
+- name: (maybe) instantiate portage templates
   tags: [portage]
   copy:
-    src: "{{ role_path }}/files/portage/{{ item.name }}"
-    dest: "/etc/portage/{{ item.name }}"
+    content: "{{ lookup('template', 'portage/{{ item }}') }}"
+    dest: "/etc/portage/{{ item }}"
     mode: 0755
   become: yes
   with_items: "{{ portage_files }}"
-  when: item.lookup is not defined
-
-- name: instantiate portage templates
-  tags: [portage]
-  copy:
-    content: "{{ lookup('template', '{{ role_path }}/files/portage/{{ item.name }}') }}"
-    dest: "/etc/portage/{{ item.name }}"
-    mode: 0755
-  become: yes
-  with_items: "{{ portage_files }}"
-  when: item.lookup is defined and item.lookup == "template"
 
 - name: copy auxillary files
   tags: [aux]
   copy:
-    src: "{{ role_path }}/files/{{ item }}"
+    content: "{{ lookup('template', '{{ item }}') }}"
     dest: "/etc/{{ item }}"
     mode: 0755
   become: yes
@@ -50,7 +39,7 @@
 - name: instantiate Layman config
   tags: [portage, overlays]
   copy:
-    content: "{{ lookup('template', 'layman.cfg.template') }}"
+    content: "{{ lookup('template', 'layman/layman.cfg.template') }}"
     dest: "/etc/layman/layman.cfg"
     mode: 0755
   become: yes
