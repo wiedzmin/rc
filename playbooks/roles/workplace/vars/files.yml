@@ -15,6 +15,8 @@ system_files:
   - { src: "udev.d/95-external-head-hotplug.rules", dest: "/etc/udev/rules.d/95-external-head-hotplug.rules" }
   - { src: "udev.d/99-dev-input-group.rules", dest: "/etc/udev/rules.d/99-dev-input-group.rules" }
   - { src: "genkernel/modules_load", dest: "/usr/share/genkernel/defaults/modules_load" }
+aux_files:
+  - "rc.conf"
 homedir_files:
   - { src: "gpg-agent.conf", dest: ".gnupg/gpg-agent.conf" }
   - { src: "mail/.mailcap", dest: ".mailcap" }

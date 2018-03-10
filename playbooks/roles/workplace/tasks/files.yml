@@ -14,6 +14,15 @@
   become: yes
   with_items: "{{ system_files }}"
 
+- name: copy auxillary files
+  tags: [files, system]
+  copy:
+    content: "{{ lookup('template', 'system/{{ item }}') }}"
+    dest: "/etc/{{ item }}"
+    mode: 0755
+  become: yes
+  with_items: "{{ aux_files }}"
+
 - name: copy homedir files
   tags: [files, home]
   copy:

@@ -1,5 +1,0 @@
----
-
-aux_files:
-  - "rc.conf"
-user_cache_dir: { path: "{{ ansible_env.HOME }}/.cache", uid: "1000", gid: "1000", size: "2G", mode: "0755"} # TODO: maybe connect with users data (ids, binaries, paths, etc.)
