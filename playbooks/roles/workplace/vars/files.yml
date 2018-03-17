@@ -18,7 +18,7 @@ system_files:
 aux_files:
   - "rc.conf"
 homedir_files:
-  - { src: "gpg-agent.conf", dest: ".gnupg/gpg-agent.conf" }
+  - { src: "gnupg/gpg-agent.conf", dest: ".gnupg/gpg-agent.conf" }
   - { src: "mail/.mailcap", dest: ".mailcap" }
   - { src: "mail/.mbsyncrc", dest: ".mbsyncrc" }
   - { src: "mail/.msmtprc", dest: ".msmtprc" }
