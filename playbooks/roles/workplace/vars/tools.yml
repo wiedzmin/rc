@@ -1,5 +1,5 @@
-imapfilter_config: "{{ mail_configs_dir }}/imapfilter-config.lua"
-mail_configs_dir: "{{ role_path }}/files/mail"
-imapfilter_d_path: "{{ mail_configs_dir }}/imapfilter.d"
 addrlookup_traits: { clone_from: "https://github.com/aperezdc/notmuch-addrlookup-c", local_path: "/tmp/notmuch-addrlookup-c" }
 ffdc_traits: { clone_from: "https://github.com/Unode/firefox_decrypt", local_path: "/tmp/firefox_decrypt" }
+email_creds_path: "{{ ansible_env.HOME }}/docs/enc/cred"
+imapfilter_accounts:
+  - { name: "personal", address: "aaermolov@gmail.com", server: "imap.gmail.com", ssl: "ssl3", enabled: yes }

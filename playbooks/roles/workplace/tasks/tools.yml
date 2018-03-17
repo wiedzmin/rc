@@ -13,33 +13,12 @@
     dest: "/home/octocat/shepherd-jobs.yml"
     mode: 0755
 
-- name: imapfilter | remove old config file
-  tags: [tools, imapfilter]
-  file:
-    path: "{{ imapfilter_config }}"
-    state: absent
-
-- name: imapfilter | seed base config
-  tags: [tools, imapfilter]
-  shell: "cat {{ mail_configs_dir }}/imapfilter-base.lua >> {{ imapfilter_config }} && echo -e -n '\n' >> {{ imapfilter_config }}"
-
-- name: imapfilter | populate with account configs
-  tags: [tools, imapfilter]
-  shell: "cat {{ item }} >> {{ imapfilter_config }} && echo -e -n '\n' >> {{ imapfilter_config }}"
-  with_fileglob:
-    - "{{ imapfilter_d_path }}/*"
-
 - name: imapfilter | copy generated config file
   tags: [tools, imapfilter]
   copy:
-    src: "{{ imapfilter_config }}"
+    content: "{{ lookup('template', 'mail/imapfilter.conf.lua') }}"
     dest: "{{ ansible_env.HOME }}/.imapfilter/config.lua"
 
-- name: imapfilter | Remove generated config file
-  tags: [tools, imapfilter]
-  file:
-    path: "{{ imapfilter_config }}"
-    state: absent
 
 - name: tmuxifier | update configs
   tags: [tools, tmuxifier]
