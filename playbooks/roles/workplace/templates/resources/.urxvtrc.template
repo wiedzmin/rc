@@ -1,12 +1,17 @@
-! URxvt.depth: 32
+URxvt.depth: 32
 URxvt.font: xft:{{ xft_font_current.name }}{% if xft_font_current.is_bold %}:{{ xft_font_current.bold_keyword }}=Bold{% endif %}:size={{ xft_font_size_term }}
 URxvt.geometry: 80x27
-! URxvt.lineSpace: 0
-URxvt*letterSpace: -1
-! URxvt.foreground: #f6f0e8
-URxvt.foreground: #dcdccc
+URxvt.lineSpace: 0
+URxvt.letterSpace: -1
+URxvt*foreground: #f6f0e8
+! URxvt*foreground: #dcdccc
 URxvt*background: #1A1A1A
-! URxvt.background: rgba:3f00/3f00/3f00/dddd
+! URxvt*background: rgba:3f00/3f00/3f00/dddd
+URxvt.fading: 40
+URxvt.shading: 100
+URxvt.transparent: false
+URxvt.fadeColor: #666666
+URxvt.tintColor: #354040
 urgentOnBell: True
 visualBell: True
 ! URxvt*saveLines: 65535
@@ -18,25 +23,39 @@ URxvt*scrollTtyOutput: false
 URxvt*scrollWithBuffer: true
 ! scroll back to the bottom on keypress
 URxvt*scrollTtyKeypress: true
-URxvt.secondaryScreen: 1
-URxvt.secondaryScroll: 0
-! URxvt*secondaryScroll: True
-URxvt.perl-ext-common: default,matcher,clipboard
+URxvt*secondaryScreen: 1
+URxvt*secondaryScroll: 0
+
+URxvt.loginShell: True
+
+URxvt.cursorBlink: false
+URxvt.borderless: true
+URxvt.internalBorder: 3
+URxvt.externalBorder: 3
+
 Urxvt*perl-lib: /usr/lib/urxvt/perl/
-URxvt.url-launcher: /usr/bin/firefox
+URxvt.perl-ext-common:clipboard,default,keyboard-select,matcher,selection,url-select
+
 URxvt.matcher.button: 1
+! russian utf-8
+URxvt.matcher.pattern.0:  (?:https?:\\/\\/|ftp:\\/\\/|news:\\/\\/|mailto:|file:\\/\\/|\\bwww\\.)\n\
+                           [a-zA-Z0-9\\x{0410}-\\x{044F}\\-\\@;\\/?:&=%\\$_.+!*\\x27,~#]*\n\
+                           (\n\
+                             \\([a-zA-Z0-9\\x{0410}-\\x{044F}\\-\\@;\\/?:&=%\\$_.+!*\\x27,~#]*\\)| # Allow a pair of matched parentheses\n\
+                             [a-zA-Z0-9\\x{0410}-\\x{044F}\\-\\@;\\/?:&=%\\$_+*~]  # exclude some trailing characters (heuristic)\n\
+                           )+
+
 URxvt.keysym.C-Delete: perl:matcher:last
 URxvt.keysym.M-Delete: perl:matcher:list
-URxvt.perl-ext: default,keyboard-select,url-select
-!URxvt.perl-ext: selection,mark-yank-urls
 URxvt.keysym.M-u: perl:url-select:select_next
 URxvt.keysym.M-w: perl:clipboard:copy
 URxvt.keysym.C-y: perl:clipboard:paste
-URxvt.url-select.launcher: {{ default_browser_executable }} {{ default_browser_cliargs }}
-
-URxvt.url-select.underline: true
 URxvt.keysym.F11: perl:fullscreen:switch
-! URxvt.urlLauncher: x-www-browser
+
+URxvt.url-select.launcher: {{ default_browser_executable }} {{ default_browser_cliargs }}
+URxvt.url-select.underline: true
+
+URxvt.underlineURLs: true
 
 URxvt*colorUL: #c5f779
 URxvt*underlineColor: #c5f779
@@ -59,20 +78,3 @@ URxvt*color13: #ec93d3
 URxvt*color14: #93e0e3
 URxvt*color15: #ffffff
 
-! URxvt.fading: 40
-! URxvt.shading: 100
-! URxvt.transparent: false
-! URxvt.fadeColor: #666666
-! URxvt.tintColor: #354040
-! URxvt.cursorBlink: false
-
-! russian utf-8
-! URxvt.matcher.pattern.0:  (?:https?:\\/\\/|ftp:\\/\\/|news:\\/\\/|mailto:|file:\\/\\/|\\bwww\\.)\n\
-!                            [a-zA-Z0-9\\x{0410}-\\x{044F}\\-\\@;\\/?:&=%\\$_.+!*\\x27,~#]*\n\
-!                            (\n\
-!                              \\([a-zA-Z0-9\\x{0410}-\\x{044F}\\-\\@;\\/?:&=%\\$_.+!*\\x27,~#]*\\)| # Allow a pair of matched parentheses\n\
-!                              [a-zA-Z0-9\\x{0410}-\\x{044F}\\-\\@;\\/?:&=%\\$_+*~]  # exclude some trailing characters (heuristic)\n\
-!                            )+
-
-! URxvt.keysym.M-u: perl:mark-yank-urls:activate_mark_mode
-! URxvt.underlineURLs: true
