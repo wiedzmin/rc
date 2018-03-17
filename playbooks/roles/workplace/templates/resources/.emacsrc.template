@@ -1,3 +1,7 @@
+#ifndef XFTMONOFONT
+  #define XFTMONOFONT {{ xft_font_current.name }}{% if xft_font_current.is_bold %}:{{ xft_font_current.bold_keyword }}=Bold{% endif %}:size={{ xft_font_size_app }}
+#endif
+
 !Emacs*useXIM:false
 Emacs.FontBackend: xft,x
 Emacs*XlwMenu.font: XFTMONOFONT

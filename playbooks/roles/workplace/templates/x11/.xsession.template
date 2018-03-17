@@ -66,6 +66,12 @@ wm-loop() {
 ac_adapter=$(acpi -a | cut -d' ' -f3 | cut -d- -f1)
 
 xrdb -merge .Xresources
+{% for config in resources_configs %}
+{% if config.enabled is defined and config.enabled %}
+xrdb -merge {{ config.dest }}
+{% endif %}
+{% endfor %}
+
 xmodmap "$HOME/xmodmaprc"
 {% if xsession_disable_capslock %}
 xmodmap -e "clear Lock"

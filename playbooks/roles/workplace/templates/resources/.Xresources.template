@@ -2,20 +2,10 @@
 
 ! TODO: provide host-dependent setup part + automate
 
-#ifndef XFTMONOFONT
-  #define XFTMONOFONT {{ xft_font_current.name }}{% if xft_font_current.is_bold %}:{{ xft_font_current.bold_keyword }}=Bold{% endif %}:size={{ xft_font_size_app }}
-#endif
-
 ! TODO: play with non-XFT/non-mono fonts
 
 #define FG_BASE #000000
 #define BG_BASE #FFFAFA
-
-{% for config in resources_configs %}
-{% if config.enabled is defined and config.enabled %}
-#include "{{ config.dest }}"
-{% endif %}
-{% endfor %}
 
 !black
 xterm*color0: #353535
