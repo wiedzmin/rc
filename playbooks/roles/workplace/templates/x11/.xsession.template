@@ -92,4 +92,7 @@ udiskie --no-automount --no-notify --tray --use-udisks2 &
 
 setup-agents
 start-services
+
+feh --bg-fill {{ xsession_wallpaper_file }}
+
 wm-loop
