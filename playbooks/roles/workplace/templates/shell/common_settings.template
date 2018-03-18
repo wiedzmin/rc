@@ -6,6 +6,12 @@ BIN_DIRS=(
 {% endfor %}
 )
 
+ZSH_EXT_DIRS=(
+{% for dir in zsh_extension_dirs %}
+    {{ dir }}
+{% endfor %}
+)
+
 {% for var in export_variables %}
 export {{ var.name }}={{ var.value }}
 {% endfor %}
@@ -16,6 +22,16 @@ for ((i=1; i<= $#BIN_DIRS; i++)) do
     for dir in $BIN_DIRS[i]; do
         if [ -d $dir ] ; then
             path=($dir "$path[@]")
+        fi
+    done
+done
+
+# Remove dupes from 'fpath', which is array tied to 'FPATH'
+typeset -U fpath
+for ((i=1; i<= $#ZSH_EXT_DIRS; i++)) do
+    for dir in $ZSH_EXT_DIRS[i]; do
+        if [ -d $dir ] ; then
+            fpath=($dir "$fpath[@]")
         fi
     done
 done

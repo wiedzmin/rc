@@ -36,6 +36,8 @@ bin_dirs:
   - "/usr/lib/go/bin"
   - "$HOME/workspace/gocode/bin"
   - "$HOME/.local/bin"
+zsh_extension_dirs:
+  - "$HOME/.zsh/completion"
 export_variables:
   - { name: "GREP_OPTIONS", value: "--color=auto" }
   - { name: "GREP_COLOR", value: "'1;32'" }
