@@ -19,18 +19,7 @@ then
     unfunction preexec
     PS1='$ '
 else
-{% if use_oh_my_zsh %}
-    ZSH=$HOME/.oh-my-zsh
-    ZSH_THEME="{{ oh_my_zsh_chosen_theme }}"
-    plugins=({{ oh_my_zsh_plugins_enabled | join(' ') }})
-    source $ZSH/oh-my-zsh.sh
-{% else %}
     source ~/.zsh/promptdefs
-{% endif %}
-    # ~/.cache is on tmpfs so check+recreate on system restart
-    ! test -d {{ zsh_plugins_antibody_cache_dir }} && {{ zsh_plugins_antibody_bundle_command }}
-    source {{ zsh_plugins_antibody_script }}
-
     source ~/.zsh/setopts
 
     [ -f $FZF_ZSH ] && source $FZF_ZSH
@@ -46,6 +35,11 @@ else
     zle -N predict-on
     zle -N predict-off
     zle -N dot
+
+    # ~/.cache is on tmpfs so check+recreate on system restart
+    ! test -d {{ zsh_plugins_antibody_cache_dir }} && {{ zsh_plugins_antibody_bundle_command }}
+    source {{ zsh_plugins_antibody_script }}
+
     source ~/.zsh/aliases
     source ~/.zsh/functions
     source ~/.zsh/zstyles
