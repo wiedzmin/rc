@@ -50,6 +50,7 @@ emerge_packages_of_interest:
   - "media-sound/volumeicon"
   - "net-im/telegram-cli"
   - "net-irc/hexchat"
+  - "net-mail/notmuch-addrlookup"
   - "net-misc/dropbox"
   - "net-misc/httpie"
   - "net-misc/mosh"
