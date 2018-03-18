@@ -38,3 +38,16 @@
     src: "{{ playbook_dir }}/../private/bookmarks/bookmark-default.el"
     dest: "{{ emacs_config_dir }}/data/bookmark-default.el"
     mode: 0755
+
+- name: accompanying tools | shepherd (scheduling) | copy jobs definitions
+  tags: [misc, shepherd]
+  copy:
+    src: "{{ playbook_dir }}/../private/shepherd-jobs"
+    dest: "/home/octocat/shepherd-jobs.yml"
+    mode: 0755
+
+- name: imapfilter | copy generated config file
+  tags: [misc, imapfilter]
+  copy:
+    content: "{{ lookup('template', 'mail/imapfilter.conf.lua') }}"
+    dest: "{{ ansible_env.HOME }}/.imapfilter/config.lua"

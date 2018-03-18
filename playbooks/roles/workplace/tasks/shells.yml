@@ -141,3 +141,34 @@
     src: "{{ playbook_dir }}/../private/bookmarks/.bookmarks"
     dest: "{{ ansible_env.HOME }}/.bookmarks"
     mode: 0755
+
+- name: tmuxifier | update configs
+  tags: [shells, tmuxifier]
+  blockinfile:
+    dest: "{{ ansible_env.HOME }}/{{ item[0] }}"
+    insertafter: "{{ item[1].after }}"
+    block: |
+      {{ item[1].block }}
+    marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item[1].idx }}"
+    state: present
+  with_nested:
+    - "{{ common_settings_basenames }}"
+    - [{ idx: 1,  block: "    $HOME/.tmuxifier/bin", after: "^BIN_DIRS=\\(" },
+    { idx: 2, block: "eval \"$(tmuxifier init -)\"", after: "EOF"}]
+    # TODO: think of way to rerun some links/path population steps after this
+
+- name: Zshnip | configure Zsh
+  tags: [shells, zshnip]
+  lineinfile:
+    dest: "{{ ansible_env.HOME }}/.zsh/custom"
+    line: "source zshnip.zsh"
+    state: present
+
+- name: Zshnip | configure Zsh | bind keys
+  tags: [shells, zshnip]
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.zsh/bindkeys"
+    line: "{{ item }}"
+  with_items:
+    - "\nbindkey '\ej' zshnip-expand-or-edit"
+    - "bindkey '\ee' zshnip-edit-and-expand"

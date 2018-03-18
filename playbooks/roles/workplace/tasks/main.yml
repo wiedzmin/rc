@@ -3,7 +3,6 @@
 - import_tasks: paths.yml
 - import_tasks: files.yml
 - import_tasks: shells.yml
-- import_tasks: tools.yml
 - import_tasks: x11.yml
 - import_tasks: dev.yml
 - import_tasks: appearance.yml

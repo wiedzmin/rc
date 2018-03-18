@@ -49,3 +49,5 @@
     env:
       REGISTRY_HTTP_TLS_CERTIFICATE: "/certs/{{ server_domain_name }}.crt"
       REGISTRY_HTTP_TLS_KEY: "/certs/{{ server_domain_name }}.key"
+
+# TODO: setup znc on octocat.ru

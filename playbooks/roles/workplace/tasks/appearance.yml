@@ -28,4 +28,17 @@
     dest: "{{ fonts_ttf_location }}"
   become: yes
 
+- name: Hexchat | download theme
+  tags: [appearance, hexchat]
+  get_url:
+    url: https://dl.hexchat.net/themes/Zenburn.hct
+    dest: /tmp/Zenburn.hct
+    force: yes
+
+- name: Hexchat | apply theme
+  tags: [appearance, hexchat]
+  unarchive:
+    src: /tmp/Zenburn.hct
+    dest: "{{ ansible_env.HOME }}/.config/hexchat"
+
 # TODO: think of fonts setup automating (e.g. dowloading, copying, updating fontcache, whatever)
