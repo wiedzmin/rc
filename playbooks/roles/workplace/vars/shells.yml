@@ -79,21 +79,3 @@ zsh_plugins_antibody_cache_dir: "{{ ansible_env.HOME}}/.cache/antibody"
 zsh_plugins_antibody_bundle_command: "antibody bundle < {{ zsh_plugins_list_location }} > {{ zsh_plugins_antibody_script }}"
 stumpwm_config_path: "{{ ansible_env.HOME}}/.stumpwm.d"
 docker_machine_traits: { clone_from: "https://github.com/docker/machine", local_path: "/tmp/docker-machine" }
-zsh_plugins_try_deferred:
-  - https://github.com/Dbz/zsh-kubernetes
-  - https://github.com/RobertAudi/tsm
-  - https://github.com/Vifon/deer
-  - https://github.com/gepoch/oh-my-zsh-dirstack
-  - https://github.com/mattbangert/kubectl-zsh-plugin
-  - https://github.com/michaelxmcbride/zsh-dircycle
-  - https://github.com/sparsick/ansible-zsh
-  - https://github.com/viasite-ansible/ansible-role-zsh
-  - https://github.com/changyuheng/zsh-interactive-cd
-  - https://github.com/b4b4r07/zsh-history
-  - https://github.com/miohtama/ztanesh
-  - https://github.com/adolfoabegg/browse-commit
-  - https://github.com/jpetazzo/nsenter
-  - https://github.com/primait/docker-enter-completion
-  - https://github.com/willghatch/zsh-snippets
-  - https://github.com/andrewferrier/fzf-z
-  - https://github.com/supercrabtree/k
