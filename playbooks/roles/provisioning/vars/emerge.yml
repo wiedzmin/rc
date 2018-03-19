@@ -89,6 +89,7 @@ emerge_packages_of_interest:
   - "x11-misc/xxkb"
   - "x11-misc/yeganesh"
   - "x11-terms/rxvt-unicode"
+  - "x11-apps/xev"
 emerge_packages_disabled:
   - "app-forensics/afl" # broken at the moment
   - "app-forensics/sleuthkit" # broken at the moment
