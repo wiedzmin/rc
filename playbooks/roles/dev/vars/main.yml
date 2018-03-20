@@ -1,0 +1,7 @@
+---
+
+local_binaries_prefix: /usr/local/bin
+user_name: octocat
+user_group: octocat
+pids_dir: "{{ ansible_env.HOME }}/pids"
+custom_vpn_datadir: /etc/custom_vpn

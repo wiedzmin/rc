@@ -5,7 +5,6 @@
     - xsession.yml
     - x11.yml
     - paths.yml
-    - vpn.yml
     - misc.yml
     - appearance.yml
 

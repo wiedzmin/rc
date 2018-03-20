@@ -2,7 +2,6 @@
   tags: [paths, services]
   with_items:
     - paths.yml
-    - vpn.yml
     - misc.yml
 
 - name: ensure some system dirs exists

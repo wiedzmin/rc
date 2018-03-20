@@ -1,0 +1,16 @@
+#!/sbin/openrc-run
+
+CONTAINER_OPTS="-d --name {{ devdns_container_name }} -p 53:53/udp -v /var/run/docker.sock:/var/run/docker.sock {{ devdns_image_name }}"
+
+start () {
+	ebegin "Starting devdns"
+	docker run ${CONTAINER_OPTS}
+	eend $? "Failed to start devdns"
+}
+
+stop() {
+	ebegin "Stopping devdns"
+	docker stop {{ devdns_container_name }}
+	docker rm {{ devdns_container_name }}
+	eend $? "Failed to stop devdns"
+}

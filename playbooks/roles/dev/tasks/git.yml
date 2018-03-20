@@ -1,0 +1,11 @@
+---
+
+- name: prepare global gitconfig
+  tags: [git]
+  copy:
+    content: "{{ lookup('template', 'git/gitconfig.j2') }}"
+    dest: "/etc/gitconfig"
+    mode: 0544
+    owner: root
+    group: root
+  become: yes

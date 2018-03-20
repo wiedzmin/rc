@@ -1,0 +1,37 @@
+---
+
+- include_vars: "{{ item }}"
+  tags: [always]
+  with_items:
+    - docker.yml
+    - virt.yml
+
+- name: allow Docker to connect to local X server
+  tags: [docker]
+  shell: xhost +local:dockerfile
+
+- name: instantiate Docker config
+  tags: [docker]
+  copy:
+    content: "{{ lookup('template', 'docker/docker.conf.j2') }}"
+    dest: "/etc/conf.d/docker"
+    mode: 0500
+    owner: root
+    group: root
+  become: yes
+  notify: restart Docker service
+
+- name: docker-machine | clone
+  tags: [docker, machine]
+  git:
+    repo: "{{ docker_machine_traits.clone_from }}"
+    dest: "{{ docker_machine_traits.local_path }}"
+    force: yes
+
+- name: docker-machine | install Zsh completions
+  tags: [docker, machine]
+  copy:
+    src: "{{ docker_machine_traits.local_path }}/contrib/completion/zsh/_docker-machine"
+    dest: "{{ zsh_subconfig_path }}/completion/_docker-machine"
+
+# TODO: add Vagrant handling

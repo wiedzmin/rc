@@ -1,0 +1,45 @@
+---
+
+- include_vars: "{{ item }}"
+  tags: [network]
+  with_items:
+    - "{{ playbook_dir }}/../private/work_hosts.yml"
+    - network.yml
+
+- name: setup devdns host <-> containers resolving
+  tags: [network]
+  blockinfile:
+    path: /etc/dhcp/dhclient.conf
+    block: |
+      supersede domain-name "dev";
+      prepend domain-name-servers 127.0.0.1;
+  become: yes
+  notify: restart dhcpcd
+
+- name: remove devdns host <-> containers resolving
+  tags: [cleanup]
+  blockinfile:
+    path: /etc/dhcp/dhclient.conf
+    block: |
+      supersede domain-name "dev";
+      prepend domain-name-servers 127.0.0.1;
+    state: absent
+  become: yes
+  notify: restart dhcpcd
+
+- name: network | instantiate hosts file
+  tags: [network]
+  copy:
+    content: "{{ lookup('template', 'network/hosts.template') }}"
+    dest: "/etc/hosts"
+    mode: 0644
+  become: yes
+
+- name: install devdns openrc entry
+  tags: [network, services]
+  copy:
+    content: "{{ lookup('template', 'services/devdns.openrc') }}"
+    dest: "/etc/init.d/devdns"
+    mode: 0755
+  become: yes
+  notify: stop devdns service

@@ -1,0 +1,8 @@
+---
+
+- import_tasks: fs.yml
+- import_tasks: virt.yml
+- import_tasks: git.yml
+- import_tasks: golang.yml
+- import_tasks: network.yml
+- import_tasks: vpn.yml

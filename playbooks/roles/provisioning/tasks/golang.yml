@@ -29,12 +29,3 @@
     - "{{ golang_bin_path }}/*"
   become: yes
   ignore_errors: yes
-
-- name: setup gometalinter
-  tags: [golang]
-  shell: gometalinter --install --update
-  with_first_found:
-    - files:
-        - gometalinter
-      paths:
-        - "{{ golang_bin_path }}"

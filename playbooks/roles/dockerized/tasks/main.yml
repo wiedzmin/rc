@@ -1,13 +1,5 @@
 ---
 
-- name: register current time
-  shell: "date +%Y%m%d%H%M%S"
-  register: current_run_timestamp
-  tags: [always]
-
-- name: allow Docker to connect to local X server
-  shell: xhost +local:dockerfile
-
 # DISCLAIMER: at the moment most of started containers are planned to stop/remove manually
 
 - name: start Zeal viewer
@@ -22,42 +14,6 @@
     env:
       DISPLAY: ":0"
   tags: [zeal]
-
-- name: start devdns
-  docker_container:
-    name: devdns
-    image: ruudud/devdns
-    state: started
-    expose:
-      - 53:53/udp
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-  tags: [devdns_start]
-
-- name: setup devdns host <-> containers resolving
-  blockinfile:
-    path: /etc/dhcp/dhclient.conf
-    block: |
-      supersede domain-name "dev";
-      prepend domain-name-servers 127.0.0.1;
-  become: yes
-  tags: [devdns_start]
-
-- name: stop devdns container
-  docker_container:
-    name: devdns
-    state: stopped
-  tags: [devdns_stop]
-
-- name: remove devdns host <-> containers resolving
-  blockinfile:
-    path: /etc/dhcp/dhclient.conf
-    block: |
-      supersede domain-name "dev";
-      prepend domain-name-servers 127.0.0.1;
-    state: absent
-  become: yes
-  tags: [devdns_stop]
 
 - name: THD | prepare temporary dir
   copy:

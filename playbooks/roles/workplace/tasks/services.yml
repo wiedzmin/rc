@@ -1,7 +1,6 @@
 - include_vars: "{{ item }}"
   tags: [services]
   with_items:
-    - vpn.yml
     - paths.yml
     - services.yml
 
@@ -12,12 +11,6 @@
     dest: "/etc/init.d/shepherd"
     mode: 0755
   become: yes
-
-- name: openrc local cleanup
-  tags: [services, shepherd. cleanup]
-  file:
-    path: "shepherd.openrc.entry"
-    state: absent
 
 - name: restart service
   tags: [services, shepherd]

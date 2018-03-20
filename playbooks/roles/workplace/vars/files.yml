@@ -23,6 +23,5 @@ homedir_files:
   - { src: "mail/.mbsyncrc", dest: ".mbsyncrc" }
   - { src: "mail/.msmtprc", dest: ".msmtprc" }
   - { src: "ssh_config", dest: ".ssh/config" }
-  - { src: ".guile", dest: ".guile" }
 
 # TODO: try to automate http://input.fontbureau.com/download/ with tools like headless browsers, etc.

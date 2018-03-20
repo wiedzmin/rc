@@ -1,0 +1,23 @@
+---
+
+- name: restart Docker service
+  shell: rc-service docker restart
+  become: yes
+
+- name: restart dhcpcd
+  service:
+    name: dhcpcd
+    state: restarted
+  become: yes
+
+- name: stop vpn service
+  service:
+    name: "{{ vpn_service_name }}"
+    state: stopped
+  become: yes
+
+- name: stop devdns service
+  service:
+    name: devdns
+    state: stopped
+  become: yes

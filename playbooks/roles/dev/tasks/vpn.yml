@@ -1,25 +1,10 @@
-- include_vars: "{{ item }}"
-  tags: [vpn, services]
-  with_items:
-    - misc.yml
-    - vpn.yml
-    - paths.yml
+---
 
-- name: ensure VPN custom config directory exist
-  tags: [vpn, paths]
-  file:
-    path: "{{ item }}"
-    state: directory
-    mode: 0755
-    owner: "{{ user_name }}"
-    group: "{{ user_group }}"
-    recurse: yes
-  become: yes
-  with_items:
-    - "{{ custom_vpn_datadir }}"
+- include_vars: vpn.yml
+  tags: [vpn]
 
 - name: cleanup VPN custom config directory
-  tags: [vpn, cleanup]
+  tags: [cleanup]
   file:
     path: "{{ item }}"
     state: absent
@@ -27,7 +12,7 @@
     - "{{ custom_vpn_datadir }}/*"
 
 - name: vpn | copy files to system location
-  tags: [vpn, files]
+  tags: [vpn]
   copy:
     src: "{{ playbook_dir }}/../private/vpn/current/{{ item }}"
     dest: "{{ custom_vpn_datadir }}/{{ item }}"
@@ -35,6 +20,7 @@
   with_items:
     - "auth.conf"
     - "office.ovpn"
+  notify: stop vpn service
 
 - name: vpn | customize OpenVPN config | automate authentication # TODO: check if "script-security 2" matters
   tags: [vpn]
@@ -43,6 +29,7 @@
     regexp: "^auth-user-pass"
     line: "auth-user-pass {{ custom_vpn_datadir }}/auth.conf"
   become: yes
+  notify: stop vpn service
 
 - name: vpn | customize OpenVPN config | fix up/down scripting
   tags: [vpn]
@@ -55,6 +42,7 @@
     - { regexp: "^down /etc/openvpn/update-resolv-conf", line: "down /etc/openvpn/down.sh" }
   become: yes
   when: ansible_distribution == "Gentoo"
+  notify: stop vpn service
 
 - name: install openrc entry
   tags: [vpn, services]
@@ -63,16 +51,4 @@
     dest: "/etc/init.d/{{ vpn_service_name }}"
     mode: 0755
   become: yes
-
-- name: openrc local cleanup
-  tags: [vpn, services, cleanup]
-  file:
-    path: "{{ vpn_service_name }}.openrc.entry"
-    state: absent
-
-- name: vpn | restart service
-  tags: [vpn, services]
-  service:
-    name: "{{ vpn_service_name }}"
-    state: restarted
-  become: yes
+  notify: stop vpn service

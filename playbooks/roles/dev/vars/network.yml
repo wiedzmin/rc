@@ -1,0 +1,4 @@
+---
+
+devdns_image_name: ruudud/devdns
+devdns_container_name: devdns

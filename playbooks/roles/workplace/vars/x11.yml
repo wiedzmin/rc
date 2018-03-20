@@ -44,6 +44,7 @@ mime_assocs:
   - { program: "zathura", mimetype: "application/x-pdf" }
   - { program: "zathura", mimetype: "image/vnd.djvu" }
   - { program: "zathura", mimetype: "image/x-djvu" }
+vpn_service_name: job-vpn
 osd_delay: 2
 osd_font: "-*-fixed-*-*-*-*-24-*-*-*-*-*-*-*"
 osd_color: green
