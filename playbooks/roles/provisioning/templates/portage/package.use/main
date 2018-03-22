@@ -108,6 +108,7 @@ media-sound/volumeicon libnotify
 media-sound/xmms2 flac mp3
 media-video/ffmpeg threads mp3 twolame
 media-video/ffmpeg x264
+media-video/mplayer a52 dga dvb jpeg lzo mp3 pvr radio rtc sdl theora twolame v4l xvid xvmc
 media-video/vlc -ncurses xml directfb matroska -libav
 net-analyzer/mtr -gtk
 net-im/skype pulseaudio
@@ -153,6 +154,7 @@ www-client/palemoon -alsa
 www-client/uzbl gtk3 vim-syntax helpers
 www-plugins/adobe-flash debug
 www-plugins/google-talkplugin libnotify
+x11-apps/intel-gpu-tools sound udev xrandr xv
 x11-apps/xdpyinfo xinerama dga
 x11-base/xorg-server kdrive xvfb xephyr -suid
 x11-drivers/nvidia-drivers acpi gtk2
@@ -177,5 +179,3 @@ x11-wm/notion xinerama
 x11-wm/sawfish emacs xinerama
 x11-wm/stumpwm sbcl
 x11-wm/xmonad-contrib xft
-x11-apps/intel-gpu-tools sound udev xrandr xv
-media-video/mplayer a52 dga dvb jpeg lzo mp3 pvr radio rtc sdl theora twolame v4l xvid xvmc
