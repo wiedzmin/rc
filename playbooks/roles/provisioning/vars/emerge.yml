@@ -45,6 +45,7 @@ emerge_packages_of_interest:
   - "mail-filter/imapfilter"
   - "media-gfx/exif"
   - "media-gfx/imagemagick"
+  - "media-gfx/maim"
   - "media-gfx/plantuml"
   - "media-libs/exiftool"
   - "media-sound/volumeicon"
