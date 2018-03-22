@@ -60,5 +60,7 @@ xrandr_dock_left_output: HDMI-2
 xrandr_dock_left_rotation: normal
 xrandr_dock_right_output: HDMI-3
 xrandr_dock_right_rotation: left
+xrandr_blue: 0.5
+xrandr_brightness: 0.7
 xsession_wallpaper_location: "{{ ansible_env.HOME }}/blobs/wallpaper"
 xsession_wallpaper_file: "{{ xsession_wallpaper_location }}/alena-aenami-7p-m-1k.jpg"
