@@ -1,52 +1,58 @@
 - include_vars: "{{ item }}"
-  tags: [stumpwm]
+  tags: [always]
   with_items:
-    # - shells.yml
-    - wm.yml
+    - x11.yml
 
 - name: stumpwm | clone repo
-  tags: [stumpwm]
+  tags: [wm, stumpwm]
   git:
-    repo: "{{ stumpwm_traits.clone_from }}"
-    dest: "{{ stumpwm_traits.local_path }}"
+    repo: "{{ x11_stumpwm_traits.clone_from }}"
+    dest: "{{ x11_stumpwm_traits.local_path }}"
     force: yes
 
 - name: stumpwm | check configure script
-  tags: [stumpwm]
-  stat: path={{ stumpwm_traits.local_path }}/configure
+  tags: [wm, stumpwm]
+  stat: path={{ x11_stumpwm_traits.local_path }}/configure
   register: stumpwm_configure
 
 - name: stumpwm | maybe autoconf
-  tags: [stumpwm]
+  tags: [wm, stumpwm]
   shell: autoconf
   args:
-    chdir: "{{ stumpwm_traits.local_path }}"
+    chdir: "{{ x11_stumpwm_traits.local_path }}"
   when:
     - stumpwm_configure.stat.exists == False
 
 - name: stumpwm | configure
-  tags: [stumpwm]
+  tags: [wm, stumpwm]
   shell: ./configure
   args:
-    chdir: "{{ stumpwm_traits.local_path }}"
+    chdir: "{{ x11_stumpwm_traits.local_path }}"
 
 - name: stumpwm | patch binary image creation
-  tags: [stumpwm]
+  tags: [wm, stumpwm]
   lineinfile:
-    path: "{{ stumpwm_traits.local_path }}/make-image.lisp"
+    path: "{{ x11_stumpwm_traits.local_path }}/make-image.lisp"
     insertafter: ":executable t"
     line: "                                    :compression t"
 
 - name: stumpwm | build
-  tags: [stumpwm]
+  tags: [wm, stumpwm]
   make:
-    chdir: "{{ stumpwm_traits.local_path }}"
+    chdir: "{{ x11_stumpwm_traits.local_path }}"
 
 - name: stumpwm | install
-  tags: [stumpwm]
+  tags: [wm, stumpwm]
   make:
-    chdir: "{{ stumpwm_traits.local_path }}"
+    chdir: "{{ x11_stumpwm_traits.local_path }}"
     target: install
   become: yes
+
+- name: generate shell settings for StumpWM
+  tags: [wm, stumpwm]
+  copy:
+    content: "{{ lookup('template', 'shell/shell.lisp.template') }}"
+    dest: "{{ stumpwm_config_path }}/shell.lisp"
+    mode: 0755
 
 # FIXME: find a way to keep sources navigation (as it been before)

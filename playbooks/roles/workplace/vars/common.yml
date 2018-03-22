@@ -1,3 +1,0 @@
-default_browser_executable: firefox
-default_browser_cliargs: -new-tab
-shell_bookmarks_file: "{{ ansible_env.HOME }}/.bookmarks"

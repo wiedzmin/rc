@@ -1,8 +1,5 @@
-- include_vars: "{{ item }}"
-  tags: [misc]
-  with_items:
-    - misc.yml
-    - paths.yml
+- include_vars: misc.yml
+  tags: [always]
 
 # TODO: put rc-update data under version control, e.g.:
 # shell: rc-update add {{ item.name }} {{ item.level }}
@@ -35,3 +32,43 @@
   copy:
     content: "{{ lookup('template', 'mail/imapfilter.conf.lua') }}"
     dest: "{{ ansible_env.HOME }}/.imapfilter/config.lua"
+
+- name: Hexchat | download theme
+  tags: [misc, hexchat]
+  get_url:
+    url: https://dl.hexchat.net/themes/Zenburn.hct
+    dest: /tmp/Zenburn.hct
+    force: yes
+
+- name: Hexchat | apply theme
+  tags: [misc, hexchat]
+  unarchive:
+    src: /tmp/Zenburn.hct
+    dest: "{{ ansible_env.HOME }}/.config/hexchat"
+
+# DISCLAIMER: at the moment most of started containers are planned to stop/remove manually
+
+- name: THD | prepare temporary dir
+  tags: [misc, thd]
+  copy:
+    src: "{{ item.src }}/"
+    dest: "{{ item.dest }}"
+    mode: 0755
+  with_items:
+    - { src: "{{ role_path }}/files/thd", dest: "{{ thd_tmp_dir }}" }
+    - { src: "{{ playbook_dir }}/../private/telegram", dest: "{{ thd_tmp_dir }}/private"}
+
+- name: THD | update config
+  tags: [misc, thd]
+  copy:
+    content: "{{ lookup('template', 'thd_config.template') }}"
+    dest: "{{ thd_tmp_dir }}/thd_config.yaml"
+    mode: 0755
+
+- name: THD | start service
+  tags: [misc, thd]
+  docker_service:
+    project_src: "{{ thd_tmp_dir }}"
+    build: yes
+
+# TODO: think of syncing telegram logs somewhere

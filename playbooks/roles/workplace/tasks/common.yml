@@ -1,0 +1,12 @@
+---
+
+- name: shells | collect binaries
+  shell: "which {{ item }}"
+  register: user_shell_binaries
+  with_items:
+    - "{{ user_shells }}"
+
+- name: Populate shell binaries
+  set_fact:
+    user_shell_binaries: "{{ user_shell_binaries | default({}) | combine( {item.item: item.stdout} ) }}"
+  with_items: "{{ user_shell_binaries.results }}"

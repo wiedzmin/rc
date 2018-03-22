@@ -1,47 +1,10 @@
 - include_vars: "{{ item }}"
-  tags: [shells]
+  tags: [always]
   with_items:
-    - common.yml
-    - paths.yml
-    - xsession.yml
     - shells.yml
 
-- name: ensure home subdirs exist
-  tags: [shells, home]
-  file:
-    path: "{{ ansible_env.HOME }}/{{ item }}"
-    state: directory
-  with_items: "{{ shells_homedir_subdirs }}"
-
-- name: copy homedir files
-  tags: [shells, home]
-  copy:
-    src: "{{ role_path }}/files/{{ item.src }}"
-    dest: "{{ ansible_env.HOME }}/{{ item.dest }}"
-    mode: 0755
-  with_items: "{{ shells_homedir_files }}"
-
-- name: copy custom scripts
-  tags: [shells, scripts]
-  copy:
-    src: "{{ role_path }}/files/scripts/{{ item }}"
-    dest: "/usr/local/bin/{{ item }}"
-    mode: 0755
-  with_items: "{{ shells_custom_scripts }}"
-  become: yes
-
-- name: shells | collect binaries
+- import_tasks: common.yml
   tags: [shells]
-  shell: "which {{ item }}"
-  register: user_shell_binaries
-  with_items:
-    - "{{ user_shells }}"
-
-- name: Populate shell binaries
-  tags: [shells]
-  set_fact:
-    user_shell_binaries: "{{ user_shell_binaries | default({}) | combine( {item.item: item.stdout} ) }}"
-  with_items: "{{ user_shell_binaries.results }}"
 
 - name: ensure groups exist
   tags: [shells]
@@ -82,13 +45,6 @@
   when:
     - bashrc.stat.exists == True
 
-- name: generate shell settings for StumpWM
-  tags: [shells]
-  copy:
-    content: "{{ lookup('template', 'shell/shell.lisp.template') }}"
-    dest: "{{ stumpwm_config_path }}/shell.lisp"
-    mode: 0755
-
 - name: Antibody | generate plugins list
   tags: [shells, zsh]
   copy:
@@ -127,21 +83,6 @@
     src: "{{ playbook_dir }}/../private/bookmarks/.bookmarks"
     dest: "{{ ansible_env.HOME }}/.bookmarks"
     mode: 0755
-
-- name: tmuxifier | update configs
-  tags: [shells, tmuxifier]
-  blockinfile:
-    dest: "{{ ansible_env.HOME }}/{{ item[0] }}"
-    insertafter: "{{ item[1].after }}"
-    block: |
-      {{ item[1].block }}
-    marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item[1].idx }}"
-    state: present
-  with_nested:
-    - "{{ common_settings_basenames }}"
-    - [{ idx: 1,  block: "    $HOME/.tmuxifier/bin", after: "^BIN_DIRS=\\(" },
-    { idx: 2, block: "eval \"$(tmuxifier init -)\"", after: "EOF"}]
-    # TODO: think of way to rerun some links/path population steps after this
 
 - name: Zshnip | configure Zsh
   tags: [shells, zshnip]

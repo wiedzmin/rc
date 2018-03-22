@@ -16,20 +16,8 @@ default_user_shell: zsh
 common_settings_basenames:
   - common_settings
   - common_settings_bash
-zsh_subconfig_path: "{{ ansible_env.HOME}}/.zsh"
-shells_homedir_subdirs:
-  - "{{ zsh_subconfig_path }}"
-shells_homedir_files:
-  - { src: ".tmux.conf", dest: ".tmux.conf" }
-  - { src: ".urlview", dest: ".urlview" }
-  - { src: "tmux-sessions", dest: "tmux-sessions" }
-  - { src: "zsh/.zsh", dest: "" }
-shells_custom_scripts:
-  - "hddtemp"
-  - "status_bat_info"
-  - "status_cpu_temp"
-  - "status_uptime"
-  - "statusbar"
+virtualenvs_subdir: ".virtualenvs"
+workspace_path: "{{ ansible_env.HOME }}/workspace"
 bin_dirs:
   - "$HOME/bin"
   - "$HOME/tools/bin"

@@ -1,44 +1,12 @@
 - include_vars: "{{ item }}"
-  tags: [x11]
+  tags: [always]
   with_items:
-    - common.yml
-    - xsession.yml
     - x11.yml
-    - paths.yml
+    - fs.yml
     - misc.yml
-    - appearance.yml
 
-- name: ensure some system dirs exists
-  tags: [x11, system]
-  file:
-    path: "{{ item }}"
-    state: directory
-  become: yes
-  with_items: "{{ x11_system_dirs }}"
-
-- name: ensure home subdirs exist
-  tags: [x11, home]
-  file:
-    path: "{{ ansible_env.HOME }}/{{ item }}"
-    state: directory
-  with_items: "{{ x11_homedir_subdirs }}"
-
-- name: copy system files
-  tags: [x11, system]
-  copy:
-    src: "{{ role_path }}/files/{{ item.src }}"
-    dest: "{{ item.dest }}"
-    mode: 0755
-  become: yes
-  with_items: "{{ x11_system_files }}" # TODO: think of cleanup beforehand
-
-- name: copy homedir files
-  tags: [x11, home]
-  copy:
-    src: "{{ role_path }}/files/{{ item.src }}"
-    dest: "{{ ansible_env.HOME }}/{{ item.dest }}"
-    mode: 0755
-  with_items: "{{ x11_homedir_files }}"
+- import_tasks: common.yml
+  tags: [x11]
 
 - name: instantiate templated configs
   tags: [x11, templated]
@@ -54,6 +22,14 @@
     dest: "{{ ansible_env.HOME }}/.local/share/applications/mimeapps.list"
     line: x-scheme-handler/org-protocol=emacsclient.desktop
     state: present
+
+- name: instantiate resources configs
+  tags: [x11, configs]
+  copy:
+    content: "{{ lookup('template', '{{ item.src }}') }}"
+    dest: "{{ ansible_env.HOME }}/{{ item.dest }}"
+    mode: 0755
+  with_items: "{{ x11_resources_configs }}"
 
 - name: setup xdg-open associations
   tags: [x11]

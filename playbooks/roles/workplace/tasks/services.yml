@@ -1,8 +1,5 @@
-- include_vars: "{{ item }}"
-  tags: [services]
-  with_items:
-    - paths.yml
-    - services.yml
+- include_vars: services.yml
+  tags: [always]
 
 - name: install openrc entry
   tags: [services, shepherd]
@@ -26,12 +23,6 @@
     dest: "/etc/init.d/sshuttle"
     mode: 0755
   become: yes
-
-- name: openrc local cleanup
-  tags: [services, sshuttle, cleanup]
-  file:
-    path: "sshuttle.openrc.entry"
-    state: absent
 
 - name: restart service
   tags: [services, sshuttle]

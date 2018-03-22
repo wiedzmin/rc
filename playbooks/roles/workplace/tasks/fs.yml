@@ -1,0 +1,62 @@
+---
+
+- include_vars: fs.yml
+  tags: [always]
+
+- name: ensure some system dirs exists
+  tags: [fs]
+  file:
+    path: "{{ item }}"
+    state: directory
+  become: yes
+  with_items: "{{ system_dirs }}"
+
+- name: copy system files
+  tags: [fs]
+  copy:
+    src: "{{ role_path }}/files/{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: 0755
+  become: yes
+  with_items: "{{ system_files }}"
+
+- name: ensure home subdirs exist
+  tags: [fs]
+  file:
+    path: "{{ ansible_env.HOME }}/{{ item }}"
+    state: directory
+  with_items: "{{ homedir_subdirs }}"
+
+- name: copy homedir files
+  tags: [fs]
+  copy:
+    src: "{{ role_path }}/files/{{ item.src }}"
+    dest: "{{ ansible_env.HOME }}/{{ item.dest }}"
+    mode: 0755
+  with_items: "{{ homedir_files }}"
+
+- name: copy auxillary files
+  tags: [fs]
+  copy:
+    content: "{{ lookup('template', 'system/{{ item }}') }}"
+    dest: "/etc/{{ item }}"
+    mode: 0755
+  become: yes
+  with_items: "{{ aux_files }}"
+
+- name: copy custom scripts
+  tags: [fs]
+  copy:
+    src: "{{ role_path }}/files/scripts/{{ item }}"
+    dest: "/usr/local/bin/{{ item }}"
+    mode: 0755
+  with_items: "{{ custom_scripts }}"
+  become: yes
+
+- name: mount user cache directory as tmpfs
+  tags: [fs]
+  lineinfile:
+    dest: /etc/fstab
+    line: 'tmpfs                   {{ user_cache_dir.path }}       tmpfs   uid={{ user_cache_dir.uid }},gid={{ user_cache_dir.gid }},size={{ user_cache_dir.size }},mode={{ user_cache_dir.mode }}      0 1'
+    state: present
+  become: yes
