@@ -123,7 +123,7 @@ net-mail/notmuch doc emacs mutt
 net-mail/offlineimap doc sqlite
 net-misc/connman iptables
 net-misc/dropbox -X
-net-misc/networkmanager bluetooth nss modemmanager -gnutls -wext
+net-misc/networkmanager bluetooth dhcpcd nss modemmanager -gnutls -wext
 net-misc/networkmanager-openvpn gtk
 net-misc/openvpn passwordsave
 net-misc/unison gtk threads
