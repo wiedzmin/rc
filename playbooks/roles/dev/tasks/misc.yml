@@ -1,0 +1,10 @@
+---
+
+- name: install zealdocs openrc entry
+  tags: [misc, services]
+  copy:
+    content: "{{ lookup('template', 'services/zealdocs.openrc') }}"
+    dest: "/etc/init.d/zealdocs"
+    mode: 0755
+  become: yes
+  notify: stop zealdocs service

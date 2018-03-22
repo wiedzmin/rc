@@ -4,3 +4,8 @@ insecure_docker: no
 docker_machine_traits: { clone_from: "https://github.com/docker/machine", local_path: "/tmp/docker-machine" }
 zsh_subconfig_path: "{{ ansible_env.HOME}}/.zsh"
 virt_vagrant_common_box_name: ubuntu/xenial64
+zealdocs_container_name: zealdocs
+zealdocs_version: 0.3.1
+zealdocs_image_name: wusuopu/zealdocs
+zealdocs_cache_path: foobar # not decided yet
+zealdocs_docsets_path: foobar # not decided yet

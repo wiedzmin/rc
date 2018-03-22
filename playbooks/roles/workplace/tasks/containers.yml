@@ -12,19 +12,6 @@
 
 # DISCLAIMER: at the moment most of started containers are planned to stop/remove manually
 
-- name: start Zeal viewer
-  tags: [containers, zeal]
-  docker_container:
-    name: zeal
-    image: wusuopu/zealdocs:{{ zeal_version }}
-    state: started
-    volumes:
-      - "/tmp/.X11-unix:/tmp/.X11-unix"
-      - "{{ zeal_cache }}:/root/.cache/Zeal/Zeal"
-      - "{{ zeal_docsets }}:/root/.local/share/Zeal/Zeal"
-    env:
-      DISPLAY: ":0"
-
 - name: THD | prepare temporary dir
   tags: [containers, thd]
   copy:

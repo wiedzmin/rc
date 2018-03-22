@@ -1,0 +1,16 @@
+#!/sbin/openrc-run
+
+CONTAINER_OPTS="--name {{ zealdocs_container_name }} -e \"DISPLAY=$DISPLAY\" -v /tmp/.X11-unix:/tmp/.X11-unix -v {{ zealdocs_cache_path }}:/root/.cache/Zeal/Zeal -v {{ zealdocs_docsets_path }}:/root/.local/share/Zeal/Zeal {{ zealdocs_image_name }}:{{ zealdocs_version }}"
+
+start () {
+	ebegin "Starting Zeal"
+	docker run ${CONTAINER_OPTS}
+	eend $? "Failed to start Zeal"
+}
+
+stop() {
+	ebegin "Stopping Zeal"
+	docker stop {{ zealdocs_container_name }}
+	docker rm {{ zealdocs_container_name }}
+	eend $? "Failed to stop Zeal"
+}

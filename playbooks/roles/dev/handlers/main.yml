@@ -21,3 +21,9 @@
     name: devdns
     state: stopped
   become: yes
+
+- name: stop zealdocs service
+  service:
+    name: zealdocs
+    state: stopped
+  become: yes
