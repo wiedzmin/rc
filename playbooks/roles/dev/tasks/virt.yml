@@ -3,7 +3,6 @@
 - include_vars: "{{ item }}"
   tags: [always]
   with_items:
-    - docker.yml
     - virt.yml
 
 - name: allow Docker to connect to local X server

@@ -1,5 +1,0 @@
----
-
-insecure_docker: no
-docker_machine_traits: { clone_from: "https://github.com/docker/machine", local_path: "/tmp/docker-machine" }
-zsh_subconfig_path: "{{ ansible_env.HOME}}/.zsh"
