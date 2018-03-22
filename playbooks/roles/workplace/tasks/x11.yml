@@ -94,3 +94,5 @@
     state: absent
   when:
     - xsession_script.changed
+
+# TODO: https://wiki.gentoo.org/wiki/Intel#Brightness_does_not_change_with_keyboard_shortcuts
