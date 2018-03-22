@@ -1,7 +1,7 @@
 ---
 
 - include_vars: fs.yml
-  tags: [fs]
+  tags: [always]
 
 - name: ensure some dirs exist
   tags: [fs]

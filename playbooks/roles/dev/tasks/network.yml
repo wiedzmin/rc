@@ -1,7 +1,7 @@
 ---
 
 - include_vars: "{{ item }}"
-  tags: [network]
+  tags: [always]
   with_items:
     - "{{ playbook_dir }}/../private/work_hosts.yml"
     - network.yml

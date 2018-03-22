@@ -1,7 +1,7 @@
 ---
 
 - include_vars: golang.yml
-  tags: [golang]
+  tags: [always]
 
 - name: setup gometalinter
   tags: [golang]
