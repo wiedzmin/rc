@@ -1,8 +1,19 @@
 ---
 
+- include_vars: "{{ item }}"
+  tags: [containers]
+  with_items:
+    - containers.yml
+
+- name: register current time
+  shell: "date +%Y%m%d%H%M%S"
+  register: current_run_timestamp
+  tags: [always]
+
 # DISCLAIMER: at the moment most of started containers are planned to stop/remove manually
 
 - name: start Zeal viewer
+  tags: [containers, zeal]
   docker_container:
     name: zeal
     image: wusuopu/zealdocs:{{ zeal_version }}
@@ -13,9 +24,9 @@
       - "{{ zeal_docsets }}:/root/.local/share/Zeal/Zeal"
     env:
       DISPLAY: ":0"
-  tags: [zeal]
 
 - name: THD | prepare temporary dir
+  tags: [containers, thd]
   copy:
     src: "{{ item.src }}/"
     dest: "{{ item.dest }}"
@@ -23,19 +34,18 @@
   with_items:
     - { src: "{{ role_path }}/files/thd", dest: "{{ thd_tmp_dir }}" }
     - { src: "{{ playbook_dir }}/../private/telegram", dest: "{{ thd_tmp_dir }}/private"}
-  tags: [thd]
 
 - name: THD | update config
+  tags: [containers, thd]
   copy:
     content: "{{ lookup('template', 'thd_config.template') }}"
     dest: "{{ thd_tmp_dir }}/thd_config.yaml"
     mode: 0755
-  tags: [thd]
 
 - name: THD | start service
+  tags: [containers, thd]
   docker_service:
     project_src: "{{ thd_tmp_dir }}"
     build: yes
-  tags: [thd]
 
 # TODO: think of syncing telegram logs somewhere
