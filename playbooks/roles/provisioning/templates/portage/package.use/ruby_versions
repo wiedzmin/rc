@@ -1,1 +1,15 @@
-dev-ruby/kpeg ruby_targets_ruby23
+dev-ruby/kpeg ruby_targets_ruby23 ruby_targets_ruby25
+
+dev-ruby/power_assert ruby_targets_ruby25
+dev-ruby/rake ruby_targets_ruby25
+virtual/rubygems ruby_targets_ruby25
+dev-ruby/json ruby_targets_ruby25
+dev-ruby/test-unit ruby_targets_ruby25
+dev-ruby/did_you_mean ruby_targets_ruby25
+dev-ruby/xmlrpc ruby_targets_ruby25
+dev-ruby/rubygems ruby_targets_ruby25
+dev-ruby/rdoc ruby_targets_ruby25
+dev-ruby/net-telnet ruby_targets_ruby25
+dev-ruby/racc ruby_targets_ruby25
+dev-ruby/minitest ruby_targets_ruby25
+
