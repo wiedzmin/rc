@@ -10,5 +10,6 @@ xft_fonts:
   - { name: "Noto Mono", is_bold: yes, bold_keyword: "style"}
   - { name: "Fira Code", is_bold: yes, bold_keyword: "weight"}
 xft_font_current: "{{ xft_fonts.7 }}"
+xft_font_fallback: "{{ xft_fonts.0 }}"
 xft_font_size_app: 11
 xft_font_size_term: 9

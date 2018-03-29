@@ -1,0 +1,17 @@
+(in-package #:stumpwm)
+
+;; set shell
+(setf *shell-program* "{{ user_shell_binaries[default_user_shell] }}")
+(setf (getenv "SHELL") "{{ user_shell_binaries[default_user_shell] }}")
+
+;; set path
+(let ((path-orig (getenv "PATH")))
+  (setf (getenv "PATH") (format nil "~a:~a" path-orig "{{ bin_dirs | join(':') }}")))
+
+{% if x11_stumpwm_set_font %}
+(xft:cache-fonts)
+(handler-case (set-font (make-instance 'xft:font :family "{{ xft_font_current.name }}" {% if xft_font_current.is_bold %}:subfamily "Bold"{% endif %} :size {{ xft_font_size_term }}))
+    (error (e) (set-font (make-instance 'xft:font :family "{{ xft_font_fallback.name }}" {% if xft_font_fallback.is_bold %}:subfamily "Bold"{% endif %} :size {{ xft_font_size_term }}))))
+{% endif %}
+
+

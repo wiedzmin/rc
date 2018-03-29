@@ -2,6 +2,10 @@
   tags: [always]
   with_items:
     - x11.yml
+    - fonts.yml
+
+- import_tasks: common.yml
+  tags: [wm]
 
 - name: stumpwm | clone repo
   tags: [wm, stumpwm]
@@ -48,9 +52,9 @@
     target: install
   become: yes
 
-- name: generate shell settings for StumpWM
+- name: generate common settings for StumpWM
   tags: [wm, stumpwm]
   copy:
-    content: "{{ lookup('template', 'shell/shell.lisp.template') }}"
-    dest: "{{ stumpwm_config_path }}/shell.lisp"
-    mode: 0755
+    content: "{{ lookup('template', 'x11/common.lisp.template') }}"
+    dest: "{{ stumpwm_config_path }}/common.lisp"
+    mode: 0644
