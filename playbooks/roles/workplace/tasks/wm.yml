@@ -54,5 +54,3 @@
     content: "{{ lookup('template', 'shell/shell.lisp.template') }}"
     dest: "{{ stumpwm_config_path }}/shell.lisp"
     mode: 0755
-
-# FIXME: find a way to keep sources navigation (as it been before)
