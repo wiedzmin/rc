@@ -1,6 +1,3 @@
->app-emacs/auctex-11.90
->media-fonts/iosevka-1.8.4
 >dev-util/sysdig-0.19.1
->sys-apps/portage-2.3.19-r1
 >media-video/vlc-2.2.8-r1       # something is broken in 3.0.0-r1
 >media-libs/fontconfig-2.12.6
