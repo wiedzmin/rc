@@ -72,3 +72,4 @@
     build: yes
 
 # TODO: think of syncing telegram logs somewhere
+# TODO: add tasks for backups, create list of backups (old jabber logs, whatever)
