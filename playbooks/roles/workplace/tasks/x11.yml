@@ -36,6 +36,11 @@
   shell: "xdg-mime default {{ item.program }}.desktop {{ item.mimetype }}"
   with_items: "{{ mime_assocs }}"
 
+# TODO: find adequate place or remove
+- name: update MIME types DB
+  tags: [x11]
+  shell: "update-desktop-database ~/.local/share/applications/"
+
 - name: generate OSD statusbar script
   tags: [x11]
   copy:
