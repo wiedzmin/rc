@@ -61,6 +61,7 @@ dev-python/netaddr -cli # too deep and nonrelevant dependencies graph (ipython -
 dev-python/numpy lapack
 dev-python/pillow truetype
 dev-python/pip zsh-completion
+dev-qt/qtcore icu
 dev-scheme/guile emacs networking
 dev-tcltk/tclx threads tk
 dev-util/global emacs vim
@@ -124,8 +125,8 @@ net-mail/mu emacs
 net-mail/notmuch doc emacs mutt
 net-mail/offlineimap doc sqlite
 net-misc/connman iptables
-net-misc/dropbox -X
 net-misc/networkmanager bluetooth dhcpcd nss modemmanager -gnutls -wext
+net-misc/dropbox X
 net-misc/networkmanager-openvpn gtk
 net-misc/openvpn passwordsave
 net-misc/unison gtk threads
