@@ -2,6 +2,8 @@ bindkey -e
 bindkey . dot
 bindkey ' ' magic-space # also do history expansion on space
 
+bindkey "\e[3~" delete-char
+
 zle -N fbr
 bindkey "^]c" fbr
 zle -N fco
