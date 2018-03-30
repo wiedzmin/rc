@@ -1,18 +1,72 @@
 [user]
-	email = aaermolov@gmail.com
-	name = Alex Ermolov
+    name = {{ user_name }}
+    email = {{ user_email }}
+{% if gpg_sign_commit %}
+    signingKey = {{ gpg_private_key_id }}
+{% endif%}
+[alias]
+    co = checkout
+    cs = commit -S
+
+    undo = reset HEAD~1
+    hundo = reset --hard HEAD~1
+
+    cont = shortlog -n -s
+    fc = "!f() { git log --pretty=format:'* %C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%cn>%Creset' --decorate --date=relative --grep=$1; }; f"
+    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+    lg = log --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
+    d = "!git diff --patch-with-stat --color $@ | diff-so-fancy"
+    dc = diff --cached
+    df = diff --patch-with-stat --color --color-words --abbrev
+    fpd=diff --no-prefix -s -p >
+    last = diff --stat=150,120 HEAD^ HEAD
+
+    s = status -s
+    st = status
+
+    remotes = remote -v
+    sclone = clone --depth 1
+
+    trycl = git clean -d -x -n -i
+    cleanup = clean -d -x -f
+[core]
+    autocrlf = false
+    quotepath = false
+[push]
+    default = current
+    default = simple
+[commit]
+    template = {{ ansible_env.HOME }}/git-commit-template
+{% if gpg_sign_commit %}
+    gpgSign = true
+{% endif%}
 [color]
-	ui = auto
+    ui = always
     diff = auto
     status = auto
-[alias]
-    st = status
-    last = diff --stat=150,120 HEAD^ HEAD
-	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-[core]
-    editor = emacsclient
-	quotepath = false
-[push]
-	default = current
-[commit]
-	template = {{ ansible_env.HOME }}/git-commit-template
+[color "diff"]
+    meta = yellow bold
+    commit = cyan bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+    whitespace = red reverse
+[color "diff-highlight"]
+    oldNormal = red bold
+    oldHighlight = red bold 52
+    newNormal = green bold
+    newHighlight = green bold 22
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+[color "status"]
+    added = green
+    changed = yellow
+    untracked = red
+[pager]
+    diff = diff-so-fancy | less --tabs=4 -RFX
+    show = diff-so-fancy | less --tabs=4 -RFX
+[gpg]
+    program = gpg2

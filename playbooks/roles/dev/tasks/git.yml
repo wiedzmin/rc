@@ -1,7 +1,15 @@
 ---
+- include_vars: "{{ item }}"
+  tags: [always]
+  with_items:
+    - git.yml
+    - "{{ playbook_dir }}/../private/private_vars.yml"
+
+- import_tasks: common.yml
+  tags: [git]
 
 - name: prepare global gitconfig
-  tags: [always]
+  tags: [git]
   copy:
     content: "{{ lookup('template', 'git/gitconfig.j2') }}"
     dest: "/etc/gitconfig"

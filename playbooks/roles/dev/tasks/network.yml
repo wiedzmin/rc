@@ -3,7 +3,7 @@
 - include_vars: "{{ item }}"
   tags: [always]
   with_items:
-    - "{{ playbook_dir }}/../private/work_hosts.yml"
+    - "{{ playbook_dir }}/../private/private_vars.yml"
     - network.yml
 
 - name: setup devdns host <-> containers resolving
