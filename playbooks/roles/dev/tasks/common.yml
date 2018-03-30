@@ -1,0 +1,10 @@
+---
+
+# TODO: try to merge into single step
+- name: gpg | get private key ID
+  shell: "gpg2 --list-secret-keys --keyid-format LONG {{ gnupg_key_id }} | grep sec | cut -d' ' -f 4 | cut -d'/' -f 2"
+  register: gpg_private_key_id
+
+- name: Populate shell binaries
+  set_fact:
+    gpg_private_key_id: "{{ gpg_private_key_id.stdout }}"
