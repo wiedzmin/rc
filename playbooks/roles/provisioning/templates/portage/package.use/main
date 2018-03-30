@@ -125,7 +125,7 @@ net-mail/mu emacs
 net-mail/notmuch doc emacs mutt
 net-mail/offlineimap doc sqlite
 net-misc/connman iptables
-net-misc/networkmanager bluetooth dhcpcd nss modemmanager -gnutls -wext
+net-misc/networkmanager bluetooth dhcpcd nss modemmanager -dhclient -gnutls -wext
 net-misc/dhcpcd-ui gtk3 libnotify
 net-misc/dropbox X
 net-misc/networkmanager-openvpn gtk
