@@ -83,19 +83,3 @@
     src: "{{ playbook_dir }}/../private/bookmarks/.bookmarks"
     dest: "{{ ansible_env.HOME }}/.bookmarks"
     mode: 0755
-
-- name: Zshnip | configure Zsh
-  tags: [shells, zshnip]
-  lineinfile:
-    dest: "{{ ansible_env.HOME }}/.zsh/custom"
-    line: "source zshnip.zsh"
-    state: present
-
-- name: Zshnip | configure Zsh | bind keys
-  tags: [shells, zshnip]
-  lineinfile:
-    path: "{{ ansible_env.HOME }}/.zsh/bindkeys"
-    line: "{{ item }}"
-  with_items:
-    - "\nbindkey '\ej' zshnip-expand-or-edit"
-    - "bindkey '\ee' zshnip-edit-and-expand"
