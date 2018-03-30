@@ -1,4 +1,3 @@
-private_hosts_data: "{{ lookup('file', '{{ playbook_dir }}/../private/work_hosts') }}"
 emacs_config_name_literal: "{{ emacs_config_dir }}/config.org"
 emacs_config_name_tangled: "{{ emacs_config_dir }}/config.el"
 ffdc_traits: { clone_from: "https://github.com/Unode/firefox_decrypt", local_path: "/tmp/firefox_decrypt" }
