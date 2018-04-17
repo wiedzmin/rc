@@ -115,7 +115,6 @@ portage_overlays:
   - octopus
   - soft
   - robert7k
-  - rindeal
 portage_overlayed_packages:
   - { name: "powerline", overlay: "raiagent" }
   - { name: "powerline-vim", overlay: "raiagent" }
@@ -126,6 +125,7 @@ portage_overlayed_packages:
   - { name: "isync", overlay: "dilfridge" }
   - { name: "dzen", overlay: "octopus" }
   - { name: "notmuch-addrlookup", overlay: "soft" }
+  - { name: "diff-so-fancy", overlay: "rindeal" }
 portage_overlays_check_official: no
 portage_packages_of_interest:
   - "app-admin/haskell-updater"
