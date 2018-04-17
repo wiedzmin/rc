@@ -1,5 +1,7 @@
 x11_templated_configs:
   - { src: "x11/dunstrc.template", dest: ".config/dunst/dunstrc" }
+  - { src: "x11/rofi.j2", dest: ".config/rofi/config" }
+  - { src: "x11/oxide.rasi", dest: ".config/rofi/oxide.rasi" }
 x11_resources_configs:
   - { src: "resources/.Xresources.template", dest: ".Xresources" }
   - { src: "resources/.urxvtrc.template", dest: ".urxvtrc", enabled: yes }
