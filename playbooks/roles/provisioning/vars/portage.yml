@@ -125,7 +125,7 @@ portage_overlayed_packages:
   - { name: "telegram-cli", overlay: "mva" }
   - { name: "isync", overlay: "dilfridge" }
   - { name: "dzen", overlay: "octopus" }
-  - { name: "soft", overlay: "notmuch-addrlookup" }
+  - { name: "notmuch-addrlookup", overlay: "soft" }
 portage_overlays_check_official: no
 portage_packages_of_interest:
   - "app-admin/haskell-updater"
