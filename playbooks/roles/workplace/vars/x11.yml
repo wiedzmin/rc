@@ -46,7 +46,6 @@ xsession_wallpaper_location: "{{ ansible_env.HOME }}/blobs/wallpaper"
 xsession_wallpaper_file: "{{ xsession_wallpaper_location }}/alena-aenami-7p-m-1k.jpg"
 xsession_loop_wm: no
 xsession_errorlogs_to_keep: 3
-# TODO automate xsession_{lvds, ext}_width retrieving using facts
 xsession_services:
   - { command: "arbtt-capture", enabled: yes, heavyweight: no }
   - { command: "autocutsel -buttonup", enabled: yes, heavyweight: no }
@@ -59,10 +58,10 @@ xsession_services:
   - { command: "redshift -l 55.751244:37.618423 -t 5500:3700 -m randr", enabled: yes, heavyweight: no }
   - { command: "trayer-srg --edge top --align right --monitor primary --SetDockType true --SetPartialStrut true --expand true --widthtype request --height 15 --transparent true --tint 0x000000",
   enabled: "{{ xsession_current_wm not in ['awesome', 'stumpwm'] }}",
-  heavyweight: no } # TODO: try to check against xsession_current_wm (enable in all but awesome and maybe some others)
+  heavyweight: no }
   - { command: "unclutter -idle 5", enabled: yes, heavyweight: no }
   - { command: "volumeicon", enabled: no, heavyweight: no }
-  - { command: "xxkb", enabled: "{{ xsession_current_wm not in ['awesome', 'stumpwm'] }}", heavyweight: no } # TODO: try to check against xsession_current_wm (enable in all but awesome and maybe some others)
+  - { command: "xxkb", enabled: "{{ xsession_current_wm not in ['awesome', 'stumpwm'] }}", heavyweight: no }
 xsession_disable_capslock: yes
 xsession_timezone: Europe/Moscow
 xsession_media_mount: yes

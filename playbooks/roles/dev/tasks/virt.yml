@@ -32,5 +32,3 @@
   copy:
     src: "{{ docker_machine_traits.local_path }}/contrib/completion/zsh/_docker-machine"
     dest: "{{ zsh_subconfig_path }}/completion/_docker-machine"
-
-# TODO: add Vagrant handling

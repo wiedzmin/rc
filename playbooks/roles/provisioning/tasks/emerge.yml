@@ -3,9 +3,6 @@
 - include_vars: emerge.yml
   tags: [always]
 
-# TODO think of moving this to shell level
-# consult with "world" file
-# reduce time for checks
 - name: ensure some packages installed
   tags: [emerge]
   portage:

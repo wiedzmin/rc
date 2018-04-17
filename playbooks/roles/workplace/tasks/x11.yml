@@ -36,7 +36,6 @@
   shell: "xdg-mime default {{ item.program }}.desktop {{ item.mimetype }}"
   with_items: "{{ mime_assocs }}"
 
-# TODO: find adequate place or remove
 - name: update MIME types DB
   tags: [x11]
   shell: "update-desktop-database ~/.local/share/applications/"
@@ -75,5 +74,3 @@
     state: absent
   when:
     - xsession_script.changed
-
-# TODO: https://wiki.gentoo.org/wiki/Intel#Brightness_does_not_change_with_keyboard_shortcuts

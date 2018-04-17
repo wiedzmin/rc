@@ -22,7 +22,7 @@
     - "office.ovpn"
   notify: stop vpn service
 
-- name: vpn | customize OpenVPN config | automate authentication # TODO: check if "script-security 2" matters
+- name: vpn | customize OpenVPN config | automate authentication
   tags: [vpn]
   lineinfile:
     dest: "{{ custom_vpn_datadir }}/office.ovpn"

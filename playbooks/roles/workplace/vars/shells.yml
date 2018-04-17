@@ -66,5 +66,3 @@ zsh_plugins_antibody_script: "{{ zsh_subconfig_path }}/plugins.sh"
 zsh_plugins_antibody_cache_dir: "{{ ansible_env.HOME}}/.cache/antibody"
 zsh_plugins_antibody_bundle_command: "antibody bundle < {{ zsh_plugins_list_location }} > {{ zsh_plugins_antibody_script }}"
 stumpwm_config_path: "{{ ansible_env.HOME}}/.stumpwm.d"
-
-# TODO: automate deployment of LDT (https://www.eclipse.org/ldt/)
