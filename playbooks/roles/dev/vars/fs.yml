@@ -1,12 +1,12 @@
 ---
 
-dev_workspace_path: "{{ ansible_env.HOME }}/workspace"
+dev_workspace_subdir: "workspace"
 dev_virtualenvs_subdir: ".virtualenvs"
 dev_dirs:
   - { path: "{{ custom_vpn_datadir }}", mode: "0755", owner: "{{ user_name }}", group: "{{ user_group }}", recurse: yes, become: yes }
 dev_homedir_subdirs:
   - "{{ dev_virtualenvs_subdir }}"
-  - "{{ dev_workspace_path }}/python"
+  - "{{ dev_workspace_subdir }}/python"
 dev_homedir_files:
   - { src: 'python/.pylintrc', dest: '.pylintrc' }
   - { src: 'python/flake8', dest: '.config/flake8' }
@@ -14,4 +14,4 @@ dev_homedir_files:
   - { src: 'python/pep8', dest: '.config/pep8' }
   - { src: 'git/git-commit-template.j2', dest: 'git-commit-template' }
   - { src: ".guile", dest: ".guile" }
-  - { src: ".editorconfig", dest: "{{ dev_workspace_path }}/.editorconfig" }
+  - { src: ".editorconfig", dest: "{{ dev_workspace_subdir }}/.editorconfig" }
