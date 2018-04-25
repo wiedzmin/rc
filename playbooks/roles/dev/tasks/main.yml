@@ -5,5 +5,6 @@
 - import_tasks: git.yml
 - import_tasks: golang.yml
 - import_tasks: network.yml
+- import_tasks: python.yml
 - import_tasks: vpn.yml
 - import_tasks: misc.yml

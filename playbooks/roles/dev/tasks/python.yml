@@ -1,0 +1,35 @@
+---
+
+- include_vars: "{{ item }}"
+  tags: [always]
+  with_items:
+    - python.yml
+    - "{{ playbook_dir }}/../private/private_vars.yml"
+
+- import_tasks: common.yml
+  tags: [python]
+
+- name: ensure paths
+  tags: [python]
+  file:
+    path: "{{ item.path }}"
+    state: directory
+    mode: "{{ item.mode if 'mode' in item else 0755 }}"
+    owner: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
+    group: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
+    recurse: yes
+  become: "{{ item.become if 'become' in item else 'no' }}"
+  with_items: "{{ python_paths }}"
+  when: python_paths is defined
+
+- name: instantiate templates
+  tags: [python]
+  copy:
+    content: "{{ lookup('template', '{{ item.src }}') }}"
+    dest: "{{ item.dest }}"
+    mode: "{{ item.mode if 'mode' in item else 0755 }}"
+    owner: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
+    group: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
+  become: "{{ item.become if 'become' in item else 'no' }}"
+  with_items: "{{ python_templates }}"
+  when: python_templates is defined

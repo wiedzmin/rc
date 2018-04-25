@@ -1,0 +1,11 @@
+---
+
+python_virtualenvs_path: "{{ ansible_env.HOME }}/.virtualenvs"
+python_paths:
+  - { path: "{{ python_virtualenvs_path }}" }
+  - { path: "{{ workspace_path }}/python" }
+python_templates:
+  - { src: 'python/.pylintrc', dest: '{{ ansible_env.HOME }}/.pylintrc' }
+  - { src: 'python/flake8', dest: '{{ home_config_path }}/flake8' }
+  - { src: 'python/isort.cfg', dest: '{{ ansible_env.HOME }}/.isort.cfg' }
+  - { src: 'python/pep8', dest: '{{ home_config_path }}/pep8' }

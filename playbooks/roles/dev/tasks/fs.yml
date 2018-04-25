@@ -3,25 +3,6 @@
 - include_vars: fs.yml
   tags: [always]
 
-- name: ensure some dirs exist
-  tags: [fs]
-  file:
-    path: "{{ item.path }}"
-    state: directory
-    mode: "{{ item.mode }}"
-    owner: "{{ user_name }}"
-    group: "{{ user_group }}"
-    recurse: "{{ item.recurse }}"
-  become: yes
-  with_items: "{{ dev_dirs }}"
-
-- name: ensure home subdirs exist
-  tags: [fs]
-  file:
-    path: "{{ ansible_env.HOME }}/{{ item }}"
-    state: directory
-  with_items: "{{ dev_homedir_subdirs }}"
-
 - name: copy homedir files
   tags: [fs]
   copy:

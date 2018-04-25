@@ -1,16 +1,7 @@
 ---
 
-dev_workspace_subdir: "workspace"
-dev_virtualenvs_subdir: ".virtualenvs"
 dev_dirs:
   - { path: "{{ custom_vpn_datadir }}", mode: "0755", owner: "{{ user_name }}", group: "{{ user_group }}", recurse: yes, become: yes }
-dev_homedir_subdirs:
-  - "{{ dev_virtualenvs_subdir }}"
-  - "{{ dev_workspace_subdir }}/python"
 dev_homedir_files:
-  - { src: 'python/.pylintrc', dest: '.pylintrc' }
-  - { src: 'python/flake8', dest: '.config/flake8' }
-  - { src: 'python/isort.cfg', dest: '.isort.cfg' }
-  - { src: 'python/pep8', dest: '.config/pep8' }
   - { src: ".guile", dest: ".guile" }
   - { src: ".editorconfig", dest: "{{ dev_workspace_subdir }}/.editorconfig" }
