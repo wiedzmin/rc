@@ -1,4 +1,5 @@
 ---
+
 - include_vars: "{{ item }}"
   tags: [always]
   with_items:
@@ -8,12 +9,27 @@
 - import_tasks: common.yml
   tags: [git]
 
-- name: prepare global gitconfig
+- name: ensure paths
+  tags: [git]
+  file:
+    path: "{{ item.path }}"
+    state: directory
+    mode: "{{ item.mode if 'mode' in item else 0755 }}"
+    owner: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
+    group: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
+    recurse: yes
+  become: "{{ item.become if 'become' in item else 'no' }}"
+  with_items: "{{ git_paths }}"
+  when: git_paths is defined
+
+- name: instantiate templates
   tags: [git]
   copy:
-    content: "{{ lookup('template', 'git/gitconfig.j2') }}"
-    dest: "/etc/gitconfig"
-    mode: 0544
-    owner: root
-    group: root
-  become: yes
+    content: "{{ lookup('template', '{{ item.src }}') }}"
+    dest: "{{ item.dest }}"
+    mode: "{{ item.mode if 'mode' in item else 0755 }}"
+    owner: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
+    group: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
+  become: "{{ item.become if 'become' in item else 'no' }}"
+  with_items: "{{ git_templates }}"
+  when: git_templates is defined

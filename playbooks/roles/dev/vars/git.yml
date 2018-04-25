@@ -1,3 +1,20 @@
 ---
 
 gpg_sign_commit: yes
+git_assets_dir: "{{ ansible_env.HOME }}/.git"
+git_assets_init_templates_dir: "{{ git_assets_dir }}/templates"
+git_paths:
+  - { path: "{{ git_assets_init_templates_dir }}" }
+  - { path: "{{ git_assets_init_templates_dir }}/hooks" }
+git_templates:
+  - { src: 'git/gitconfig.j2', dest: '/etc/gitconfig', mode: '0544', user: root, become: yes }
+  - { src: 'git/git-commit-template.j2', dest: '{{ git_assets_dir }}/git-commit-template' }
+  - { src: 'git/.gitignore', dest: '{{ git_assets_dir }}/.gitignore' }
+  - { src: 'git/init-templates/hooks/pre-push', dest: '{{ git_assets_init_templates_dir }}/hooks/pre-push' }
+git_src_stop_words:
+  - ipdb
+  - wdb
+git_commit_stop_words:
+  - "[wip]"
+  - "[WIP]"
+

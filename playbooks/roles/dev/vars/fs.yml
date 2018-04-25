@@ -12,6 +12,5 @@ dev_homedir_files:
   - { src: 'python/flake8', dest: '.config/flake8' }
   - { src: 'python/isort.cfg', dest: '.isort.cfg' }
   - { src: 'python/pep8', dest: '.config/pep8' }
-  - { src: 'git/git-commit-template.j2', dest: 'git-commit-template' }
   - { src: ".guile", dest: ".guile" }
   - { src: ".editorconfig", dest: "{{ dev_workspace_subdir }}/.editorconfig" }

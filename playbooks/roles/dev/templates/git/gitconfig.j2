@@ -33,11 +33,11 @@
 [core]
     autocrlf = false
     quotepath = false
+    excludesfile = {{ git_assets_dir }}/.gitignore
 [push]
     default = current
-    default = simple
 [commit]
-    template = {{ ansible_env.HOME }}/git-commit-template
+    template = {{ git_assets_dir }}/git-commit-template
 {% if gpg_sign_commit %}
     gpgSign = true
 {% endif%}
@@ -70,3 +70,5 @@
     show = diff-so-fancy | less --tabs=4 -RFX
 [gpg]
     program = gpg2
+[init]
+    templatedir = {{ git_assets_init_templates_dir }}

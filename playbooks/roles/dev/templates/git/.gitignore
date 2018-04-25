@@ -41,3 +41,15 @@ Makefile.in
 /missing
 /m4
 /stamp-h1
+
+# various
+.DS_Store
+*.out
+/.DS_Store
+*.swp
+tmux-*
+cache/*
+page_cache/*
+*.patch
+.agignore
+.dir-locals.el
