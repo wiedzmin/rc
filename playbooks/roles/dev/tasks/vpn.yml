@@ -3,7 +3,18 @@
 - include_vars: vpn.yml
   tags: [always]
 
-- name: cleanup VPN custom config directory
+- name: vpn | ensure custom config directory
+  tags: [vpn]
+  file:
+    path: "{{ custom_vpn_datadir }}"
+    state: directory
+    mode: "0755"
+    owner: "{{ user_name }}"
+    group: "{{ user_group }}"
+    recurse: yes
+  become: yes
+
+- name: vpn | cleanup custom config directory
   tags: [cleanup]
   file:
     path: "{{ item }}"

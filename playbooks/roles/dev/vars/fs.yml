@@ -1,7 +1,5 @@
 ---
 
-dev_dirs:
-  - { path: "{{ custom_vpn_datadir }}", mode: "0755", owner: "{{ user_name }}", group: "{{ user_group }}", recurse: yes, become: yes }
 dev_homedir_files:
   - { src: ".guile", dest: ".guile" }
   - { src: ".editorconfig", dest: "{{ dev_workspace_subdir }}/.editorconfig" }
