@@ -1,0 +1,5 @@
+---
+
+misc_templates:
+  - { src: ".guile", dest: "{{ ansible_env.HOME }}/.guile" }
+  - { src: ".editorconfig", dest: "{{ workspace_path }}/.editorconfig" }

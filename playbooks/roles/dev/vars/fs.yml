@@ -1,5 +1,0 @@
----
-
-dev_homedir_files:
-  - { src: ".guile", dest: ".guile" }
-  - { src: ".editorconfig", dest: "{{ dev_workspace_subdir }}/.editorconfig" }

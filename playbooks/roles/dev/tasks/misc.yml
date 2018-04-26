@@ -1,5 +1,30 @@
 ---
 
+- include_vars: misc.yml
+  tags: [always]
+
+- name: instantiate templates
+  tags: [misc]
+  copy:
+    content: "{{ lookup('template', '{{ item.src }}') }}"
+    dest: "{{ item.dest }}"
+    mode: "{{ item.mode if 'mode' in item else 0755 }}"
+    owner: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
+    group: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
+  become: "{{ item.become if 'become' in item else 'no' }}"
+  with_items: "{{ misc_templates }}"
+  when: misc_templates is defined
+
+- name: copy custom scripts
+  tags: [misc, scripts]
+  copy:
+    content: "{{ lookup('template', 'scripts/{{ item | basename }}') }}"
+    dest: "{{ local_binaries_prefix }}/{{ item | basename }}"
+    mode: 0755
+  with_fileglob:
+    - "{{ role_path }}/templates/scripts/*"
+  become: yes
+
 - name: install zealdocs openrc entry
   tags: [misc, services]
   copy:
