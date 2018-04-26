@@ -8,8 +8,8 @@ app-crypt/pinentry gnome-keyring emacs
 app-crypt/qca gpg
 app-editors/emacs Xaw3d games gif dynamic-loading gif gsettings gzip-el imagemagick jpeg libxml2 sound source tiff toolkit-scroll-bars xft -alsa -gtk -gtk3
 app-editors/emacs-vcs Xaw3d games dynamic-loading gif gsettings gzip-el imagemagick jpeg libxml2 sound source tiff toolkit-scroll-bars xft -alsa -gtk -gtk3
-app-editors/gvim cscope gtk lua neXt tcl
-app-editors/vim cscope lua tcl vim-pager
+app-editors/gvim cscope gtk lua luajit neXt racket session tcl
+app-editors/vim cscope lua luajit racket tcl terminal vim-pager
 app-emacs/auctex preview-latex
 app-emacs/emacs-common-gentoo games
 app-emacs/whizzytex advi doc examples gv xdvi
