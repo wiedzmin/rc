@@ -1,0 +1,250 @@
+---
+
+system_paths:
+  - { path: "/usr/share/genkernel/defaults", user: root, become: yes }
+system_templates:
+  - { src: "genkernel/defaults/modules_load", dest: "/usr/share/genkernel/defaults/modules_load", mode: "0644", become: yes }
+genkernel_modules_ataraid:
+  - { name: "ataraid", disabled: yes }
+  - { name: "pdcraid", disabled: yes }
+  - { name: "hptraid", disabled: yes }
+genkernel_modules_dmraid:
+  - { name: "dm-mod", disabled: yes }
+  - { name: "dm-mirror", disabled: yes }
+  - { name: "dm-crypt", disabled: yes }
+genkernel_modules_lvm:
+  - { name: "dm-mod", disabled: yes }
+  - { name: "dm-snapshot", disabled: yes }
+  - { name: "dm-mirror", disabled: yes }
+  - { name: "dm-bbr", disabled: yes }
+  - { name: "dm-bufio", disabled: yes }
+  - { name: "dm-crypt", disabled: yes }
+  - { name: "dm-delay", disabled: yes }
+  - { name: "dm-flakey", disabled: yes }
+  - { name: "dm-log", disabled: yes }
+  - { name: "dm-log-userspace", disabled: yes }
+  - { name: "dm-multipath", disabled: yes }
+  - { name: "dm-queue-length", disabled: yes }
+  - { name: "dm-raid", disabled: yes }
+  - { name: "dm-region-hash", disabled: yes }
+  - { name: "dm-round-robin", disabled: yes }
+  - { name: "dm-service-time", disabled: yes }
+  - { name: "dm-thin-pool", disabled: yes }
+  - { name: "dm-persistent-data", disabled: yes }
+  - { name: "libcrc32c", disabled: yes }
+  - { name: "dm-zero", disabled: yes }
+genkernel_modules_mdadm:
+  - { name: "dm-mod", disabled: yes }
+  - { name: "dm-snapshot", disabled: yes }
+  - { name: "dm-mirror", disabled: yes }
+  - { name: "dm-bbr", disabled: yes }
+  - { name: "dm-raid", disabled: yes }
+  - { name: "dm-crypt", disabled: yes }
+  - { name: "raid0", disabled: yes }
+  - { name: "raid1", disabled: yes }
+  - { name: "raid456", disabled: yes }
+  - { name: "raid5", disabled: yes }
+  - { name: "raid6", disabled: yes }
+  - { name: "raid10", disabled: yes }
+  - { name: "linear", disabled: yes }
+  - { name: "multipath", disabled: yes }
+genkernel_modules_multipath:
+  - { name: "dm-mod", disabled: yes }
+  - { name: "dm-multipath", disabled: yes }
+  - { name: "dm-round-robin", disabled: yes }
+  - { name: "dm-rdac", disabled: yes }
+  - { name: "dm-queue-length", disabled: yes }
+  - { name: "dm-service-time", disabled: yes }
+genkernel_modules_pata:
+  - { name: "pata_mpiix", disabled: yes }
+  - { name: "pata_pdc2027x", disabled: yes }
+  - { name: "pata_radisys", disabled: yes }
+  - { name: "pata_sil680", disabled: yes }
+  - { name: "pata_rz1000", disabled: yes }
+  - { name: "pata_efar", disabled: yes }
+  - { name: "pata_cmd64x", disabled: yes }
+  - { name: "pata_hpt366", disabled: yes }
+  - { name: "pata_hpt37x", disabled: yes }
+  - { name: "pata_hpt3x3", disabled: yes }
+  - { name: "pata_hpt3x2n", disabled: yes }
+  - { name: "pata_optidma", disabled: yes }
+  - { name: "pata_it821x", disabled: yes }
+  - { name: "pata_artop", disabled: yes }
+  - { name: "pata_oldpiix", disabled: yes }
+  - { name: "pata_cypress", disabled: yes }
+  - { name: "pata_platform", disabled: yes }
+  - { name: "pata_serverworks", disabled: yes }
+  - { name: "pata_legacy", disabled: yes }
+  - { name: "pata_ns87410", disabled: yes }
+  - { name: "pata_ns87415", disabled: yes }
+  - { name: "pata_pcmcia", disabled: yes }
+  - { name: "pata_isapnp", disabled: yes }
+  - { name: "pata_it8213", disabled: yes }
+  - { name: "pata_ali", disabled: yes }
+  - { name: "pata_amd", disabled: yes }
+  - { name: "pata_opti", disabled: yes }
+  - { name: "pata_atiixp", disabled: yes }
+  - { name: "pata_triflex", disabled: yes }
+  - { name: "pata_pdc202xx_old", disabled: yes }
+  - { name: "pata_sc1200", disabled: yes }
+  - { name: "pata_qdi", disabled: yes }
+  - { name: "pata_netcell", disabled: yes }
+  - { name: "pata_sis", disabled: yes }
+  - { name: "pata_hpt3x2n", disabled: yes }
+  - { name: "pata_marvell", disabled: yes }
+  - { name: "pata_jmicron", disabled: yes }
+  - { name: "pata_via", disabled: yes }
+  - { name: "pata_cs5520", disabled: yes }
+  - { name: "pata_cs5530", disabled: yes }
+  - { name: "pata_cs5535", disabled: yes }
+  - { name: "pata_sl82c105", disabled: yes }
+  - { name: "libata", disabled: yes }
+genkernel_modules_sata:
+  - { name: "sata_promise", disabled: no }
+  - { name: "sata_sil" }
+  - { name: "sata_sil24" }
+  - { name: "sata_svw" }
+  - { name: "sata_via" }
+  - { name: "sata_nv" }
+  - { name: "sata_sx4" }
+  - { name: "sata_sis" }
+  - { name: "sata_uli" }
+  - { name: "sata_vsc" }
+  - { name: "sata_qstor" }
+  - { name: "ahci" }
+  - { name: "libata" }
+  - { name: "ata_piix" }
+  - { name: "sata_mv" }
+  - { name: "sata_inic162x" }
+  - { name: "pdc_adma" }
+genkernel_modules_scsi:
+  - { name: "sd_mod", disabled: yes }
+  - { name: "sg", disabled: yes }
+  - { name: "sr_mod", disabled: yes }
+  - { name: "aic79xx", disabled: yes }
+  - { name: "aic7xxx", disabled: yes }
+  - { name: "aic7xxx_old", disabled: yes }
+  - { name: "arcmsr", disabled: yes }
+  - { name: "BusLogic", disabled: yes }
+  - { name: "ncr53c8xx", disabled: yes }
+  - { name: "NCR53c406a", disabled: yes }
+  - { name: "initio", disabled: yes }
+  - { name: "advansys", disabled: yes }
+  - { name: "aha1740", disabled: yes }
+  - { name: "aha1542", disabled: yes }
+  - { name: "aha152x", disabled: yes }
+  - { name: "dtc", disabled: yes }
+  - { name: "fdomain", disabled: yes }
+  - { name: "gdth", disabled: yes }
+  - { name: "pas16", disabled: yes }
+  - { name: "pci2220i", disabled: yes }
+  - { name: "pci2000", disabled: yes }
+  - { name: "psi240i", disabled: yes }
+  - { name: "qlogicfas", disabled: yes }
+  - { name: "qlogicfc", disabled: yes }
+  - { name: "qlogicisp", disabled: yes }
+  - { name: "qlogicpti", disabled: yes }
+  - { name: "seagate", disabled: yes }
+  - { name: "t128", disabled: yes }
+  - { name: "u14-34f", disabled: yes }
+  - { name: "ultrastor", disabled: yes }
+  - { name: "wd7000", disabled: yes }
+  - { name: "sym53c8xx", disabled: yes }
+  - { name: "dmx3191d", disabled: yes }
+  - { name: "imm", disabled: yes }
+  - { name: "in2000", disabled: yes }
+  - { name: "ips", disabled: yes }
+  - { name: "qla1280", disabled: yes }
+  - { name: "sim710", disabled: yes }
+  - { name: "sym53c416", disabled: yes }
+  - { name: "dc395x", disabled: yes }
+  - { name: "atp870u", disabled: yes }
+  - { name: "mptbase", disabled: yes }
+  - { name: "mptscsih", disabled: yes }
+  - { name: "mptspi", disabled: yes }
+  - { name: "mptfc", disabled: yes }
+  - { name: "mptsas", disabled: yes }
+  - { name: "3w-sas", disabled: yes }
+  - { name: "3w-xxxx", disabled: yes }
+  - { name: "3w-9xxx", disabled: yes }
+  - { name: "cpqarray", disabled: yes }
+  - { name: "cciss", disabled: yes }
+  - { name: "hpsa", disabled: yes }
+  - { name: "DAC960", disabled: yes }
+  - { name: "sx8", disabled: yes }
+  - { name: "aacraid", disabled: yes }
+  - { name: "megaraid", disabled: yes }
+  - { name: "megaraid_mbox", disabled: yes }
+  - { name: "megaraid_mm", disabled: yes }
+  - { name: "megaraid_sas", disabled: yes }
+  - { name: "qla2xxx", disabled: yes }
+  - { name: "lpfc", disabled: yes }
+  - { name: "scsi_transport_fc", disabled: yes }
+  - { name: "aic94xx", disabled: yes }
+  - { name: "mpt2sas", disabled: yes }
+genkernel_modules_waitscan:
+  - { name: "scsi_wait_scan", disabled: yes }
+genkernel_modules_net:
+  - { name: "e1000" }
+genkernel_modules_iscsi:
+  - { name: "scsi_transport_iscsi", disabled: yes }
+  - { name: "libiscsi", disabled: yes }
+  - { name: "iscsi_tcp", disabled: yes }
+genkernel_modules_firewire:
+  - { name: "ieee1394", disabled: yes }
+  - { name: "ohci1394", disabled: yes }
+  - { name: "sbp2", disabled: yes }
+genkernel_modules_pcmcia:
+  - { name: "pcmcia" }
+  - { name: "pcmcia_core" }
+  - { name: "yenta_socket" }
+  - { name: "pd6729" }
+  - { name: "i82092" }
+  - { name: "i82365" }
+  - { name: "tcic" }
+  - { name: "ds" }
+  - { name: "ide-cs" }
+  - { name: "firmware_class" }
+genkernel_modules_usb:
+  - { name: "ehci-hcd" }
+  - { name: "uhci" }
+  - { name: "usb-ohci" }
+  - { name: "hid" }
+  - { name: "usb-storage" }
+  - { name: "uhci-hcd" }
+  - { name: "ohci-hcd" }
+  - { name: "xhci-hcd" }
+  - { name: "xhci-plat" }
+  - { name: "usbhid" }
+  - { name: "hid-generic" }
+  - { name: "sl811-hcd" }
+  - { name: "hid-a4tech" }
+  - { name: "hid-apple" }
+  - { name: "hid-belkin" }
+  - { name: "hid-cherry" }
+  - { name: "hid-chicony" }
+  - { name: "hid-cypress" }
+  - { name: "hid-dummy" }
+  - { name: "hid-ezkey" }
+  - { name: "hid-gyration" }
+  - { name: "hid-logitech" }
+  - { name: "hid-logitech-dj" }
+  - { name: "hid-microsoft" }
+  - { name: "hid-monterey" }
+  - { name: "hid-petalynx" }
+  - { name: "hid-pl" }
+  - { name: "hid-samsung" }
+  - { name: "hid-sony" }
+  - { name: "hid-sunplus" }
+genkernel_modules_fs:
+  - { name: "ext2" }
+  - { name: "ext3" }
+  - { name: "ext4" }
+  - { name: "reiserfs" }
+  - { name: "nfs" }
+  - { name: "fuse" }
+genkernel_modules_crypto:
+  - { name: "sha256_generic" }
+  - { name: "cbc" }
+  - { name: "aes_generic" }
+  - { name: "xts" }

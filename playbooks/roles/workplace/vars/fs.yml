@@ -5,7 +5,6 @@ system_dirs:
   - "/etc/acpi/actions"
   - "/etc/acpi/events"
   - "/etc/udev/rules.d"
-  - "/usr/share/genkernel/defaults"
   - "/etc/X11/xorg.conf.d"
 system_files:
   - { src: "acpi/actions/powerbtn.sh", dest: "/etc/acpi/actions/powerbtn.sh" }
@@ -23,7 +22,6 @@ system_files:
   - { src: "mpd.conf", dest: "/etc/mpd.conf" }
   - { src: "udev.d/95-external-head-hotplug.rules", dest: "/etc/udev/rules.d/95-external-head-hotplug.rules" }
   - { src: "udev.d/99-dev-input-group.rules", dest: "/etc/udev/rules.d/99-dev-input-group.rules" }
-  - { src: "genkernel/modules_load", dest: "/usr/share/genkernel/defaults/modules_load" }
   - { src: "xorg.conf.d/10-input.conf", dest: "/etc/X11/xorg.conf.d/10-input.conf" }
   - { src: "xorg.conf.d/15-synaptics.conf", dest: "/etc/X11/xorg.conf.d/15-synaptics.conf" }
   - { src: "xorg.conf.d/17-intel-modesetting.conf", dest: "/etc/X11/xorg.conf.d/17-intel-modesetting.conf" }
