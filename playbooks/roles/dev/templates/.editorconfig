@@ -5,6 +5,9 @@ root = true
 [*]
 end_of_line = lf
 insert_final_newline = true
+indent_style = space
+charset = utf-8
+trim_trailing_whitespace = true
 
 # Matches multiple files with brace expansion notation
 # Set default charset
@@ -29,3 +32,10 @@ indent_size = 2
 [{package.json,.travis.yml}]
 indent_style = space
 indent_size = 2
+
+[*.{json,yml}]
+indent_style = space
+indent_size = 2
+
+[*.md]
+trim_trailing_whitespace = false
