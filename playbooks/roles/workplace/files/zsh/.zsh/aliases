@@ -55,6 +55,8 @@ alias -g dubc='sudo find . -name "__pycache__" -or -name "*.pyc" -exec rm -rf {}
 
 alias -g jcurl='curl_jq(){ curl $@ | jq . }; curl_jq'
 
+alias -g df='dfc'
+
 alias -g shroot='ssh_root(){ ssh root@$@}; ssh_root'
 alias -g shme='ssh_whoami(){ ssh `whoami`@$@}; ssh_whoami'
 
