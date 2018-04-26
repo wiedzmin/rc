@@ -12,12 +12,12 @@ mime_assocs:
   - { program: "feh", mimetype: "image/jpeg" }
   - { program: "feh", mimetype: "image/png" }
   - { program: "{{ default_browser_executable }}", mimetype: "text/html" }
-  - { program: "vlc", mimetype: "video/avi" }
-  - { program: "vlc", mimetype: "video/mp4" }
-  - { program: "vlc", mimetype: "video/mpeg" }
-  - { program: "vlc", mimetype: "video/x-flv" }
-  - { program: "vlc", mimetype: "video/x-matroska" }
-  - { program: "vlc", mimetype: "video/x-ms-wmv" }
+  - { program: "{{ default_video_player_executable }}", mimetype: "video/avi" }
+  - { program: "{{ default_video_player_executable }}", mimetype: "video/mp4" }
+  - { program: "{{ default_video_player_executable }}", mimetype: "video/mpeg" }
+  - { program: "{{ default_video_player_executable }}", mimetype: "video/x-flv" }
+  - { program: "{{ default_video_player_executable }}", mimetype: "video/x-matroska" }
+  - { program: "{{ default_video_player_executable }}", mimetype: "video/x-ms-wmv" }
   - { program: "zathura", mimetype: "application/pdf" }
   - { program: "zathura", mimetype: "application/x-pdf" }
   - { program: "zathura", mimetype: "image/vnd.djvu" }

@@ -2,6 +2,7 @@
 
 default_browser_executable: firefox
 default_browser_cliargs: -new-tab
+default_video_player_executable: mpv
 shell_bookmarks_file: "{{ ansible_env.HOME }}/.bookmarks"
 binaries_prefix: /usr/local/bin
 emacs_config_dir: "{{ ansible_env.HOME }}/.emacs.d"
