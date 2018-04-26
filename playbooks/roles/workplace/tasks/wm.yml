@@ -43,6 +43,12 @@
 - name: stumpwm | build
   tags: [wm, stumpwm]
   make:
+    target: clean
+    chdir: "{{ x11_stumpwm_traits.local_path }}"
+
+- name: stumpwm | build
+  tags: [wm, stumpwm]
+  make:
     chdir: "{{ x11_stumpwm_traits.local_path }}"
 
 - name: stumpwm | install
