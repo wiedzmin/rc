@@ -13,6 +13,7 @@ app-editors/vim cscope lua luajit racket tcl terminal vim-pager
 app-emacs/auctex preview-latex
 app-emacs/emacs-common-gentoo games
 app-emacs/whizzytex advi doc examples gv xdvi
+app-emulation/containerd -btrfs
 app-emulation/docker overlay device-mapper zsh-completion
 app-emulation/libvirt qemu udev
 app-emulation/qemu -opengl
