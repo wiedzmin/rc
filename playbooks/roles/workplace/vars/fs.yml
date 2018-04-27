@@ -1,31 +1,7 @@
 ---
 
-system_dirs:
-  - "/etc/acpi"
-  - "/etc/acpi/actions"
-  - "/etc/acpi/events"
-  - "/etc/udev/rules.d"
-  - "/etc/X11/xorg.conf.d"
 system_files:
-  - { src: "acpi/actions/powerbtn.sh", dest: "/etc/acpi/actions/powerbtn.sh" }
-  - { src: "acpi/default.sh", dest: "/etc/acpi/default.sh" }
-  - { src: "acpi/events/battery", dest: "/etc/acpi/events/battery" }
-  - { src: "acpi/events/default", dest: "/etc/acpi/events/default" }
-  - { src: "acpi/events/lid", dest: "/etc/acpi/events/lid" }
-  - { src: "acpi/events/power", dest: "/etc/acpi/events/power" }
-  - { src: "acpi/events/sleep", dest: "/etc/acpi/events/sleep" }
-  - { src: "acpi/events/thinkpad-dock", dest: "/etc/acpi/events/thinkpad-dock" }
-  - { src: "acpi/events/thinkpad-undock", dest: "/etc/acpi/events/thinkpad-undock" }
-  - { src: "acpi/lid.sh", dest: "/etc/acpi/lid.sh" }
-  - { src: "acpi/power.sh", dest: "/etc/acpi/power.sh" }
-  - { src: "acpi/sleep.sh", dest: "/etc/acpi/sleep.sh" }
   - { src: "mpd.conf", dest: "/etc/mpd.conf" }
-  - { src: "udev.d/95-external-head-hotplug.rules", dest: "/etc/udev/rules.d/95-external-head-hotplug.rules" }
-  - { src: "udev.d/99-dev-input-group.rules", dest: "/etc/udev/rules.d/99-dev-input-group.rules" }
-  - { src: "xorg.conf.d/10-input.conf", dest: "/etc/X11/xorg.conf.d/10-input.conf" }
-  - { src: "xorg.conf.d/15-synaptics.conf", dest: "/etc/X11/xorg.conf.d/15-synaptics.conf" }
-  - { src: "xorg.conf.d/17-intel-modesetting.conf", dest: "/etc/X11/xorg.conf.d/17-intel-modesetting.conf" }
-  - { src: "xorg.conf.d/20-opengl.conf", dest: "/etc/X11/xorg.conf.d/20-opengl.conf" }
 homedir_subdirs:
   - ".gnupg"
   - ".imapfilter"
@@ -68,6 +44,4 @@ custom_scripts:
   - "status_cpu_temp"
   - "status_uptime"
   - "statusbar"
-aux_files:
-  - "rc.conf"
 user_cache_dir: { path: "{{ ansible_env.HOME }}/.cache", uid: "1000", gid: "1000", size: "2G", mode: "0755"}

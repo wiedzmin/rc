@@ -12,3 +12,4 @@
 - import_tasks: services.yml
 - import_tasks: scanner.yml
 - import_tasks: wm.yml
+- import_tasks: system.yml

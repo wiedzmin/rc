@@ -1,0 +1,27 @@
+---
+
+system_paths:
+  - { path: "/etc/acpi/actions", mode: '0700', user: root, become: yes }
+  - { path: "/etc/acpi/events", mode: '0700', user: root, become: yes }
+  - { path: "/etc/udev/rules.d", mode: '0644', user: root, become: yes }
+  - { path: "/etc/X11/xorg.conf.d", mode: '0644', user: root, become: yes }
+system_templates:
+  - { src: "acpi/actions/powerbtn.sh", dest: "/etc/acpi/actions/powerbtn.sh", mode: '0755', user: root, become: yes }
+  - { src: "acpi/default.sh", dest: "/etc/acpi/default.sh", mode: '0755', user: root, become: yes }
+  - { src: "acpi/events/battery", dest: "/etc/acpi/events/battery", mode: '0755', user: root, become: yes }
+  - { src: "acpi/events/default", dest: "/etc/acpi/events/default", mode: '0755', user: root, become: yes }
+  - { src: "acpi/events/lid", dest: "/etc/acpi/events/lid", mode: '0755', user: root, become: yes }
+  - { src: "acpi/events/power", dest: "/etc/acpi/events/power", mode: '0755', user: root, become: yes }
+  - { src: "acpi/events/sleep", dest: "/etc/acpi/events/sleep", mode: '0755', user: root, become: yes }
+  - { src: "acpi/events/thinkpad-dock", dest: "/etc/acpi/events/thinkpad-dock", mode: '0755', user: root, become: yes }
+  - { src: "acpi/events/thinkpad-undock", dest: "/etc/acpi/events/thinkpad-undock", mode: '0755', user: root, become: yes }
+  - { src: "acpi/lid.sh", dest: "/etc/acpi/lid.sh", mode: '0755', user: root, become: yes }
+  - { src: "acpi/power.sh", dest: "/etc/acpi/power.sh", mode: '0755', user: root, become: yes }
+  - { src: "acpi/sleep.sh", dest: "/etc/acpi/sleep.sh", mode: '0755', user: root, become: yes }
+  - { src: "udev.d/95-external-head-hotplug.rules", dest: "/etc/udev/rules.d/95-external-head-hotplug.rules", mode: '0755', user: root, become: yes }
+  - { src: "udev.d/99-dev-input-group.rules", dest: "/etc/udev/rules.d/99-dev-input-group.rules", mode: '0755', user: root, become: yes }
+  - { src: "xorg.conf.d/10-input.conf", dest: "/etc/X11/xorg.conf.d/10-input.conf", mode: '0755', user: root, become: yes }
+  - { src: "xorg.conf.d/15-synaptics.conf", dest: "/etc/X11/xorg.conf.d/15-synaptics.conf", mode: '0755', user: root, become: yes }
+  - { src: "xorg.conf.d/17-intel-modesetting.conf", dest: "/etc/X11/xorg.conf.d/17-intel-modesetting.conf", mode: '0755', user: root, become: yes }
+  - { src: "xorg.conf.d/20-opengl.conf", dest: "/etc/X11/xorg.conf.d/20-opengl.conf", mode: '0755', user: root, become: yes }
+  - { src: "system/rc.conf", dest: "/etc/rc.conf", mode: '0755', user: root, become: yes }

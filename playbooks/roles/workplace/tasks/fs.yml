@@ -3,14 +3,6 @@
 - include_vars: fs.yml
   tags: [always]
 
-- name: ensure some system dirs exists
-  tags: [fs]
-  file:
-    path: "{{ item }}"
-    state: directory
-  become: yes
-  with_items: "{{ system_dirs }}"
-
 - name: copy system files
   tags: [fs]
   copy:
@@ -34,15 +26,6 @@
     dest: "{{ ansible_env.HOME }}/{{ item.dest }}"
     mode: 0755
   with_items: "{{ homedir_files }}"
-
-- name: copy auxillary files
-  tags: [fs]
-  copy:
-    content: "{{ lookup('template', 'system/{{ item }}') }}"
-    dest: "/etc/{{ item }}"
-    mode: 0755
-  become: yes
-  with_items: "{{ aux_files }}"
 
 - name: copy custom scripts
   tags: [fs]

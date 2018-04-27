@@ -1,0 +1,29 @@
+---
+
+- include_vars: system.yml
+  tags: [always]
+
+- name: ensure paths
+  tags: [system]
+  file:
+    path: "{{ item.path }}"
+    state: directory
+    mode: "{{ item.mode if 'mode' in item else 0755 }}"
+    owner: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
+    group: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
+    recurse: yes
+  become: "{{ item.become if 'become' in item else 'no' }}"
+  with_items: "{{ system_paths }}"
+  when: system_paths is defined
+
+- name: instantiate templates
+  tags: [system]
+  copy:
+    content: "{{ lookup('template', '{{ item.src }}') }}"
+    dest: "{{ item.dest }}"
+    mode: "{{ item.mode if 'mode' in item else 0755 }}"
+    owner: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
+    group: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
+  become: "{{ item.become if 'become' in item else 'no' }}"
+  with_items: "{{ system_templates }}"
+  when: system_templates is defined
