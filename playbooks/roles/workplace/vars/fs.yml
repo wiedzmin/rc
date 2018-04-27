@@ -9,12 +9,6 @@ homedir_subdirs:
   - ".tmux/plugins"
   - "pids"
   - "{{ zsh_subconfig_path }}"
-  - ".config/dunst"
-  - ".config/i3"
-  - ".config/rofi"
-  - ".config/twmn"
-  - ".local/share/applications"
-  - ".sawfish"
 homedir_files:
   - { src: "gnupg/gpg-agent.conf", dest: ".gnupg/gpg-agent.conf" }
   - { src: "mail/.mailcap", dest: ".mailcap" }
@@ -25,19 +19,6 @@ homedir_files:
   - { src: ".urlview", dest: ".urlview" }
   - { src: "tmux-sessions", dest: "tmux-sessions" }
   - { src: "zsh/.zsh", dest: "" }
-  - { src: ".gmrunrc", dest: ".gmrunrc" }
-  - { src: ".i3status.conf", dest: ".i3status.conf" }
-  - { src: ".sawfishrc", dest: ".sawfish/rc" }
-  - { src: ".stalonetrayrc", dest: ".stalonetrayrc" }
-  - { src: ".xxkbrc", dest: ".xxkbrc" }
-  - { src: "browser/.surfingkeysrc", dest: ".surfingkeysrc" }
-  - { src: "categorize.cfg", dest: ".arbtt/categorize.cfg" }
-  - { src: "i3.conf", dest: ".config/i3/config" }
-  - { src: "twmn.conf", dest: ".config/twmn/twmn.conf" }
-  - { src: "xmobarrc", dest: ".xmonad/xmobarrc" }
-  - { src: "xmobarrc-noinet", dest: ".xmonad/xmobarrc-noinet" }
-  - { src: "xmobarrc.xmonad.old", dest: ".xmonad/xmobarrc.xmonad.old" }
-  - { src: "emacsclient.desktop", dest: ".local/share/applications/emacsclient.desktop" }
 custom_scripts:
   - "hddtemp"
   - "status_bat_info"

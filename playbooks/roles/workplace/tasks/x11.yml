@@ -9,13 +9,30 @@
 - import_tasks: common.yml
   tags: [x11]
 
-- name: instantiate templated configs
-  tags: [x11, templated]
+- name: ensure paths
+  tags: [x11]
+  file:
+    path: "{{ item.path }}"
+    state: directory
+    mode: "{{ item.mode if 'mode' in item else 0755 }}"
+    owner: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
+    group: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
+    recurse: yes
+  become: "{{ item.become if 'become' in item else 'no' }}"
+  with_items: "{{ x11_paths }}"
+  when: x11_paths is defined
+
+- name: instantiate templates
+  tags: [x11]
   copy:
     content: "{{ lookup('template', '{{ item.src }}') }}"
-    dest: "{{ ansible_env.HOME }}/{{ item.dest }}"
-    mode: 0755
-  with_items: "{{ x11_templated_configs }}"
+    dest: "{{ item.dest }}"
+    mode: "{{ item.mode if 'mode' in item else 0755 }}"
+    owner: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
+    group: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
+  become: "{{ item.become if 'become' in item else 'no' }}"
+  with_items: "{{ x11_templates }}"
+  when: x11_templates is defined
 
 - name: register org-protocol handler in mimeapps
   tags: [x11]
@@ -23,14 +40,6 @@
     dest: "{{ ansible_env.HOME }}/.local/share/applications/mimeapps.list"
     line: x-scheme-handler/org-protocol=emacsclient.desktop
     state: present
-
-- name: instantiate resources configs
-  tags: [x11, configs]
-  copy:
-    content: "{{ lookup('template', '{{ item.src }}') }}"
-    dest: "{{ ansible_env.HOME }}/{{ item.dest }}"
-    mode: 0755
-  with_items: "{{ x11_resources_configs }}"
 
 - name: setup xdg-open associations
   tags: [x11]

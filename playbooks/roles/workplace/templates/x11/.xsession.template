@@ -66,7 +66,7 @@ wm-loop() {
 ac_adapter=$(acpi -a | cut -d' ' -f3 | cut -d- -f1)
 
 xrdb -merge .Xresources
-{% for config in x11_resources_configs %}
+{% for config in x11_templates | selectattr('xresources', 'sameas', true) %}
 {% if config.enabled is defined and config.enabled %}
 xrdb -merge {{ config.dest }}
 {% endif %}

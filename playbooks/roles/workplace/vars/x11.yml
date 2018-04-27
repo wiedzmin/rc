@@ -1,16 +1,35 @@
-x11_templated_configs:
-  - { src: "x11/dunstrc.template", dest: ".config/dunst/dunstrc" }
-  - { src: "x11/rofi.j2", dest: ".config/rofi/config" }
-  - { src: "x11/oxide.rasi", dest: ".config/rofi/oxide.rasi" }
-x11_resources_configs:
-  - { src: "resources/.Xresources.template", dest: ".Xresources" }
-  - { src: "resources/.urxvtrc.template", dest: ".urxvtrc", enabled: yes }
-  - { src: "resources/.xftrc.template", dest: ".xftrc", enabled: yes }
-  - { src: "resources/.emacsrc.template", dest: ".emacsrc", enabled: yes }
+x11_paths:
+  - { path: "{{ home_config_path }}/dunst"}
+  - { path: "{{ home_config_path }}/i3"}
+  - { path: "{{ home_config_path }}/rofi"}
+  - { path: "{{ home_config_path }}/twmn"}
+  - { path: "{{ ansible_env.HOME }}/.local/share/applications"}
+  - { path: "{{ ansible_env.HOME }}/.sawfish"}
+x11_templates:
+  - { src: "browser/.surfingkeysrc", dest: "{{ ansible_env.HOME }}/.surfingkeysrc" }
+  - { src: "x11/dunstrc.template", dest: "{{ home_config_path }}/dunst/dunstrc" }
+  - { src: "x11/rofi.j2", dest: "{{ home_config_path }}/rofi/config" }
+  - { src: "x11/oxide.rasi", dest: "{{ home_config_path }}/rofi/oxide.rasi" }
+  - { src: "categorize.cfg", dest: "{{ ansible_env.HOME }}/.arbtt/categorize.cfg" }
+  - { src: ".gmrunrc", dest: "{{ ansible_env.HOME }}/.gmrunrc" }
+  - { src: ".i3status.conf", dest: "{{ ansible_env.HOME }}/.i3status.conf" }
+  - { src: ".sawfishrc", dest: "{{ ansible_env.HOME }}/.sawfish/rc" }
+  - { src: ".stalonetrayrc", dest: "{{ ansible_env.HOME }}/.stalonetrayrc" }
+  - { src: ".xxkbrc", dest: "{{ ansible_env.HOME }}/.xxkbrc" }
+  - { src: "i3.conf", dest: "{{ home_config_path }}/i3/config" }
+  - { src: "twmn.conf", dest: "{{ home_config_path }}/twmn/twmn.conf" }
+  - { src: "xmobarrc", dest: "{{ ansible_env.HOME }}/.xmonad/xmobarrc" }
+  - { src: "xmobarrc-noinet", dest: "{{ ansible_env.HOME }}/.xmonad/xmobarrc-noinet" }
+  - { src: "xmobarrc.xmonad.old", dest: "{{ ansible_env.HOME }}/.xmonad/xmobarrc.xmonad.old" }
+  - { src: "emacsclient.desktop", dest: "{{ ansible_env.HOME }}/.local/share/applications/emacsclient.desktop" }
+  - { src: "resources/.Xresources.template", dest: "{{ ansible_env.HOME }}/.Xresources", xresources: yes }
+  - { src: "resources/.urxvtrc.template", dest: "{{ ansible_env.HOME }}/.urxvtrc", enabled: yes, xresources: yes }
+  - { src: "resources/.xftrc.template", dest: "{{ ansible_env.HOME }}/.xftrc", enabled: yes, xresources: yes }
+  - { src: "resources/.emacsrc.template", dest: "{{ ansible_env.HOME }}/.emacsrc", enabled: yes, xresources: yes }
 mime_assocs:
   - { program: "abiword", mimetype: "application/msword" }
-  - { program: "feh", mimetype: "image/jpeg" }
-  - { program: "feh", mimetype: "image/png" }
+  - { program: "{{ default_image_viewer_executable }}", mimetype: "image/jpeg" }
+  - { program: "{{ default_image_viewer_executable }}", mimetype: "image/png" }
   - { program: "{{ default_browser_executable }}", mimetype: "text/html" }
   - { program: "{{ default_video_player_executable }}", mimetype: "video/avi" }
   - { program: "{{ default_video_player_executable }}", mimetype: "video/mp4" }
@@ -18,10 +37,10 @@ mime_assocs:
   - { program: "{{ default_video_player_executable }}", mimetype: "video/x-flv" }
   - { program: "{{ default_video_player_executable }}", mimetype: "video/x-matroska" }
   - { program: "{{ default_video_player_executable }}", mimetype: "video/x-ms-wmv" }
-  - { program: "zathura", mimetype: "application/pdf" }
-  - { program: "zathura", mimetype: "application/x-pdf" }
-  - { program: "zathura", mimetype: "image/vnd.djvu" }
-  - { program: "zathura", mimetype: "image/x-djvu" }
+  - { program: "{{ default_ebook_viewer_executable }}", mimetype: "application/pdf" }
+  - { program: "{{ default_ebook_viewer_executable }}", mimetype: "application/x-pdf" }
+  - { program: "{{ default_ebook_viewer_executable }}", mimetype: "image/vnd.djvu" }
+  - { program: "{{ default_ebook_viewer_executable }}", mimetype: "image/x-djvu" }
 vpn_service_name: job-vpn
 osd_delay: 2
 osd_font: "-*-fixed-*-*-*-*-24-*-*-*-*-*-*-*"

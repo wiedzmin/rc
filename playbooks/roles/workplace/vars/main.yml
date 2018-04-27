@@ -3,11 +3,14 @@
 default_browser_executable: firefox
 default_browser_cliargs: -new-tab
 default_video_player_executable: mpv
+default_image_viewer_executable: feh
+default_ebook_viewer_executable: zathura
 shell_bookmarks_file: "{{ ansible_env.HOME }}/.bookmarks"
 binaries_prefix: /usr/local/bin
 emacs_config_dir: "{{ ansible_env.HOME }}/.emacs.d"
 pids_dir: "{{ ansible_env.HOME }}/pids"
 zsh_subconfig_path: "{{ ansible_env.HOME}}/.zsh"
+home_config_path: "{{ ansible_env.HOME }}/.config"
 user_name: octocat
 user_group: octocat
 xsession_wm_choices:
