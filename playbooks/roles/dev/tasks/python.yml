@@ -17,7 +17,7 @@
     mode: "{{ item.mode if 'mode' in item else 0755 }}"
     owner: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
     group: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
-    recurse: yes
+    recurse: "{{ item.recurse if 'recurse' in item else 'yes' }}"
   become: "{{ item.become if 'become' in item else 'no' }}"
   with_items: "{{ python_paths }}"
   when: python_paths is defined
