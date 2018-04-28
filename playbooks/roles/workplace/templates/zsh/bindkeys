@@ -32,3 +32,12 @@ bindkey "e" zshnip-edit-and-expand
 bindkey "^qs" fuzzy-search-and-edit
 zle -N fe
 bindkey "^qe" fe
+
+# Use C-x C-e to edit the current command line, http://nuclearsquid.com/writings/edit-long-commands/
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '\C-x\C-e' edit-command-line
+bindkey '\C-xe' edit-command-line
+# Emacs style
+# bindkey '^xe' edit-command-line
+# bindkey '^x^e' edit-command-line

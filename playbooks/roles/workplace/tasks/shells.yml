@@ -6,6 +6,31 @@
 - import_tasks: common.yml
   tags: [shells]
 
+- name: ensure paths
+  tags: [shells]
+  file:
+    path: "{{ item.path }}"
+    state: directory
+    mode: "{{ item.mode if 'mode' in item else 0755 }}"
+    owner: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
+    group: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
+    recurse: "{{ item.recurse if 'recurse' in item else 'yes' }}"
+  become: "{{ item.become if 'become' in item else 'no' }}"
+  with_items: "{{ shell_paths }}"
+  when: shell_paths is defined
+
+- name: instantiate templates
+  tags: [shells]
+  copy:
+    content: "{{ lookup('template', '{{ item.src }}') }}"
+    dest: "{{ item.dest }}"
+    mode: "{{ item.mode if 'mode' in item else 0755 }}"
+    owner: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
+    group: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
+  become: "{{ item.become if 'become' in item else 'no' }}"
+  with_items: "{{ shell_templates }}"
+  when: shell_templates is defined
+
 - name: ensure groups exist
   tags: [shells]
   group:

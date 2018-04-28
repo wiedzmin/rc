@@ -49,8 +49,8 @@ alias -g DI='docker inspect'
 alias -g DP='docker ps'
 alias -g DPA='docker ps -a'
 alias -g DL='docker logs'
-alias -g DPI='docker_name_ip(){ docker ps --format "{{.Names}}" | grep $@ | xargs docker inspect -f "{{.Name}} {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" | column -t -s" " }; docker_name_ip'
-alias -g DIM='docker inspect -f "{{ .Mounts }}"'
+{% raw %}alias -g DPI='docker_name_ip(){ docker ps --format "{{.Names}}" | grep $@ | xargs docker inspect -f "{{.Name}} {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}" | column -t -s" " }; docker_name_ip'{% endraw %}
+{% raw %}alias -g DIM='docker inspect -f "{{ .Mounts }}"'{% endraw %}
 alias -g dubc='sudo find . -name "__pycache__" -or -name "*.pyc" -exec rm -rf {} + && docker-compose up --build'
 
 alias -g jcurl='curl_jq(){ curl $@ | jq . }; curl_jq'

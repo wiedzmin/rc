@@ -2,7 +2,6 @@
   tags: [always]
   with_items:
     - x11.yml
-    - fs.yml
     - misc.yml
     - fonts.yml
 

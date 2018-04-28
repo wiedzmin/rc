@@ -1,3 +1,18 @@
+misc_paths:
+  - { path: "{{ ansible_env.HOME }}/.gnupg" }
+  - { path: "{{ ansible_env.HOME }}/.imapfilter" }
+  - { path: "{{ ansible_env.HOME }}/.ssh", mode: '0700', recurse: no }
+  - { path: "{{ ansible_env.HOME }}/pids", become: yes }
+misc_templates:
+  - { src: "gnupg/gpg-agent.conf", dest: "{{ ansible_env.HOME }}/.gnupg/gpg-agent.conf" }
+  - { src: "mail/.mailcap", dest: "{{ ansible_env.HOME }}/.mailcap" }
+  - { src: "mail/.mbsyncrc", dest: "{{ ansible_env.HOME }}/.mbsyncrc" }
+  - { src: "mail/.msmtprc", dest: "{{ ansible_env.HOME }}/.msmtprc" }
+  - { src: "ssh_config", dest: "{{ ansible_env.HOME }}/.ssh/config" }
+  - { src: "mpd.conf", dest: "/etc/mpd.conf", user: root, become: yes }
+  - { src: "scripts/hddtemp", dest: "{{ binaries_prefix }}/hddtemp", become: yes }
+tmpfs_paths:
+  - { path: "{{ ansible_env.HOME }}/.cache", uid: "1000", gid: "1000", size: "2G", mode: "0755"}
 emacs_config_name_literal: "{{ emacs_config_dir }}/config.org"
 emacs_config_name_tangled: "{{ emacs_config_dir }}/config.el"
 ffdc_traits: { clone_from: "https://github.com/Unode/firefox_decrypt", local_path: "/tmp/firefox_decrypt" }
