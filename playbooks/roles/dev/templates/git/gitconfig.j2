@@ -6,6 +6,13 @@
 {% endif%}
 [alias]
     co = checkout
+    cwo = checkout -b origin/ # fetch branch from primary remote, eliminates ambiguity
+
+    bl = branch -l
+    merged = branch --merged master
+    nomerged = branch --no-merged master
+    fro = "!f() { git fetch && git rebase '@{u}'}; f"
+
     cs = commit -S
 
     undo = reset HEAD~1
@@ -15,12 +22,19 @@
     fc = "!f() { git log --pretty=format:'* %C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%cn>%Creset' --decorate --date=relative --grep=$1; }; f"
     hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
     lg = log --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    who = shortlog -n -s --no-merges
+    sl = log --name-only --oneline
+    updated = show --name-only --oneline
 
+    # TODO: think of using --patience
     d = "!git diff --patch-with-stat --color $@ | diff-so-fancy"
     dc = diff --cached
     df = diff --patch-with-stat --color --color-words --abbrev
     fpd=diff --no-prefix -s -p >
     last = diff --stat=150,120 HEAD^ HEAD
+    pd = diff --no-prefix -s -p >
+
+    pf = format-patch -1 --no-prefix -s -p FETCH_HEAD
 
     s = status -s
     st = status
@@ -30,6 +44,7 @@
 
     trycl = git clean -d -x -n -i
     cleanup = clean -d -x -f
+    tcleanup = remote prune origin && git gc && git clean -dfx && git stash clear
 [core]
     autocrlf = false
     quotepath = false
