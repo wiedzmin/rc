@@ -78,6 +78,7 @@ zsh_plugins:
   - unixorn/git-extra-commands
   - RobSis/zsh-reentry-hook
   - ninrod/pass-zsh-completion
+  - wiedzmin/browse-commit
   - mgee/slimline
 zsh_plugins_list_location: "{{ zsh_subconfig_path }}/plugins.list"
 zsh_plugins_antibody_script: "{{ zsh_subconfig_path }}/plugins.sh"
