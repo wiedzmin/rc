@@ -14,4 +14,4 @@
     (error (e) (set-font (make-instance 'xft:font :family "{{ xft_font_fallback.name }}" {% if xft_font_fallback.is_bold %}:subfamily "Bold"{% endif %} :size {{ xft_font_size_term }}))))
 {% endif %}
 
-
+(defparameter *PDF-VIEWER* "{{ default_ebook_viewer_executable }}" "Default PDF viewer")
