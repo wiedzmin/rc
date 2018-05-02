@@ -31,6 +31,8 @@ mime_assocs:
   - { program: "{{ default_image_viewer_executable }}", mimetype: "image/jpeg" }
   - { program: "{{ default_image_viewer_executable }}", mimetype: "image/png" }
   - { program: "{{ default_browser_executable }}", mimetype: "text/html" }
+  - { program: "{{ default_browser_executable }}", mimetype: "x-scheme-handler/http" }
+  - { program: "{{ default_browser_executable }}", mimetype: "x-scheme-handler/https" }
   - { program: "{{ default_video_player_executable }}", mimetype: "video/avi" }
   - { program: "{{ default_video_player_executable }}", mimetype: "video/mp4" }
   - { program: "{{ default_video_player_executable }}", mimetype: "video/mpeg" }
