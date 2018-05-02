@@ -7,59 +7,68 @@
   tags: [wm]
 
 - name: stumpwm | clone repo
-  tags: [wm, stumpwm]
+  tags: [wm]
   git:
     repo: "{{ x11_stumpwm_traits.clone_from }}"
     dest: "{{ x11_stumpwm_traits.local_path }}"
     force: yes
+  when: xsession_current_wm == "stumpwm"
 
 - name: stumpwm | check configure script
-  tags: [wm, stumpwm]
+  tags: [wm]
   stat: path={{ x11_stumpwm_traits.local_path }}/configure
   register: stumpwm_configure
+  when: xsession_current_wm == "stumpwm"
 
 - name: stumpwm | maybe autoconf
-  tags: [wm, stumpwm]
+  tags: [wm]
   shell: autoconf
   args:
     chdir: "{{ x11_stumpwm_traits.local_path }}"
   when:
     - stumpwm_configure.stat.exists == False
+    - xsession_current_wm == "stumpwm"
 
 - name: stumpwm | configure
-  tags: [wm, stumpwm]
+  tags: [wm]
   shell: ./configure
   args:
     chdir: "{{ x11_stumpwm_traits.local_path }}"
+  when: xsession_current_wm == "stumpwm"
 
 - name: stumpwm | patch binary image creation
-  tags: [wm, stumpwm]
+  tags: [wm]
   lineinfile:
     path: "{{ x11_stumpwm_traits.local_path }}/make-image.lisp"
     insertafter: ":executable t"
     line: "                                    :compression t"
+  when: xsession_current_wm == "stumpwm"
 
-- name: stumpwm | build
-  tags: [wm, stumpwm]
+- name: stumpwm | cleanup
+  tags: [wm]
   make:
     target: clean
     chdir: "{{ x11_stumpwm_traits.local_path }}"
+  when: xsession_current_wm == "stumpwm"
 
 - name: stumpwm | build
-  tags: [wm, stumpwm]
+  tags: [wm]
   make:
     chdir: "{{ x11_stumpwm_traits.local_path }}"
+  when: xsession_current_wm == "stumpwm"
 
 - name: stumpwm | install
-  tags: [wm, stumpwm]
+  tags: [wm]
   make:
     chdir: "{{ x11_stumpwm_traits.local_path }}"
     target: install
   become: yes
+  when: xsession_current_wm == "stumpwm"
 
 - name: generate common settings for StumpWM
-  tags: [wm, stumpwm]
+  tags: [wm]
   copy:
     content: "{{ lookup('template', 'x11/common.lisp.template') }}"
     dest: "{{ stumpwm_config_path }}/common.lisp"
     mode: 0644
+  when: xsession_current_wm == "stumpwm"
