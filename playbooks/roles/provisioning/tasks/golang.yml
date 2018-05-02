@@ -1,7 +1,7 @@
 ---
 
 - include_vars: golang.yml
-  tags: [always]
+  tags: [golang]
 
 - name: check packages installed
   tags: [golang]

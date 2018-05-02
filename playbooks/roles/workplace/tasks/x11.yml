@@ -1,5 +1,5 @@
 - include_vars: "{{ item }}"
-  tags: [always]
+  tags: [x11, scripts]
   with_items:
     - x11.yml
     - misc.yml

@@ -1,7 +1,7 @@
 ---
 
 - include_vars: emerge.yml
-  tags: [always]
+  tags: [emerge]
 
 - name: ensure some packages installed
   tags: [emerge]

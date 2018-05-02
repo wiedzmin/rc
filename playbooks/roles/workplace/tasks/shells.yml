@@ -1,7 +1,5 @@
-- include_vars: "{{ item }}"
-  tags: [always]
-  with_items:
-    - shells.yml
+- include_vars: shells.yml
+  tags: [shells, bash, zsh, tmux, backup, restore]
 
 - import_tasks: common.yml
   tags: [shells]

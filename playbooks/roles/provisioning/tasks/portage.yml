@@ -1,7 +1,7 @@
 ---
 
 - include_vars: portage.yml
-  tags: [always]
+  tags: [portage, bootstrap, overlays]
 
 - name: ensure portage dirs exists
   tags: [portage, bootstrap]

@@ -1,7 +1,7 @@
 ---
 
 - include_vars: "{{ item }}"
-  tags: [always]
+  tags: [python]
   with_items:
     - python.yml
     - "{{ playbook_dir }}/../private/private_vars.yml"

@@ -1,7 +1,5 @@
-- include_vars: "{{ item }}"
-  tags: [always]
-  with_items:
-    - x11.yml
+- include_vars: x11.yml
+  tags: [wm]
 
 - import_tasks: common.yml
   tags: [wm]

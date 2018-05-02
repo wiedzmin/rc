@@ -1,7 +1,7 @@
 ---
 
 - include_vars: system.yml
-  tags: [always]
+  tags: [system]
 
 - name: ensure paths
   tags: [system]

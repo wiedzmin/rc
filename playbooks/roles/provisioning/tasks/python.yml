@@ -1,7 +1,7 @@
 ---
 
 - include_vars: python.yml
-  tags: [always]
+  tags: [python]
 
 - name: install pip packages (Python)
   tags: [python]

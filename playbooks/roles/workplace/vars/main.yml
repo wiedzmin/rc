@@ -13,6 +13,16 @@ zsh_subconfig_path: "{{ ansible_env.HOME}}/.zsh"
 home_config_path: "{{ ansible_env.HOME }}/.config"
 user_name: octocat
 user_group: octocat
+user_shells:
+  - bash
+  - zsh
+default_user_shell: zsh
+bin_dirs:
+  - "$HOME/bin"
+  - "$HOME/tools/bin"
+  - "/usr/lib/go/bin"
+  - "$HOME/workspace/gocode/bin"
+  - "$HOME/.local/bin"
 xsession_wm_choices:
   - awesome
   - i3
@@ -20,3 +30,4 @@ xsession_wm_choices:
   - stumpwm
   - xmonad
 xsession_current_wm: "{{ xsession_wm_choices[3] }}"
+stumpwm_config_path: "{{ ansible_env.HOME}}/.stumpwm.d"

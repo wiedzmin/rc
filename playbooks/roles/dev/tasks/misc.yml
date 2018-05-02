@@ -1,7 +1,7 @@
 ---
 
 - include_vars: misc.yml
-  tags: [always]
+  tags: [misc, scripts, services]
 
 - name: instantiate templates
   tags: [misc]
