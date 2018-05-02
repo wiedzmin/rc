@@ -21,6 +21,8 @@ alias -g findgrep='find_in_files'
 
 alias -g MRP='equery list --portage-tree --mask-reason'
 
+alias git='hub'
+
 alias -g DSH='docker_shell(){ docker exec -it $1 /bin/bash }; docker_shell'
 alias -g DRM='docker_stop_rm(){ docker stop $@ && docker rm $@ }; docker_stop_rm'
 alias -g DI='docker inspect'
