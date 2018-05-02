@@ -65,6 +65,7 @@ emerge_packages_of_interest:
   - "sys-apps/fbset"
   - "sys-apps/highway"
   - "sys-apps/lm_sensors"
+  - "sys-apps/moreutils"
   - "sys-apps/ripgrep"
   - "sys-devel/gdb"
   - "sys-fs/dfc"
