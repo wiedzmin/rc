@@ -100,22 +100,22 @@ genkernel_modules_pata:
   - { name: "pata_sl82c105", disabled: yes }
   - { name: "libata", disabled: yes }
 genkernel_modules_sata:
-  - { name: "sata_promise", disabled: no }
-  - { name: "sata_sil" }
-  - { name: "sata_sil24" }
-  - { name: "sata_svw" }
-  - { name: "sata_via" }
-  - { name: "sata_nv" }
-  - { name: "sata_sx4" }
-  - { name: "sata_sis" }
-  - { name: "sata_uli" }
-  - { name: "sata_vsc" }
-  - { name: "sata_qstor" }
+  - { name: "sata_promise", disabled: yes }
+  - { name: "sata_sil", disabled: yes }
+  - { name: "sata_sil24", disabled: yes }
+  - { name: "sata_svw", disabled: yes }
+  - { name: "sata_via", disabled: yes }
+  - { name: "sata_nv", disabled: yes }
+  - { name: "sata_sx4", disabled: yes }
+  - { name: "sata_sis", disabled: yes }
+  - { name: "sata_uli", disabled: yes }
+  - { name: "sata_vsc", disabled: yes }
+  - { name: "sata_qstor", disabled: yes }
   - { name: "ahci" }
   - { name: "libata" }
-  - { name: "ata_piix" }
+  - { name: "ata_piix", disabled: yes }
   - { name: "sata_mv" }
-  - { name: "sata_inic162x" }
+  - { name: "sata_inic162x", disabled: yes }
   - { name: "pdc_adma" }
 genkernel_modules_scsi:
   - { name: "sd_mod", disabled: yes }
@@ -195,16 +195,16 @@ genkernel_modules_firewire:
   - { name: "ohci1394", disabled: yes }
   - { name: "sbp2", disabled: yes }
 genkernel_modules_pcmcia:
-  - { name: "pcmcia" }
-  - { name: "pcmcia_core" }
-  - { name: "yenta_socket" }
-  - { name: "pd6729" }
-  - { name: "i82092" }
-  - { name: "i82365" }
-  - { name: "tcic" }
-  - { name: "ds" }
-  - { name: "ide-cs" }
-  - { name: "firmware_class" }
+  - { name: "pcmcia", disabled: yes }
+  - { name: "pcmcia_core", disabled: yes }
+  - { name: "yenta_socket", disabled: yes }
+  - { name: "pd6729", disabled: yes }
+  - { name: "i82092", disabled: yes }
+  - { name: "i82365", disabled: yes }
+  - { name: "tcic", disabled: yes }
+  - { name: "ds", disabled: yes }
+  - { name: "ide-cs", disabled: yes }
+  - { name: "firmware_class", disabled: yes }
 genkernel_modules_usb:
   - { name: "ehci-hcd" }
   - { name: "uhci" }
@@ -217,25 +217,25 @@ genkernel_modules_usb:
   - { name: "xhci-plat" }
   - { name: "usbhid" }
   - { name: "hid-generic" }
-  - { name: "sl811-hcd" }
+  - { name: "sl811-hcd", disabled: yes }
   - { name: "hid-a4tech" }
   - { name: "hid-apple" }
-  - { name: "hid-belkin" }
-  - { name: "hid-cherry" }
-  - { name: "hid-chicony" }
-  - { name: "hid-cypress" }
+  - { name: "hid-belkin", disabled: yes }
+  - { name: "hid-cherry", disabled: yes }
+  - { name: "hid-chicony", disabled: yes }
+  - { name: "hid-cypress", disabled: yes }
   - { name: "hid-dummy" }
-  - { name: "hid-ezkey" }
-  - { name: "hid-gyration" }
+  - { name: "hid-ezkey", disabled: yes }
+  - { name: "hid-gyration", disabled: yes }
   - { name: "hid-logitech" }
   - { name: "hid-logitech-dj" }
   - { name: "hid-microsoft" }
-  - { name: "hid-monterey" }
-  - { name: "hid-petalynx" }
+  - { name: "hid-monterey", disabled: yes }
+  - { name: "hid-petalynx", disabled: yes }
   - { name: "hid-pl" }
-  - { name: "hid-samsung" }
-  - { name: "hid-sony" }
-  - { name: "hid-sunplus" }
+  - { name: "hid-samsung", disabled: yes }
+  - { name: "hid-sony", disabled: yes }
+  - { name: "hid-sunplus", disabled: yes }
 genkernel_modules_fs:
   - { name: "ext2" }
   - { name: "ext3" }
