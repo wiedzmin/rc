@@ -3,7 +3,7 @@
 - include_vars: misc.yml
   tags: [misc, scripts, services]
 
-- name: instantiate templates
+- name: misc | instantiate templates
   tags: [misc]
   copy:
     content: "{{ lookup('template', '{{ item.src }}') }}"
@@ -15,7 +15,7 @@
   with_items: "{{ misc_templates }}"
   when: misc_templates is defined
 
-- name: copy custom scripts
+- name: misc | copy custom scripts
   tags: [misc, scripts]
   copy:
     content: "{{ lookup('template', 'scripts/{{ item | basename }}') }}"
@@ -25,7 +25,7 @@
     - "{{ role_path }}/templates/scripts/*"
   become: yes
 
-- name: install zealdocs openrc entry
+- name: misc | install zealdocs openrc entry
   tags: [misc, services]
   copy:
     content: "{{ lookup('template', 'services/zealdocs.openrc') }}"

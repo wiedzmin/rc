@@ -3,7 +3,7 @@
 - include_vars: portage.yml
   tags: [portage, bootstrap, overlays]
 
-- name: ensure portage dirs exists
+- name: portage | ensure dirs exists
   tags: [portage, bootstrap]
   file:
     path: "{{ item }}"
@@ -12,7 +12,7 @@
   become: yes
   with_items: "{{ portage_dirs }}"
 
-- name: (maybe) instantiate portage templates
+- name: portage | (maybe) instantiate templates
   tags: [portage]
   copy:
     content: "{{ lookup('template', 'portage/{{ item }}') }}"
@@ -21,7 +21,7 @@
   become: yes
   with_items: "{{ portage_files }}"
 
-- name: ensure Layman installed
+- name: portage | ensure Layman installed
   tags: [portage]
   portage:
     package: app-portage/layman
@@ -30,7 +30,7 @@
   when:
     - portage_check_packages_installed
 
-- name: instantiate Layman config
+- name: portage | instantiate Layman config
   tags: [portage, overlays]
   copy:
     content: "{{ lookup('template', 'layman/layman.cfg.template') }}"
@@ -38,14 +38,14 @@
     mode: 0755
   become: yes
 
-- name: get installed overlays
+- name: portage | get installed overlays
   tags: [portage, overlays]
   find:
     paths: "{{ portage_overlays_data_location }}"
     file_type: directory
   register: overlays_installed
 
-- name: ensure needed overlays
+- name: portage | ensure needed overlays
   tags: [portage, overlays]
   layman:
     name: "{{ item }}"
@@ -54,7 +54,7 @@
   with_items: "{{ portage_overlays }}"
   register: overlays_needed
 
-- name: remove obsolete overlays
+- name: portage | remove obsolete overlays
   tags: [portage, overlays]
   layman:
     name: "{{ item.path | basename }}"
@@ -64,7 +64,7 @@
   when: "item.path | basename not in portage_overlays"
   register: overlays_removed
 
-- name: fix overlays permissions
+- name: portage | fix overlays permissions
   tags: [portage, overlays]
   file:
     path: "{{ portage_overlays_data_location }}/{{ item }}"
@@ -77,13 +77,13 @@
   when:
     - overlays_needed.changed
 
-- name: update portage tree status
+- name: portage | update tree status
   tags: [portage, overlays]
   shell: eix-update
   become: yes
   when: overlays_needed.changed or overlays_removed.changed
 
-- name: copy local overlay files
+- name: portage | copy local overlay files
   tags: [portage, overlays]
   copy:
     src: "{{ role_path }}/files/portage/local_overlay/"
@@ -96,7 +96,7 @@
 # TODO think of moving this to shell level
 # consult with "world" file
 # reduce time for checks
-- name: ensure some packages installed
+- name: portage | ensure some packages installed
   tags: [portage]
   portage:
     package: "{{ item }}"
@@ -106,7 +106,7 @@
   when:
     - portage_check_packages_installed
 
-- name: mount portage build directory as tmpfs
+- name: portage | mount build directory as tmpfs
   tags: [portage]
   lineinfile:
     dest: /etc/fstab

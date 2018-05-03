@@ -7,7 +7,7 @@
 - import_tasks: common.yml
   tags: [x11]
 
-- name: ensure paths
+- name: x11 | ensure paths
   tags: [x11]
   file:
     path: "{{ item.path }}"
@@ -20,7 +20,7 @@
   with_items: "{{ x11_paths }}"
   when: x11_paths is defined
 
-- name: instantiate templates
+- name: x11 | instantiate templates
   tags: [x11]
   copy:
     content: "{{ lookup('template', '{{ item.src }}') }}"
@@ -32,23 +32,23 @@
   with_items: "{{ x11_templates }}"
   when: x11_templates is defined
 
-- name: register org-protocol handler in mimeapps
+- name: x11 | register org-protocol handler in mimeapps
   tags: [x11]
   lineinfile:
     dest: "{{ ansible_env.HOME }}/.local/share/applications/mimeapps.list"
     line: x-scheme-handler/org-protocol=emacsclient.desktop
     state: present
 
-- name: setup xdg-open associations
+- name: x11 | setup xdg-open associations
   tags: [x11]
   shell: "xdg-mime default {{ item.program }}.desktop {{ item.mimetype }}"
   with_items: "{{ mime_assocs }}"
 
-- name: update MIME types DB
+- name: x11 | update MIME types DB
   tags: [x11]
   shell: "update-desktop-database ~/.local/share/applications/"
 
-- name: generate OSD statusbar script
+- name: x11 | generate OSD statusbar script
   tags: [x11]
   copy:
     content: "{{ lookup('template', 'x11/statusbar_osd.template') }}"
@@ -57,7 +57,7 @@
     owner: "{{ user_name }}"
     group: "{{ user_group }}"
 
-- name: generate .xsession script
+- name: x11 | generate .xsession script
   tags: [x11]
   copy:
     content: "{{ lookup('template', 'x11/.xsession.template') }}"
@@ -65,7 +65,7 @@
     mode: 0755
   register: xsession_script
 
-- name: copy xrandr scripts
+- name: x11 | copy xrandr scripts
   tags: [x11, scripts]
   copy:
     content: "{{ lookup('template', 'x11/xrandr/{{ item | basename }}') }}"
@@ -75,7 +75,7 @@
     - "{{ role_path }}/templates/x11/xrandr/*"
   become: yes
 
-- name: remove tangled Emacs config
+- name: x11 | remove tangled Emacs config
   tags: [x11]
   file:
     path: "{{ emacs_config_name_tangled }}"

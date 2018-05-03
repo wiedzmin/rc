@@ -4,7 +4,7 @@
 - import_tasks: common.yml
   tags: [wm]
 
-- name: stumpwm | clone repo
+- name: wm | stumpwm | clone repo
   tags: [wm]
   git:
     repo: "{{ x11_stumpwm_traits.clone_from }}"
@@ -12,13 +12,13 @@
     force: yes
   when: xsession_current_wm == "stumpwm"
 
-- name: stumpwm | check configure script
+- name: wm | stumpwm | check configure script
   tags: [wm]
   stat: path={{ x11_stumpwm_traits.local_path }}/configure
   register: stumpwm_configure
   when: xsession_current_wm == "stumpwm"
 
-- name: stumpwm | maybe autoconf
+- name: wm | stumpwm | maybe autoconf
   tags: [wm]
   shell: autoconf
   args:
@@ -27,14 +27,14 @@
     - stumpwm_configure.stat.exists == False
     - xsession_current_wm == "stumpwm"
 
-- name: stumpwm | configure
+- name: wm | stumpwm | configure
   tags: [wm]
   shell: ./configure
   args:
     chdir: "{{ x11_stumpwm_traits.local_path }}"
   when: xsession_current_wm == "stumpwm"
 
-- name: stumpwm | patch binary image creation
+- name: wm | stumpwm | patch binary image creation
   tags: [wm]
   lineinfile:
     path: "{{ x11_stumpwm_traits.local_path }}/make-image.lisp"
@@ -42,20 +42,20 @@
     line: "                                    :compression t"
   when: xsession_current_wm == "stumpwm"
 
-- name: stumpwm | cleanup
+- name: wm | stumpwm | cleanup
   tags: [wm]
   make:
     target: clean
     chdir: "{{ x11_stumpwm_traits.local_path }}"
   when: xsession_current_wm == "stumpwm"
 
-- name: stumpwm | build
+- name: wm | stumpwm | build
   tags: [wm]
   make:
     chdir: "{{ x11_stumpwm_traits.local_path }}"
   when: xsession_current_wm == "stumpwm"
 
-- name: stumpwm | install
+- name: wm | stumpwm | install
   tags: [wm]
   make:
     chdir: "{{ x11_stumpwm_traits.local_path }}"
@@ -63,7 +63,7 @@
   become: yes
   when: xsession_current_wm == "stumpwm"
 
-- name: generate common settings for StumpWM
+- name: wm | generate common settings for StumpWM
   tags: [wm]
   copy:
     content: "{{ lookup('template', 'x11/common.lisp.template') }}"

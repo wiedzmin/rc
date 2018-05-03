@@ -9,7 +9,7 @@
 - import_tasks: common.yml
   tags: [git]
 
-- name: ensure paths
+- name: git | ensure paths
   tags: [git]
   file:
     path: "{{ item.path }}"
@@ -22,7 +22,7 @@
   with_items: "{{ git_paths }}"
   when: git_paths is defined
 
-- name: instantiate templates
+- name: git | instantiate templates
   tags: [git]
   copy:
     content: "{{ lookup('template', '{{ item.src }}') }}"

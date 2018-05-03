@@ -3,7 +3,7 @@
 - include_vars: emerge.yml
   tags: [emerge]
 
-- name: ensure some packages installed
+- name: emerge | ensure some packages installed
   tags: [emerge]
   portage:
     package: "{{ item }}"

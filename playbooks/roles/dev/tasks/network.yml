@@ -6,7 +6,7 @@
     - "{{ playbook_dir }}/../private/private_vars.yml"
     - network.yml
 
-- name: setup devdns host <-> containers resolving
+- name: network | setup devdns host <-> containers resolving
   tags: [network]
   blockinfile:
     path: /etc/dhcp/dhclient.conf
@@ -16,7 +16,7 @@
   become: yes
   notify: restart dhcpcd
 
-- name: remove devdns host <-> containers resolving
+- name: network | remove devdns host <-> containers resolving
   tags: [cleanup]
   blockinfile:
     path: /etc/dhcp/dhclient.conf
@@ -35,7 +35,7 @@
     mode: 0644
   become: yes
 
-- name: install devdns openrc entry
+- name: network | install devdns openrc entry
   tags: [network, services]
   copy:
     content: "{{ lookup('template', 'services/devdns.openrc') }}"

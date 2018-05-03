@@ -1,7 +1,7 @@
 - include_vars: services.yml
   tags: [services, shepherd, sshuttle]
 
-- name: install openrc entry
+- name: services | shepherd | install openrc entry
   tags: [services, shepherd]
   copy:
     content: "{{ lookup('template', 'services/shepherd.openrc') }}"
@@ -9,14 +9,14 @@
     mode: 0755
   become: yes
 
-- name: restart service
+- name: services | shepherd | restart service
   tags: [services, shepherd]
   service:
     name: shepherd
     state: restarted
   become: yes
 
-- name: install openrc entry
+- name: services | shepherd | install openrc entry
   tags: [services, sshuttle]
   copy:
     content: "{{ lookup('template', 'services/sshuttle.openrc') }}"
@@ -24,7 +24,7 @@
     mode: 0755
   become: yes
 
-- name: restart service
+- name: services | shepherd | restart service
   tags: [services, sshuttle]
   service:
     name: sshuttle

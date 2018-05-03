@@ -9,7 +9,7 @@
 - import_tasks: common.yml
   tags: [python]
 
-- name: ensure paths
+- name: oython | ensure paths
   tags: [python]
   file:
     path: "{{ item.path }}"
@@ -22,7 +22,7 @@
   with_items: "{{ python_paths }}"
   when: python_paths is defined
 
-- name: instantiate templates
+- name: oython | instantiate templates
   tags: [python]
   copy:
     content: "{{ lookup('template', '{{ item.src }}') }}"

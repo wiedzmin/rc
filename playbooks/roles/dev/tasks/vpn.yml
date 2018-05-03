@@ -55,7 +55,7 @@
   when: ansible_distribution == "Gentoo"
   notify: stop vpn service
 
-- name: install openrc entry
+- name: vpn | install openrc entry
   tags: [vpn, services]
   copy:
     content: "{{ lookup('template', 'services/{{ vpn_service_name }}.openrc') }}"

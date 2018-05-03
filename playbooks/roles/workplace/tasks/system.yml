@@ -3,7 +3,7 @@
 - include_vars: system.yml
   tags: [system]
 
-- name: ensure paths
+- name: system | ensure paths
   tags: [system]
   file:
     path: "{{ item.path }}"
@@ -16,7 +16,7 @@
   with_items: "{{ system_paths }}"
   when: system_paths is defined
 
-- name: instantiate templates
+- name: system | instantiate templates
   tags: [system]
   copy:
     content: "{{ lookup('template', '{{ item.src }}') }}"

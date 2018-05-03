@@ -3,7 +3,7 @@
 - include_vars: golang.yml
   tags: [golang]
 
-- name: setup gometalinter
+- name: golang | setup gometalinter
   tags: [golang]
   shell: gometalinter --install --update
   with_first_found:

@@ -5,14 +5,14 @@
 
 # TODO: generalize fonts installation
 
-- name: Go fonts | clone repo
+- name: resources | Go fonts | clone repo
   tags: [resources]
   git:
     repo: "{{ go_fonts_traits.clone_from }}"
     dest: "{{ go_fonts_traits.local_path }}"
     force: yes
 
-- name: Go fonts | install
+- name: resources | Go fonts | install
   tags: [resources]
   copy:
     src: "{{ go_fonts_traits.local_path }}/{{ go_fonts_ttf_subpath }}"

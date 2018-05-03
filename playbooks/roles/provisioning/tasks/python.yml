@@ -3,7 +3,7 @@
 - include_vars: python.yml
   tags: [python]
 
-- name: install pip packages (Python)
+- name: python | install pip packages
   tags: [python]
   pip:
     name: "{{ item }}"

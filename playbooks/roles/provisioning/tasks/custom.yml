@@ -7,39 +7,39 @@
     - "{{ playbook_dir }}/../private/private_vars.yml"
 
 
-- name: accompanying tools | shepherd (scheduling) | get
+- name: custom | accompanying tools | shepherd (scheduling) | get
   tags: [custom, shepherd]
   git:
     repo: "{{ shepherd_traits.clone_from }}"
     dest: "{{ shepherd_traits.local_path }}"
     force: yes
 
-- name: accompanying tools | shepherd (scheduling) | build
+- name: custom | accompanying tools | shepherd (scheduling) | build
   tags: [custom, shepherd]
   shell: go build -o shepherd main.go
   args:
     chdir: "{{ shepherd_traits.local_path }}"
 
-- name: accompanying tools | shepherd (scheduling) | install
+- name: custom | accompanying tools | shepherd (scheduling) | install
   tags: [custom, shepherd]
   shell: "mv {{ shepherd_traits.local_path }}/{{ shepherd_traits.binary }} {{ binaries_prefix }}/{{ shepherd_traits.binary }}"
   become: yes
 
-- name: install tmux plugin manager
+- name: custom | install tmux plugin manager
   tags: [custom, tmux]
   git:
     repo: https://github.com/tmux-plugins/tpm
     dest: "{{ ansible_env.HOME }}/.tmux/plugins/tpm"
     force: yes
 
-- name: Buildapp | clone repo
+- name: custom | Buildapp | clone repo
   tags: [custom, buildapp]
   git:
     repo: "{{ buildapp_traits.clone_from }}"
     dest: "{{ buildapp_traits.local_path }}"
     force: yes
 
-- name: Buildapp
+- name: custom | Buildapp
   tags: [custom, buildapp]
   make:
     chdir: "{{ buildapp_traits.local_path }}"
@@ -49,28 +49,28 @@
     - install
   become: yes
 
-- name: git-quick-stats | clone repository
+- name: custom | git-quick-stats | clone repository
   tags: [custom, gqs]
   git:
     repo: "{{ gqs_traits.clone_from }}"
     dest: "{{ gqs_traits.local_path }}"
     force: yes
 
-- name: git-quick-stats | install
+- name: custom | git-quick-stats | install
   tags: [custom, gqs]
   make:
     chdir: "{{ gqs_traits.local_path }}"
     target: install
   become: yes
 
-- name: git-quick-stats | set permissions
+- name: custom | git-quick-stats | set permissions
   tags: [custom, gqs]
   file:
     path: "{{ binaries_prefix }}/git-quick-stats"
     mode: 0755
   become: yes
 
-- name: git-quick-stats | uninstall
+- name: custom | git-quick-stats | uninstall
   tags: [custom, gqs]
   make:
     chdir: "{{ gqs_traits.local_path }}"
@@ -78,13 +78,13 @@
   when:
     - False # invoke directly
 
-- name: TG Desktop | check local archive
+- name: custom | TG Desktop | check local archive
   tags: [custom, tg]
   stat:
     path: /tmp/tsetup.tar.xz
   register: tsetup
 
-- name: TG Desktop | download archive
+- name: custom | TG Desktop | download archive
   tags: [custom, tg]
   get_url:
     url: "https://updates.tdesktop.com/tlinux/tsetup.{{ telegram_version }}.tar.xz"
@@ -92,7 +92,7 @@
     force: yes
   when: not tsetup.stat.exists
 
-- name: TG Desktop | update binaries
+- name: custom | TG Desktop | update binaries
   tags: [custom, tg]
   unarchive:
     src: /tmp/tsetup.tar.xz
@@ -103,27 +103,27 @@
 
 # TODO: think of TG themes automation
 
-- name: tmuxifier | clone repo
+- name: custom | tmuxifier | clone repo
   tags: [custom, tmuxifier]
   git:
     repo: "{{ tmuxifier_traits.clone_from }}"
     dest: "{{ tmuxifier_traits.local_path }}"
     force: yes
 
-- name: httplab | install
+- name: custom | httplab | install
   tags: [custom, golang]
   shell: go get github.com/gchaincl/httplab
 
 # TODO: https://github.com/asciimoo/wuzz - master/HEAD is broken (SIGSEGV), try later
 
-- name: Zshnip | clone repo
+- name: custom | Zshnip | clone repo
   tags: [custom, zshnip]
   git:
     repo: "{{ zshnip_traits.clone_from }}"
     dest: "{{ zshnip_traits.local_path }}"
     force: yes
 
-- name: Zshnip | copy file(s)
+- name: custom | Zshnip | copy file(s)
   tags: [custom, zshnip]
   copy:
     src: "{{ zshnip_traits.local_path }}/zshnip.zsh"
@@ -131,28 +131,28 @@
     mode: 0755
   become: yes
 
-- name: hr | clone repository
+- name: custom | hr | clone repository
   tags: [custom, hr]
   git:
     repo: "{{ hr_traits.clone_from }}"
     dest: "{{ hr_traits.local_path }}"
     force: yes
 
-- name: hr | install
+- name: custom | hr | install
   tags: [custom, hr]
   make:
     chdir: "{{ hr_traits.local_path }}"
     target: install
   become: yes
 
-- name: tbdiff | clone repository
+- name: custom | tbdiff | clone repository
   tags: [custom, tbdiff]
   git:
     repo: "{{ tbdiff_traits.clone_from }}"
     dest: "{{ tbdiff_traits.local_path }}"
     force: yes
 
-- name: tbdiff | install
+- name: custom | tbdiff | install
   tags: [custom, tbdiff]
   copy:
     src: "{{ tbdiff_traits.local_path }}/git-tbdiff.py"

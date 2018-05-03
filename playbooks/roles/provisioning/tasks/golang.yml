@@ -3,14 +3,14 @@
 - include_vars: golang.yml
   tags: [golang]
 
-- name: check packages installed
+- name: golang | check packages installed
   tags: [golang]
   stat:
     path: "{{ golang_src_path }}/{{ item.url }}"
   register: packages_paths
   with_items: "{{ golang_package_urls }}"
 
-- name: install Go packages from source
+- name: golang | install Go packages from source
   tags: [golang]
   command: "go get -u {{ item.0.url }}"
   with_together:
@@ -19,7 +19,7 @@
   become: "{{ item.0.become }}"
   when: "not item.1.stat.exists"
 
-- name: symlink Go tools binaries to mainstream path
+- name: golang | symlink Go tools binaries to mainstream path
   tags: [golang]
   file:
     src: "{{ item }}"

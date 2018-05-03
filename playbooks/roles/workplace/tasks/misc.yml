@@ -1,7 +1,7 @@
 - include_vars: misc.yml
   tags: [misc, backup, restore, shepherd, imapfilter, hexchat, thd]
 
-- name: ensure paths
+- name: misc | ensure paths
   tags: [misc]
   file:
     path: "{{ item.path }}"
@@ -14,7 +14,7 @@
   with_items: "{{ misc_paths }}"
   when: misc_paths is defined
 
-- name: instantiate templates
+- name: misc | instantiate templates
   tags: [misc]
   copy:
     content: "{{ lookup('template', '{{ item.src }}') }}"
@@ -26,41 +26,41 @@
   with_items: "{{ misc_templates }}"
   when: misc_templates is defined
 
-- name: backup Emacs bookmarks
+- name: misc | backup Emacs bookmarks
   tags: [misc, backup]
   copy:
     src: "{{ emacs_config_dir }}/data/bookmark-default.el"
     dest: "{{ playbook_dir }}/../private/bookmarks/bookmark-default.el"
     mode: 0755
 
-- name: restore Emacs bookmarks
+- name: misc | restore Emacs bookmarks
   tags: [misc, restore]
   copy:
     src: "{{ playbook_dir }}/../private/bookmarks/bookmark-default.el"
     dest: "{{ emacs_config_dir }}/data/bookmark-default.el"
     mode: 0755
 
-- name: accompanying tools | shepherd (scheduling) | copy jobs definitions
+- name: misc | accompanying tools | shepherd (scheduling) | copy jobs definitions
   tags: [misc, shepherd]
   copy:
     src: "{{ playbook_dir }}/../private/shepherd-jobs"
     dest: "/home/octocat/shepherd-jobs.yml"
     mode: 0755
 
-- name: imapfilter | copy generated config file
+- name: misc | imapfilter | copy generated config file
   tags: [misc, imapfilter]
   copy:
     content: "{{ lookup('template', 'mail/imapfilter.conf.lua') }}"
     dest: "{{ ansible_env.HOME }}/.imapfilter/config.lua"
 
-- name: Hexchat | download theme
+- name: misc | Hexchat | download theme
   tags: [misc, hexchat]
   get_url:
     url: https://dl.hexchat.net/themes/Zenburn.hct
     dest: /tmp/Zenburn.hct
     force: yes
 
-- name: Hexchat | apply theme
+- name: misc | Hexchat | apply theme
   tags: [misc, hexchat]
   unarchive:
     src: /tmp/Zenburn.hct
@@ -68,7 +68,7 @@
 
 # DISCLAIMER: at the moment most of started containers are planned to stop/remove manually
 
-- name: THD | prepare temporary dir
+- name: misc | THD | prepare temporary dir
   tags: [misc, thd]
   copy:
     src: "{{ item.src }}/"
@@ -78,20 +78,20 @@
     - { src: "{{ role_path }}/files/thd", dest: "{{ thd_tmp_dir }}" }
     - { src: "{{ playbook_dir }}/../private/telegram", dest: "{{ thd_tmp_dir }}/private"}
 
-- name: THD | update config
+- name: misc | THD | update config
   tags: [misc, thd]
   copy:
     content: "{{ lookup('template', 'thd_config.template') }}"
     dest: "{{ thd_tmp_dir }}/thd_config.yaml"
     mode: 0755
 
-- name: THD | start service
+- name: misc | THD | start service
   tags: [misc, thd]
   docker_service:
     project_src: "{{ thd_tmp_dir }}"
     build: yes
 
-- name: mount some directories as tmpfs
+- name: misc | mount some directories as tmpfs
   tags: [misc]
   lineinfile:
     dest: /etc/fstab
