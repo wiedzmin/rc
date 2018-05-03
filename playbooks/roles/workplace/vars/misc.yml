@@ -5,6 +5,7 @@ misc_paths:
   - { path: "{{ ansible_env.HOME }}/pids", become: yes }
 misc_templates:
   - { src: "gnupg/gpg-agent.conf", dest: "{{ ansible_env.HOME }}/.gnupg/gpg-agent.conf" }
+  - { src: "gnupg/gpg.conf", dest: "{{ ansible_env.HOME }}/.gnupg/gpg.conf" }
   - { src: "mail/.mailcap", dest: "{{ ansible_env.HOME }}/.mailcap" }
   - { src: "mail/.mbsyncrc", dest: "{{ ansible_env.HOME }}/.mbsyncrc" }
   - { src: "mail/.msmtprc", dest: "{{ ansible_env.HOME }}/.msmtprc" }
