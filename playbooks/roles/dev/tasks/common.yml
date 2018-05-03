@@ -1,9 +1,11 @@
 ---
 
 - name: gpg | get private key ID
+  tags: [common]
   shell: "gpg2 --list-secret-keys --keyid-format LONG {{ gnupg_key_id }} | grep sec | cut -d' ' -f 4 | cut -d'/' -f 2"
   register: gpg_private_key_id
 
 - name: Populate shell binaries
+  tags: [common]
   set_fact:
     gpg_private_key_id: "{{ gpg_private_key_id.stdout }}"

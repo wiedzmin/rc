@@ -1,12 +1,14 @@
 ---
 
 - name: shells | collect binaries
+  tags: [common]
   shell: "which {{ item }}"
   register: user_shell_binaries
   with_items:
     - "{{ user_shells }}"
 
 - name: Populate shell binaries
+  tags: [common]
   set_fact:
     user_shell_binaries: "{{ user_shell_binaries | default({}) | combine( {item.item: item.stdout} ) }}"
   with_items: "{{ user_shell_binaries.results }}"
