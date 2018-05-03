@@ -30,6 +30,7 @@
   git:
     repo: https://github.com/tmux-plugins/tpm
     dest: "{{ ansible_env.HOME }}/.tmux/plugins/tpm"
+    force: yes
 
 - name: Buildapp | clone repo
   tags: [custom, buildapp]
