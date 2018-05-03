@@ -2,7 +2,7 @@
 
 python_virtualenvs_path: "{{ ansible_env.HOME }}/.virtualenvs"
 python_paths:
-  - { path: "{{ python_virtualenvs_path }}" }
+  - { path: "{{ python_virtualenvs_path }}", recurse: no }
   - { path: "{{ workspace_path }}/python" }
 python_templates:
   - { src: 'python/.pylintrc', dest: '{{ ansible_env.HOME }}/.pylintrc' }

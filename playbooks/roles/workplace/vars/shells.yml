@@ -1,5 +1,5 @@
 shell_paths:
-  - { path: "{{ ansible_env.HOME }}/.tmux/plugins" }
+  - { path: "{{ ansible_env.HOME }}/.tmux/plugins", recurse: no }
   - { path: "{{ zsh_subconfig_path }}/completion" }
 shell_templates:
   - { src: ".tmux.conf", dest: "{{ ansible_env.HOME }}/.tmux.conf" }
