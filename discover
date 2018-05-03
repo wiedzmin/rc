@@ -1,0 +1,21 @@
+#!/bin/bash
+
+list_subject="$1"
+error_message="error: either 'tags' or 'tasks' should be mentioned"
+
+if [ -z $list_subject ]
+then
+    echo "$error_message"
+    exit 1
+fi
+
+if [ "$list_subject" == "tags" ] || [ "$list_subject" == "tasks" ]
+then
+    roles="*.yml"
+    for i in $roles; do
+        ansible-playbook playbooks/$i --list-${list_subject}
+    done
+else
+    echo "$error_message"
+    exit 1
+fi
