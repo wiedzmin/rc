@@ -68,8 +68,6 @@
   file:
     path: "{{ binaries_prefix }}/git-quick-stats"
     mode: 0755
-    owner: "{{ user_name }}"
-    group: "{{ user_group }}"
   become: yes
 
 - name: git-quick-stats | uninstall
@@ -160,6 +158,4 @@
     src: "{{ tbdiff_traits.local_path }}/git-tbdiff.py"
     dest: "/usr/local/bin/git-tbdiff"
     mode: 0755
-    owner: "{{ user_name }}"
-    group: "{{ user_group }}"
   become: yes
