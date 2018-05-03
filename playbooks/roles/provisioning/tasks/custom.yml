@@ -79,14 +79,21 @@
   when:
     - False # invoke directly
 
-- name: download Telegram Desktop archive
+- name: TG Desktop | check local archive
+  tags: [custom, tg]
+  stat:
+    path: /tmp/tsetup.tar.xz
+  register: tsetup
+
+- name: TG Desktop | download archive
   tags: [custom, tg]
   get_url:
     url: "https://updates.tdesktop.com/tlinux/tsetup.{{ telegram_version }}.tar.xz"
     dest: /tmp/tsetup.tar.xz
     force: yes
+  when: not tsetup.stat.exists
 
-- name: update Telegram Desktop binaries
+- name: TG Desktop | update binaries
   tags: [custom, tg]
   unarchive:
     src: /tmp/tsetup.tar.xz
