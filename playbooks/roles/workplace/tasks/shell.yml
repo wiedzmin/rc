@@ -1,11 +1,11 @@
-- include_vars: shells.yml
-  tags: [shells, bash, zsh, tmux, backup, restore]
+- include_vars: shell.yml
+  tags: [shell, bash, zsh, tmux, backup, restore]
 
 - import_tasks: common.yml
-  tags: [shells]
+  tags: [shell]
 
 - name: shell | ensure paths
-  tags: [shells]
+  tags: [shell]
   file:
     path: "{{ item.path }}"
     state: directory
@@ -18,7 +18,7 @@
   when: shell_paths is defined
 
 - name: shell | instantiate templates
-  tags: [shells]
+  tags: [shell]
   copy:
     content: "{{ lookup('template', '{{ item.src }}') }}"
     dest: "{{ item.dest }}"
@@ -30,7 +30,7 @@
   when: shell_templates is defined
 
 - name: shell | ensure groups exist
-  tags: [shells]
+  tags: [shell]
   group:
     name: "{{ item }}"
     state: present
@@ -38,7 +38,7 @@
   become: yes
 
 - name: shell | ensure default user traits
-  tags: [shells]
+  tags: [shell]
   user:
     name: "{{ default_user_name }}"
     shell: "{{ user_shell_binaries[default_user_shell] }}"
@@ -46,7 +46,7 @@
   become: yes
 
 - name: shell | instantiate common settings
-  tags: [shells]
+  tags: [shell]
   copy:
     content: "{{ lookup('template', 'shell/{{ item }}.template') }}"
     dest: "{{ ansible_env.HOME }}/{{ item }}"
@@ -55,12 +55,12 @@
     - "{{ common_settings_basenames }}"
 
 - name: shell | check if .bashrc exists
-  tags: [shells, bash]
+  tags: [shell, bash]
   stat: path={{ ansible_env.HOME }}/.bashrc
   register: bashrc
 
 - name: shell | source common settings
-  tags: [shells, bash]
+  tags: [shell, bash]
   lineinfile:
     dest: "{{ ansible_env.HOME }}/.bashrc"
     line: "source ~/common_settings_bash"
@@ -69,18 +69,18 @@
     - bashrc.stat.exists == True
 
 - name: shell | Antibody | generate plugins list
-  tags: [shells, zsh]
+  tags: [shell, zsh]
   copy:
     content: "{{ lookup('template', 'shell/zsh.plugins.template') }}"
     dest: "{{ zsh_plugins_list_location }}"
     mode: 0755
 
 - name: shell | Antibody | bundle plugins statically
-  tags: [shells, zsh]
+  tags: [shell, zsh]
   shell: "{{ zsh_plugins_antibody_bundle_command }}"
 
 - name: shell | instantiate .zshrc
-  tags: [shells, zsh]
+  tags: [shell, zsh]
   copy:
     content: "{{ lookup('template', 'shell/.zshrc.template') }}"
     dest: "{{ ansible_env.HOME }}/.zshrc"
@@ -94,14 +94,14 @@
     mode: 0755
 
 - name: shell | backup bookmarks
-  tags: [shells, backup]
+  tags: [shell, backup]
   copy:
     src: "{{ ansible_env.HOME }}/.bookmarks"
     dest: "{{ playbook_dir }}/../private/bookmarks/.bookmarks"
     mode: 0755
 
 - name: shell | restore bookmarks
-  tags: [shells, restore]
+  tags: [shell, restore]
   copy:
     src: "{{ playbook_dir }}/../private/bookmarks/.bookmarks"
     dest: "{{ ansible_env.HOME }}/.bookmarks"

@@ -5,7 +5,7 @@
   register: current_run_timestamp
   tags: [always]
 
-- import_tasks: shells.yml
+- import_tasks: shell.yml
 - import_tasks: x11.yml
 - import_tasks: misc.yml
 - import_tasks: services.yml
