@@ -1,11 +1,11 @@
 misc_paths:
-  - { path: "{{ ansible_env.HOME }}/.gnupg" }
+  - { path: "{{ ansible_env.HOME }}/.gnupg", mode: '0700', become: yes }
   - { path: "{{ ansible_env.HOME }}/.imapfilter" }
   - { path: "{{ ansible_env.HOME }}/.ssh", mode: '0700', recurse: no }
   - { path: "{{ ansible_env.HOME }}/pids", become: yes }
 misc_templates:
-  - { src: "gnupg/gpg-agent.conf", dest: "{{ ansible_env.HOME }}/.gnupg/gpg-agent.conf" }
-  - { src: "gnupg/gpg.conf", dest: "{{ ansible_env.HOME }}/.gnupg/gpg.conf" }
+  - { src: "gnupg/gpg-agent.conf", dest: "{{ ansible_env.HOME }}/.gnupg/gpg-agent.conf", mode: '0600', become: yes }
+  - { src: "gnupg/gpg.conf", dest: "{{ ansible_env.HOME }}/.gnupg/gpg.conf", mode: '0600', become: yes }
   - { src: "mail/.mailcap", dest: "{{ ansible_env.HOME }}/.mailcap" }
   - { src: "mail/.mbsyncrc", dest: "{{ ansible_env.HOME }}/.mbsyncrc" }
   - { src: "mail/.msmtprc", dest: "{{ ansible_env.HOME }}/.msmtprc" }
