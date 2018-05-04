@@ -1,0 +1,17 @@
+#!/sbin/openrc-run
+
+DAEMON=imapfilter
+PIDFILE={{ pids_dir }}/imapfilter.pid
+
+start () {
+	ebegin "Starting Imapfilter"
+	start-stop-daemon --background --start -u {{ user_name }}:{{ user_group }} --exec ${DAEMON} \
+        --make-pidfile --pidfile ${PIDFILE}
+	eend $? "Failed to start Imapfilter"
+}
+
+stop() {
+	ebegin "Stopping Imapfilter"
+	start-stop-daemon --stop --pidfile ${PIDFILE}
+	eend $? "Failed to stop Imapfilter"
+}
