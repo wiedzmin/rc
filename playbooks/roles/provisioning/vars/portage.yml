@@ -135,3 +135,4 @@ portage_packages_of_interest:
 portage_check_packages_installed: no
 portage_local_overlay_data_location: /usr/local/portage
 portage_build_dir: { path: "/var/tmp/portage/", uid: "250", gid: "250", size: "10G", mode: "0755"}
+portage_verify_manifests: no
