@@ -3,23 +3,30 @@
 - include_vars: portage.yml
   tags: [portage, bootstrap, overlays]
 
-- name: portage | ensure dirs exists
+- name: portage | ensure paths
   tags: [portage, bootstrap]
   file:
-    path: "{{ item }}"
+    path: "{{ item.path }}"
     state: directory
-    mode: 0755
-  become: yes
-  with_items: "{{ portage_dirs }}"
+    mode: "{{ item.mode if 'mode' in item else 0755 }}"
+    owner: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
+    group: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
+    recurse: "{{ item.recurse if 'recurse' in item else 'yes' }}"
+  become: "{{ item.become if 'become' in item else 'no' }}"
+  with_items: "{{ portage_paths }}"
+  when: portage_paths is defined
 
-- name: portage | (maybe) instantiate templates
-  tags: [portage]
+- name: portage | instantiate templates
+  tags: [portage, bootstrap]
   copy:
-    content: "{{ lookup('template', 'portage/{{ item }}') }}"
-    dest: "/etc/portage/{{ item }}"
-    mode: 0755
-  become: yes
-  with_items: "{{ portage_files }}"
+    content: "{{ lookup('template', '{{ item.src }}') }}"
+    dest: "{{ item.dest }}"
+    mode: "{{ item.mode if 'mode' in item else 0755 }}"
+    owner: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
+    group: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
+  become: "{{ item.become if 'become' in item else 'no' }}"
+  with_items: "{{ portage_templates }}"
+  when: portage_templates is defined
 
 - name: portage | ensure Layman installed
   tags: [portage]

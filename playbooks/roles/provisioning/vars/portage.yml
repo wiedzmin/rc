@@ -1,27 +1,27 @@
 ---
 
-portage_dirs:
-  - "/etc/portage"
-  - "/etc/portage/package.mask"
-  - "/etc/portage/package.use"
-  - "/etc/portage/repos.conf"
-  - "/etc/portage/env"
-portage_files:
-  - "make.conf"
-  - "package.accept_keywords"
-  - "package.keywords"
-  - "package.license"
-  - "package.mask/kernels"
-  - "package.mask/main"
-  - "package.unmask"
-  - "package.use/main"
-  - "package.use/versioned"
-  - "package.use/python_versions"
-  - "package.use/ruby_versions"
-  - "repos.conf/gentoo.conf"
-  - "package.env"
-  - "env/debugsyms"
-  - "env/installsources"
+portage_paths:
+  - { path: "/etc/portage", become: yes }
+  - { path: "/etc/portage/package.mask", become: yes }
+  - { path: "/etc/portage/package.use", become: yes }
+  - { path: "/etc/portage/repos.conf", become: yes }
+  - { path: "/etc/portage/env", become: yes }
+portage_templates:
+  - { src: "portage/make.conf", dest: "/etc/portage/make.conf", become: yes }
+  - { src: "portage/package.accept_keywords", dest: "/etc/portage/package.accept_keywords", become: yes }
+  - { src: "portage/package.keywords", dest: "/etc/portage/package.keywords", become: yes }
+  - { src: "portage/package.license", dest: "/etc/portage/package.license", become: yes }
+  - { src: "portage/package.mask/kernels", dest: "/etc/portage/package.mask/kernels", become: yes }
+  - { src: "portage/package.mask/main", dest: "/etc/portage/package.mask/main", become: yes }
+  - { src: "portage/package.unmask", dest: "/etc/portage/package.unmask", become: yes }
+  - { src: "portage/package.use/main", dest: "/etc/portage/package.use/main", become: yes }
+  - { src: "portage/package.use/versioned", dest: "/etc/portage/package.use/versioned", become: yes }
+  - { src: "portage/package.use/python_versions", dest: "/etc/portage/package.use/python_versions", become: yes }
+  - { src: "portage/package.use/ruby_versions", dest: "/etc/portage/package.use/ruby_versions", become: yes }
+  - { src: "portage/repos.conf/gentoo.conf", dest: "/etc/portage/repos.conf/gentoo.conf", become: yes }
+  - { src: "portage/package.env", dest: "/etc/portage/package.env", become: yes }
+  - { src: "portage/env/debugsyms", dest: "/etc/portage/env/debugsyms", become: yes }
+  - { src: "portage/env/installsources", dest: "/etc/portage/env/installsources", become: yes }
 portage_tree_sync_type: rsync
 portage_tree_sync_uris:
   - rsync://mirror.yandex.ru/gentoo-portage/
