@@ -18,8 +18,11 @@ emacs_config_name_literal: "{{ emacs_config_dir }}/config.org"
 emacs_config_name_tangled: "{{ emacs_config_dir }}/config.el"
 ffdc_traits: { clone_from: "https://github.com/Unode/firefox_decrypt", local_path: "/tmp/firefox_decrypt" }
 email_creds_path: "{{ ansible_env.HOME }}/docs/enc/cred"
-imapfilter_accounts:
-  - { name: "personal", address: "aaermolov@gmail.com", server: "imap.gmail.com", ssl: "ssl3", enabled: yes }
+imapfilter_account_personal:
+  address: "aaermolov@gmail.com"
+  server: "imap.gmail.com"
+  ssl: "tls"
+  enabled: yes
 thd_tmp_dir: "/tmp/thd"
 tg_backup_formatter: plaintext
 tg_backup_base_dir: "/telegram-logs/tg_logs"

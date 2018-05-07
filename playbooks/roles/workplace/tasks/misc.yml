@@ -1,5 +1,8 @@
-- include_vars: misc.yml
+- include_vars: "{{ item }}"
   tags: [misc, backup, restore, shepherd, imapfilter, hexchat, thd]
+  with_items:
+    - misc.yml
+    - "{{ playbook_dir }}/../private/imap_filters.yml"
 
 - name: misc | ensure paths
   tags: [misc]
