@@ -25,3 +25,27 @@ system_templates:
   - { src: "xorg.conf.d/17-intel-modesetting.conf", dest: "/etc/X11/xorg.conf.d/17-intel-modesetting.conf", mode: '0755', user: root, become: yes }
   - { src: "xorg.conf.d/20-opengl.conf", dest: "/etc/X11/xorg.conf.d/20-opengl.conf", mode: '0755', user: root, become: yes }
   - { src: "system/rc.conf", dest: "/etc/rc.conf", mode: '0755', user: root, become: yes }
+system_xorg_synaptics_options:
+  - { name: "CircScrollTrigger", value: "1" }
+  - { name: "CircularScrolling", value: "on" }
+  - { name: "CoastingSpeed", value: "0" }
+  - { name: "EmulateTwoFingerMinW", value: "8" }
+  - { name: "EmulateTwoFingerMinZ", value: "40" }
+  - { name: "FingerHigh", value: "55" }
+  - { name: "FingerLow", value: "35" }
+  - { name: "HorizScrollDelta", value: "-111" }
+  - { name: "HorizTwoFingerScroll", value: "on" }
+  - { name: "PalmDetect", value: "1" }
+  - { name: "PalmMinWidth", value: "8" }
+  - { name: "PalmMinZ", value: "100" }
+  - { name: "TapButton1", value: "1" }
+  - { name: "TapButton3", value: "3" }
+  - { name: "VertScrollDelta", value: "-111" }
+  - { name: "VertTwoFingerScroll", value: "on" }
+system_xorg_kbd_options:
+  - { name: "SendCoreEvents", value: "true" }
+  - { name: "XkbRules", value: "xorg" }
+  - { name: "XkbModel", value: "pc104" }
+  - { name: "XkbLayout", value: "us,ru" }
+  - { name: "XkbVariant", value: ",winkeys" }
+  - { name: "XkbOptions", value: "caps:none,compose:ralt" }
