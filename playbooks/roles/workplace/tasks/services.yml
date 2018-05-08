@@ -9,14 +9,7 @@
     mode: 0755
   become: yes
 
-- name: services | shepherd | restart service
-  tags: [services, shepherd]
-  service:
-    name: shepherd
-    state: restarted
-  become: yes
-
-- name: services | shepherd | install openrc entry
+- name: services | sshuttle | install openrc entry
   tags: [services, sshuttle]
   copy:
     content: "{{ lookup('template', 'services/sshuttle.openrc') }}"
@@ -24,24 +17,10 @@
     mode: 0755
   become: yes
 
-- name: services | shepherd | restart service
-  tags: [services, sshuttle]
-  service:
-    name: sshuttle
-    state: restarted
-  become: yes
-
-- name: services | shepherd | install openrc entry
+- name: services | imapfilter | install openrc entry
   tags: [services, imapfilter]
   copy:
     content: "{{ lookup('template', 'services/imapfilter.openrc') }}"
     dest: "/etc/init.d/imapfilter"
     mode: 0755
-  become: yes
-
-- name: services | shepherd | restart service
-  tags: [services, imapfilter]
-  service:
-    name: imapfilter
-    state: restarted
   become: yes
