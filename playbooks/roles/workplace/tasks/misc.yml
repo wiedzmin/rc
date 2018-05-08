@@ -75,20 +75,29 @@
 
 - name: misc | THD | prepare temporary dir
   tags: [misc, thd]
+  file:
+    path: "{{ thd_tmp_dir }}/private/downloads"
+    state: directory
+    mode: 0755
+    recurse: yes
+
+- name: misc | THD | prepare temporary dir
+  tags: [misc, thd]
   copy:
-    src: "{{ item.src }}/"
+    content: "{{ lookup('template', '{{ item.src }}') }}"
     dest: "{{ item.dest }}"
     mode: 0755
   with_items:
-    - { src: "{{ role_path }}/files/thd", dest: "{{ thd_tmp_dir }}" }
-    - { src: "{{ playbook_dir }}/../private/telegram", dest: "{{ thd_tmp_dir }}/private"}
+    - { src: "thd/Dockerfile-thd", dest: "{{ thd_tmp_dir }}/Dockerfile-thd" }
+    - { src: "thd/config.template", dest: "{{ thd_tmp_dir }}/thd_config.yaml" }
+    - { src: "thd/docker-compose.yml", dest: "{{ thd_tmp_dir }}/docker-compose.yml" }
+    - { src: "thd/thd.sh", dest: "{{ thd_tmp_dir }}/thd.sh" }
 
-- name: misc | THD | update config
+- name: misc | THD | extract binary part
   tags: [misc, thd]
-  copy:
-    content: "{{ lookup('template', 'thd_config.template') }}"
-    dest: "{{ thd_tmp_dir }}/thd_config.yaml"
-    mode: 0755
+  unarchive:
+    src: "{{ playbook_dir }}/../private/telegram.tar.gz"
+    dest: "{{ thd_tmp_dir }}/private"
 
 - name: misc | THD | start service
   tags: [misc, thd]
