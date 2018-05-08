@@ -87,3 +87,5 @@
     program = gpg2
 [init]
     templatedir = {{ git_assets_init_templates_dir }}
+[credential]
+    helper = cache --timeout={{ git_credentials_expiration_seconds }}
