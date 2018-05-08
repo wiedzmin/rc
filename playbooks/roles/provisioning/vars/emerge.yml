@@ -92,6 +92,7 @@ emerge_packages_of_interest:
   - "x11-misc/unclutter"
   - "x11-misc/wmctrl"
   - "x11-misc/xclip"
+  - "x11-misc/xdg-user-dirs"
   - "x11-misc/xdotool"
   - "x11-misc/xkbset"
   - "x11-misc/xprintidle"

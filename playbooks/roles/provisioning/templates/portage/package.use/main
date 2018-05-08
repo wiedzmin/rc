@@ -171,6 +171,7 @@ x11-misc/dzen xft xinerama xpm
 x11-misc/redshift geoclue gtk
 x11-misc/rofi i3 windowmode
 x11-misc/slim branding
+x11-misc/xdg-user-dirs gtk
 x11-misc/xmobar inotify mail mpd mpris timezone wifi xft
 x11-misc/xscreensaver jpeg
 x11-plugins/vicious contrib
