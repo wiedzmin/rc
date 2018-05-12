@@ -55,7 +55,7 @@ dev-lua/luacheck luajit
 dev-lua/luafilesystem luajit
 dev-lua/luvit bundled-libs
 dev-ml/camlimages truetype tiff jpeg postscript
-dev-python/PyQt5 network printsupport
+dev-python/PyQt5 gui network printsupport widgets
 dev-python/bpython gtk
 dev-python/ipython emacs examples notebook
 dev-python/netaddr -cli # too deep and nonrelevant dependencies graph (ipython -> PyQT)
@@ -63,6 +63,7 @@ dev-python/numpy lapack
 dev-python/pillow truetype
 dev-python/pip zsh-completion
 dev-qt/qtcore icu
+dev-qt/qtwebkit printsupport
 dev-scheme/guile emacs networking
 dev-tcltk/tclx threads tk
 dev-util/global emacs vim
