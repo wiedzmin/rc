@@ -32,6 +32,11 @@
   with_items: "{{ x11_templates }}"
   when: x11_templates is defined
 
+- name: x11 | Synaptics xinput ID
+  tags: [x11]
+  shell: "xinput | grep Synaptics | cut -f2 | cut -d'=' -f2"
+  register: x11_xinput_synaptics_id
+
 - name: x11 | register org-protocol handler in mimeapps
   tags: [x11]
   lineinfile:
