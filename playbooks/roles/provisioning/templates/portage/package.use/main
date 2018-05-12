@@ -66,6 +66,7 @@ dev-qt/qtcore icu
 dev-scheme/guile emacs networking
 dev-tcltk/tclx threads tk
 dev-util/global emacs vim
+dev-util/plan9port truetype
 dev-util/quilt emacs graphviz
 dev-util/strace aio unwind
 dev-vcs/git cgi emacs gtk highlight tk

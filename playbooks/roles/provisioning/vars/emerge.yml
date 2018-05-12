@@ -39,6 +39,7 @@ emerge_packages_of_interest:
   - "dev-util/direnv"
   - "dev-util/gengetopt"
   - "dev-util/ltrace"
+  - "dev-util/plan9port"
   - "dev-util/rtags"
   - "dev-util/strace"
   - "dev-vcs/git-annex"
