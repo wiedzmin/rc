@@ -34,7 +34,7 @@ URxvt.internalBorder: 3
 URxvt.externalBorder: 3
 
 Urxvt*perl-lib: /usr/lib/urxvt/perl/
-URxvt.perl-ext-common:clipboard,default,keyboard-select,matcher,selection,url-select
+URxvt.perl-ext-common:clipboard,default,font-size,fullscreen,keyboard-select,matcher,selection,selection-to-clipboard,url-select
 
 URxvt.matcher.button: 1
 ! russian utf-8
@@ -51,6 +51,16 @@ URxvt.keysym.M-u: perl:url-select:select_next
 URxvt.keysym.M-w: perl:clipboard:copy
 URxvt.keysym.C-y: perl:clipboard:paste
 URxvt.keysym.F11: perl:fullscreen:switch
+URxvt.keysym.M-z: perl:fullscreen:switch
+URxvt.keysym.M-Esc: perl:keyboard-select:activate
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-Plus: perl:font-size:increase
+URxvt.keysym.M-Minus: perl:font-size:decrease
+URxvt.keysym.M-/: perl:keyboard-select:search
+URxvt.keysym.C-equal: perl:font-size:incglobal
+URxvt.keysym.C-minus: perl:font-size:decglobal
+URxvt.keysym.M-k: command:\033]720;8\007
+URxvt.keysym.M-j: command:\033]721;8\007
 
 URxvt.url-select.launcher: {{ default_browser_executable }} {{ default_browser_cliargs }}
 URxvt.url-select.underline: true
@@ -59,6 +69,8 @@ URxvt.underlineURLs: true
 
 URxvt*colorUL: #c5f779
 URxvt*underlineColor: #c5f779
+
+! URxvt.inheritPixmap: true
 
 URxvt*color0: #3f3f3f
 URxvt*color1: #705050
