@@ -52,7 +52,7 @@ repeat
    messages_recent = account_personal['INBOX']:is_recent()
    messages_unseen = account_personal['INBOX']:is_unseen()
 
-   for from, folder in ipairs(from_tofolder) do
+   for from, folder in pairs(from_tofolder) do
       local results_tomove = messages_all:contain_from(from)
       results_tomove:move_messages(account_personal[folder])
    end
