@@ -1,0 +1,25 @@
+#!/bin/bash
+
+EBUILDS_BASE_PATH=$1
+
+if [ -z $EBUILDS_BASE_PATH ]; then
+    echo "error: no base path provided, exiting..."
+    exit 1
+fi
+
+EBUILDS_ABS_PATH=`realpath -m $EBUILDS_BASE_PATH`
+CURRENT_USER=$(whoami)
+
+echo "we are at ebuilds path: $EBUILDS_ABS_PATH"
+echo "Fixing permissions (chmod 0755 + chown $CURRENT_USER:$CURRENT_USER)"
+sudo chmod -R 0755 $EBUILDS_ABS_PATH
+sudo chown -R $CURRENT_USER:$CURRENT_USER $EBUILDS_ABS_PATH
+
+for f in $(find ${EBUILDS_ABS_PATH} -name '*.ebuild'); do
+    cd $(dirname $f)
+    echo "### $f ###"
+    echo "updating manifest..."
+    sudo ebuild $(basename $f) manifest
+    echo "updating digest..."
+    sudo ebuild $(basename $f) digest
+done
