@@ -5,14 +5,14 @@ DAEMON_OPTS="-r {{ remote_domain }} 0/0"
 PIDFILE={{ pids_dir }}/sshuttle.pid
 
 start () {
-	ebegin "Starting Sshuttle"
-	start-stop-daemon --background --start -u {{ user_name }}:{{ user_group }} --exec ${DAEMON} \
-        --make-pidfile --pidfile ${PIDFILE} -- ${DAEMON_OPTS}
-	eend $? "Failed to start Sshuttle"
+    ebegin "Starting Sshuttle"
+    start-stop-daemon --background --start -u {{ user_name }}:{{ user_group }} --exec ${DAEMON} \
+                      --make-pidfile --pidfile ${PIDFILE} -- ${DAEMON_OPTS}
+    eend $? "Failed to start Sshuttle"
 }
 
 stop() {
-	ebegin "Stopping Sshuttle"
-	start-stop-daemon --stop --pidfile ${PIDFILE}
-	eend $? "Failed to stop Sshuttle"
+    ebegin "Stopping Sshuttle"
+    start-stop-daemon --stop --pidfile ${PIDFILE}
+    eend $? "Failed to stop Sshuttle"
 }

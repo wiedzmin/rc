@@ -4,15 +4,15 @@ DAEMON={{ binaries_prefix }}/shepherd
 PIDFILE={{ pids_dir }}/shepherd.pid
 
 start () {
-	ebegin "Starting shepherd"
-	start-stop-daemon --background --start -u {{ user_name }}:{{ user_group }} --exec ${DAEMON} \
-        --make-pidfile --pidfile ${PIDFILE} \
-        -- -f {{ ansible_env.HOME }}/shepherd-jobs.yml
-	eend $? "Failed to start shepherd"
+    ebegin "Starting shepherd"
+    start-stop-daemon --background --start -u {{ user_name }}:{{ user_group }} --exec ${DAEMON} \
+                      --make-pidfile --pidfile ${PIDFILE} \
+                      -- -f {{ ansible_env.HOME }}/shepherd-jobs.yml
+    eend $? "Failed to start shepherd"
 }
 
 stop() {
-	ebegin "Stopping shepherd"
-	start-stop-daemon --stop --pidfile ${PIDFILE}
-	eend $? "Failed to stop shepherd"
+    ebegin "Stopping shepherd"
+    start-stop-daemon --stop --pidfile ${PIDFILE}
+    eend $? "Failed to stop shepherd"
 }
