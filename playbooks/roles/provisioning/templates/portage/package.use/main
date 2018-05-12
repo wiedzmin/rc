@@ -21,7 +21,7 @@ app-emulation/virtualbox extensions qt4 vnc
 app-laptop/laptop-mode-tools acpi apm bluetooth
 app-misc/cdargs emacs
 app-misc/geoclue -networkmanager
-app-misc/powerline awesome extra man rc tmux vim zsh
+app-misc/powerline awesome man tmux vim zsh
 app-misc/tmux vim-syntax utempter
 app-office/ledger emacs gnuplot xml
 app-portage/layman mercurial subversion
@@ -79,7 +79,7 @@ gnome-extra/nm-applet bluetooth modemmanager
 gnome-extra/zenity -webkit
 lxde-base/lxpanel wifi
 mail-mta/msmtp gnutls idn vim-syntax
-media-fonts/powerline-fonts anonymouspro dejavusansmono droidsansmono inconsolata inconsolatadz liberationmono meslo sourcecodepro terminus_pcf ubuntumono
+media-fonts/powerline-fonts anonymouspro dejavusansmono droidsansmono inconsolata inconsolatadz liberationmono sourcecodepro terminus_pcf ubuntumono
 media-gfx/darktable -kde
 media-gfx/exiv2 xmp
 media-gfx/fbv jpeg png
