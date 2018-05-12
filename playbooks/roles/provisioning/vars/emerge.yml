@@ -78,6 +78,8 @@ emerge_packages_of_interest:
   - "x11-apps/intel-gpu-tools"
   - "x11-apps/xev"
   - "x11-apps/xhost"
+  - "x11-apps/xinput"
+  - "x11-apps/xinput_calibrator"
   - "x11-apps/xmodmap"
   - "x11-apps/xprop"
   - "x11-apps/xrdb"
