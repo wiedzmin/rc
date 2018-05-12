@@ -1,12 +1,18 @@
 #!/sbin/openrc-run
 
 DAEMON=imapfilter
+
+{% set imapfilter_enabled_opts = imapfilter_daemon_opts | rejectattr('disabled', 'sameas', true) | list %}
+{% if imapfilter_enabled_opts | length > 0 %}
+DAEMON_OPTS="{% for opt in imapfilter_enabled_opts %}{{ opt.key }}{{ ' ' + opt.value if 'value' in opt else ''}} {% endfor %}"
+{% endif %}
 PIDFILE={{ pids_dir }}/imapfilter.pid
 
 start () {
     ebegin "Starting Imapfilter"
     start-stop-daemon --background --start -u {{ user_name }}:{{ user_group }} --exec ${DAEMON} \
-                      --make-pidfile --pidfile ${PIDFILE}
+                      --make-pidfile --pidfile ${PIDFILE}{% if imapfilter_enabled_opts | length > 0 %} -- ${DAEMON_OPTS}
+{% endif %}
     eend $? "Failed to start Imapfilter"
 }
 

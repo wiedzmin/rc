@@ -23,6 +23,10 @@ imapfilter_account_personal:
   server: "imap.gmail.com"
   ssl: "tls"
   enabled: yes
+imapfilter_daemon_opts:
+  - { key: "-l", value: "/home/octocat/imapfilter.log" }
+  - { key: "-d", value: "/home/octocat/imapfilter.debug" }
+  - { key: "-v"}
 thd_tmp_dir: "/tmp/thd"
 tg_backup_formatter: plaintext
 tg_backup_base_dir: "/telegram-logs/tg_logs"
