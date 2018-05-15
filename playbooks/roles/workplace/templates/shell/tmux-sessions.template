@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-
 {% for s in tmux_predefined_sessions %}
-tmux has-session -t '{{ s }}' 2>/dev/null
+tmux has-session -t '{{ s.name }}' 2>/dev/null
 if [ "$?" -eq 1 ] ; then
-    tmux new-session -s '{{ s }}' -d 'mc'
+    tmux new-session -s '{{ s.name }}'{% if 'initial_app' in s %} -d '{{ s.initial_app }}'{% endif %}
+
 fi
 {% endfor %}
 
-tmux attach -t {{ default_tmux_session }}
+tmux attach -t {{ default_tmux_session.name }}

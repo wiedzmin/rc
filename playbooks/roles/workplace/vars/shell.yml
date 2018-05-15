@@ -54,8 +54,9 @@ editor_choices:
   - "vim"
   - "vi"
 tmux_predefined_sessions:
-  - "work"
-  - "self"
+  - { name: "work", initial_app: "mc" }
+  - { name: "housekeeping" }
+  - { name: "self", initial_app: "mc" }
 default_tmux_session: "{{ tmux_predefined_sessions[-1] }}"
 zsh_plugins:
   - b4b4r07/enhancd
