@@ -2,8 +2,10 @@
 
 system_paths:
   - { path: "/usr/share/genkernel/defaults", user: root, become: yes }
+  - { path: "/etc/conf.d", become: yes }
 system_templates:
   - { src: "genkernel/defaults/modules_load", dest: "/usr/share/genkernel/defaults/modules_load", mode: "0644", become: yes }
+  - { src: "conf.d/modules", dest: "/etc/conf.d/modules", mode: "0644", become: yes }
 genkernel_modules_ataraid:
   - { name: "ataraid", disabled: yes }
   - { name: "pdcraid", disabled: yes }
@@ -248,3 +250,10 @@ genkernel_modules_crypto:
   - { name: "cbc" }
   - { name: "aes_generic" }
   - { name: "xts" }
+system_kernel_modules:
+  - iwlwifi
+  - vboxdrv
+  - vboxnetflt
+  - vboxnetadp
+  - uvcvideo
+  - snd-usb-audio
