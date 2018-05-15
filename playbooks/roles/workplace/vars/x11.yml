@@ -98,6 +98,7 @@ xsession_services:
   - { command: "unclutter -idle 5", enabled: yes, heavyweight: no }
   - { command: "volumeicon", enabled: no, heavyweight: no }
   - { command: "xxkb", enabled: "{{ xsession_current_wm not in ['awesome', 'stumpwm'] }}", heavyweight: no }
+  - { command: "syndaemon -i 0.3 -K -R", enabled: yes, heavyweight: no }
 xsession_disable_capslock: yes
 xsession_timezone: Europe/Moscow
 xsession_media_mount: yes
