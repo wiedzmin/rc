@@ -1,0 +1,27 @@
+---
+
+- name: portage | fix overlays permissions
+  tags: [portage, overlays]
+  file:
+    path: "{{ portage_overlays_data_location }}/{{ item }}"
+    owner: portage
+    group: portage
+    mode: 0755
+    recurse: yes
+  become: yes
+  with_items: "{{ portage_overlays }}"
+
+- name: portage | update tree status
+  tags: [portage, overlays]
+  shell: eix-update
+  become: yes
+
+- name: portage | fix local overlay permissions
+  tags: [portage, overlays]
+  file:
+    path: "{{ portage_local_overlay_data_location }}"
+    owner: portage
+    group: portage
+    mode: 0755
+    recurse: yes
+  become: yes
