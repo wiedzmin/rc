@@ -53,6 +53,11 @@
   tags: [x11]
   shell: "update-desktop-database ~/.local/share/applications/"
 
+- name: x11 | update XDG user dirs
+  tags: [x11]
+  shell: "xdg-user-dirs-update --set {{ item.name | upper}} {{ item.value }}"
+  with_items: "{{ xdg_user_dirs }}"
+
 - name: x11 | generate OSD statusbar script
   tags: [x11]
   copy:

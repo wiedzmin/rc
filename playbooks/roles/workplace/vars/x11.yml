@@ -102,3 +102,7 @@ xsession_services:
 xsession_disable_capslock: yes
 xsession_timezone: Europe/Moscow
 xsession_media_mount: yes
+xdg_user_dirs:
+  - { name: "download", value: "{{ ansible_env.HOME}}/Downloads" }
+  - { name: "pictures", value: "{{ ansible_env.HOME}}/blobs/photo" }
+  - { name: "videos", value: "{{ ansible_env.HOME}}/blobs/video" }
