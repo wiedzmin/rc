@@ -1,7 +1,6 @@
 ---
 
 - name: services | shepherd | restart service
-  tags: [services, shepherd]
   service:
     name: shepherd
     state: restarted
@@ -9,14 +8,12 @@
 
 # TODO: find a way to trigger this
 - name: services | sshuttle | restart service
-  tags: [services, sshuttle]
   service:
     name: sshuttle
     state: restarted
   become: yes
 
 - name: services | imapfilter | restart service
-  tags: [services, imapfilter]
   service:
     name: imapfilter
     state: restarted
