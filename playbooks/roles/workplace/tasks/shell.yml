@@ -45,15 +45,6 @@
     groups: "{{ default_user_groups | join(',') }}"
   become: yes
 
-- name: shell | instantiate common settings
-  tags: [shell]
-  copy:
-    content: "{{ lookup('template', 'shell/{{ item }}.template') }}"
-    dest: "{{ ansible_env.HOME }}/{{ item }}"
-    mode: 0755
-  with_items:
-    - "{{ common_settings_basenames }}"
-
 - name: shell | check if .bashrc exists
   tags: [shell, bash]
   stat: path={{ ansible_env.HOME }}/.bashrc
@@ -68,30 +59,9 @@
   when:
     - bashrc.stat.exists == True
 
-- name: shell | Antibody | generate plugins list
-  tags: [shell, zsh]
-  copy:
-    content: "{{ lookup('template', 'shell/zsh.plugins.template') }}"
-    dest: "{{ zsh_plugins_list_location }}"
-    mode: 0755
-
 - name: shell | Antibody | bundle plugins statically
   tags: [shell, zsh]
   shell: "{{ zsh_plugins_antibody_bundle_command }}"
-
-- name: shell | instantiate .zshrc
-  tags: [shell, zsh]
-  copy:
-    content: "{{ lookup('template', 'shell/.zshrc.template') }}"
-    dest: "{{ ansible_env.HOME }}/.zshrc"
-    mode: 0755
-
-- name: shell | tmux | instantiate sessions script
-  tags: [shell, tmux]
-  copy:
-    content: "{{ lookup('template', 'shell/tmux-sessions.template') }}"
-    dest: "{{ ansible_env.HOME }}/tmux-sessions"
-    mode: 0755
 
 - name: shell | backup bookmarks
   tags: [shell, backup]

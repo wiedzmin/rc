@@ -14,7 +14,7 @@
     state: directory
     mode: "{{ item.mode if 'mode' in item else 0755 }}"
     owner: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
-    group: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
+    group: "{{ item.user if 'user' in item else lookup('env', 'USER') }}" # TODO: think of decoupling from 'user' value
     recurse: "{{ item.recurse if 'recurse' in item else 'yes' }}"
   become: "{{ item.become if 'become' in item else 'no' }}"
   with_items: "{{ x11_paths }}"
@@ -58,32 +58,13 @@
   shell: "xdg-user-dirs-update --set {{ item.name | upper}} {{ item.value }}"
   with_items: "{{ xdg_user_dirs }}"
 
-- name: x11 | generate OSD statusbar script
-  tags: [x11]
-  copy:
-    content: "{{ lookup('template', 'x11/statusbar_osd.template') }}"
-    dest: "{{ binaries_prefix }}/statusbar_osd"
-    mode: 0755
-    owner: "{{ user_name }}"
-    group: "{{ user_group }}"
-
 - name: x11 | generate .xsession script
   tags: [x11]
   copy:
-    content: "{{ lookup('template', 'x11/.xsession.template') }}"
+    content: "{{ lookup('template', 'x11/.xsession.j2') }}"
     dest: "{{ ansible_env.HOME }}/.xsession"
     mode: 0755
   register: xsession_script
-
-- name: x11 | copy xrandr scripts
-  tags: [x11, scripts]
-  copy:
-    content: "{{ lookup('template', 'x11/xrandr/{{ item | basename }}') }}"
-    dest: "/usr/local/bin/{{ item | basename }}"
-    mode: 0755
-  with_fileglob:
-    - "{{ role_path }}/templates/x11/xrandr/*"
-  become: yes
 
 - name: x11 | remove tangled Emacs config
   tags: [x11]

@@ -89,7 +89,7 @@
     mode: 0755
   with_items:
     - { src: "thd/Dockerfile-thd", dest: "{{ thd_tmp_dir }}/Dockerfile-thd" }
-    - { src: "thd/config.template", dest: "{{ thd_tmp_dir }}/thd_config.yaml" }
+    - { src: "thd/config.j2", dest: "{{ thd_tmp_dir }}/thd_config.yaml" }
     - { src: "thd/docker-compose.yml", dest: "{{ thd_tmp_dir }}/docker-compose.yml" }
     - { src: "thd/thd.sh", dest: "{{ thd_tmp_dir }}/thd.sh" }
 

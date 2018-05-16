@@ -47,7 +47,6 @@ Makefile.in
 *.out
 /.DS_Store
 *.swp
-tmux-*
 cache/*
 page_cache/*
 *.patch

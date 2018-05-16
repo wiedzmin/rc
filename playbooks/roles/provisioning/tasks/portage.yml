@@ -40,7 +40,7 @@
 - name: portage | instantiate Layman config
   tags: [portage, overlays]
   copy:
-    content: "{{ lookup('template', 'layman/layman.cfg.template') }}"
+    content: "{{ lookup('template', 'layman/layman.cfg.j2') }}"
     dest: "/etc/layman/layman.cfg"
     mode: 0755
   become: yes

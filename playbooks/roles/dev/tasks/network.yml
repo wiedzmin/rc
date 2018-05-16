@@ -30,7 +30,7 @@
 - name: network | instantiate hosts file
   tags: [network]
   copy:
-    content: "{{ lookup('template', 'network/hosts.template') }}"
+    content: "{{ lookup('template', 'network/hosts.j2') }}"
     dest: "/etc/hosts"
     mode: 0644
   become: yes
