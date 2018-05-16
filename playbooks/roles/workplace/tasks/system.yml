@@ -27,3 +27,14 @@
   become: "{{ item.become if 'become' in item else 'no' }}"
   with_items: "{{ system_templates }}"
   when: system_templates is defined
+
+- name: setup services autostart
+  tags: [system]
+  service:
+    name: "{{ item.name }}"
+    enabled: yes
+    runlevel: "{{ item.runlevel }}"
+    state: "{{ item.status }}"
+  with_items: "{{ system_services }}"
+  become: yes
+  when: ansible_distribution == "Gentoo"

@@ -49,3 +49,54 @@ system_xorg_kbd_options:
   - { name: "XkbLayout", value: "us,ru" }
   - { name: "XkbVariant", value: ",winkeys" }
   - { name: "XkbOptions", value: "caps:none,compose:ralt" }
+system_services:
+  - { name: "NetworkManager", runlevel: "default", status: "started" }
+  - { name: "acpid", runlevel: "default", status: "started" }
+  - { name: "alsasound", runlevel: "default", status: "started" }
+  - { name: "binfmt", runlevel: "boot", status: "started" }
+  - { name: "bitlbee", runlevel: "default", status: "started" }
+  - { name: "bootmisc", runlevel: "boot", status: "started" }
+  - { name: "cgroups", runlevel: "sysinit", status: "started" }
+  - { name: "consolefont", runlevel: "boot", status: "started" }
+  - { name: "consolekit", runlevel: "default", status: "started" }
+  - { name: "cupsd", runlevel: "default", status: "started" }
+  - { name: "devfs", runlevel: "sysinit", status: "started" }
+  - { name: "dmesg", runlevel: "sysinit", status: "started" }
+  - { name: "docker", runlevel: "default", status: "started" }
+  - { name: "fsck", runlevel: "boot", status: "started" }
+  - { name: "hddtemp", runlevel: "default", status: "started" }
+  - { name: "hibernate-cleanup", runlevel: "boot", status: "started" }
+  - { name: "hostname", runlevel: "boot", status: "started" }
+  - { name: "hwclock", runlevel: "boot", status: "started" }
+  - { name: "keymaps", runlevel: "boot", status: "started" }
+  - { name: "kmod-static-nodes", runlevel: "sysinit", status: "started" }
+  - { name: "libvirtd", runlevel: "default", status: "started" }
+  - { name: "local", runlevel: "default", status: "started" }
+  - { name: "local", runlevel: "nonetwork", status: "started" }
+  - { name: "localmount", runlevel: "boot", status: "started" }
+  - { name: "loopback", runlevel: "boot", status: "started" }
+  - { name: "modules", runlevel: "boot", status: "started" }
+  - { name: "mpd", runlevel: "default", status: "started" }
+  - { name: "mtab", runlevel: "boot", status: "started" }
+  - { name: "netmount", runlevel: "default", status: "started" }
+  - { name: "ntpd", runlevel: "default", status: "started" }
+  - { name: "opentmpfiles-dev", runlevel: "sysinit", status: "started" }
+  - { name: "opentmpfiles-setup", runlevel: "boot", status: "started" }
+  - { name: "procfs", runlevel: "boot", status: "started" }
+  - { name: "root", runlevel: "boot", status: "started" }
+  - { name: "rpc.statd", runlevel:  "default", status: "started" }
+  - { name: "shepherd", runlevel: "default", status: "started" } # !!! think of clashing with custom service initialization here in playbooks
+  - { name: "smartd", runlevel: "default", status: "started" }
+  - { name: "sshd", runlevel: "default", status: "started" }
+  - { name: "swap", runlevel: "boot", status: "started" }
+  - { name: "sysctl", runlevel: "boot", status: "started" }
+  - { name: "sysfs", runlevel: "sysinit", status: "started" }
+  - { name: "syslog-ng", runlevel: "default", status: "started" }
+  - { name: "sysstat", runlevel: "default", status: "started" }
+  - { name: "termencoding", runlevel: "boot", status: "started" }
+  - { name: "tlsdate", runlevel: "default", status: "started" }
+  - { name: "udev", runlevel: "sysinit", status: "started" }
+  - { name: "udev-trigger", runlevel: "sysinit", status: "started" }
+  - { name: "urandom", runlevel: "boot", status: "started" }
+  - { name: "vixie-cron", runlevel: "default", status: "started" }
+  - { name: "xdm", runlevel: "default", status: "started" }
