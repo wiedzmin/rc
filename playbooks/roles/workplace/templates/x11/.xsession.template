@@ -23,14 +23,15 @@ setup-agents() {
 }
 
 start-services() {
-{% for service in xsession_services %}
-{% if service.enabled and not service.heavyweight %}
+{% set xsession_services_enabled = xsession_services | rejectattr('disabled', 'sameas', true) | list %}
+{% for service in xsession_services_enabled %}
+{% if not service.heavyweight %}
     {{ service.command }} &
 {% endif %}
 {% endfor %}
     if [ "$ac_adapter" = "on" ]; then
-{% for service in xsession_services %}
-{% if service.enabled and service.heavyweight %}
+{% for service in xsession_services_enabled %}
+{% if service.heavyweight %}
         {{ service.command }} &
 {% endif %}
 {% endfor %}
