@@ -1,5 +1,5 @@
 - include_vars: services.yml
-  tags: [services, shepherd, sshuttle]
+  tags: [services, shepherd, sshuttle, imapfilter, syndaemon]
 
 - name: services | shepherd | install openrc entry
   tags: [services, shepherd]
