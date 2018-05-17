@@ -4,7 +4,6 @@ shell_paths:
 shell_templates:
   - { src: ".tmux.conf", dest: "{{ ansible_env.HOME }}/.tmux.conf" }
   - { src: ".urlview", dest: "{{ ansible_env.HOME }}/.urlview" }
-  - { src: "tmux-sessions.j2", dest: "{{ ansible_env.HOME }}/tmux-sessions" }
   - { src: "shell/.zshrc.j2", dest: "{{ ansible_env.HOME }}/.zshrc" }
   - { src: "shell/zsh/aliases", dest: "{{ zsh_subconfig_path }}/aliases" }
   - { src: "shell/zsh/bindkeys", dest: "{{ zsh_subconfig_path }}/bindkeys" }
