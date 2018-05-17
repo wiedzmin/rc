@@ -4,8 +4,9 @@
 Xft.antialias: true       ! Xft.antialias:  (bool)   // FC_ANTIALIAS  Whether glyphs can be antialiased
 Xft.dpi: 120.0            ! Xft.dpi:        (double) // FC_DPI        Target dots per inch
 Xft.hinting: true         ! Xft.hinting:    (bool)   // FC_HINTING    Whether the rasterizer should use hinting
-Xft.hintstyle: hintnone   ! Xft.hintstyle:  (int)    // FC_HINT_STYLE Automatic hinting style - hintnone hintslight hintmedium hintfull
-Xft.rgba: none            ! Xft.rgba:       (int)    // FC_RGBA       unknown, rgb, bgr, vrgb, vbgr, none - subpixel geometry 
+! Xft.hintstyle: hintnone   ! Xft.hintstyle:  (int)    // FC_HINT_STYLE Automatic hinting style - hintnone hintslight hintmedium hintfull
+Xft.hintstyle: hintslight
+Xft.rgba: none            ! Xft.rgba:       (int)    // FC_RGBA       unknown, rgb, bgr, vrgb, vbgr, none - subpixel geometry
 Xft.lcdfilter: lcddefault ! Xft.lcdfilter   (int)    // FC_LCD_FILTER type of lcd filter to use - lcdnone lcddefault lcdlight lcdlegacy
 ! Settings specific to libXft:
 ! Xft.scale (double) // FC_SCALE
@@ -18,4 +19,3 @@ Xft.autohint: false ! Xft.autohint (bool) // FC_AUTOHINT Use autohinter instead 
 ! These ones seem to be unused?
 ! Xft.core (bool) //  XFT_CORE
 ! Xft.xlft (string) // XFT_XLFD
-
