@@ -1,15 +1,15 @@
-application/pdf; zathura %s; test=test "$DISPLAY" != ""; description=Portable Document Format; nametemplate=%s.pdf; copiousoutput
-application/x-pdf; zathura %s; test=test "$DISPLAY" != ""; description=Portable Document Format; nametemplate=%s.pdf
-image/gif; feh %s; test=test "$DISPLAY" != ""; description=GIF Format; nametemplate=%s.gif; copiousoutput
-image/jpeg; feh %s; test=test "$DISPLAY" != ""; description=JPEG Format; nametemplate=%s.jpeg; copiousoutput
-image/jpeg; feh %s; test=test "$DISPLAY" != ""; description=JPEG Format; nametemplate=%s.jpg; copiousoutput
-image/png; feh %s; test=test "$DISPLAY" != ""; description=PNG Format; nametemplate=%s.png; copiousoutput
-image/vnd.djvu; zathura %s; test=test "$DISPLAY" != ""; description=DjVu Format; nametemplate=%s.djvu; copiousoutput
-image/x-djvu; zathura %s; test=test "$DISPLAY" != ""; description=DjVu Format; nametemplate=%s.djvu; copiousoutput
+application/pdf; {{ default_ebook_viewer_executable }} %s; test=test "$DISPLAY" != ""; description=Portable Document Format; nametemplate=%s.pdf; copiousoutput
+application/x-pdf; {{ default_ebook_viewer_executable }} %s; test=test "$DISPLAY" != ""; description=Portable Document Format; nametemplate=%s.pdf
+image/gif; {{ default_image_viewer_executable }} %s; test=test "$DISPLAY" != ""; description=GIF Format; nametemplate=%s.gif; copiousoutput
+image/jpeg; {{ default_image_viewer_executable }} %s; test=test "$DISPLAY" != ""; description=JPEG Format; nametemplate=%s.jpeg; copiousoutput
+image/jpeg; {{ default_image_viewer_executable }} %s; test=test "$DISPLAY" != ""; description=JPEG Format; nametemplate=%s.jpg; copiousoutput
+image/png; {{ default_image_viewer_executable }} %s; test=test "$DISPLAY" != ""; description=PNG Format; nametemplate=%s.png; copiousoutput
+image/vnd.djvu; {{ default_ebook_viewer_executable }} %s; test=test "$DISPLAY" != ""; description=DjVu Format; nametemplate=%s.djvu; copiousoutput
+image/x-djvu; {{ default_ebook_viewer_executable }} %s; test=test "$DISPLAY" != ""; description=DjVu Format; nametemplate=%s.djvu; copiousoutput
 text/html; w3m -I %{charset} -dump %s; test=test "$DISPLAY" != ""; description=HyperText; nametemplate=%s.html; copiousoutput
-video/avi; vlc %s; test=test "$DISPLAY" != "" ; description=Video; nametemplate=%s.avi
-video/mp4; vlc %s; test=test "$DISPLAY" != "" ; description=Video; nametemplate=%s.mp4
-video/mpeg; vlc %s; test=test "$DISPLAY" != "" ; description=Video; nametemplate=%s.mpeg
-video/x-flv; vlc %s; test=test "$DISPLAY" != "" ; description=Video; nametemplate=%s.flv
-video/x-matroska; vlc %s; test=test "$DISPLAY" != "" ; description=Video; nametemplate=%s.mkv
-video/x-ms-wmv; vlc %s; test=test "$DISPLAY" != "" ; description=Video; nametemplate=%s.wmv
+video/avi; {{ default_video_player_executable }} %s; test=test "$DISPLAY" != "" ; description=Video; nametemplate=%s.avi
+video/mp4; {{ default_video_player_executable }} %s; test=test "$DISPLAY" != "" ; description=Video; nametemplate=%s.mp4
+video/mpeg; {{ default_video_player_executable }} %s; test=test "$DISPLAY" != "" ; description=Video; nametemplate=%s.mpeg
+video/x-flv; {{ default_video_player_executable }} %s; test=test "$DISPLAY" != "" ; description=Video; nametemplate=%s.flv
+video/x-matroska; {{ default_video_player_executable }} %s; test=test "$DISPLAY" != "" ; description=Video; nametemplate=%s.mkv
+video/x-ms-wmv; {{ default_video_player_executable }} %s; test=test "$DISPLAY" != "" ; description=Video; nametemplate=%s.wmv
