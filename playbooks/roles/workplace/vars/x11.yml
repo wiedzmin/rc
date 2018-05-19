@@ -7,6 +7,7 @@ x11_paths:
   - { path: "{{ ansible_env.HOME }}/.sawfish"}
 x11_templates:
   - { src: "browser/.surfingkeysrc", dest: "{{ ansible_env.HOME }}/.surfingkeysrc" }
+  - { src: "browser/wimpulation.json", dest: "{{ ansible_env.HOME }}/wimpulation.json" }
   - { src: "x11/dunstrc.j2", dest: "{{ home_config_path }}/dunst/dunstrc" }
   - { src: "x11/rofi.j2", dest: "{{ home_config_path }}/rofi/config" }
   - { src: "x11/oxide.rasi", dest: "{{ home_config_path }}/rofi/oxide.rasi" }
