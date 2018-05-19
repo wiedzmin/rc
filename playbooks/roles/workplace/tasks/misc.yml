@@ -1,5 +1,5 @@
 - include_vars: "{{ item }}"
-  tags: [misc, backup, restore, shepherd, imapfilter, hexchat, thd]
+  tags: [misc, backup, restore, shepherd, imapfilter, thd]
   with_items:
     - misc.yml
     - "{{ playbook_dir }}/../private/imap_filters.yml"
@@ -57,19 +57,6 @@
     content: "{{ lookup('template', 'mail/imapfilter.conf.lua') }}"
     dest: "{{ ansible_env.HOME }}/.imapfilter/config.lua"
   notify: services | imapfilter | restart service
-
-- name: misc | Hexchat | download theme
-  tags: [misc, hexchat]
-  get_url:
-    url: https://dl.hexchat.net/themes/Zenburn.hct
-    dest: /tmp/Zenburn.hct
-    force: yes
-
-- name: misc | Hexchat | apply theme
-  tags: [misc, hexchat]
-  unarchive:
-    src: /tmp/Zenburn.hct
-    dest: "{{ ansible_env.HOME }}/.config/hexchat"
 
 # DISCLAIMER: at the moment most of started containers are planned to stop/remove manually
 

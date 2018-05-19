@@ -53,7 +53,7 @@ emerge_packages_of_interest:
   - "media-libs/exiftool"
   - "media-sound/volumeicon"
   - "net-im/telegram-cli"
-  - "net-irc/hexchat"
+  - "net-irc/weechat"
   - "net-mail/notmuch-addrlookup"
   - "net-misc/dhcpcd"
   - "net-misc/dhcpcd-ui"

@@ -118,7 +118,7 @@ media-video/vlc -ncurses xml directfb matroska -libav
 net-analyzer/mtr -gtk
 net-im/skype pulseaudio
 net-im/telegram-cli -lua # configure: error: unrecognized option: `-lm' in some overlays, may be fixed later
-net-irc/hexchat gtk libnotify lua
+net-irc/weechat alias buflist charset exec fifo fset guile irc logger lua nls -perl python relay scripts spell ssl trigger xfer
 net-libs/gnutls pkcs11 -crywrap
 net-libs/libproxy -webkit
 net-libs/libvncserver threads -ssl gnutls
