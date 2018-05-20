@@ -10,6 +10,7 @@ dev-lua/luvit
 dev-python/appdirs
 dev-python/blockdiag
 dev-python/mypy
+dev-python/runsnakerun
 dev-python/watchdog
 dev-util/cargo
 dev-util/debugedit

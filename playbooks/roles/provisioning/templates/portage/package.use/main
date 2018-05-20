@@ -33,7 +33,6 @@ app-text/texlive-core xetex
 app-text/xmlto text
 app-text/zathura-meta cb djvu postscript
 dev-haskell/hlint emacs hoogle
-dev-java/sun-jre-bin nsplugin
 dev-lang/erlang doc emacs kpoll odbc sctp smp tk
 dev-lang/gforth emacs
 dev-lang/go bash-completion emacs vim-syntax zsh-completion
@@ -82,7 +81,6 @@ mail-mta/msmtp gnutls idn vim-syntax
 media-fonts/powerline-fonts anonymouspro dejavusansmono droidsansmono inconsolata inconsolatadz liberationmono sourcecodepro terminus_pcf ubuntumono
 media-gfx/darktable -kde
 media-gfx/exiv2 xmp
-media-gfx/fbv jpeg png
 media-gfx/gimp jpeg2k pdf postscript udev webp wmf -alsa -webkit
 media-gfx/imagemagick corefonts djvu fftw graphviz hdri jpeg jpeg2k lzma postscript raw tiff truetype xml
 media-gfx/maim unicode
@@ -102,7 +100,6 @@ media-libs/libpng apng
 media-libs/mesa gbm
 media-libs/sdl-image jpeg
 media-libs/sdl2-image jpeg
-media-libs/swfdec ffmpeg gstreamer gtk
 media-sound/ario ausioscrobbler libnotify taglib
 media-sound/mpd aac cdio flac inotify lastfmradio mikmod modplug musepack sndfile soundcloud twolame wavpack wildmidi -ffmpeg -cdio
 media-sound/pulseaudio equalizer
@@ -115,13 +112,11 @@ media-video/mplayer a52 dga dvb jpeg lzo mp3 pvr radio rtc sdl theora twolame v4
 media-video/mpv javascript jpeg lua luajit tools v4l zsh-completion
 media-video/rtmpdump gnutls
 net-analyzer/mtr -gtk
-net-im/skype pulseaudio
 net-im/telegram-cli -lua # configure: error: unrecognized option: `-lm' in some overlays, may be fixed later
 net-irc/weechat alias buflist charset exec fifo fset guile irc logger lua nls -perl python relay scripts spell ssl trigger xfer
 net-libs/gnutls pkcs11 -crywrap
 net-libs/libproxy -webkit
 net-libs/libvncserver threads -ssl gnutls
-net-libs/rb_libtorrent -python  # temporarily turn python bindings off, until root cause of build failure wiil found
 net-libs/webkit-gtk egl geolocation gstreamer introspection jit libnotify opengl webgl
 net-mail/isync sasl ssl
 net-mail/mu emacs
@@ -131,18 +126,17 @@ net-misc/connman iptables
 net-misc/dropbox X
 net-misc/networkmanager bluetooth -dhcpcd nss modemmanager dhclient -gnutls -wext
 net-misc/networkmanager-openvpn gtk
-net-misc/openvpn passwordsave
 net-misc/unison gtk threads
 net-misc/whois idn
 net-misc/wicd gtk
 net-p2p/syncthing tools
 net-print/cups-filters jpeg -pdf tiff
+net-vpn/openvpn examples inotify lz4 lzo pam plugins ssl
 net-wireless/wpa_supplicant -qt4 -qt5
 sci-mathematics/maxima emacs latex sbcl tk
 sci-mathematics/octave gui
 sci-visualization/gnuplot emacs examples latex
 sys-apps/firejail x11
-sys-apps/kmscon udev
 sys-apps/lm_sensors sensord
 sys-apps/qingy emacs directfb gpm
 sys-apps/usermode-utilities fuse
@@ -154,8 +148,6 @@ sys-devel/llvm clang
 sys-libs/libseccomp static-libs
 virtual/libusb udev
 www-client/firefox jemalloc hwaccel l10n_ru startup-notification wifi
-www-client/palemoon -alsa
-www-client/uzbl gtk3 vim-syntax helpers
 www-plugins/adobe-flash debug
 www-plugins/google-talkplugin libnotify
 x11-apps/intel-gpu-tools sound udev xrandr xv

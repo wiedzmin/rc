@@ -1,6 +1,1 @@
-#required by google-chrome (argument)
-=www-client/google-chrome-23.0.1271.26_beta160934:beta google-chrome
-net-im/skype skype-4.0.0.7-copyright
-www-plugins/google-talkplugin Google-TOS
 www-plugins/adobe-flash AdobeFlash-11.x
->=www-client/vivaldi-1.0.435.42_p1 Vivaldi
