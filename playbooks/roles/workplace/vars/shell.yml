@@ -32,6 +32,7 @@ default_user_groups:
   - video
   - input
   - wheel
+  - wireshark
 common_settings_basenames:
   - common_settings
   - common_settings_bash
