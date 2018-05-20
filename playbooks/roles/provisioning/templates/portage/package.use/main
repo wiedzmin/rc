@@ -114,7 +114,6 @@ media-video/ffmpeg gnutls threads mp3 twolame x264
 media-video/mplayer a52 dga dvb jpeg lzo mp3 pvr radio rtc sdl theora twolame v4l xvid xvmc
 media-video/mpv javascript jpeg lua luajit tools v4l zsh-completion
 media-video/rtmpdump gnutls
-media-video/vlc -ncurses xml directfb matroska -libav
 net-analyzer/mtr -gtk
 net-im/skype pulseaudio
 net-im/telegram-cli -lua # configure: error: unrecognized option: `-lm' in some overlays, may be fixed later
