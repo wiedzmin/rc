@@ -6,6 +6,7 @@ portage_paths:
   - { path: "/etc/portage/package.use", become: yes }
   - { path: "/etc/portage/repos.conf", become: yes }
   - { path: "/etc/portage/env", become: yes }
+  - { path: "/etc/portage/sets", become: yes }
 portage_templates:
   - { src: "portage/make.conf", dest: "/etc/portage/make.conf", become: yes }
   - { src: "portage/package.accept_keywords", dest: "/etc/portage/package.accept_keywords", become: yes }
@@ -22,6 +23,16 @@ portage_templates:
   - { src: "portage/package.env", dest: "/etc/portage/package.env", become: yes }
   - { src: "portage/env/debugsyms", dest: "/etc/portage/env/debugsyms", become: yes }
   - { src: "portage/env/installsources", dest: "/etc/portage/env/installsources", become: yes }
+  - { src: "portage/sets/custom-dev", dest: "/etc/portage/sets/custom-dev", become: yes }
+  - { src: "portage/sets/custom-editing", dest: "/etc/portage/sets/custom-editing", become: yes }
+  - { src: "portage/sets/custom-media", dest: "/etc/portage/sets/custom-media", become: yes }
+  - { src: "portage/sets/custom-network", dest: "/etc/portage/sets/custom-network", become: yes }
+  - { src: "portage/sets/custom-pim", dest: "/etc/portage/sets/custom-pim", become: yes }
+  - { src: "portage/sets/custom-shell", dest: "/etc/portage/sets/custom-shell", become: yes }
+  - { src: "portage/sets/custom-system", dest: "/etc/portage/sets/custom-system", become: yes }
+  - { src: "portage/sets/custom-tools", dest: "/etc/portage/sets/custom-tools", become: yes }
+  - { src: "portage/sets/custom-virt", dest: "/etc/portage/sets/custom-virt", become: yes }
+  - { src: "portage/sets/custom-x11", dest: "/etc/portage/sets/custom-x11", become: yes }
 portage_tree_sync_type: rsync
 portage_tree_sync_uris:
   - rsync://mirror.yandex.ru/gentoo-portage/

@@ -1,0 +1,7 @@
+app-misc/tmux
+app-misc/tmux-mem-cpu-load
+app-shells/antibody
+app-shells/fzf
+net-misc/mosh
+net-misc/urlview
+sys-apps/exa

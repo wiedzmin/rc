@@ -1,0 +1,6 @@
+# This should not be included in sets
+
+app-crypt/hashcat
+app-forensics/afl # broken at the moment
+app-forensics/sleuthkit # broken at the moment
+dev-vcs/git-extras # later

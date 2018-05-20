@@ -1,0 +1,9 @@
+sys-apps/dbus
+sys-apps/fbset
+sys-apps/lm_sensors
+sys-fs/dfc
+sys-fs/udiskie
+sys-fs/udisks
+sys-libs/gpm
+sys-power/acpi
+sys-power/upower-pm-utils

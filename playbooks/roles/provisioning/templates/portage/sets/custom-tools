@@ -1,0 +1,7 @@
+app-admin/pass
+app-office/ledger
+sys-apps/moreutils
+dev-vcs/git-annex
+app-arch/upx-ucl # or proprietary-like app-arch/upx-bin + try to build from https://github.com/upx/upx
+app-misc/wmname
+app-misc/workrave

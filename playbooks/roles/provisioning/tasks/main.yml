@@ -1,7 +1,6 @@
 ---
 
 - import_tasks: portage.yml
-- import_tasks: emerge.yml
 - import_tasks: system.yml
 - import_tasks: python.yml
 - import_tasks: golang.yml
