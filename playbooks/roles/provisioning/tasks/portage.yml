@@ -3,6 +3,9 @@
 - include_vars: portage.yml
   tags: [portage, bootstrap, overlays]
 
+- import_tasks: common.yml
+  tags: [portage, bootstrap]
+
 - name: portage | ensure paths
   tags: [portage, bootstrap]
   file:
