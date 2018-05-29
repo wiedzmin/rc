@@ -3,6 +3,7 @@
 inventory.ini
 private
 system-index.txt
+todo.org
 utils/buildapp
 utils/rg
 utils/shepherd
