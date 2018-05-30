@@ -1,3 +1,12 @@
 app-emacs/auctex
 app-emacs/haskell-mode
 app-text/pandoc
+app-editors/vim
+app-editors/vim-core
+dev-texlive/texlive-luatex
+dev-texlive/texlive-mathscience
+dev-texlive/texlive-xetex
+app-text/dvipng
+app-text/hunspell
+app-text/libpaper
+app-text/xmlto

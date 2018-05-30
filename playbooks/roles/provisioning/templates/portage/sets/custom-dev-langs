@@ -1,0 +1,6 @@
+dev-lang/ghc
+dev-lang/go
+dev-lang/perl
+dev-lang/python
+dev-lang/python:2.7
+dev-scheme/racket

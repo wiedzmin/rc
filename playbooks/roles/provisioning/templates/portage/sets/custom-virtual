@@ -1,0 +1,11 @@
+virtual/awk
+virtual/blas
+virtual/cblas
+virtual/lapack
+virtual/libffi
+virtual/libudev
+virtual/perl-Data-Dumper
+virtual/perl-File-Temp
+virtual/perl-IO
+virtual/pkgconfig
+virtual/texi2dvi

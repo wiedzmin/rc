@@ -1,7 +1,11 @@
 app-admin/pass
-app-office/ledger
-sys-apps/moreutils
-dev-vcs/git-annex
+app-arch/p7zip
 app-arch/upx-ucl # or proprietary-like app-arch/upx-bin + try to build from https://github.com/upx/upx
-app-misc/wmname
+app-crypt/gnupg
+app-crypt/p11-kit
+app-crypt/pinentry
 app-misc/workrave
+dev-vcs/git-annex
+gnome-base/nautilus
+net-mail/notmuch
+sys-apps/moreutils

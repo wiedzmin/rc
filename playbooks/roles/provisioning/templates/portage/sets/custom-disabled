@@ -1,6 +1,7 @@
 # This should not be included in sets
 
 app-crypt/hashcat
-app-forensics/afl # broken at the moment
-app-forensics/sleuthkit # broken at the moment
-dev-vcs/git-extras # later
+dev-vcs/git-extras ;; TODO: (alex3rd) placed in overlay, relocate later
+x11-apps/arbtt ;; TODO: (alex3rd) placed in rare overlay, relocate later
+dev-util/rtags ;; TODO: (alex3rd) placed in overlay, relocate later
+app-office/ledger ;; TODO: (alex3rd) broken deps
