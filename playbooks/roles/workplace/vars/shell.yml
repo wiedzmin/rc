@@ -17,6 +17,7 @@ shell_templates:
   - { src: "scripts/status_uptime", dest: "{{ binaries_prefix }}/status_uptime" }
   - { src: "scripts/statusbar", dest: "{{ binaries_prefix }}/statusbar" }
   - { src: "scripts/update-portage-metadata", dest: "{{ binaries_prefix }}/update-portage-metadata" }
+  - { src: "scripts/portage-check-world", dest: "{{ binaries_prefix }}/portage-check-world" }
   - { src: "shell/common_settings.j2", dest: "{{ ansible_env.HOME }}/common_settings" }
   - { src: "shell/common_settings_bash.j2", dest: "{{ ansible_env.HOME }}/common_settings_bash" }
   - { src: "shell/zsh.plugins.j2", dest: "{{ zsh_plugins_list_location }}" }
