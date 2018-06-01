@@ -1,7 +1,7 @@
 ---
 
 - include_vars: system.yml
-  tags: [system]
+  tags: [system, kernel]
 
 - name: system | ensure paths
   tags: [system]
@@ -27,3 +27,13 @@
   become: "{{ item.become if 'become' in item else 'no' }}"
   with_items: "{{ system_templates }}"
   when: system_templates is defined
+
+- name: ensure particular Linux kernel flags
+  tags: [system, kernel]
+  lineinfile:
+    path: "{{ system_kernel_config_file }}"
+    regexp: "^CONFIG_{{ item.name }}=[ym1234567890]|^# CONFIG_{{ item.name }} is not set" # (alex3rd) regexp is too permissive, but does the trick
+    line: "{% if item.value == 'n' %}# CONFIG_{{ item.name }} is not set{% else %}CONFIG_{{ item.name }}={{ item.value }}{% if system_kernel_dump_labels and item.labels | length > 0 %} # {{ item.labels | join(', ')}}{% endif %}{% endif %}"
+    state: present
+  with_items: "{{ system_kernel_flags | rejectattr('disabled', 'sameas', true) | list }}"
+  become: yes
