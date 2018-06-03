@@ -1,0 +1,36 @@
+---
+
+- name: start tgdante2 SOCKS procy
+  tags: [docker, services]
+  docker_container:
+    name: tgproxy
+    image: schors/tgdante2
+    state: started
+    network_mode: host
+    restart_policy: unless-stopped
+    ports:
+      - "5000:5000"
+    volumes:
+      - "{{ ansible_env.HOME }}/certs:/certs"
+    env:
+      REGISTRY_HTTP_TLS_CERTIFICATE: "/certs/{{ registry_domain_name }}.crt"
+      REGISTRY_HTTP_TLS_KEY: "/certs/{{ registry_domain_name }}.key"
+
+# docker pull schors/tgdante2
+# docker run -d --net=host --restart unless-stopped -e PORT=1080 -e USER=user0 -e PASS=secret0 --name tgdante schors/tgdante2
+
+# Usage with Docker Hub image
+
+# # pull docker image
+# docker pull schors/tgdante2
+# # create directory for permanent username database
+# mkdir etc
+# # start container
+# docker run -d -v $PWD/etc:/etc --net=host --restart unless-stopped --name tgdante schors/tgdante2
+# # manage users
+# docker run --rm -ti -v $PWD/etc:/etc --net=host schors/tgdante2 /scripts/add user1 secret1
+# docker run --rm -ti -v $PWD/etc:/etc --net=host schors/tgdante2 /scripts/chp user1 secret2
+# docker run --rm -ti -v $PWD/etc:/etc --net=host schors/tgdante2 /scripts/list
+# docker run --rm -ti -v $PWD/etc:/etc --net=host schors/tgdante2 /scripts/del user1
+# # another method (via docker exec)
+# docker exec -ti tgdante /scripts/add user2 secret3

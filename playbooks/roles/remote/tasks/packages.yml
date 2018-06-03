@@ -1,0 +1,12 @@
+---
+
+- include_vars: packages.yml
+  tags: [packages]
+
+- name: ensure system packages
+  tags: [packages]
+  apt:
+    name: "{{ item }}"
+    state: present
+  become: yes
+  with_items: "{{ system_packages }}"

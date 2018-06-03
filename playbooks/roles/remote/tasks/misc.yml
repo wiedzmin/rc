@@ -1,0 +1,11 @@
+---
+
+- include_vars: misc.yml
+  tags: [misc, bootstrap]
+
+- name: ensure proper locale installed
+  tags: [misc, bootstrap]
+  locale_gen:
+    name: "{{ remote_locale }}"
+    state: present
+  become: yes

@@ -1,0 +1,37 @@
+---
+
+- include_vars: docker.yml
+  tags: [docker, registry]
+
+- name: ensure certs dir
+  tags: [docker, registry]
+  file:
+    path: "{{ ansible_env.HOME }}/certs"
+    state: directory
+    mode: 0755
+
+- name: copy TLS data
+  tags: [docker, registry]
+  copy:
+    src: "{{ playbook_dir }}/../private/certs/{{ registry_domain_name }}.{{ item }}"
+    dest: "{{ ansible_env.HOME }}/certs"
+    owner: "{{ user_name }}"
+    group: "{{ user_group }}"
+    mode: 0644
+  with_items:
+    - "crt"
+    - "key"
+
+- name: start Docker registry
+  tags: [docker, registry]
+  docker_container:
+    name: registry
+    image: registry:2
+    state: started
+    ports:
+      - "5000:5000"
+    volumes:
+      - "{{ ansible_env.HOME }}/certs:/certs"
+    env:
+      REGISTRY_HTTP_TLS_CERTIFICATE: "/certs/{{ registry_domain_name }}.crt"
+      REGISTRY_HTTP_TLS_KEY: "/certs/{{ registry_domain_name }}.key"
