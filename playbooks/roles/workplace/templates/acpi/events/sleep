@@ -1,2 +1,2 @@
 event=button/sleep.*
-action=/etc/acpi/sleep.sh
+action=/etc/acpi/actions/sleep.sh

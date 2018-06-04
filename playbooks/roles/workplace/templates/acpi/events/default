@@ -16,4 +16,4 @@
 # specified.
 
 event=.*
-action=/etc/acpi/default.sh %e
+action=/etc/acpi/actions/default.sh %e

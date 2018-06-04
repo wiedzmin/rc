@@ -1,2 +1,2 @@
 event=button/lid.*
-action=/etc/acpi/lid.sh
+action=/etc/acpi/actions/lid.sh

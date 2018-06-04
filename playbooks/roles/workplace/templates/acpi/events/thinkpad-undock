@@ -1,2 +1,2 @@
 event=ibm/hotkey LEN0068:00 00000080 00004011
-action=/usr/local/bin/ext_heads_undock.sh
+action=/etc/acpi/actions/thinkpad-undock.sh

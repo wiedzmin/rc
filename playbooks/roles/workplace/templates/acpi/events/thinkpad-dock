@@ -1,2 +1,2 @@
 event=ibm/hotkey LEN0068:00 00000080 00004010
-action=/usr/local/bin/ext_heads_dock.sh
+action=/etc/acpi/actions/thinkpad-dock.sh
