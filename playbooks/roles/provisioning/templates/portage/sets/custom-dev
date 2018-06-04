@@ -4,7 +4,6 @@ app-benchmarks/wrk
 app-doc/zeal
 app-forensics/afl
 app-forensics/sleuthkit
-app-misc/diff-so-fancy
 app-misc/jq
 dev-lang/luajit
 dev-lisp/asdf

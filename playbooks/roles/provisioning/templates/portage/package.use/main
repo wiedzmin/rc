@@ -139,6 +139,7 @@ sci-mathematics/octave gui
 sci-visualization/gnuplot emacs examples latex
 sys-apps/firejail x11
 sys-apps/lm_sensors sensord
+sys-apps/nix doc etc_profile gc sodium
 sys-apps/qingy emacs directfb gpm
 sys-apps/usermode-utilities fuse
 sys-apps/util-linux static-libs

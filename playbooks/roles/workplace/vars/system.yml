@@ -98,3 +98,4 @@ system_services:
   - { name: "urandom", runlevel: "boot", status: "started" }
   - { name: "vixie-cron", runlevel: "default", status: "started" }
   - { name: "xdm", runlevel: "default", status: "started" }
+  - { name: "nix-daemon", runlevel: "default", status: "started" }
