@@ -87,6 +87,9 @@ xrandr_blue: 0.5
 xrandr_brightness: 0.7
 x11_stumpwm_traits: { clone_from: "https://github.com/wiedzmin/stumpwm", local_path: "{{ ansible_env.HOME }}/.commonlisp/stumpwm-git" }
 x11_stumpwm_set_font: yes
+x11_stumpwm_on_xrandr_commands:
+  - update-heads-layout
+  - emacs
 xsession_wallpaper_location: "{{ ansible_env.HOME }}/blobs/wallpaper"
 xsession_wallpaper_file: "{{ xsession_wallpaper_location }}/alena-aenami-7p-m-1k.jpg"
 xsession_loop_wm: no
