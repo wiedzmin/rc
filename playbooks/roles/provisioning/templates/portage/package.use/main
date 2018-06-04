@@ -119,6 +119,7 @@ net-libs/libproxy -webkit
 net-libs/libvncserver threads -ssl gnutls
 net-libs/webkit-gtk egl geolocation gstreamer introspection jit libnotify opengl webgl
 net-mail/isync sasl ssl
+net-mail/lbdb finger ldap pda
 net-mail/mu emacs
 net-mail/notmuch doc emacs mutt
 net-mail/offlineimap doc sqlite
@@ -144,6 +145,7 @@ sys-apps/util-linux static-libs
 sys-block/gparted reiserfs
 sys-boot/grub doc mount truetype
 sys-devel/gcc go graphite mpx pie pgo
+sys-devel/gdb lzma xml
 sys-devel/llvm clang
 sys-libs/libseccomp static-libs
 virtual/libusb udev
