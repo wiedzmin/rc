@@ -66,7 +66,7 @@
 - name: wm | generate common settings for StumpWM
   tags: [wm]
   copy:
-    content: "{{ lookup('template', 'x11/common.lisp.j2) }}"
+    content: "{{ lookup('template', 'x11/common.lisp.j2') }}"
     dest: "{{ stumpwm_config_path }}/common.lisp"
     mode: 0644
   when: xsession_current_wm == "stumpwm"
