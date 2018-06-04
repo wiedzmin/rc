@@ -18,8 +18,6 @@ system_templates:
   - { src: "acpi/lid.sh", dest: "/etc/acpi/lid.sh", mode: '0755', user: root, become: yes }
   - { src: "acpi/power.sh", dest: "/etc/acpi/power.sh", mode: '0755', user: root, become: yes }
   - { src: "acpi/sleep.sh", dest: "/etc/acpi/sleep.sh", mode: '0755', user: root, become: yes }
-  - { src: "udev.d/95-external-head-hotplug.rules", dest: "/etc/udev/rules.d/95-external-head-hotplug.rules", mode: '0755', user: root, become: yes }
-  - { src: "udev.d/99-dev-input-group.rules", dest: "/etc/udev/rules.d/99-dev-input-group.rules", mode: '0755', user: root, become: yes }
   - { src: "xorg.conf.d/10-input.conf", dest: "/etc/X11/xorg.conf.d/10-input.conf", mode: '0755', user: root, become: yes }
   - { src: "xorg.conf.d/15-synaptics.conf", dest: "/etc/X11/xorg.conf.d/15-synaptics.conf", mode: '0755', user: root, become: yes }
   - { src: "xorg.conf.d/17-intel-modesetting.conf", dest: "/etc/X11/xorg.conf.d/17-intel-modesetting.conf", mode: '0755', user: root, become: yes }

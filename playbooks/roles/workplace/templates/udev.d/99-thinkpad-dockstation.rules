@@ -1,0 +1,4 @@
+# Rules below do not actually work - besides all values provided are seen in udevadm logs, rules fail to fire for some reason
+# Therefore let's just keep them for historical reference
+ENV{ID_MODEL_FROM_DATABASE}=="ThinkPad Mini Dock Plus Series 3", ENV{ID_USB_CLASS_FROM_DATABASE}=="Hub", ACTION=="add", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="/home/octocat/.Xauthority", RUN+="/usr/local/bin/ext_heads_dock.sh"
+ENV{ID_MODEL_FROM_DATABASE}=="ThinkPad Mini Dock Plus Series 3", ENV{ID_USB_CLASS_FROM_DATABASE}=="Hub", ACTION=="remove", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="/home/octocat/.Xauthority", RUN+="/usr/local/bin/ext_heads_undock.sh"

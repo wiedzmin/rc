@@ -1,1 +1,0 @@
-KERNEL=="card0", SUBSYSTEM=="drm", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="/home/octocat/.Xauthority", RUN+="xrandr --output VGA1 --auto --right-of LVDS1"
