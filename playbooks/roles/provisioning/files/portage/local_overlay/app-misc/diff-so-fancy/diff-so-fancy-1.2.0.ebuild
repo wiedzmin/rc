@@ -36,7 +36,7 @@ pkg_setup() {
 src_prepare() {
 	eapply_user
 
-	esed -e "s|^use lib .*$|use lib \"${EPREFIX}${MY_LIB_DIR}\";|" -i -- "${PN}"
+	sed -e "s|^use lib .*$|use lib \"${EPREFIX}${MY_LIB_DIR}\";|" -i -- "${PN}"
 }
 
 src_configure() { : ; }
