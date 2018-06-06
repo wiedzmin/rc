@@ -1,7 +1,7 @@
 ---
 
 - include_vars: system.yml
-  tags: [system, kernel]
+  tags: [system, kernel, permissions]
 
 - name: system | ensure paths
   tags: [system]
@@ -36,4 +36,23 @@
     line: "{% if item.value == 'n' %}# CONFIG_{{ item.name }} is not set{% else %}CONFIG_{{ item.name }}={{ item.value }}{% if system_kernel_dump_labels and item.labels | length > 0 %} # {{ item.labels | join(', ')}}{% endif %}{% endif %}"
     state: present
   with_items: "{{ system_kernel_flags | rejectattr('disabled', 'sameas', true) | list }}"
+  become: yes
+
+- name: query Linux kernel source directory symlink
+  tags: [system, kernel, permissions]
+  stat:
+    path: /usr/src/linux
+  register: linux_kernel_symlink
+
+- name: fix kernel artifacts permissions
+  tags: [system, kernel, permissions]
+  file:
+    path: "{{ item }}"
+    owner: root
+    group: root
+    mode: 0777
+    recurse: yes
+  with_items:
+    - "{{ linux_kernel_symlink.stat.lnk_source }}"
+    - "/lib/modules/{{ '-'.join(linux_kernel_symlink.stat.lnk_target.split('-')[1:]) }}"
   become: yes
