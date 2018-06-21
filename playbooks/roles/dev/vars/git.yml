@@ -7,7 +7,8 @@ git_paths:
   - { path: "{{ git_assets_init_templates_dir }}" }
   - { path: "{{ git_assets_init_templates_dir }}/hooks" }
 git_templates:
-  - { src: 'git/gitconfig.j2', dest: '/etc/gitconfig', mode: '0544', user: root, become: yes }
+  - { src: 'git/gitconfig.j2', dest: '/etc/gitconfig', mode: '0544', user: root, become: yes, dists: ["Gentoo"] }
+  - { src: 'git/gitconfig.j2', dest: '{{ ansible_env.HOME }}/.gitconfig', mode: '0544', dists: ["NixOS"] }
   - { src: 'git/git-commit-template.j2', dest: '{{ git_assets_dir }}/git-commit-template' }
   - { src: 'git/.gitignore', dest: '{{ git_assets_dir }}/.gitignore' }
   - { src: 'git/init-templates/hooks/pre-push', dest: '{{ git_assets_init_templates_dir }}/hooks/pre-push' }

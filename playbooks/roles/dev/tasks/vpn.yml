@@ -2,6 +2,7 @@
 
 - include_vars: vpn.yml
   tags: [vpn, services]
+  when: ansible_distribution == "Gentoo"
 
 - name: vpn | ensure custom config directory
   tags: [vpn]
@@ -13,6 +14,7 @@
     group: "{{ user_group }}"
     recurse: yes
   become: yes
+  when: ansible_distribution == "Gentoo"
 
 - name: vpn | cleanup custom config directory
   tags: [cleanup]
@@ -21,6 +23,7 @@
     state: absent
   with_fileglob:
     - "{{ custom_vpn_datadir }}/*"
+  when: ansible_distribution == "Gentoo"
 
 - name: vpn | copy files to system location
   tags: [vpn]
@@ -32,6 +35,7 @@
     - "auth.conf"
     - "office.ovpn"
   notify: stop vpn service
+  when: ansible_distribution == "Gentoo"
 
 - name: vpn | customize OpenVPN config | automate authentication
   tags: [vpn]
@@ -41,6 +45,7 @@
     line: "auth-user-pass {{ custom_vpn_datadir }}/auth.conf"
   become: yes
   notify: stop vpn service
+  when: ansible_distribution == "Gentoo"
 
 - name: vpn | customize OpenVPN config | fix up/down scripting
   tags: [vpn]
@@ -63,3 +68,4 @@
     mode: 0755
   become: yes
   notify: stop vpn service
+  when: ansible_distribution == "Gentoo"

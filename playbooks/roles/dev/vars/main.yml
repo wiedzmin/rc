@@ -1,6 +1,11 @@
 ---
 
-local_binaries_prefix: /usr/local/bin
+binaries_prefix:
+  Gentoo:
+    path: /usr/local/bin
+    become: yes
+  NixOS:
+    path: "{{ ansible_env.HOME }}/scripts"
 user_name: octocat
 user_group: octocat
 pids_dir: "{{ ansible_env.HOME }}/pids"

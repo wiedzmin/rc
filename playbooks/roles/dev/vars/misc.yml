@@ -1,5 +1,8 @@
 ---
 
+misc_paths:
+  - { path: "{{ binaries_prefix[ansible_distribution].path }}",
+      become: "{{ binaries_prefix[ansible_distribution].become | default(False) }}" }
 misc_templates:
   - { src: ".guile", dest: "{{ ansible_env.HOME }}/.guile" }
   - { src: ".editorconfig", dest: "{{ workspace_path }}/.editorconfig" }

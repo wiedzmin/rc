@@ -5,6 +5,7 @@
   with_items:
     - "{{ playbook_dir }}/../private/private_vars.yml"
     - network.yml
+  when: ansible_distribution == "Gentoo"
 
 - name: network | setup devdns host <-> containers resolving
   tags: [network]
@@ -15,6 +16,7 @@
       prepend domain-name-servers 127.0.0.1;
   become: yes
   notify: restart dhcpcd
+  when: ansible_distribution == "Gentoo"
 
 - name: network | remove devdns host <-> containers resolving
   tags: [cleanup]
@@ -26,6 +28,7 @@
     state: absent
   become: yes
   notify: restart dhcpcd
+  when: ansible_distribution == "Gentoo"
 
 - name: network | instantiate hosts file
   tags: [network]
@@ -34,6 +37,7 @@
     dest: "/etc/hosts"
     mode: 0644
   become: yes
+  when: ansible_distribution == "Gentoo"
 
 - name: network | install devdns openrc entry
   tags: [network, services]
@@ -43,3 +47,4 @@
     mode: 0755
   become: yes
   notify: stop devdns service
+  when: ansible_distribution == "Gentoo"

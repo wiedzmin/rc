@@ -16,11 +16,11 @@
     state: directory
     mode: "{{ item.mode if 'mode' in item else 0755 }}"
     owner: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
-    group: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
+    group: "{{ item.group if 'group' in item else current_user_primary_group }}"
     recurse: "{{ item.recurse if 'recurse' in item else 'yes' }}"
   become: "{{ item.become if 'become' in item else 'no' }}"
   with_items: "{{ python_paths }}"
-  when: python_paths is defined
+  when: python_paths is defined and (('dists' in item and ansible_distribution in item.dists) or 'dists' not in item)
 
 - name: python | instantiate templates
   tags: [python]
@@ -29,7 +29,7 @@
     dest: "{{ item.dest }}"
     mode: "{{ item.mode if 'mode' in item else 0755 }}"
     owner: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
-    group: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
+    group: "{{ item.group if 'group' in item else current_user_primary_group }}"
   become: "{{ item.become if 'become' in item else 'no' }}"
   with_items: "{{ python_templates }}"
-  when: python_templates is defined
+  when: python_templates is defined and (('dists' in item and ansible_distribution in item.dists) or 'dists' not in item)

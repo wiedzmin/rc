@@ -11,3 +11,4 @@
         - gometalinter
       paths:
         - "{{ golang_bin_path }}"
+  when: ansible_distribution == "Gentoo"
