@@ -7,3 +7,4 @@ gqs_traits: { clone_from: "https://github.com/arzzen/git-quick-stats", local_pat
 hr_traits: { clone_from: "https://github.com/LuRsT/hr", local_path: "/tmp/hr" }
 shepherd_traits: { clone_from: "https://github.com/wiedzmin/shepherd", local_path: "/tmp/shepherd", binary: "shepherd" }
 tmuxifier_traits: { clone_from: "https://github.com/jimeh/tmuxifier", local_path: "{{ ansible_env.HOME }}/.tmuxifier" }
+ffdc_traits: { clone_from: "https://github.com/Unode/firefox_decrypt", local_path: "/tmp/firefox_decrypt" }

@@ -16,7 +16,6 @@ tmpfs_paths:
   - { path: "{{ ansible_env.HOME }}/.cache", uid: "1000", gid: "1000", size: "2G", mode: "0755"}
 emacs_config_name_literal: "{{ emacs_config_dir }}/config.org"
 emacs_config_name_tangled: "{{ emacs_config_dir }}/config.el"
-ffdc_traits: { clone_from: "https://github.com/Unode/firefox_decrypt", local_path: "/tmp/firefox_decrypt" }
 email_creds_path: "{{ ansible_env.HOME }}/docs/enc/cred"
 imapfilter_account_personal:
   address: "aaermolov@gmail.com"

@@ -163,3 +163,18 @@
     chdir: "{{ hr_traits.local_path }}"
     target: install
   become: yes
+
+- name: custom | FFDC | clone repo
+  tags: [custom, ffdc]
+  git:
+    repo: "{{ ffdc_traits.clone_from }}"
+    dest: "{{ ffdc_traits.local_path }}"
+    force: yes
+
+- name: custom | FFDC | install
+  tags: [custom, ffdc]
+  copy:
+    src: "{{ ffdc_traits.local_path }}/firefox_decrypt.py"
+    dest: "{{ binaries_prefix[ansible_distribution].path }}/firefox_decrypt.py"
+    mode: 0755
+  become: "{{ binaries_prefix[ansible_distribution].become | default(False)}}"
