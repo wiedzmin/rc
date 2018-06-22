@@ -1,7 +1,7 @@
 ---
 
 - include_vars: "{{ item }}"
-  tags: [custom, shepherd, tmux, buildapp, gqs, tg, tmuxifier, golang, zshnip, hr, tbdiff]
+  tags: [custom, shepherd, tmux, buildapp, gqs, tg, tmuxifier, golang, hr]
   with_items:
     - custom.yml
     - "{{ playbook_dir }}/../private/private_vars.yml"
@@ -116,21 +116,6 @@
 
 # TODO: https://github.com/asciimoo/wuzz - master/HEAD is broken (SIGSEGV), try later
 
-- name: custom | Zshnip | clone repo
-  tags: [custom, zshnip]
-  git:
-    repo: "{{ zshnip_traits.clone_from }}"
-    dest: "{{ zshnip_traits.local_path }}"
-    force: yes
-
-- name: custom | Zshnip | copy file(s)
-  tags: [custom, zshnip]
-  copy:
-    src: "{{ zshnip_traits.local_path }}/zshnip.zsh"
-    dest: "/usr/local/bin"
-    mode: 0755
-  become: yes
-
 - name: custom | hr | clone repository
   tags: [custom, hr]
   git:
@@ -143,19 +128,4 @@
   make:
     chdir: "{{ hr_traits.local_path }}"
     target: install
-  become: yes
-
-- name: custom | tbdiff | clone repository
-  tags: [custom, tbdiff]
-  git:
-    repo: "{{ tbdiff_traits.clone_from }}"
-    dest: "{{ tbdiff_traits.local_path }}"
-    force: yes
-
-- name: custom | tbdiff | install
-  tags: [custom, tbdiff]
-  copy:
-    src: "{{ tbdiff_traits.local_path }}/git-tbdiff.py"
-    dest: "/usr/local/bin/git-tbdiff"
-    mode: 0755
   become: yes

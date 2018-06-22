@@ -7,6 +7,4 @@ buildapp_traits: { clone_from: "https://github.com/xach/buildapp", local_path: "
 gqs_traits: { clone_from: "https://github.com/arzzen/git-quick-stats", local_path: "/tmp/git-quick-stats" }
 hr_traits: { clone_from: "https://github.com/LuRsT/hr", local_path: "/tmp/hr" }
 shepherd_traits: { clone_from: "https://github.com/wiedzmin/shepherd", local_path: "/tmp/shepherd", binary: "shepherd" }
-tbdiff_traits: { clone_from: "https://github.com/trast/tbdiff", local_path: "/tmp/tbdiff" }
 tmuxifier_traits: { clone_from: "https://github.com/jimeh/tmuxifier", local_path: "{{ ansible_env.HOME }}/.tmuxifier" }
-zshnip_traits: { clone_from: "https://github.com/facetframer/zshnip", local_path: "/tmp/zshnip" }

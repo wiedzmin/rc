@@ -26,9 +26,6 @@ bindkey "^xd" __enhancd::cd
 
 bindkey -r "^g"
 
-bindkey "j" zshnip-expand-or-edit
-bindkey "e" zshnip-edit-and-expand
-
 bindkey "^qs" fuzzy-search-and-edit
 zle -N fe
 bindkey "^qe" fe
