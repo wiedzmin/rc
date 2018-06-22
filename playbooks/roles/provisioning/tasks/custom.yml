@@ -103,6 +103,7 @@
 
 # TODO: think of TG themes automation
 
+# TODO: (alex3rd) add to bin_dirs in "workplace"
 - name: custom | tmuxifier | clone repo
   tags: [custom, tmuxifier]
   git:
@@ -110,11 +111,12 @@
     dest: "{{ tmuxifier_traits.local_path }}"
     force: yes
 
+#golang
 - name: custom | httplab | install
   tags: [custom, golang]
   shell: go get github.com/gchaincl/httplab
 
-# TODO: https://github.com/asciimoo/wuzz - master/HEAD is broken (SIGSEGV), try later
+# TODO: https://github.com/asciimoo/wuzz - master/HEAD is broken (SIGSEGV), try later #golang
 
 - name: custom | hr | clone repository
   tags: [custom, hr]
