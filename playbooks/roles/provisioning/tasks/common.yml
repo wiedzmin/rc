@@ -3,7 +3,9 @@
 - name: collect CPU flags
   shell: "cat /proc/cpuinfo | grep flags | head -1 | cut -d':' -f 2"
   register: cpu_flags_list
+  when: ansible_distribution == "Gentoo"
 
 - name: populate CPU flags fact
   set_fact:
     cpu_flags: "{{ cpu_flags_list.stdout.split(' ')[1:] }}"
+  when: ansible_distribution == "Gentoo"

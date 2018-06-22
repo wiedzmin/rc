@@ -1,6 +1,8 @@
 ---
 
 - import_tasks: portage.yml
+  when: ansible_distribution == "Gentoo"
+
 - import_tasks: system.yml
 - import_tasks: python.yml
 - import_tasks: golang.yml

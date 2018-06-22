@@ -1,0 +1,8 @@
+---
+
+binaries_prefix:
+  Gentoo:
+    path: /usr/local/bin
+    become: yes
+  NixOS:
+    path: "{{ ansible_env.HOME }}/scripts"

@@ -2,6 +2,7 @@
 
 - include_vars: system.yml
   tags: [system, kernel, permissions]
+  when: ansible_distribution == "Gentoo"
 
 - name: system | ensure paths
   tags: [system]
@@ -14,7 +15,7 @@
     recurse: "{{ item.recurse if 'recurse' in item else 'yes' }}"
   become: "{{ item.become if 'become' in item else 'no' }}"
   with_items: "{{ system_paths }}"
-  when: system_paths is defined
+  when: system_paths is defined and ansible_distribution == "Gentoo"
 
 - name: system | instantiate templates
   tags: [system]
@@ -26,7 +27,7 @@
     group: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
   become: "{{ item.become if 'become' in item else 'no' }}"
   with_items: "{{ system_templates }}"
-  when: system_templates is defined
+  when: system_templates is defined and ansible_distribution == "Gentoo"
 
 - name: ensure particular Linux kernel flags
   tags: [system, kernel]
@@ -37,12 +38,14 @@
     state: present
   with_items: "{{ system_kernel_flags | rejectattr('disabled', 'sameas', true) | list }}"
   become: yes
+  when: ansible_distribution == "Gentoo"
 
 - name: query Linux kernel source directory symlink
   tags: [system, kernel, permissions]
   stat:
     path: /usr/src/linux
   register: linux_kernel_symlink
+  when: ansible_distribution == "Gentoo"
 
 - name: fix kernel artifacts permissions
   tags: [system, kernel, permissions]
@@ -56,3 +59,4 @@
     - "{{ linux_kernel_symlink.stat.lnk_source }}"
     - "/lib/modules/{{ '-'.join(linux_kernel_symlink.stat.lnk_target.split('-')[1:]) }}"
   become: yes
+  when: ansible_distribution == "Gentoo"

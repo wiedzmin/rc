@@ -6,24 +6,26 @@
     - custom.yml
     - "{{ playbook_dir }}/../private/private_vars.yml"
 
-
 - name: custom | accompanying tools | shepherd (scheduling) | get
   tags: [custom, shepherd]
   git:
     repo: "{{ shepherd_traits.clone_from }}"
     dest: "{{ shepherd_traits.local_path }}"
     force: yes
+  when: ansible_distribution == "Gentoo"
 
 - name: custom | accompanying tools | shepherd (scheduling) | build
   tags: [custom, shepherd]
   shell: go build -o shepherd main.go
   args:
     chdir: "{{ shepherd_traits.local_path }}"
+  when: ansible_distribution == "Gentoo"
 
 - name: custom | accompanying tools | shepherd (scheduling) | install
   tags: [custom, shepherd]
   shell: "mv {{ shepherd_traits.local_path }}/{{ shepherd_traits.binary }} {{ binaries_prefix }}/{{ shepherd_traits.binary }}"
   become: yes
+  when: ansible_distribution == "Gentoo"
 
 - name: custom | install tmux plugin manager
   tags: [custom, tmux]
@@ -48,6 +50,30 @@
     - buildapp
     - install
   become: yes
+  when: ansible_distribution == "Gentoo"
+
+- name: custom | build Buildapp
+  tags: [custom, buildapp]
+  shell: "sbcl --eval \"(ql:quickload 'buildapp)\" --eval \"(buildapp:build-buildapp)\""
+  args:
+    chdir: "{{ buildapp_traits.local_path }}"
+  when: ansible_distribution == "NixOS"
+
+- name: custom | install Buildapp
+  tags: [custom, buildapp]
+  copy:
+    src: "{{ buildapp_traits.local_path }}/buildapp"
+    dest: "{{ binaries_prefix[ansible_distribution].path }}/buildapp"
+    mode: 0755
+  become: "{{ binaries_prefix[ansible_distribution].become | default(False)}}"
+  when: ansible_distribution == "NixOS"
+
+- name: custom | cleanup Buildapp build
+  tags: [custom, buildapp]
+  file:
+    path: "{{ buildapp_traits.local_path }}/buildapp"
+    state: absent
+  when: ansible_distribution == "NixOS"
 
 - name: custom | git-quick-stats | clone repository
   tags: [custom, gqs]
@@ -62,6 +88,16 @@
     chdir: "{{ gqs_traits.local_path }}"
     target: install
   become: yes
+  when: ansible_distribution == "Gentoo"
+
+- name: custom | git-quick-stats | install
+  tags: [custom, gqs]
+  copy:
+    src: "{{ gqs_traits.local_path }}/git-quick-stats"
+    dest: "{{ binaries_prefix[ansible_distribution].path }}/git-quick-stats"
+    mode: 0755
+  become: "{{ binaries_prefix[ansible_distribution].become | default(False)}}"
+  when: ansible_distribution == "NixOS"
 
 - name: custom | git-quick-stats | set permissions
   tags: [custom, gqs]
@@ -69,20 +105,14 @@
     path: "{{ binaries_prefix }}/git-quick-stats"
     mode: 0755
   become: yes
-
-- name: custom | git-quick-stats | uninstall
-  tags: [custom, gqs]
-  make:
-    chdir: "{{ gqs_traits.local_path }}"
-    target: uninstall
-  when:
-    - False # invoke directly
+  when: ansible_distribution == "Gentoo"
 
 - name: custom | TG Desktop | check local archive
   tags: [custom, tg]
   stat:
     path: /tmp/tsetup.tar.xz
   register: tsetup
+  when: ansible_distribution == "Gentoo"
 
 - name: custom | TG Desktop | download archive
   tags: [custom, tg]
@@ -90,7 +120,7 @@
     url: "https://updates.tdesktop.com/tlinux/tsetup.{{ telegram_version }}.tar.xz"
     dest: /tmp/tsetup.tar.xz
     force: yes
-  when: not tsetup.stat.exists
+  when: not tsetup.stat.exists and ansible_distribution == "Gentoo"
 
 - name: custom | TG Desktop | update binaries
   tags: [custom, tg]
@@ -100,6 +130,7 @@
     extra_opts:
       - "--strip=1"
   become: yes
+  when: ansible_distribution == "Gentoo"
 
 # TODO: think of TG themes automation
 
@@ -115,6 +146,7 @@
 - name: custom | httplab | install
   tags: [custom, golang]
   shell: go get github.com/gchaincl/httplab
+  when: ansible_distribution == "Gentoo"
 
 # TODO: https://github.com/asciimoo/wuzz - master/HEAD is broken (SIGSEGV), try later #golang
 

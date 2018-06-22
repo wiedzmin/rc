@@ -2,6 +2,7 @@
 
 - include_vars: golang.yml
   tags: [golang]
+  when: ansible_distribution == "Gentoo"
 
 - name: golang | check packages installed
   tags: [golang]
@@ -9,6 +10,7 @@
     path: "{{ golang_src_path }}/{{ item.url }}"
   register: packages_paths
   with_items: "{{ golang_package_urls }}"
+  when: ansible_distribution == "Gentoo"
 
 - name: golang | install Go packages from source
   tags: [golang]
@@ -17,7 +19,7 @@
     - "{{ golang_package_urls }}"
     - "{{ packages_paths.results }}"
   become: "{{ item.0.become }}"
-  when: "not item.1.stat.exists"
+  when: not item.1.stat.exists and ansible_distribution == "Gentoo"
 
 - name: golang | symlink Go tools binaries to mainstream path
   tags: [golang]
@@ -29,3 +31,4 @@
     - "{{ golang_bin_path }}/*"
   become: yes
   ignore_errors: yes
+  when: ansible_distribution == "Gentoo"

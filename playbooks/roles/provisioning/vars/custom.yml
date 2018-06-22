@@ -1,6 +1,5 @@
 ---
 
-binaries_prefix: /usr/local/bin
 user_group: octocat
 user_name: octocat
 buildapp_traits: { clone_from: "https://github.com/xach/buildapp", local_path: "/tmp/buildapp" }

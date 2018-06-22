@@ -2,6 +2,7 @@
 
 - include_vars: python.yml
   tags: [python]
+  when: ansible_distribution == "Gentoo"
 
 - name: python | install pip packages
   tags: [python]
@@ -10,3 +11,4 @@
     state: latest
     extra_args: --user
   with_items: "{{ python_pip_packages }}"
+  when: ansible_distribution == "Gentoo"

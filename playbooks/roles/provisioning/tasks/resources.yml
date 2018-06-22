@@ -2,6 +2,7 @@
 
 - include_vars: resources.yml
   tags: [resources]
+  when: ansible_distribution == "Gentoo"
 
 # TODO: generalize fonts installation
 
@@ -11,6 +12,7 @@
     repo: "{{ go_fonts_traits.clone_from }}"
     dest: "{{ go_fonts_traits.local_path }}"
     force: yes
+  when: ansible_distribution == "Gentoo"
 
 - name: resources | Go fonts | install
   tags: [resources]
@@ -18,6 +20,7 @@
     src: "{{ go_fonts_traits.local_path }}/{{ go_fonts_ttf_subpath }}"
     dest: "{{ fonts_ttf_location }}"
   become: yes
+  when: ansible_distribution == "Gentoo"
 
 # TODO: think of fonts setup automating (e.g. dowloading, copying, updating fontcache, whatever), consider links below
 # https://www.google.ru/search?q=powerline+consolas+linux
@@ -26,4 +29,3 @@
 # https://github.com/tonsky/FiraCode
 # https://wiki.archlinux.org/index.php/font_configuration
 # https://github.com/hbin/top-programming-fonts/blob/master/install.sh
-
