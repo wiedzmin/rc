@@ -34,9 +34,12 @@ xterm*color15: #FFFFFF
 
 dzen2.font: {{ xft_font_current.name }}{% if xft_font_current.is_bold %}:{{ xft_font_current.bold_keyword }}=Bold{% endif %}:size={{ xft_font_size_app }}
 
-*international: true
+Xmessage*faceName: {% for part in xft_font_current.name.split(' ') -%}{{ part }}{%- endfor %}
 
-Xmessage*font:                  xft:Iosevka:size=10:autohint=true:antialias=true
+{% if xft_font_current.is_bold %}Xmessage*faceWeight: bold{% endif %}
+
+Xmessage*faceSize: {{ xft_font_size_app }}
+
 Xmessage*background:            #3c3c3c
 Xmessage*foreground:            #c2c2c2
 Xmessage*form.*.shapeStyle:     rectangle
