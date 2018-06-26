@@ -142,13 +142,15 @@
     dest: "{{ tmuxifier_traits.local_path }}"
     force: yes
 
-#golang
 - name: custom | httplab | install
   tags: [custom, golang]
   shell: go get github.com/gchaincl/httplab
   when: ansible_distribution == "Gentoo"
 
-# TODO: https://github.com/asciimoo/wuzz - master/HEAD is broken (SIGSEGV), try later #golang
+- name: custom | httplab | install
+  tags: [custom, golang]
+  shell: go get github.com/asciimoo/wuzz
+  when: ansible_distribution == "Gentoo"
 
 - name: custom | hr | clone repository
   tags: [custom, hr]
