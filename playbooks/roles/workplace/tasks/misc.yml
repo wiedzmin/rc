@@ -33,14 +33,14 @@
   when: misc_templates is defined and (('dists' in item and ansible_distribution in item.dists) or 'dists' not in item)
 
 - name: misc | backup Emacs bookmarks
-  tags: [misc, backup]
+  tags: [misc, emacs]
   copy:
     src: "{{ emacs_config_dir }}/data/bookmark-default.el"
     dest: "{{ playbook_dir }}/../private/bookmarks/bookmark-default.el"
     mode: 0755
 
 - name: misc | restore Emacs bookmarks
-  tags: [misc, restore]
+  tags: [misc, emacs]
   copy:
     src: "{{ playbook_dir }}/../private/bookmarks/bookmark-default.el"
     dest: "{{ emacs_config_dir }}/data/bookmark-default.el"
