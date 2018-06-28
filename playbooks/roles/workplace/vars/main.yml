@@ -23,7 +23,7 @@ user_shells:
   - zsh
 default_user_shell: zsh
 bin_dirs:
-  - "$HOME/bin"
+  - "{{ binaries_prefix[ansible_distribution].path }}"
   - "$HOME/tools/bin"
   - "/usr/lib/go/bin"
   - "$HOME/workspace/gocode/bin"
