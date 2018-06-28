@@ -1,0 +1,59 @@
+---
+
+- name: custom | install tmux plugin manager
+  tags: [custom, tmux]
+  git:
+    repo: https://github.com/tmux-plugins/tpm
+    dest: "{{ ansible_env.HOME }}/.tmux/plugins/tpm"
+    force: yes
+
+- name: custom | Buildapp | clone repo
+  tags: [custom, buildapp]
+  git:
+    repo: "{{ buildapp_traits.clone_from }}"
+    dest: "{{ buildapp_traits.local_path }}"
+    force: yes
+
+- name: custom | git-quick-stats | clone repository
+  tags: [custom, gqs]
+  git:
+    repo: "{{ gqs_traits.clone_from }}"
+    dest: "{{ gqs_traits.local_path }}"
+    force: yes
+
+# TODO: (alex3rd) add to bin_dirs in "workplace"
+- name: custom | tmuxifier | clone repo
+  tags: [custom, tmuxifier]
+  git:
+    repo: "{{ tmuxifier_traits.clone_from }}"
+    dest: "{{ tmuxifier_traits.local_path }}"
+    force: yes
+
+- name: custom | hr | clone repository
+  tags: [custom, hr]
+  git:
+    repo: "{{ hr_traits.clone_from }}"
+    dest: "{{ hr_traits.local_path }}"
+    force: yes
+
+- name: custom | hr | install
+  tags: [custom, hr]
+  make:
+    chdir: "{{ hr_traits.local_path }}"
+    target: install
+  become: yes
+
+- name: custom | FFDC | clone repo
+  tags: [custom, ffdc]
+  git:
+    repo: "{{ ffdc_traits.clone_from }}"
+    dest: "{{ ffdc_traits.local_path }}"
+    force: yes
+
+- name: custom | FFDC | install
+  tags: [custom, ffdc]
+  copy:
+    src: "{{ ffdc_traits.local_path }}/firefox_decrypt.py"
+    dest: "{{ binaries_prefix[ansible_distribution].path }}/firefox_decrypt.py"
+    mode: 0755
+  become: "{{ binaries_prefix[ansible_distribution].become | default(False)}}"

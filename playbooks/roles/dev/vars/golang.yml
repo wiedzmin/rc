@@ -1,4 +1,0 @@
----
-
-golang_bin_path: "{{ ansible_env.HOME }}/workspace/gocode/bin"
-golang_src_path: "{{ ansible_env.HOME }}/workspace/gocode/src"

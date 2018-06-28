@@ -1,5 +1,25 @@
 ---
 
+- name: collect CPU flags
+  shell: "cat /proc/cpuinfo | grep flags | head -1 | cut -d':' -f 2"
+  register: cpu_flags_list
+  when: ansible_distribution == "Gentoo"
+
+- name: populate CPU flags fact
+  set_fact:
+    cpu_flags: "{{ cpu_flags_list.stdout.split(' ')[1:] }}"
+  when: ansible_distribution == "Gentoo"
+
+- name: gpg | get private key ID
+  tags: [common]
+  shell: "gpg2 --list-secret-keys --keyid-format LONG {{ gnupg_key_id }} | grep sec | cut -d' ' -f 4 | cut -d'/' -f 2"
+  register: gpg_private_key_id
+
+- name: facts | gpg private key id
+  tags: [common]
+  set_fact:
+    gpg_private_key_id: "{{ gpg_private_key_id.stdout }}"
+
 - name: shells | collect binaries
   tags: [common]
   shell: "which {{ item }}"

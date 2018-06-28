@@ -1,0 +1,82 @@
+---
+
+- include_vars: "{{ item }}"
+  tags: [custom, shepherd, tmux, buildapp, gqs, tg, tmuxifier, golang, hr]
+  with_items:
+    - custom.yml
+    - "{{ playbook_dir }}/../private/private_vars.yml"
+
+- import_tasks: custom.yml
+
+- name: custom | accompanying tools | shepherd (scheduling) | get
+  tags: [custom, shepherd]
+  git:
+    repo: "{{ shepherd_traits.clone_from }}"
+    dest: "{{ shepherd_traits.local_path }}"
+    force: yes
+
+- name: custom | accompanying tools | shepherd (scheduling) | build
+  tags: [custom, shepherd]
+  shell: go build -o shepherd main.go
+  args:
+    chdir: "{{ shepherd_traits.local_path }}"
+
+- name: custom | accompanying tools | shepherd (scheduling) | install
+  tags: [custom, shepherd]
+  shell: "mv {{ shepherd_traits.local_path }}/{{ shepherd_traits.binary }} {{ binaries_prefix }}/{{ shepherd_traits.binary }}"
+  become: yes
+
+- name: custom | Buildapp | build/install
+  tags: [custom, buildapp]
+  make:
+    chdir: "{{ buildapp_traits.local_path }}"
+    target: "{{ item }}"
+  with_items:
+    - buildapp
+    - install
+  become: yes
+
+- name: custom | git-quick-stats | install
+  tags: [custom, gqs]
+  make:
+    chdir: "{{ gqs_traits.local_path }}"
+    target: install
+  become: yes
+
+- name: custom | git-quick-stats | set permissions
+  tags: [custom, gqs]
+  file:
+    path: "{{ binaries_prefix }}/git-quick-stats"
+    mode: 0755
+  become: yes
+
+- name: custom | TG Desktop | check local archive
+  tags: [custom, tg]
+  stat:
+    path: /tmp/tsetup.tar.xz
+  register: tsetup
+
+- name: custom | TG Desktop | download archive
+  tags: [custom, tg]
+  get_url:
+    url: "https://updates.tdesktop.com/tlinux/tsetup.{{ telegram_version }}.tar.xz"
+    dest: /tmp/tsetup.tar.xz
+    force: yes
+  when: not tsetup.stat.exists
+
+- name: custom | TG Desktop | update binaries
+  tags: [custom, tg]
+  unarchive:
+    src: /tmp/tsetup.tar.xz
+    dest: /usr/local/bin
+    extra_opts:
+      - "--strip=1"
+  become: yes
+
+- name: custom | httplab | install
+  tags: [custom, golang]
+  shell: go get github.com/gchaincl/httplab
+
+- name: custom | httplab | install
+  tags: [custom, golang]
+  shell: go get github.com/asciimoo/wuzz

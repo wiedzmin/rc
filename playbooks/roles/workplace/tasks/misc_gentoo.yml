@@ -1,0 +1,44 @@
+---
+
+- include_vars: "{{ item }}"
+  tags: [misc, scripts, services, backup, restore, shepherd, imapfilter, thd]
+  with_items:
+    - misc.yml
+    - "{{ playbook_dir }}/../private/private_vars.yml"
+    - "{{ playbook_dir }}/../private/imap_filters.yml"
+
+- import_tasks: misc.yml
+
+- name: misc | install zealdocs openrc entry
+  tags: [misc, services]
+  copy:
+    content: "{{ lookup('template', 'services/zealdocs.openrc') }}"
+    dest: "/etc/init.d/zealdocs"
+    mode: 0755
+  become: yes
+  notify: stop zealdocs service
+
+- name: misc | accompanying tools | shepherd (scheduling) | copy jobs definitions
+  tags: [misc, shepherd]
+  copy:
+    src: "{{ playbook_dir }}/../private/shepherd-jobs"
+    dest: "{{ ansible_env.HOME }}/shepherd-jobs.yml"
+    mode: 0755
+  notify: services | shepherd | restart service
+
+- name: misc | imapfilter | copy generated config file
+  tags: [misc, imapfilter]
+  copy:
+    content: "{{ lookup('template', 'mail/imapfilter.conf.lua') }}"
+    dest: "{{ ansible_env.HOME }}/.imapfilter/config.lua"
+  notify:
+    - services | imapfilter | restart service
+
+- name: misc | mount some directories as tmpfs
+  tags: [misc]
+  lineinfile:
+    dest: /etc/fstab
+    line: 'tmpfs                   {{ item.path }}       tmpfs   uid={{ item.uid }},gid={{ item.gid }},size={{ item.size }},mode={{ item.mode }}      0 1'
+    state: present
+  become: yes
+  with_items: "{{ tmpfs_paths }}"

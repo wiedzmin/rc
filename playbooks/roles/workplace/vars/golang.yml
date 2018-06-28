@@ -1,5 +1,7 @@
 ---
 
+golang_bin_path: "{{ ansible_env.HOME }}/workspace/gocode/bin"
+golang_src_path: "{{ ansible_env.HOME }}/workspace/gocode/src"
 golang_package_urls:
   - { url: "github.com/nsf/gocode", become: no }
   - { url: "github.com/rogpeppe/godef", become: no }

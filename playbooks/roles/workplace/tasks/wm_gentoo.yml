@@ -12,7 +12,6 @@
     force: yes
   when:
     - xsession_current_wm == "stumpwm"
-    - ansible_distribution == "Gentoo"
 
 - name: wm | stumpwm | check configure script
   tags: [wm]
@@ -20,7 +19,6 @@
   register: stumpwm_configure
   when:
     - xsession_current_wm == "stumpwm"
-    - ansible_distribution == "Gentoo"
 
 - name: wm | stumpwm | maybe autoconf
   tags: [wm]
@@ -30,7 +28,6 @@
   when:
     - stumpwm_configure.stat.exists == False
     - xsession_current_wm == "stumpwm"
-    - ansible_distribution == "Gentoo"
 
 - name: wm | stumpwm | configure
   tags: [wm]
@@ -39,7 +36,6 @@
     chdir: "{{ x11_stumpwm_traits.local_path }}"
   when:
     - xsession_current_wm == "stumpwm"
-    - ansible_distribution == "Gentoo"
 
 - name: wm | stumpwm | patch binary image creation
   tags: [wm]
@@ -49,7 +45,6 @@
     line: "                                    :compression t"
   when:
     - xsession_current_wm == "stumpwm"
-    - ansible_distribution == "Gentoo"
 
 - name: wm | stumpwm | cleanup
   tags: [wm]
@@ -58,7 +53,6 @@
     chdir: "{{ x11_stumpwm_traits.local_path }}"
   when:
     - xsession_current_wm == "stumpwm"
-    - ansible_distribution == "Gentoo"
 
 - name: wm | stumpwm | build
   tags: [wm]
@@ -66,7 +60,6 @@
     chdir: "{{ x11_stumpwm_traits.local_path }}"
   when:
     - xsession_current_wm == "stumpwm"
-    - ansible_distribution == "Gentoo"
 
 - name: wm | stumpwm | install
   tags: [wm]
@@ -76,7 +69,6 @@
   become: yes
   when:
     - xsession_current_wm == "stumpwm"
-    - ansible_distribution == "Gentoo"
 
 - name: wm | generate common settings for StumpWM
   tags: [wm]
@@ -86,4 +78,3 @@
     mode: 0644
   when:
     - xsession_current_wm == "stumpwm"
-    - ansible_distribution == "Gentoo"

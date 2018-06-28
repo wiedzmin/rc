@@ -1,5 +1,20 @@
 ---
 
+python_pip_packages:
+  - "GitPython"
+  - "autopep8"
+  - "flake8"
+  - "imapautofiler"
+  - "importmagic"
+  - "isort"
+  - "jedi"
+  - "jmespath"
+  - "olefile"
+  - "rst2pdf"
+  - "snakeviz"
+  - "traad"
+  - "virtualenvwrapper"
+  - "yapf"
 python_virtualenvs_path: "{{ ansible_env.HOME }}/.virtualenvs"
 python_paths:
   - { path: "{{ python_virtualenvs_path }}", recurse: no }

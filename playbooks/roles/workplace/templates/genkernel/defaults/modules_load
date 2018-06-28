@@ -1,66 +1,66 @@
 # Module groups for genkernel initramfs auto-loading
 
-{% set modules_ataraid_list = genkernel_modules_ataraid | rejectattr('disabled', 'sameas', true) | list %}
+{% set modules_ataraid_list = system_genkernel_modules_ataraid | rejectattr('disabled', 'sameas', true) | list %}
 {% if modules_ataraid_list | length > 0 %}
 MODULES_ATARAID="{{ modules_ataraid_list | map(attribute='name') | join(' ') }}"
 {% endif %}
-{% set modules_dmraid_list = genkernel_modules_dmraid | rejectattr('disabled', 'sameas', true) | list %}
+{% set modules_dmraid_list = system_genkernel_modules_dmraid | rejectattr('disabled', 'sameas', true) | list %}
 {% if modules_dmraid_list | length > 0 %}
 MODULES_DMRAID="{{ modules_dmraid_list | map(attribute='name') | join(' ') }}"
 {% endif %}
-{% set modules_lvm_list = genkernel_modules_lvm | rejectattr('disabled', 'sameas', true) | list %}
+{% set modules_lvm_list = system_genkernel_modules_lvm | rejectattr('disabled', 'sameas', true) | list %}
 {% if modules_lvm_list | length > 0 %}
 MODULES_LVM="{{ modules_lvm_list | map(attribute='name') | join(' ') }}"
 {% endif %}
-{% set modules_mdadm_list = genkernel_modules_mdadm | rejectattr('disabled', 'sameas', true) | list %}
+{% set modules_mdadm_list = system_genkernel_modules_mdadm | rejectattr('disabled', 'sameas', true) | list %}
 {% if modules_mdadm_list | length > 0 %}
 MODULES_MDADM="{{ modules_mdadm_list | map(attribute='name') | join(' ') }}"
 {% endif %}
-{% set modules_multipath_list = genkernel_modules_multipath | rejectattr('disabled', 'sameas', true) | list %}
+{% set modules_multipath_list = system_genkernel_modules_multipath | rejectattr('disabled', 'sameas', true) | list %}
 {% if modules_multipath_list | length > 0 %}
 MODULES_MULTIPATH="{{ modules_multipath_list | map(attribute='name') | join(' ') }}"
 {% endif %}
-{% set modules_pata_list = genkernel_modules_pata | rejectattr('disabled', 'sameas', true) | list %}
+{% set modules_pata_list = system_genkernel_modules_pata | rejectattr('disabled', 'sameas', true) | list %}
 {% if modules_pata_list | length > 0 %}
 MODULES_PATA="{{ modules_pata_list | map(attribute='name') | join(' ') }}"
 {% endif %}
-{% set modules_sata_list = genkernel_modules_sata | rejectattr('disabled', 'sameas', true) | list %}
+{% set modules_sata_list = system_genkernel_modules_sata | rejectattr('disabled', 'sameas', true) | list %}
 {% if modules_sata_list | length > 0 %}
 MODULES_SATA="{{ modules_sata_list | map(attribute='name') | join(' ') }}"
 {% endif %}
-{% set modules_scsi_list = genkernel_modules_scsi | rejectattr('disabled', 'sameas', true) | list %}
+{% set modules_scsi_list = system_genkernel_modules_scsi | rejectattr('disabled', 'sameas', true) | list %}
 {% if modules_scsi_list | length > 0 %}
 MODULES_SCSI="{{ modules_scsi_list | map(attribute='name') | join(' ') }}"
 {% endif %}
-{% set modules_waitscan_list = genkernel_modules_waitscan | rejectattr('disabled', 'sameas', true) | list %}
+{% set modules_waitscan_list = system_genkernel_modules_waitscan | rejectattr('disabled', 'sameas', true) | list %}
 {% if modules_waitscan_list | length > 0 %}
 MODULES_WAITSCAN="{{ modules_waitscan_list | map(attribute='name') | join(' ') }}"
 {% endif %}
-{% set modules_net_list = genkernel_modules_net | rejectattr('disabled', 'sameas', true) | list %}
+{% set modules_net_list = system_genkernel_modules_net | rejectattr('disabled', 'sameas', true) | list %}
 {% if modules_net_list | length > 0 %}
 MODULES_NET="{{ modules_net_list | map(attribute='name') | join(' ') }}"
 {% endif %}
-{% set modules_iscsi_list = genkernel_modules_iscsi | rejectattr('disabled', 'sameas', true) | list %}
+{% set modules_iscsi_list = system_genkernel_modules_iscsi | rejectattr('disabled', 'sameas', true) | list %}
 {% if modules_iscsi_list | length > 0 %}
 MODULES_ISCSI="{{ modules_iscsi_list | map(attribute='name') | join(' ') }}"
 {% endif %}
-{% set modules_firewire_list = genkernel_modules_firewire | rejectattr('disabled', 'sameas', true) | list %}
+{% set modules_firewire_list = system_genkernel_modules_firewire | rejectattr('disabled', 'sameas', true) | list %}
 {% if modules_firewire_list | length > 0 %}
 MODULES_FIREWIRE="{{ modules_firewire_list | map(attribute='name') | join(' ') }}"
 {% endif %}
-{% set modules_pcmcia_list = genkernel_modules_pcmcia | rejectattr('disabled', 'sameas', true) | list %}
+{% set modules_pcmcia_list = system_genkernel_modules_pcmcia | rejectattr('disabled', 'sameas', true) | list %}
 {% if modules_pcmcia_list | length > 0 %}
 MODULES_PCMCIA="{{ modules_pcmcia_list | map(attribute='name') | join(' ') }}"
 {% endif %}
-{% set modules_usb_list = genkernel_modules_usb | rejectattr('disabled', 'sameas', true) | list %}
+{% set modules_usb_list = system_genkernel_modules_usb | rejectattr('disabled', 'sameas', true) | list %}
 {% if modules_usb_list | length > 0 %}
 MODULES_USB="{{ modules_usb_list | map(attribute='name') | join(' ') }}"
 {% endif %}
-{% set modules_fs_list = genkernel_modules_fs | rejectattr('disabled', 'sameas', true) | list %}
+{% set modules_fs_list = system_genkernel_modules_fs | rejectattr('disabled', 'sameas', true) | list %}
 {% if modules_fs_list | length > 0 %}
 MODULES_FS="{{ modules_fs_list | map(attribute='name') | join(' ') }}"
 {% endif %}
-{% set modules_crypto_list = genkernel_modules_crypto | rejectattr('disabled', 'sameas', true) | list %}
+{% set modules_crypto_list = system_genkernel_modules_crypto | rejectattr('disabled', 'sameas', true) | list %}
 {% if modules_crypto_list | length > 0 %}
 MODULES_CRYPTO="{{ modules_crypto_list | map(attribute='name') | join(' ') }}"
 {% endif %}

@@ -1,9 +1,13 @@
 misc_paths:
+  - { path: "{{ binaries_prefix[ansible_distribution].path }}",
+      become: "{{ binaries_prefix[ansible_distribution].become | default(False) }}" }
   - { path: "{{ ansible_env.HOME }}/.gnupg", mode: '0700', become: yes }
   - { path: "{{ ansible_env.HOME }}/.imapfilter" }
   - { path: "{{ ansible_env.HOME }}/.ssh", mode: '0700', recurse: no }
   - { path: "{{ ansible_env.HOME }}/pids", become: yes, dists: ["Gentoo"] }
 misc_templates:
+  - { src: ".guile", dest: "{{ ansible_env.HOME }}/.guile" }
+  - { src: ".editorconfig", dest: "{{ workspace_path }}/.editorconfig" }
   - { src: "gnupg/gpg-agent.conf", dest: "{{ ansible_env.HOME }}/.gnupg/gpg-agent.conf", mode: '0600', become: yes }
   - { src: "gnupg/gpg.conf", dest: "{{ ansible_env.HOME }}/.gnupg/gpg.conf", mode: '0600', become: yes }
   - { src: "mail/.mailcap", dest: "{{ ansible_env.HOME }}/.mailcap" }

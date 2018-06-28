@@ -2,12 +2,10 @@
 
 - include_vars: virt.yml
   tags: [virt, docker, machine]
-  when: ansible_distribution == "Gentoo"
 
 - name: virt | allow Docker to connect to local X server
   tags: [docker]
   shell: xhost +local:dockerfile
-  when: ansible_distribution == "Gentoo"
 
 - name: virt | instantiate Docker config
   tags: [docker]
@@ -19,7 +17,6 @@
     group: root
   become: yes
   notify: restart Docker service
-  when: ansible_distribution == "Gentoo"
 
 - name: virt | docker-machine | clone
   tags: [docker, machine]
@@ -27,11 +24,9 @@
     repo: "{{ docker_machine_traits.clone_from }}"
     dest: "{{ docker_machine_traits.local_path }}"
     force: yes
-  when: ansible_distribution == "Gentoo"
 
 - name: virt | docker-machine | install Zsh completions
   tags: [docker, machine]
   copy:
     src: "{{ docker_machine_traits.local_path }}/contrib/completion/zsh/_docker-machine"
     dest: "{{ zsh_subconfig_path }}/completion/_docker-machine"
-  when: ansible_distribution == "Gentoo"

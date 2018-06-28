@@ -5,10 +5,51 @@
   register: current_run_timestamp
   tags: [always]
 
-- import_tasks: shell.yml
-- import_tasks: x11.yml
-- import_tasks: misc.yml
-- import_tasks: services.yml
-- import_tasks: scanner.yml
-- import_tasks: wm.yml
+- import_tasks: portage.yml
+  when: ansible_distribution == "Gentoo"
+
+- import_tasks: resources_gentoo.yml
+  when: ansible_distribution == "Gentoo"
+
 - import_tasks: system.yml
+
+- import_tasks: network_gentoo.yml
+  when: ansible_distribution == "Gentoo"
+
+- import_tasks: git.yml
+
+- import_tasks: golang_gentoo.yml
+  when: ansible_distribution == "Gentoo"
+
+- import_tasks: python.yml
+
+- import_tasks: virt_gentoo.yml
+  when: ansible_distribution == "Gentoo"
+
+- import_tasks: vpn_gentoo.yml
+  when: ansible_distribution == "Gentoo"
+
+- import_tasks: misc_gentoo.yml
+  when: ansible_distribution == "Gentoo"
+
+- import_tasks: misc_nixos.yml
+  when: ansible_distribution == "NixOS"
+
+- import_tasks: scanner_gentoo.yml
+  when: ansible_distribution == "Gentoo"
+
+- import_tasks: services_gentoo.yml
+  when: ansible_distribution == "Gentoo"
+
+- import_tasks: shell.yml
+
+- import_tasks: wm_gentoo.yml
+  when: ansible_distribution == "Gentoo"
+
+- import_tasks: x11.yml
+
+- import_tasks: custom_gentoo.yml
+  when: ansible_distribution == "Gentoo"
+
+- import_tasks: custom_nixos.yml
+  when: ansible_distribution == "NixOS"

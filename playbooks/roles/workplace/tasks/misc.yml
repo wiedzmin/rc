@@ -1,8 +1,4 @@
-- include_vars: "{{ item }}"
-  tags: [misc, backup, restore, shepherd, imapfilter, thd]
-  with_items:
-    - misc.yml
-    - "{{ playbook_dir }}/../private/imap_filters.yml"
+---
 
 - import_tasks: common.yml
   tags: [misc]
@@ -32,6 +28,16 @@
   with_items: "{{ misc_templates }}"
   when: misc_templates is defined and (('dists' in item and ansible_distribution in item.dists) or 'dists' not in item)
 
+- name: misc | copy custom scripts
+  tags: [misc, scripts]
+  copy:
+    content: "{{ lookup('template', 'scripts/{{ item | basename }}') }}"
+    dest: "{{ binaries_prefix[ansible_distribution].path }}/{{ item | basename }}"
+    mode: 0755
+  with_fileglob:
+    - "{{ role_path }}/templates/scripts/*"
+  become: "{{ binaries_prefix[ansible_distribution].become | default(False) }}"
+
 - name: misc | backup Emacs bookmarks
   tags: [misc, emacs]
   copy:
@@ -46,81 +52,4 @@
     dest: "{{ emacs_config_dir }}/data/bookmark-default.el"
     mode: 0755
 
-- name: misc | accompanying tools | shepherd (scheduling) | copy jobs definitions
-  tags: [misc, shepherd]
-  copy:
-    src: "{{ playbook_dir }}/../private/shepherd-jobs"
-    dest: "{{ ansible_env.HOME }}/shepherd-jobs.yml"
-    mode: 0755
-  notify: services | shepherd | restart service
-  when: ansible_distribution == "Gentoo"
-
-- name: misc | accompanying tools | shepherd (scheduling) | copy jobs definitions
-  tags: [misc, shepherd]
-  copy:
-    src: "{{ playbook_dir }}/../private/shepherd-jobs"
-    dest: "{{ ansible_env.HOME }}/shepherd-jobs.yml"
-    mode: 0755
-  when: ansible_distribution == "NixOS"
-
-- name: misc | imapfilter | copy generated config file
-  tags: [misc, imapfilter]
-  copy:
-    content: "{{ lookup('template', 'mail/imapfilter.conf.lua') }}"
-    dest: "{{ ansible_env.HOME }}/.imapfilter/config.lua"
-  notify:
-    - services | imapfilter | restart service
-  when: ansible_distribution == "Gentoo"
-
-- name: misc | imapfilter | copy generated config file
-  tags: [misc, imapfilter]
-  copy:
-    content: "{{ lookup('template', 'mail/imapfilter.conf.lua') }}"
-    dest: "{{ ansible_env.HOME }}/.imapfilter/config.lua"
-  when: ansible_distribution == "NixOS"
-  # TODO: (alex3rd) define a service in NixOS configuration
-
-# DISCLAIMER: at the moment most of started containers are planned to stop/remove manually
-
-- name: misc | THD | prepare temporary dir
-  tags: [misc, thd]
-  file:
-    path: "{{ thd_tmp_dir }}/private/downloads"
-    state: directory
-    mode: 0755
-    recurse: yes
-
-- name: misc | THD | prepare temporary dir
-  tags: [misc, thd]
-  copy:
-    content: "{{ lookup('template', '{{ item.src }}') }}"
-    dest: "{{ item.dest }}"
-    mode: 0755
-  with_items:
-    - { src: "thd/Dockerfile-thd", dest: "{{ thd_tmp_dir }}/Dockerfile-thd" }
-    - { src: "thd/config.j2", dest: "{{ thd_tmp_dir }}/thd_config.yaml" }
-    - { src: "thd/docker-compose.yml", dest: "{{ thd_tmp_dir }}/docker-compose.yml" }
-    - { src: "thd/thd.sh", dest: "{{ thd_tmp_dir }}/thd.sh" }
-
-- name: misc | THD | extract binary part
-  tags: [misc, thd]
-  unarchive:
-    src: "{{ playbook_dir }}/../private/telegram.tar.gz"
-    dest: "{{ thd_tmp_dir }}/private"
-
-- name: misc | THD | start service
-  tags: [misc, thd]
-  docker_service:
-    project_src: "{{ thd_tmp_dir }}"
-    build: yes
-  when: ansible_distribution == "Gentoo" # TODO: (alex3rd) get docker-py installed on NixOS
-
-- name: misc | mount some directories as tmpfs
-  tags: [misc]
-  lineinfile:
-    dest: /etc/fstab
-    line: 'tmpfs                   {{ item.path }}       tmpfs   uid={{ item.uid }},gid={{ item.gid }},size={{ item.size }},mode={{ item.mode }}      0 1'
-    state: present
-  become: yes
-  with_items: "{{ tmpfs_paths }}"
-  when: ansible_distribution == "Gentoo"
+# TODO: (alex3rd) change TG backup implementation, see TODO items

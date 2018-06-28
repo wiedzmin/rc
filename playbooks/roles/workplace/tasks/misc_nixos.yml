@@ -1,0 +1,26 @@
+---
+
+- include_vars: "{{ item }}"
+  tags: [misc, scripts, services, backup, restore, shepherd, imapfilter, thd]
+  with_items:
+    - misc.yml
+    - "{{ playbook_dir }}/../private/private_vars.yml"
+    - "{{ playbook_dir }}/../private/imap_filters.yml"
+
+- import_tasks: misc.yml
+
+- name: misc | accompanying tools | shepherd (scheduling) | copy jobs definitions
+  tags: [misc, shepherd]
+  copy:
+    src: "{{ playbook_dir }}/../private/shepherd-jobs"
+    dest: "{{ ansible_env.HOME }}/shepherd-jobs.yml"
+    mode: 0755
+  when: ansible_distribution == "NixOS"
+
+- name: misc | imapfilter | copy generated config file
+  tags: [misc, imapfilter]
+  copy:
+    content: "{{ lookup('template', 'mail/imapfilter.conf.lua') }}"
+    dest: "{{ ansible_env.HOME }}/.imapfilter/config.lua"
+  when: ansible_distribution == "NixOS"
+  # TODO: (alex3rd) define a service in NixOS configuration

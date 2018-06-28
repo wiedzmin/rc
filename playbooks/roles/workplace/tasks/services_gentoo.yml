@@ -1,6 +1,5 @@
 - include_vars: services.yml
   tags: [services, shepherd, sshuttle, imapfilter, syndaemon]
-  when: ansible_distribution == "Gentoo"
 
 - name: services | shepherd | install openrc entry
   tags: [services, shepherd]
@@ -9,7 +8,6 @@
     dest: "/etc/init.d/shepherd"
     mode: 0755
   become: yes
-  when: ansible_distribution == "Gentoo"
 
 - name: services | sshuttle | install openrc entry
   tags: [services, sshuttle]
@@ -18,7 +16,6 @@
     dest: "/etc/init.d/sshuttle"
     mode: 0755
   become: yes
-  when: ansible_distribution == "Gentoo"
 
 - name: services | imapfilter | install openrc entry
   tags: [services, imapfilter]
@@ -27,4 +24,3 @@
     dest: "/etc/init.d/imapfilter"
     mode: 0755
   become: yes
-  when: ansible_distribution == "Gentoo"

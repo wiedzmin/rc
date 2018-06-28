@@ -1,23 +1,5 @@
 ---
 
-- name: services | shepherd | restart service
-  service:
-    name: shepherd
-    state: restarted
-  become: yes
-  when: ansible_distribution == "Gentoo"
-
-# TODO: find a way to trigger this
-- name: services | sshuttle | restart service
-  service:
-    name: sshuttle
-    state: restarted
-  become: yes
-  when: ansible_distribution == "Gentoo"
-
-- name: services | imapfilter | restart service
-  service:
-    name: imapfilter
-    state: restarted
-  become: yes
-  when: ansible_distribution == "Gentoo"
+- import_tasks: provisioning.yml
+- import_tasks: dev.yml
+- import_tasks: workplace.yml

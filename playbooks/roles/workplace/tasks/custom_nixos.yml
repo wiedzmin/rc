@@ -1,0 +1,37 @@
+---
+
+- include_vars: "{{ item }}"
+  tags: [custom, shepherd, tmux, buildapp, gqs, tg, tmuxifier, golang, hr]
+  with_items:
+    - custom.yml
+    - "{{ playbook_dir }}/../private/private_vars.yml"
+
+- import_tasks: custom.yml
+
+- name: custom | build Buildapp
+  tags: [custom, buildapp]
+  shell: "sbcl --eval \"(ql:quickload 'buildapp)\" --eval \"(buildapp:build-buildapp)\""
+  args:
+    chdir: "{{ buildapp_traits.local_path }}"
+
+- name: custom | install Buildapp
+  tags: [custom, buildapp]
+  copy:
+    src: "{{ buildapp_traits.local_path }}/buildapp"
+    dest: "{{ binaries_prefix[ansible_distribution].path }}/buildapp"
+    mode: 0755
+  become: "{{ binaries_prefix[ansible_distribution].become | default(False)}}"
+
+- name: custom | cleanup Buildapp build
+  tags: [custom, buildapp]
+  file:
+    path: "{{ buildapp_traits.local_path }}/buildapp"
+    state: absent
+
+- name: custom | git-quick-stats | install
+  tags: [custom, gqs]
+  copy:
+    src: "{{ gqs_traits.local_path }}/git-quick-stats"
+    dest: "{{ binaries_prefix[ansible_distribution].path }}/git-quick-stats"
+    mode: 0755
+  become: "{{ binaries_prefix[ansible_distribution].become | default(False)}}"
