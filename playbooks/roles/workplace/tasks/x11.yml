@@ -14,11 +14,11 @@
     state: directory
     mode: "{{ item.mode if 'mode' in item else 0755 }}"
     owner: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
-    group: "{{ item.user if 'user' in item else lookup('env', 'USER') }}" # TODO: think of decoupling from 'user' value
+    group: "{{ item.group if 'group' in item else current_user_primary_group }}"
     recurse: "{{ item.recurse if 'recurse' in item else 'yes' }}"
   become: "{{ item.become if 'become' in item else 'no' }}"
   with_items: "{{ x11_paths }}"
-  when: x11_paths is defined
+  when: x11_paths is defined and (('dists' in item and ansible_distribution in item.dists) or 'dists' not in item)
 
 - name: x11 | instantiate templates
   tags: [x11]
@@ -27,22 +27,15 @@
     dest: "{{ item.dest }}"
     mode: "{{ item.mode if 'mode' in item else 0755 }}"
     owner: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
-    group: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
+    group: "{{ item.group if 'group' in item else current_user_primary_group }}"
   become: "{{ item.become if 'become' in item else 'no' }}"
   with_items: "{{ x11_templates }}"
-  when: x11_templates is defined
+  when: x11_templates is defined and (('dists' in item and ansible_distribution in item.dists) or 'dists' not in item)
 
 - name: x11 | Synaptics xinput ID
   tags: [x11]
   shell: "xinput | grep Synaptics | cut -f2 | cut -d'=' -f2"
   register: x11_xinput_synaptics_id
-
-- name: x11 | register org-protocol handler in mimeapps
-  tags: [x11]
-  lineinfile:
-    dest: "{{ ansible_env.HOME }}/.local/share/applications/mimeapps.list"
-    line: x-scheme-handler/org-protocol=emacsclient.desktop
-    state: present
 
 - name: x11 | setup xdg-open associations
   tags: [x11]
@@ -53,10 +46,18 @@
   tags: [x11]
   shell: "update-desktop-database ~/.local/share/applications/"
 
+- name: x11 | register org-protocol handler in mimeapps
+  tags: [x11]
+  lineinfile:
+    dest: "{{ ansible_env.HOME }}/.local/share/applications/mimeapps.list"
+    line: x-scheme-handler/org-protocol=emacsclient.desktop
+    state: present
+
 - name: x11 | update XDG user dirs
   tags: [x11]
   shell: "xdg-user-dirs-update --set {{ item.name | upper}} {{ item.value }}"
   with_items: "{{ xdg_user_dirs }}"
+  when: ansible_distribution == "Gentoo"
 
 - name: x11 | generate .xsession script
   tags: [x11]
@@ -65,6 +66,7 @@
     dest: "{{ ansible_env.HOME }}/.xsession"
     mode: 0755
   register: xsession_script
+  when: ansible_distribution == "Gentoo"
 
 - name: x11 | remove tangled Emacs config
   tags: [x11]
@@ -73,3 +75,4 @@
     state: absent
   when:
     - xsession_script.changed
+    - ansible_distribution == "Gentoo"

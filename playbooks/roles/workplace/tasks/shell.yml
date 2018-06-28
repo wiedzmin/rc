@@ -11,11 +11,11 @@
     state: directory
     mode: "{{ item.mode if 'mode' in item else 0755 }}"
     owner: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
-    group: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
+    group: "{{ item.group if 'group' in item else current_user_primary_group }}"
     recurse: "{{ item.recurse if 'recurse' in item else 'yes' }}"
   become: "{{ item.become if 'become' in item else 'no' }}"
   with_items: "{{ shell_paths }}"
-  when: shell_paths is defined
+  when: shell_paths is defined and (('dists' in item and ansible_distribution in item.dists) or 'dists' not in item)
 
 - name: shell | instantiate templates
   tags: [shell]
@@ -24,10 +24,10 @@
     dest: "{{ item.dest }}"
     mode: "{{ item.mode if 'mode' in item else 0755 }}"
     owner: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
-    group: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
+    group: "{{ item.group if 'group' in item else current_user_primary_group }}"
   become: "{{ item.become if 'become' in item else 'no' }}"
   with_items: "{{ shell_templates }}"
-  when: shell_templates is defined
+  when: shell_templates is defined and (('dists' in item and ansible_distribution in item.dists) or 'dists' not in item)
 
 - name: shell | ensure groups exist
   tags: [shell]
@@ -36,6 +36,7 @@
     state: present
   with_items: "{{ default_user_groups }}"
   become: yes
+  when: ansible_distribution == "Gentoo"
 
 - name: shell | ensure default user traits
   tags: [shell]
@@ -44,11 +45,13 @@
     shell: "{{ user_shell_binaries[default_user_shell] }}"
     groups: "{{ default_user_groups | join(',') }}"
   become: yes
+  when: ansible_distribution == "Gentoo"
 
 - name: shell | check if .bashrc exists
   tags: [shell, bash]
   stat: path={{ ansible_env.HOME }}/.bashrc
   register: bashrc
+  when: ansible_distribution == "Gentoo"
 
 - name: shell | source common settings
   tags: [shell, bash]
@@ -58,10 +61,12 @@
     state: present
   when:
     - bashrc.stat.exists == True
+    - ansible_distribution == "Gentoo"
 
 - name: shell | Antibody | bundle plugins statically
   tags: [shell, zsh]
   shell: "{{ zsh_plugins_antibody_bundle_command }}"
+  when: ansible_distribution == "Gentoo"
 
 - name: shell | backup bookmarks
   tags: [shell, backup]

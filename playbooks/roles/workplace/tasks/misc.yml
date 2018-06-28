@@ -4,6 +4,9 @@
     - misc.yml
     - "{{ playbook_dir }}/../private/imap_filters.yml"
 
+- import_tasks: common.yml
+  tags: [misc]
+
 - name: misc | ensure paths
   tags: [misc]
   file:
@@ -11,11 +14,11 @@
     state: directory
     mode: "{{ item.mode if 'mode' in item else 0755 }}"
     owner: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
-    group: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
+    group: "{{ item.group if 'group' in item else current_user_primary_group }}"
     recurse: "{{ item.recurse if 'recurse' in item else 'yes' }}"
   become: "{{ item.become if 'become' in item else 'no' }}"
   with_items: "{{ misc_paths }}"
-  when: misc_paths is defined
+  when: misc_paths is defined and (('dists' in item and ansible_distribution in item.dists) or 'dists' not in item)
 
 - name: misc | instantiate templates
   tags: [misc]
@@ -24,10 +27,10 @@
     dest: "{{ item.dest }}"
     mode: "{{ item.mode if 'mode' in item else 0755 }}"
     owner: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
-    group: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
+    group: "{{ item.group if 'group' in item else current_user_primary_group }}"
   become: "{{ item.become if 'become' in item else 'no' }}"
   with_items: "{{ misc_templates }}"
-  when: misc_templates is defined
+  when: misc_templates is defined and (('dists' in item and ansible_distribution in item.dists) or 'dists' not in item)
 
 - name: misc | backup Emacs bookmarks
   tags: [misc, backup]
@@ -47,16 +50,35 @@
   tags: [misc, shepherd]
   copy:
     src: "{{ playbook_dir }}/../private/shepherd-jobs"
-    dest: "/home/octocat/shepherd-jobs.yml"
+    dest: "{{ ansible_env.HOME }}/shepherd-jobs.yml"
     mode: 0755
   notify: services | shepherd | restart service
+  when: ansible_distribution == "Gentoo"
+
+- name: misc | accompanying tools | shepherd (scheduling) | copy jobs definitions
+  tags: [misc, shepherd]
+  copy:
+    src: "{{ playbook_dir }}/../private/shepherd-jobs"
+    dest: "{{ ansible_env.HOME }}/shepherd-jobs.yml"
+    mode: 0755
+  when: ansible_distribution == "NixOS"
 
 - name: misc | imapfilter | copy generated config file
   tags: [misc, imapfilter]
   copy:
     content: "{{ lookup('template', 'mail/imapfilter.conf.lua') }}"
     dest: "{{ ansible_env.HOME }}/.imapfilter/config.lua"
-  notify: services | imapfilter | restart service
+  notify:
+    - services | imapfilter | restart service
+  when: ansible_distribution == "Gentoo"
+
+- name: misc | imapfilter | copy generated config file
+  tags: [misc, imapfilter]
+  copy:
+    content: "{{ lookup('template', 'mail/imapfilter.conf.lua') }}"
+    dest: "{{ ansible_env.HOME }}/.imapfilter/config.lua"
+  when: ansible_distribution == "NixOS"
+  # TODO: (alex3rd) define a service in NixOS configuration
 
 # DISCLAIMER: at the moment most of started containers are planned to stop/remove manually
 
@@ -91,6 +113,7 @@
   docker_service:
     project_src: "{{ thd_tmp_dir }}"
     build: yes
+  when: ansible_distribution == "Gentoo" # TODO: (alex3rd) get docker-py installed on NixOS
 
 - name: misc | mount some directories as tmpfs
   tags: [misc]
@@ -100,3 +123,4 @@
     state: present
   become: yes
   with_items: "{{ tmpfs_paths }}"
+  when: ansible_distribution == "Gentoo"

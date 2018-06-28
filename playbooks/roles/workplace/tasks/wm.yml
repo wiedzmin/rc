@@ -10,13 +10,17 @@
     repo: "{{ x11_stumpwm_traits.clone_from }}"
     dest: "{{ x11_stumpwm_traits.local_path }}"
     force: yes
-  when: xsession_current_wm == "stumpwm"
+  when:
+    - xsession_current_wm == "stumpwm"
+    - ansible_distribution == "Gentoo"
 
 - name: wm | stumpwm | check configure script
   tags: [wm]
   stat: path={{ x11_stumpwm_traits.local_path }}/configure
   register: stumpwm_configure
-  when: xsession_current_wm == "stumpwm"
+  when:
+    - xsession_current_wm == "stumpwm"
+    - ansible_distribution == "Gentoo"
 
 - name: wm | stumpwm | maybe autoconf
   tags: [wm]
@@ -26,13 +30,16 @@
   when:
     - stumpwm_configure.stat.exists == False
     - xsession_current_wm == "stumpwm"
+    - ansible_distribution == "Gentoo"
 
 - name: wm | stumpwm | configure
   tags: [wm]
   shell: ./configure
   args:
     chdir: "{{ x11_stumpwm_traits.local_path }}"
-  when: xsession_current_wm == "stumpwm"
+  when:
+    - xsession_current_wm == "stumpwm"
+    - ansible_distribution == "Gentoo"
 
 - name: wm | stumpwm | patch binary image creation
   tags: [wm]
@@ -40,20 +47,26 @@
     path: "{{ x11_stumpwm_traits.local_path }}/make-image.lisp"
     insertafter: ":executable t"
     line: "                                    :compression t"
-  when: xsession_current_wm == "stumpwm"
+  when:
+    - xsession_current_wm == "stumpwm"
+    - ansible_distribution == "Gentoo"
 
 - name: wm | stumpwm | cleanup
   tags: [wm]
   make:
     target: clean
     chdir: "{{ x11_stumpwm_traits.local_path }}"
-  when: xsession_current_wm == "stumpwm"
+  when:
+    - xsession_current_wm == "stumpwm"
+    - ansible_distribution == "Gentoo"
 
 - name: wm | stumpwm | build
   tags: [wm]
   make:
     chdir: "{{ x11_stumpwm_traits.local_path }}"
-  when: xsession_current_wm == "stumpwm"
+  when:
+    - xsession_current_wm == "stumpwm"
+    - ansible_distribution == "Gentoo"
 
 - name: wm | stumpwm | install
   tags: [wm]
@@ -61,7 +74,9 @@
     chdir: "{{ x11_stumpwm_traits.local_path }}"
     target: install
   become: yes
-  when: xsession_current_wm == "stumpwm"
+  when:
+    - xsession_current_wm == "stumpwm"
+    - ansible_distribution == "Gentoo"
 
 - name: wm | generate common settings for StumpWM
   tags: [wm]
@@ -69,4 +84,6 @@
     content: "{{ lookup('template', 'x11/common.lisp.j2') }}"
     dest: "{{ stumpwm_config_path }}/common.lisp"
     mode: 0644
-  when: xsession_current_wm == "stumpwm"
+  when:
+    - xsession_current_wm == "stumpwm"
+    - ansible_distribution == "Gentoo"

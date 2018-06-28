@@ -2,7 +2,7 @@ misc_paths:
   - { path: "{{ ansible_env.HOME }}/.gnupg", mode: '0700', become: yes }
   - { path: "{{ ansible_env.HOME }}/.imapfilter" }
   - { path: "{{ ansible_env.HOME }}/.ssh", mode: '0700', recurse: no }
-  - { path: "{{ ansible_env.HOME }}/pids", become: yes }
+  - { path: "{{ ansible_env.HOME }}/pids", become: yes, dists: ["Gentoo"] }
 misc_templates:
   - { src: "gnupg/gpg-agent.conf", dest: "{{ ansible_env.HOME }}/.gnupg/gpg-agent.conf", mode: '0600', become: yes }
   - { src: "gnupg/gpg.conf", dest: "{{ ansible_env.HOME }}/.gnupg/gpg.conf", mode: '0600', become: yes }
@@ -10,8 +10,9 @@ misc_templates:
   - { src: "mail/.mbsyncrc", dest: "{{ ansible_env.HOME }}/.mbsyncrc" }
   - { src: "mail/.msmtprc", dest: "{{ ansible_env.HOME }}/.msmtprc" }
   - { src: "ssh_config", dest: "{{ ansible_env.HOME }}/.ssh/config" }
-  - { src: "mpd.conf", dest: "/etc/mpd.conf", user: root, become: yes }
-  - { src: "scripts/hddtemp", dest: "{{ binaries_prefix }}/hddtemp", become: yes }
+  - { src: "mpd.conf", dest: "/etc/mpd.conf", user: root, become: yes, dists: ["Gentoo"] }
+  - { src: "scripts/hddtemp", dest: "{{ binaries_prefix[ansible_distribution].path }}/hddtemp",
+      become: "{{ binaries_prefix[ansible_distribution].become | default(False) }}" }
 tmpfs_paths:
   - { path: "{{ ansible_env.HOME }}/.cache", uid: "1000", gid: "1000", size: "2G", mode: "0755"}
 emacs_config_name_literal: "{{ emacs_config_dir }}/config.org"

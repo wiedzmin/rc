@@ -1,5 +1,6 @@
 - include_vars: scanner.yml
   tags: [scanner]
+  when: ansible_distribution == "Gentoo"
 
 - name: scanner | instantiate SANE/dll.conf
   tags: [scanner]
@@ -10,6 +11,7 @@
     owner: root
     group: root
   become: yes
+  when: ansible_distribution == "Gentoo"
 
 - name: scanner | Epson | ensure SANE resources dir exists
   tags: [scanner]
@@ -17,6 +19,7 @@
     path: /usr/share/sane/snapscan
     state: directory
     mode: 0755
+  when: ansible_distribution == "Gentoo"
 
 - name: scanner | Epson | copy firmware
   tags: [scanner]
@@ -25,6 +28,7 @@
     dest: "/usr/share/sane/snapscan/{{ epson_firmware_filename }}"
     mode: 0755
   become: yes
+  when: ansible_distribution == "Gentoo"
 
 - name: scanner | Epson | register firmware in SANE
   tags: [scanner]
@@ -33,3 +37,4 @@
     regexp: "^firmware /usr/share/sane"
     line: "firmware /usr/share/sane/snapscan/Esfw52.bin"
   become: yes
+  when: ansible_distribution == "Gentoo"

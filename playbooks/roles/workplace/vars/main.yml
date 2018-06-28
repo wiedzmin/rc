@@ -6,7 +6,12 @@ default_video_player_executable: mpv
 default_image_viewer_executable: feh
 default_ebook_viewer_executable: zathura
 shell_bookmarks_file: "{{ ansible_env.HOME }}/.bookmarks"
-binaries_prefix: /usr/local/bin
+binaries_prefix:
+  Gentoo:
+    path: /usr/local/bin
+    become: yes
+  NixOS:
+    path: "{{ ansible_env.HOME }}/scripts"
 emacs_config_dir: "{{ ansible_env.HOME }}/.emacs.d"
 pids_dir: "{{ ansible_env.HOME }}/pids"
 zsh_subconfig_path: "{{ ansible_env.HOME}}/.zsh"

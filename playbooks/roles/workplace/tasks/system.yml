@@ -3,6 +3,9 @@
 - include_vars: system.yml
   tags: [system]
 
+- import_tasks: common.yml
+  tags: [misc]
+
 - name: system | ensure paths
   tags: [system]
   file:
@@ -10,11 +13,11 @@
     state: directory
     mode: "{{ item.mode if 'mode' in item else 0755 }}"
     owner: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
-    group: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
+    group: "{{ item.group if 'group' in item else current_user_primary_group }}"
     recurse: "{{ item.recurse if 'recurse' in item else 'yes' }}"
   become: "{{ item.become if 'become' in item else 'no' }}"
   with_items: "{{ system_paths }}"
-  when: system_paths is defined
+  when: system_paths is defined and (('dists' in item and ansible_distribution in item.dists) or 'dists' not in item)
 
 - name: system | instantiate templates
   tags: [system]
@@ -23,10 +26,10 @@
     dest: "{{ item.dest }}"
     mode: "{{ item.mode if 'mode' in item else 0755 }}"
     owner: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
-    group: "{{ item.user if 'user' in item else lookup('env', 'USER') }}"
+    group: "{{ item.group if 'group' in item else current_user_primary_group }}"
   become: "{{ item.become if 'become' in item else 'no' }}"
   with_items: "{{ system_templates }}"
-  when: system_templates is defined
+  when: system_templates is defined and (('dists' in item and ansible_distribution in item.dists) or 'dists' not in item)
 
 - name: setup services autostart
   tags: [system]

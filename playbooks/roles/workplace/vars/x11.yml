@@ -1,40 +1,40 @@
 x11_paths:
-  - { path: "{{ home_config_path }}/dunst"}
-  - { path: "{{ home_config_path }}/i3"}
-  - { path: "{{ home_config_path }}/rofi"}
-  - { path: "{{ home_config_path }}/twmn"}
-  - { path: "{{ ansible_env.HOME }}/.local/share/applications"}
-  - { path: "{{ ansible_env.HOME }}/.sawfish"}
+  - { path: "{{ home_config_path }}/dunst", dists: ["Gentoo"] }
+  - { path: "{{ home_config_path }}/i3", dists: ["Gentoo"] }
+  - { path: "{{ home_config_path }}/rofi", dists: ["Gentoo"] }
+  - { path: "{{ home_config_path }}/twmn", dists: ["Gentoo"] }
+  - { path: "{{ ansible_env.HOME }}/.local/share/applications" }
+  - { path: "{{ ansible_env.HOME }}/.sawfish", dists: ["Gentoo"] }
 x11_templates:
   - { src: "browser/.surfingkeysrc", dest: "{{ ansible_env.HOME }}/.surfingkeysrc" }
   - { src: "browser/wimpulation.json", dest: "{{ ansible_env.HOME }}/wimpulation.json" }
-  - { src: "x11/dunstrc.j2", dest: "{{ home_config_path }}/dunst/dunstrc" }
-  - { src: "x11/rofi.j2", dest: "{{ home_config_path }}/rofi/config" }
-  - { src: "x11/oxide.rasi", dest: "{{ home_config_path }}/rofi/oxide.rasi" }
+  - { src: "x11/dunstrc.j2", dest: "{{ home_config_path }}/dunst/dunstrc", dists: ["Gentoo"] }
+  - { src: "x11/rofi.j2", dest: "{{ home_config_path }}/rofi/config", dists: ["Gentoo"] }
+  - { src: "x11/oxide.rasi", dest: "{{ home_config_path }}/rofi/oxide.rasi", dists: ["Gentoo"] }
   - { src: "categorize.cfg", dest: "{{ ansible_env.HOME }}/.arbtt/categorize.cfg" }
   - { src: ".gmrunrc", dest: "{{ ansible_env.HOME }}/.gmrunrc" }
-  - { src: ".i3status.conf", dest: "{{ ansible_env.HOME }}/.i3status.conf" }
-  - { src: ".sawfishrc", dest: "{{ ansible_env.HOME }}/.sawfish/rc" }
-  - { src: ".stalonetrayrc", dest: "{{ ansible_env.HOME }}/.stalonetrayrc" }
+  - { src: ".i3status.conf", dest: "{{ ansible_env.HOME }}/.i3status.conf", dists: ["Gentoo"] }
+  - { src: ".sawfishrc", dest: "{{ ansible_env.HOME }}/.sawfish/rc", dists: ["Gentoo"] }
+  - { src: ".stalonetrayrc", dest: "{{ ansible_env.HOME }}/.stalonetrayrc", dists: ["Gentoo"] }
   - { src: ".xxkbrc", dest: "{{ ansible_env.HOME }}/.xxkbrc" }
-  - { src: "i3.conf", dest: "{{ home_config_path }}/i3/config" }
-  - { src: "twmn.conf", dest: "{{ home_config_path }}/twmn/twmn.conf" }
-  - { src: "xmobarrc", dest: "{{ ansible_env.HOME }}/.xmonad/xmobarrc" }
-  - { src: "xmobarrc-noinet", dest: "{{ ansible_env.HOME }}/.xmonad/xmobarrc-noinet" }
-  - { src: "xmobarrc.xmonad.old", dest: "{{ ansible_env.HOME }}/.xmonad/xmobarrc.xmonad.old" }
+  - { src: "i3.conf", dest: "{{ home_config_path }}/i3/config", dists: ["Gentoo"] }
+  - { src: "twmn.conf", dest: "{{ home_config_path }}/twmn/twmn.conf", dists: ["Gentoo"] }
+  - { src: "xmobarrc", dest: "{{ ansible_env.HOME }}/.xmonad/xmobarrc", dists: ["Gentoo"] }
+  - { src: "xmobarrc-noinet", dest: "{{ ansible_env.HOME }}/.xmonad/xmobarrc-noinet", dists: ["Gentoo"] }
+  - { src: "xmobarrc.xmonad.old", dest: "{{ ansible_env.HOME }}/.xmonad/xmobarrc.xmonad.old", dists: ["Gentoo"] }
   - { src: "emacsclient.desktop", dest: "{{ ansible_env.HOME }}/.local/share/applications/emacsclient.desktop" }
-  - { src: "resources/.Xresources.j2", dest: "{{ ansible_env.HOME }}/.Xresources", xresources: yes }
-  - { src: "resources/.urxvtrc.j2", dest: "{{ ansible_env.HOME }}/.urxvtrc", enabled: yes, xresources: yes }
-  - { src: "resources/.xftrc.j2", dest: "{{ ansible_env.HOME }}/.xftrc", enabled: yes, xresources: yes }
-  - { src: "resources/.emacsrc.j2", dest: "{{ ansible_env.HOME }}/.emacsrc", enabled: yes, xresources: yes }
-  - { src: "x11/statusbar_osd.j2", dest: "{{ binaries_prefix }}/statusbar_osd", user: "{{ user_name }}" }
-  - { src: "x11/xrandr/ext_heads_dock.sh", dest: "{{ binaries_prefix }}/ext_heads_dock.sh", user: "{{ user_name }}", become: yes }
-  - { src: "x11/xrandr/ext_heads_undock.sh", dest: "{{ binaries_prefix }}/ext_heads_undock.sh", user: "{{ user_name }}", become: yes }
-  - { src: "x11/xrandr/ext_head_above.sh", dest: "{{ binaries_prefix }}/ext_head_above.sh", user: "{{ user_name }}", become: yes }
-  - { src: "x11/xrandr/ext_head_left.sh", dest: "{{ binaries_prefix }}/ext_head_left.sh", user: "{{ user_name }}", become: yes }
-  - { src: "x11/xrandr/ext_head_off.sh", dest: "{{ binaries_prefix }}/ext_head_off.sh", user: "{{ user_name }}", become: yes }
-  - { src: "x11/xrandr/ext_head_right.sh", dest: "{{ binaries_prefix }}/ext_head_right.sh", user: "{{ user_name }}", become: yes }
-  - { src: "x11/xrandr/rescale_wallpaper.sh", dest: "{{ binaries_prefix }}/rescale_wallpaper.sh", user: "{{ user_name }}", become: yes }
+  - { src: "resources/.Xresources.j2", dest: "{{ ansible_env.HOME }}/.Xresources", xresources: yes, dists: ["Gentoo"] }
+  - { src: "resources/.urxvtrc.j2", dest: "{{ ansible_env.HOME }}/.urxvtrc", enabled: yes, xresources: yes, dists: ["Gentoo"] }
+  - { src: "resources/.xftrc.j2", dest: "{{ ansible_env.HOME }}/.xftrc", enabled: yes, xresources: yes, dists: ["Gentoo"] }
+  - { src: "resources/.emacsrc.j2", dest: "{{ ansible_env.HOME }}/.emacsrc", enabled: yes, xresources: yes, dists: ["Gentoo"] }
+  - { src: "x11/statusbar_osd.j2", dest: "{{ binaries_prefix[ansible_distribution].path }}/statusbar_osd", user: "{{ user_name }}" }
+  - { src: "x11/xrandr/ext_heads_dock.sh", dest: "{{ binaries_prefix[ansible_distribution].path }}/ext_heads_dock.sh", user: "{{ user_name }}", become: yes }
+  - { src: "x11/xrandr/ext_heads_undock.sh", dest: "{{ binaries_prefix[ansible_distribution].path }}/ext_heads_undock.sh", user: "{{ user_name }}", become: yes }
+  - { src: "x11/xrandr/ext_head_above.sh", dest: "{{ binaries_prefix[ansible_distribution].path }}/ext_head_above.sh", user: "{{ user_name }}", become: yes }
+  - { src: "x11/xrandr/ext_head_left.sh", dest: "{{ binaries_prefix[ansible_distribution].path }}/ext_head_left.sh", user: "{{ user_name }}", become: yes }
+  - { src: "x11/xrandr/ext_head_off.sh", dest: "{{ binaries_prefix[ansible_distribution].path }}/ext_head_off.sh", user: "{{ user_name }}", become: yes }
+  - { src: "x11/xrandr/ext_head_right.sh", dest: "{{ binaries_prefix[ansible_distribution].path }}/ext_head_right.sh", user: "{{ user_name }}", become: yes }
+  - { src: "x11/xrandr/rescale_wallpaper.sh", dest: "{{ binaries_prefix[ansible_distribution].path }}/rescale_wallpaper.sh", user: "{{ user_name }}", become: yes }
 mime_assocs:
   - { program: "abiword", mimetype: "application/msword" }
   - { program: "{{ default_image_viewer_executable }}", mimetype: "image/jpeg" }
