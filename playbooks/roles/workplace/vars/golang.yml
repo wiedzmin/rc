@@ -2,7 +2,7 @@
 
 golang_bin_path: "{{ ansible_env.HOME }}/workspace/gocode/bin"
 golang_src_path: "{{ ansible_env.HOME }}/workspace/gocode/src"
-golang_package_urls:
+golang_package_urls: # TODO: review list and pick/add to Nixpkgs
   - { url: "github.com/nsf/gocode", become: no }
   - { url: "github.com/rogpeppe/godef", become: no }
   - { url: "github.com/jstemmer/gotags", become: no }
