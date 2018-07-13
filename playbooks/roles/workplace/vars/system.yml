@@ -24,6 +24,7 @@ system_templates:
   - { src: "acpi/actions/sleep.sh", dest: "/etc/acpi/actions/sleep.sh", mode: '0755', user: root, become: yes, dists: ["Gentoo"] }
   - { src: "acpi/actions/thinkpad-dock.sh", dest: "/etc/acpi/actions/thinkpad-dock.sh", mode: '0755', user: root, become: yes, dists: ["Gentoo"] }
   - { src: "acpi/actions/thinkpad-undock.sh", dest: "/etc/acpi/actions/thinkpad-undock.sh", mode: '0755', user: root, become: yes, dists: ["Gentoo"] }
+  # TODO: review xorf subconfigs and decide whether they could be applicable in any form within NixOS
   - { src: "xorg.conf.d/10-input.conf", dest: "/etc/X11/xorg.conf.d/10-input.conf", mode: '0755', user: root, become: yes, dists: ["Gentoo"] }
   - { src: "xorg.conf.d/15-synaptics.conf", dest: "/etc/X11/xorg.conf.d/15-synaptics.conf", mode: '0755', user: root, become: yes, dists: ["Gentoo"] }
   - { src: "xorg.conf.d/17-intel-modesetting.conf", dest: "/etc/X11/xorg.conf.d/17-intel-modesetting.conf", mode: '0755', user: root, become: yes, dists: ["Gentoo"] }
