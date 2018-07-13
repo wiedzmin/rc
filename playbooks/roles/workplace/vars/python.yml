@@ -1,6 +1,6 @@
 ---
 
-python_pip_packages:
+python_pip_packages: # TODO: review packages and maybe pick/add to Nixpkgs
   - "GitPython"
   - "autopep8"
   - "flake8"
@@ -18,9 +18,12 @@ python_pip_packages:
 python_virtualenvs_path: "{{ ansible_env.HOME }}/.virtualenvs"
 python_paths:
   - { path: "{{ python_virtualenvs_path }}", recurse: no }
-  - { path: "{{ workspace_path }}/python" }
+  - { path: "{{ workspace_path }}/python", dists: ["Gentoo"] }
+  - { path: "{{ nixos_dotfiles_location }}/dev", become: yes, dists: ["NixOS"] }
 python_templates:
-  - { src: 'python/.pylintrc', dest: '{{ ansible_env.HOME }}/.pylintrc' }
-  - { src: 'python/flake8', dest: '{{ home_config_path }}/flake8' }
-  - { src: 'python/isort.cfg', dest: '{{ ansible_env.HOME }}/.isort.cfg' }
-  - { src: 'python/pep8', dest: '{{ home_config_path }}/pep8' }
+  - { src: 'python/.pylintrc', dest: '{{ ansible_env.HOME }}/.pylintrc' } # TODO: maybe also instantiate to NixOS dotfiles
+  - { src: 'python/isort.cfg', dest: '{{ ansible_env.HOME }}/.isort.cfg' } # TODO: maybe also instantiate to NixOS dotfiles
+  - { src: 'python/flake8', dest: '{{ home_config_path }}/flake8', dists: ["Gentoo"] }
+  - { src: 'python/flake8', dest: '{{ nixos_dotfiles_location }}/dev/flake8', become: yes, dists: ["NixOS"] }
+  - { src: 'python/pep8', dest: '{{ home_config_path }}/pep8', dists: ["Gentoo"] }
+  - { src: 'python/pep8', dest: '{{ nixos_dotfiles_location }}/dev/pep8', become: yes, dists: ["NixOS"] }
