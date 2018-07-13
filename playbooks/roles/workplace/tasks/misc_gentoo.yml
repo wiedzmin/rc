@@ -9,6 +9,16 @@
 
 - import_tasks: misc.yml
 
+- name: misc | copy custom scripts
+  tags: [misc, scripts]
+  copy:
+    content: "{{ lookup('template', 'scripts/{{ item | basename }}') }}"
+    dest: "{{ binaries_prefix['Gentoo'].path }}/{{ item | basename }}"
+    mode: 0755
+  with_fileglob:
+    - "{{ role_path }}/templates/scripts/*"
+  become: "{{ binaries_prefix['Gentoo'].become | default(False) }}"
+
 - name: misc | install zealdocs openrc entry
   tags: [misc, services]
   copy:
@@ -25,14 +35,6 @@
     dest: "{{ ansible_env.HOME }}/shepherd-jobs.yml"
     mode: 0755
   notify: services | shepherd | restart service
-
-- name: misc | imapfilter | copy generated config file
-  tags: [misc, imapfilter]
-  copy:
-    content: "{{ lookup('template', 'mail/imapfilter.conf.lua') }}"
-    dest: "{{ ansible_env.HOME }}/.imapfilter/config.lua"
-  notify:
-    - services | imapfilter | restart service
 
 - name: misc | mount some directories as tmpfs
   tags: [misc]

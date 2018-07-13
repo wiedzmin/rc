@@ -15,12 +15,4 @@
     src: "{{ playbook_dir }}/../private/shepherd-jobs"
     dest: "{{ ansible_env.HOME }}/shepherd-jobs.yml"
     mode: 0755
-  when: ansible_distribution == "NixOS"
-
-- name: misc | imapfilter | copy generated config file
-  tags: [misc, imapfilter]
-  copy:
-    content: "{{ lookup('template', 'mail/imapfilter.conf.lua') }}"
-    dest: "{{ ansible_env.HOME }}/.imapfilter/config.lua"
-  when: ansible_distribution == "NixOS"
-  # TODO: (alex3rd) define a service in NixOS configuration
+  when: no # TODO: make custom Nix derivation

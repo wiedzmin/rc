@@ -27,16 +27,7 @@
   become: "{{ item.become if 'become' in item else 'no' }}"
   with_items: "{{ misc_templates }}"
   when: misc_templates is defined and (('dists' in item and ansible_distribution in item.dists) or 'dists' not in item)
-
-- name: misc | copy custom scripts
-  tags: [misc, scripts]
-  copy:
-    content: "{{ lookup('template', 'scripts/{{ item | basename }}') }}"
-    dest: "{{ binaries_prefix[ansible_distribution].path }}/{{ item | basename }}"
-    mode: 0755
-  with_fileglob:
-    - "{{ role_path }}/templates/scripts/*"
-  become: "{{ binaries_prefix[ansible_distribution].become | default(False) }}"
+  notify: "{{ handlers if 'handlers' in item else [] }}"
 
 - name: misc | backup Emacs bookmarks
   tags: [misc, emacs]
