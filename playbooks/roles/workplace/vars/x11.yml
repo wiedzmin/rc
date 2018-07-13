@@ -1,41 +1,53 @@
 x11_paths:
   - { path: "{{ home_config_path }}/dunst", dists: ["Gentoo"] }
   - { path: "{{ home_config_path }}/i3", dists: ["Gentoo"] }
+  - { path: "{{ nixos_dotfiles_location }}/x11/i3", become: yes, dists: ["NixOS"] }
   - { path: "{{ home_config_path }}/rofi", dists: ["Gentoo"] }
+  - { path: "{{ nixos_dotfiles_location }}/x11/rofi", become: yes, dists: ["NixOS"] }
   - { path: "{{ home_config_path }}/twmn", dists: ["Gentoo"] }
-  - { path: "{{ ansible_env.HOME }}/.local/share/applications" }
+  - { path: "{{ ansible_env.HOME }}/.local/share/applications", dists: ["Gentoo"] }
   - { path: "{{ ansible_env.HOME }}/.sawfish", dists: ["Gentoo"] }
 x11_templates:
-  - { src: "browser/.surfingkeysrc", dest: "{{ ansible_env.HOME }}/.surfingkeysrc" }
-  - { src: "browser/wimpulation.json", dest: "{{ ansible_env.HOME }}/wimpulation.json" }
+  - { src: "browser/.surfingkeysrc", dest: "{{ ansible_env.HOME }}/.surfingkeysrc", dists: ["Gentoo"] }
+  - { src: "browser/wimpulation.json", dest: "{{ ansible_env.HOME }}/wimpulation.json", dists: ["Gentoo"] }
+  - { src: "browser/wimpulation.json", dest: "{{ nixos_dotfiles_location }}/wimpulation.json", become: yes, dists: ["NixOS"] }
   - { src: "x11/dunstrc.j2", dest: "{{ home_config_path }}/dunst/dunstrc", dists: ["Gentoo"] }
-  - { src: "x11/rofi.j2", dest: "{{ home_config_path }}/rofi/config", dists: ["Gentoo"] }
+  - { src: "x11/dunstrc.j2", dest: "{{ nixos_dotfiles_location }}/x11/dunstrc", become: yes, dists: ["NixOS"] }
+  - { src: "x11/rofi.j2", dest: "{{ home_config_path }}/rofi/config", dists: ["Gentoo"] } # TODO: review content and port to NixOS later
   - { src: "x11/oxide.rasi", dest: "{{ home_config_path }}/rofi/oxide.rasi", dists: ["Gentoo"] }
-  - { src: "categorize.cfg", dest: "{{ ansible_env.HOME }}/.arbtt/categorize.cfg" }
-  - { src: ".gmrunrc", dest: "{{ ansible_env.HOME }}/.gmrunrc" }
+  - { src: "x11/oxide.rasi", dest: "{{ nixos_dotfiles_location }}/x11/rofi/oxide.rasi", become: yes, dists: ["NixOS"] }
+  - { src: "categorize.cfg", dest: "{{ ansible_env.HOME }}/.arbtt/categorize.cfg", dists: ["Gentoo"] }
+  - { src: "categorize.cfg", dest: "{{ nixos_dotfiles_location }}/x11/categorize.cfg", become: yes, dists: ["NixOS"] } # TODO: make custom systemd service for arbtt
+  - { src: ".gmrunrc", dest: "{{ ansible_env.HOME }}/.gmrunrc", dists: ["Gentoo"] }
+  - { src: ".gmrunrc", dest: "{{ nixos_dotfiles_location }}/x11/.gmrunrc", become: yes, dists: ["NixOS"] }
   - { src: ".i3status.conf", dest: "{{ ansible_env.HOME }}/.i3status.conf", dists: ["Gentoo"] }
+  - { src: ".i3status.conf", dest: "{{ nixos_dotfiles_location }}/x11/.i3status.conf", become: yes, dists: ["NixOS"] }
   - { src: ".sawfishrc", dest: "{{ ansible_env.HOME }}/.sawfish/rc", dists: ["Gentoo"] }
   - { src: ".stalonetrayrc", dest: "{{ ansible_env.HOME }}/.stalonetrayrc", dists: ["Gentoo"] }
-  - { src: ".xxkbrc", dest: "{{ ansible_env.HOME }}/.xxkbrc" }
+  - { src: ".xxkbrc", dest: "{{ ansible_env.HOME }}/.xxkbrc", dists: ["Gentoo"] }
+  - { src: ".xxkbrc", dest: "{{ nixos_dotfiles_location }}/x11/.xxkbrc", become: yes, dists: ["NixOS"] }
   - { src: "i3.conf", dest: "{{ home_config_path }}/i3/config", dists: ["Gentoo"] }
+  - { src: "i3.conf", dest: "{{ nixos_dotfiles_location }}/x11/i3/config", become: yes, dists: ["NixOS"] }
   - { src: "twmn.conf", dest: "{{ home_config_path }}/twmn/twmn.conf", dists: ["Gentoo"] }
-  - { src: "xmobarrc", dest: "{{ ansible_env.HOME }}/.xmonad/xmobarrc", dists: ["Gentoo"] }
-  - { src: "xmobarrc-noinet", dest: "{{ ansible_env.HOME }}/.xmonad/xmobarrc-noinet", dists: ["Gentoo"] }
+  - { src: "xmobarrc", dest: "{{ ansible_env.HOME }}/.xmonad/xmobarrc" }
+  - { src: "xmobarrc-noinet", dest: "{{ ansible_env.HOME }}/.xmonad/xmobarrc-noinet" }
   - { src: "xmobarrc.xmonad.old", dest: "{{ ansible_env.HOME }}/.xmonad/xmobarrc.xmonad.old", dists: ["Gentoo"] }
   - { src: "emacsclient.desktop", dest: "{{ ansible_env.HOME }}/.local/share/applications/emacsclient.desktop" }
+  # TODO: merge into single Xresources file
   - { src: "resources/.Xresources.j2", dest: "{{ ansible_env.HOME }}/.Xresources", xresources: yes, dists: ["Gentoo"] }
   - { src: "resources/.urxvtrc.j2", dest: "{{ ansible_env.HOME }}/.urxvtrc", enabled: yes, xresources: yes, dists: ["Gentoo"] }
   - { src: "resources/.xftrc.j2", dest: "{{ ansible_env.HOME }}/.xftrc", enabled: yes, xresources: yes, dists: ["Gentoo"] }
   - { src: "resources/.emacsrc.j2", dest: "{{ ansible_env.HOME }}/.emacsrc", enabled: yes, xresources: yes, dists: ["Gentoo"] }
-  - { src: "x11/statusbar_osd.j2", dest: "{{ binaries_prefix[ansible_distribution].path }}/statusbar_osd", user: "{{ user_name }}" }
-  - { src: "x11/xrandr/ext_heads_dock.sh", dest: "{{ binaries_prefix[ansible_distribution].path }}/ext_heads_dock.sh", user: "{{ user_name }}", become: yes }
-  - { src: "x11/xrandr/ext_heads_undock.sh", dest: "{{ binaries_prefix[ansible_distribution].path }}/ext_heads_undock.sh", user: "{{ user_name }}", become: yes }
-  - { src: "x11/xrandr/ext_head_above.sh", dest: "{{ binaries_prefix[ansible_distribution].path }}/ext_head_above.sh", user: "{{ user_name }}", become: yes }
-  - { src: "x11/xrandr/ext_head_left.sh", dest: "{{ binaries_prefix[ansible_distribution].path }}/ext_head_left.sh", user: "{{ user_name }}", become: yes }
-  - { src: "x11/xrandr/ext_head_off.sh", dest: "{{ binaries_prefix[ansible_distribution].path }}/ext_head_off.sh", user: "{{ user_name }}", become: yes }
-  - { src: "x11/xrandr/ext_head_right.sh", dest: "{{ binaries_prefix[ansible_distribution].path }}/ext_head_right.sh", user: "{{ user_name }}", become: yes }
-  - { src: "x11/xrandr/rescale_wallpaper.sh", dest: "{{ binaries_prefix[ansible_distribution].path }}/rescale_wallpaper.sh", user: "{{ user_name }}", become: yes }
-mime_assocs:
+  - { src: "x11/statusbar_osd.j2", dest: "{{ binaries_prefix['Gentoo'].path }}/statusbar_osd", user: "{{ user_name }}", dists: ["Gentoo"] }
+  # TODO: review and maybe merge into one script with parameters / review existing XRandR solutions (autorandr, etc.)
+  - { src: "x11/xrandr/ext_heads_dock.sh", dest: "{{ binaries_prefix['Gentoo'].path }}/ext_heads_dock.sh", user: "{{ user_name }}", become: yes, dists: ["Gentoo"] }
+  - { src: "x11/xrandr/ext_heads_undock.sh", dest: "{{ binaries_prefix['Gentoo'].path }}/ext_heads_undock.sh", user: "{{ user_name }}", become: yes, dists: ["Gentoo"] }
+  - { src: "x11/xrandr/ext_head_above.sh", dest: "{{ binaries_prefix['Gentoo'].path }}/ext_head_above.sh", user: "{{ user_name }}", become: yes, dists: ["Gentoo"] }
+  - { src: "x11/xrandr/ext_head_left.sh", dest: "{{ binaries_prefix['Gentoo'].path }}/ext_head_left.sh", user: "{{ user_name }}", become: yes, dists: ["Gentoo"] }
+  - { src: "x11/xrandr/ext_head_off.sh", dest: "{{ binaries_prefix['Gentoo'].path }}/ext_head_off.sh", user: "{{ user_name }}", become: yes, dists: ["Gentoo"] }
+  - { src: "x11/xrandr/ext_head_right.sh", dest: "{{ binaries_prefix['Gentoo'].path }}/ext_head_right.sh", user: "{{ user_name }}", become: yes, dists: ["Gentoo"] }
+  - { src: "x11/xrandr/rescale_wallpaper.sh", dest: "{{ binaries_prefix['Gentoo'].path }}/rescale_wallpaper.sh", user: "{{ user_name }}", become: yes, dists: ["Gentoo"] }
+mime_assocs: # TODO: check if this is applicable to NixOS
   - { program: "abiword", mimetype: "application/msword" }
   - { program: "{{ default_image_viewer_executable }}", mimetype: "image/jpeg" }
   - { program: "{{ default_image_viewer_executable }}", mimetype: "image/png" }

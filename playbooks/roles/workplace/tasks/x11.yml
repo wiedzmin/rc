@@ -41,10 +41,12 @@
   tags: [x11]
   shell: "xdg-mime default {{ item.program }}.desktop {{ item.mimetype }}"
   with_items: "{{ mime_assocs }}"
+  when: ansible_distribution == "Gentoo"
 
 - name: x11 | update MIME types DB
   tags: [x11]
   shell: "update-desktop-database ~/.local/share/applications/"
+  when: ansible_distribution == "Gentoo"
 
 - name: x11 | register org-protocol handler in mimeapps
   tags: [x11]
@@ -52,6 +54,7 @@
     dest: "{{ ansible_env.HOME }}/.local/share/applications/mimeapps.list"
     line: x-scheme-handler/org-protocol=emacsclient.desktop
     state: present
+  when: ansible_distribution == "Gentoo"
 
 - name: x11 | update XDG user dirs
   tags: [x11]
