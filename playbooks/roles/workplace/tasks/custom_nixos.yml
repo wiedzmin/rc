@@ -8,12 +8,14 @@
 
 - import_tasks: custom.yml
 
+# TODO: add custom derivation to NixOS config
 - name: custom | build Buildapp
   tags: [custom, buildapp]
   shell: "sbcl --eval \"(ql:quickload 'buildapp)\" --eval \"(buildapp:build-buildapp)\""
   args:
     chdir: "{{ buildapp_traits.local_path }}"
 
+# TODO: add custom derivation to NixOS config
 - name: custom | install Buildapp
   tags: [custom, buildapp]
   copy:
@@ -22,6 +24,7 @@
     mode: 0755
   become: "{{ binaries_prefix[ansible_distribution].become | default(False)}}"
 
+# TODO: add custom derivation to NixOS config
 - name: custom | cleanup Buildapp build
   tags: [custom, buildapp]
   file:
