@@ -1,18 +1,15 @@
 shell_paths:
   - { path: "{{ ansible_env.HOME }}/.tmux/plugins", recurse: no, dists: ["Gentoo"] }
   - { path: "{{ zsh_subconfig_path }}/completion", dists: ["Gentoo"] }
+  - { path: "{{ nixos_dotfiles_location }}/shell", become: yes, dists: ["NixOS"] }
 shell_templates:
-  # TODO: refactor zsh setup and friends, and then reconsider adding it to NixOS in some form
   - { src: ".tmux.conf", dest: "{{ ansible_env.HOME }}/.tmux.conf", dists: ["Gentoo"] }
   - { src: ".urlview", dest: "{{ ansible_env.HOME }}/.urlview" }
   - { src: "shell/.zshrc.j2", dest: "{{ ansible_env.HOME }}/.zshrc", dists: ["Gentoo"] }
-  - { src: "shell/zsh/aliases", dest: "{{ zsh_subconfig_path }}/aliases", dists: ["Gentoo"] }
-  - { src: "shell/zsh/bindkeys", dest: "{{ zsh_subconfig_path }}/bindkeys", dists: ["Gentoo"] }
-  - { src: "shell/zsh/custom", dest: "{{ zsh_subconfig_path }}/custom", dists: ["Gentoo"] }
-  - { src: "shell/zsh/functions", dest: "{{ zsh_subconfig_path }}/functions", dists: ["Gentoo"] }
-  - { src: "shell/zsh/promptdefs", dest: "{{ zsh_subconfig_path }}/promptdefs", dists: ["Gentoo"] }
-  - { src: "shell/zsh/setopts", dest: "{{ zsh_subconfig_path }}/setopts", dists: ["Gentoo"] }
-  - { src: "shell/zsh/zstyles", dest: "{{ zsh_subconfig_path }}/zstyles", dists: ["Gentoo"] }
+  - { src: "shell/.zshrc.j2", dest: "{{ nixos_dotfiles_location }}/shell/.zshrc", become: yes, dists: ["NixOS"] } # NOTE: will not be used as is and generated just for reference
+  - { src: "shell/aliases.zsh", dest: "{{ zsh_subconfig_path }}/aliases.zsh", dists: ["Gentoo"] }
+  - { src: "shell/functions.zsh", dest: "{{ zsh_subconfig_path }}/functions.zsh", dists: ["Gentoo"] }
+  - { src: "shell/functions.zsh", dest: "{{ nixos_dotfiles_location }}/shell/functions.zsh", become: yes, dists: ["NixOS"] }
   - { src: "scripts/status_bat_info", dest: "{{ binaries_prefix[ansible_distribution].path }}/status_bat_info", dists: ["Gentoo"] }
   - { src: "scripts/status_cpu_temp", dest: "{{ binaries_prefix[ansible_distribution].path }}/status_cpu_temp", dists: ["Gentoo"] }
   - { src: "scripts/status_uptime", dest: "{{ binaries_prefix[ansible_distribution].path }}/status_uptime", dists: ["Gentoo"] }
@@ -20,7 +17,9 @@ shell_templates:
   - { src: "scripts/update-portage-metadata", dest: "{{ binaries_prefix[ansible_distribution].path }}/update-portage-metadata", dists: ["Gentoo"] }
   - { src: "scripts/portage-check-world", dest: "{{ binaries_prefix[ansible_distribution].path }}/portage-check-world", dists: ["Gentoo"] }
   - { src: "shell/common_settings.j2", dest: "{{ ansible_env.HOME }}/common_settings", dists: ["Gentoo"] }
+  - { src: "shell/common_settings.j2", dest: "{{ nixos_dotfiles_location }}/shell/common_settings", become: yes, dists: ["NixOS"] } # NOTE: will not be used as is and generated just for reference
   - { src: "shell/common_settings_bash.j2", dest: "{{ ansible_env.HOME }}/common_settings_bash", dists: ["Gentoo"] }
+  - { src: "shell/common_settings_bash.j2", dest: "{{ nixos_dotfiles_location }}/shell/common_settings_bash", become: yes, dists: ["NixOS"] } # NOTE: will not be used as is and generated just for reference
   - { src: "shell/zsh.plugins.j2", dest: "{{ zsh_plugins_list_location }}", dists: ["Gentoo"] }
   - { src: "shell/tmux-sessions.j2", dest: "{{ ansible_env.HOME }}/tmux-sessions" }
 default_user_name: octocat

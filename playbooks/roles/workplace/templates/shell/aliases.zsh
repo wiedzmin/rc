@@ -7,9 +7,6 @@ alias dud="(setopt globdots;du -ks * | sort -nr | sed -e 's/^\([0-9]\{1,\}\)[0-9
 
 alias -g grep="grep --color=auto --perl-regexp"
 
-findname() { pattern=$1; find . -name "${pattern}" }
-find_in_files() { fnpattern=$1; grpattern=$2; find . -name "${fnpattern}" -exec grep "${grpattern}" -n {} + }
-
 alias -g ERR='2>>( sed -ue "s/.*/$fg_bold[red]&$reset_color/" 1>&2 )'
 alias -g X='| xargs'
 alias -g L='| less'
