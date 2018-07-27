@@ -59,9 +59,7 @@
     dest: "{{ ansible_env.HOME }}/.bashrc"
     line: "source ~/common_settings_bash"
     state: present
-  when:
-    - bashrc.stat.exists == True
-    - ansible_distribution == "Gentoo"
+  when: ansible_distribution == "Gentoo" and bashrc.stat.exists == True
 
 - name: shell | Antibody | bundle plugins statically
   tags: [shell, zsh]
