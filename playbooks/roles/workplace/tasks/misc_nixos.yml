@@ -13,6 +13,5 @@
   tags: [misc, shepherd]
   copy:
     src: "{{ playbook_dir }}/../private/shepherd-jobs"
-    dest: "{{ ansible_env.HOME }}/shepherd-jobs.yml"
+    dest: "{{ nixos_config_location }}/private/shepherd-jobs.yml"
     mode: 0755
-  when: no # TODO: make custom Nix derivation
