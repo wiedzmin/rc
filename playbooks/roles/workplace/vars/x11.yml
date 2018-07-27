@@ -42,6 +42,7 @@ x11_templates:
   - { src: "resources/.xftrc.j2", dest: "{{ nixos_dotfiles_location }}/x11/resources/.xftrc", enabled: yes, xresources: yes, dists: ["NixOS"] }
   - { src: "resources/.emacsrc.j2", dest: "{{ ansible_env.HOME }}/.emacsrc", enabled: yes, xresources: yes, dists: ["Gentoo"] }
   - { src: "resources/.emacsrc.j2", dest: "{{ nixos_dotfiles_location }}/x11/resources/.emacsrc", enabled: yes, xresources: yes, dists: ["NixOS"] }
+  - { src: "x11/xmodmaprc", dest: "{{ nixos_dotfiles_location }}/x11/xmodmaprc", dists: ["NixOS"] }
   - { src: "x11/statusbar_osd.j2", dest: "{{ binaries_prefix['Gentoo'].path }}/statusbar_osd", user: "{{ user_name }}", dists: ["Gentoo"] }
   # TODO: review and maybe merge into one script with parameters / review existing XRandR solutions (autorandr, etc.)
   - { src: "x11/xrandr/ext_heads_dock.sh", dest: "{{ binaries_prefix['Gentoo'].path }}/ext_heads_dock.sh", user: "{{ user_name }}", become: yes, dists: ["Gentoo"] }
