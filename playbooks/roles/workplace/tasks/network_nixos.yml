@@ -1,0 +1,14 @@
+---
+
+- include_vars: "{{ item }}"
+  tags: [network, services]
+  with_items:
+    - "{{ playbook_dir }}/../private/private_vars.yml"
+    - network.yml
+
+- name: network | instantiate hosts file
+  tags: [network]
+  copy:
+    content: "{{ lookup('template', 'network/hosts.j2') }}"
+    dest: "{{ nixos_config_location }}/private/extra_hosts"
+    mode: 0755

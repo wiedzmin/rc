@@ -16,6 +16,9 @@
 - import_tasks: network_gentoo.yml
   when: ansible_distribution == "Gentoo"
 
+- import_tasks: network_nixos.yml
+  when: ansible_distribution == "NixOS"
+
 - import_tasks: git.yml
 
 - import_tasks: golang_gentoo.yml
