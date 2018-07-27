@@ -55,7 +55,6 @@ export_variables:
   - { name: "WORKON_HOME", value: "$HOME/{{ virtualenvs_subdir }}" }
   - { name: "PROJECT_HOME", value: "{{ workspace_path }}/python" }
   - { name: "PROJECTS", value: "{{ workspace_path }}/foss" }
-  - { name: "LOCALE_ARCHIVE", value: "$HOME/.nix-profile/lib/locale/locale-archive" }
 editor_choices:
   - "emacsclient"
   - "vim"
