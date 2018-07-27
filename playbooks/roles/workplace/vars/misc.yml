@@ -2,7 +2,7 @@ misc_paths:
   - { path: "{{ binaries_prefix[ansible_distribution].path }}",
       become: "{{ binaries_prefix[ansible_distribution].become | default(False) }}" }
   - { path: "{{ ansible_env.HOME }}/.gnupg", mode: '0700', become: yes }
-  - { path: "{{ ansible_env.HOME }}/.imapfilter" }
+  - { path: "{{ ansible_env.HOME }}/.imapfilter", dists: ["Gentoo"] }
   - { path: "{{ nixos_dotfiles_location }}/mail", become: yes, dists: ["NixOS"] }
   - { path: "{{ ansible_env.HOME }}/.ssh", mode: '0700', recurse: no }
   - { path: "{{ ansible_env.HOME }}/pids", become: yes, dists: ["Gentoo"] }
@@ -21,7 +21,7 @@ misc_templates:
   - { src: "mail/.msmtprc", dest: "{{ nixos_dotfiles_location }}/.msmtprc", become: yes, dists: ["NixOS"] }
   - { src: "mail/imapfilter.conf.lua", dest: "{{ ansible_env.HOME }}/.imapfilter/config.lua",
       handlers: ["services | imapfilter | restart service"], dists: ["Gentoo"] }
-  - { src: "mail/imapfilter.conf.lua", dest: "{{ nixos_dotfiles_location }}/mail/imapfilter_config.lua", become: yes, dists: ["NixOS"] }
+  - { src: "mail/imapfilter.conf.lua", dest: "{{ nixos_config_location }}/private/imapfilter_config.lua", become: yes, dists: ["NixOS"] }
   - { src: "ssh_config", dest: "{{ ansible_env.HOME }}/.ssh/config" }
   - { src: "mpd.conf", dest: "/etc/mpd.conf", user: root, become: yes, dists: ["Gentoo"] }
   - { src: "mpd.conf", dest: "{{ nixos_dotfiles_location }}/mpd.conf", become: yes, dists: ["NixOS"] }

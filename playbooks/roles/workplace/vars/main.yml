@@ -1,6 +1,7 @@
 ---
 
-nixos_dotfiles_location: /etc/nixos/dotfiles
+nixos_config_location: /etc/nixos
+nixos_dotfiles_location: "{{ nixos_config_location }}/dotfiles"
 binaries_prefix:
   Gentoo:
     path: /usr/local/bin
