@@ -4,7 +4,7 @@ python_pip_packages: # TODO: review packages and maybe pick/add to Nixpkgs
   - "GitPython"
   - "autopep8"
   - "flake8"
-  - "imapautofiler"
+  - "imapautofiler" # TODO: review and select either this or imapfilter
   - "importmagic"
   - "isort"
   - "jedi"
