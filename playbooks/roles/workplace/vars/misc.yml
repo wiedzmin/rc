@@ -38,8 +38,8 @@ imapfilter_account_personal:
   ssl: "tls"
   enabled: yes
 imapfilter_daemon_opts:
-  - { key: "-l", value: "/home/octocat/imapfilter.log" }
-  - { key: "-d", value: "/home/octocat/imapfilter.debug" }
+  - { key: "-l", value: "{{ ansible_env.HOME }}/imapfilter.log" }
+  - { key: "-d", value: "{{ ansible_env.HOME }}/imapfilter.debug" }
   - { key: "-v"}
 thd_tmp_dir: "/tmp/thd"
 tg_backup_formatter: plaintext
