@@ -65,8 +65,6 @@ mime_assocs: # TODO: check if this is applicable to NixOS
   - { program: "{{ default_ebook_viewer_executable }}", mimetype: "image/vnd.djvu" }
   - { program: "{{ default_ebook_viewer_executable }}", mimetype: "image/x-djvu" }
 xft_fonts:
-  - { name: "Consolas", is_bold: yes, bold_keyword: "style"}
-  - { name: "PTMono", is_bold: yes, bold_keyword: "style"}
   - { name: "Hack", is_bold: yes, bold_keyword: "weight"}
   - { name: "IosevkaCC", is_bold: yes, bold_keyword: "weight"}
   - { name: "mononoki", is_bold: yes, bold_keyword: "weight"}
@@ -79,6 +77,7 @@ xft_font_current: "{{ xft_fonts.7 }}"
 xft_font_fallback: "{{ xft_fonts.0 }}"
 xft_font_size_app: 11
 xft_font_size_term: 9
+  # TODO: add definition for Inconsolata
 vpn_service_name: job-vpn
 osd_delay: 2
 osd_font: "-*-fixed-*-*-*-*-24-*-*-*-*-*-*-*"
