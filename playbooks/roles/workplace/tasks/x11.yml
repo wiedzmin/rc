@@ -32,6 +32,20 @@
   with_items: "{{ x11_templates }}"
   when: x11_templates is defined and (('dists' in item and ansible_distribution in item.dists) or 'dists' not in item)
 
+- name: x11 | assemble Xresources
+  tags: [x11]
+  assemble:
+    src: "{{ nixos_dotfiles_location }}/x11/resources"
+    dest: "{{ nixos_dotfiles_location }}/x11/Xresources"
+  when: ansible_distribution == "NixOS"
+
+- name: x11 | remove Xresources parts
+  tags: [x11]
+  file:
+    path: "{{ nixos_dotfiles_location }}/x11/resources"
+    state: absent
+  when: ansible_distribution == "NixOS"
+
 - name: x11 | Synaptics xinput ID
   tags: [x11]
   shell: "xinput | grep Synaptics | cut -f2 | cut -d'=' -f2"

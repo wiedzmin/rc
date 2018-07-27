@@ -4,6 +4,7 @@ x11_paths:
   - { path: "{{ nixos_dotfiles_location }}/x11/i3", become: yes, dists: ["NixOS"] }
   - { path: "{{ home_config_path }}/rofi", dists: ["Gentoo"] }
   - { path: "{{ nixos_dotfiles_location }}/x11/rofi", become: yes, dists: ["NixOS"] }
+  - { path: "{{ nixos_dotfiles_location }}/x11/resources", dists: ["NixOS"] }
   - { path: "{{ home_config_path }}/twmn", dists: ["Gentoo"] }
   - { path: "{{ ansible_env.HOME }}/.local/share/applications", dists: ["Gentoo"] }
   - { path: "{{ ansible_env.HOME }}/.sawfish", dists: ["Gentoo"] }
@@ -33,11 +34,14 @@ x11_templates:
   - { src: "xmobarrc-noinet", dest: "{{ ansible_env.HOME }}/.xmonad/xmobarrc-noinet" }
   - { src: "xmobarrc.xmonad.old", dest: "{{ ansible_env.HOME }}/.xmonad/xmobarrc.xmonad.old", dists: ["Gentoo"] }
   - { src: "emacsclient.desktop", dest: "{{ ansible_env.HOME }}/.local/share/applications/emacsclient.desktop" }
-  # TODO: merge into single Xresources file
   - { src: "resources/.Xresources.j2", dest: "{{ ansible_env.HOME }}/.Xresources", xresources: yes, dists: ["Gentoo"] }
+  - { src: "resources/.Xresources.j2", dest: "{{ nixos_dotfiles_location }}/x11/resources/.Xresources", xresources: yes, dists: ["NixOS"] }
   - { src: "resources/.urxvtrc.j2", dest: "{{ ansible_env.HOME }}/.urxvtrc", enabled: yes, xresources: yes, dists: ["Gentoo"] }
+  - { src: "resources/.urxvtrc.j2", dest: "{{ nixos_dotfiles_location }}/x11/resources/.urxvtrc", enabled: yes, xresources: yes, dists: ["NixOS"] }
   - { src: "resources/.xftrc.j2", dest: "{{ ansible_env.HOME }}/.xftrc", enabled: yes, xresources: yes, dists: ["Gentoo"] }
+  - { src: "resources/.xftrc.j2", dest: "{{ nixos_dotfiles_location }}/x11/resources/.xftrc", enabled: yes, xresources: yes, dists: ["NixOS"] }
   - { src: "resources/.emacsrc.j2", dest: "{{ ansible_env.HOME }}/.emacsrc", enabled: yes, xresources: yes, dists: ["Gentoo"] }
+  - { src: "resources/.emacsrc.j2", dest: "{{ nixos_dotfiles_location }}/x11/resources/.emacsrc", enabled: yes, xresources: yes, dists: ["NixOS"] }
   - { src: "x11/statusbar_osd.j2", dest: "{{ binaries_prefix['Gentoo'].path }}/statusbar_osd", user: "{{ user_name }}", dists: ["Gentoo"] }
   # TODO: review and maybe merge into one script with parameters / review existing XRandR solutions (autorandr, etc.)
   - { src: "x11/xrandr/ext_heads_dock.sh", dest: "{{ binaries_prefix['Gentoo'].path }}/ext_heads_dock.sh", user: "{{ user_name }}", become: yes, dists: ["Gentoo"] }
