@@ -8,17 +8,17 @@ misc_paths:
   - { path: "{{ ansible_env.HOME }}/pids", become: yes, dists: ["Gentoo"] }
 misc_templates:
   - { src: ".guile", dest: "{{ ansible_env.HOME }}/.guile", dists: ["Gentoo"] }
-  - { src: ".guile", dest: "{{ nixos_dotfiles_location }}/.guile", become: yes, dists: ["NixOS"] }
+  - { src: ".guile", dest: "{{ nixos_dotfiles_location }}/dev/.guile", become: yes, dists: ["NixOS"] }
   - { src: ".editorconfig", dest: "{{ workspace_path }}/.editorconfig", dists: ["Gentoo"] }
-  - { src: ".editorconfig", dest: "{{ nixos_dotfiles_location }}/.editorconfig", become: yes, dists: ["NixOS"] }
+  - { src: ".editorconfig", dest: "{{ nixos_dotfiles_location }}/dev/.editorconfig", become: yes, dists: ["NixOS"] }
   - { src: "gnupg/gpg-agent.conf", dest: "{{ ansible_env.HOME }}/.gnupg/gpg-agent.conf", mode: '0600', become: yes, dists: ["Gentoo"] }
   - { src: "gnupg/gpg.conf", dest: "{{ ansible_env.HOME }}/.gnupg/gpg.conf", mode: '0600', become: yes, dists: ["Gentoo"] }
   - { src: "mail/.mailcap", dest: "{{ ansible_env.HOME }}/.mailcap", dists: ["Gentoo"] }
-  - { src: "mail/.mailcap", dest: "{{ nixos_dotfiles_location }}/.mailcap", become: yes, dists: ["NixOS"] }
+  - { src: "mail/.mailcap", dest: "{{ nixos_dotfiles_location }}/mail/.mailcap", become: yes, dists: ["NixOS"] }
   - { src: "mail/.mbsyncrc", dest: "{{ ansible_env.HOME }}/.mbsyncrc", dists: ["Gentoo"] }
-  - { src: "mail/.mbsyncrc", dest: "{{ nixos_dotfiles_location }}/.mbsyncrc", become: yes, dists: ["NixOS"] }
+  - { src: "mail/.mbsyncrc", dest: "{{ nixos_dotfiles_location }}/mail/.mbsyncrc", become: yes, dists: ["NixOS"] }
   - { src: "mail/.msmtprc", dest: "{{ ansible_env.HOME }}/.msmtprc", dists: ["Gentoo"] }
-  - { src: "mail/.msmtprc", dest: "{{ nixos_dotfiles_location }}/.msmtprc", become: yes, dists: ["NixOS"] }
+  - { src: "mail/.msmtprc", dest: "{{ nixos_dotfiles_location }}/mail/.msmtprc", become: yes, dists: ["NixOS"] }
   - { src: "mail/imapfilter.conf.lua", dest: "{{ ansible_env.HOME }}/.imapfilter/config.lua",
       handlers: ["services | imapfilter | restart service"], dists: ["Gentoo"] }
   - { src: "mail/imapfilter.conf.lua", dest: "{{ nixos_config_location }}/private/imapfilter_config.lua", become: yes, dists: ["NixOS"] }

@@ -11,7 +11,7 @@ x11_paths:
 x11_templates:
   - { src: "browser/.surfingkeysrc", dest: "{{ ansible_env.HOME }}/.surfingkeysrc", dists: ["Gentoo"] }
   - { src: "browser/wimpulation.json", dest: "{{ ansible_env.HOME }}/wimpulation.json", dists: ["Gentoo"] }
-  - { src: "browser/wimpulation.json", dest: "{{ nixos_dotfiles_location }}/wimpulation.json", become: yes, dists: ["NixOS"] }
+  - { src: "browser/wimpulation.json", dest: "{{ nixos_dotfiles_location }}/x11/wimpulation.json", become: yes, dists: ["NixOS"] }
   - { src: "x11/dunstrc.j2", dest: "{{ home_config_path }}/dunst/dunstrc", dists: ["Gentoo"] }
   - { src: "x11/dunstrc.j2", dest: "{{ nixos_dotfiles_location }}/x11/dunstrc", become: yes, dists: ["NixOS"] }
   - { src: "x11/rofi.j2", dest: "{{ home_config_path }}/rofi/config", dists: ["Gentoo"] } # TODO: review content and port to NixOS later

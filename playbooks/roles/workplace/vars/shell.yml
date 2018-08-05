@@ -4,6 +4,7 @@ shell_paths:
   - { path: "{{ nixos_dotfiles_location }}/shell", become: yes, dists: ["NixOS"] }
 shell_templates:
   - { src: ".tmux.conf", dest: "{{ ansible_env.HOME }}/.tmux.conf", dists: ["Gentoo"] }
+  - { src: ".tmux.conf", dest: "{{ nixos_dotfiles_location }}/shell/tmux.conf", dists: ["NixOS"] } # TODO: think of generating Nix substitutions here
   - { src: ".urlview", dest: "{{ ansible_env.HOME }}/.urlview" }
   - { src: "shell/.zshrc.j2", dest: "{{ ansible_env.HOME }}/.zshrc", dists: ["Gentoo"] }
   - { src: "shell/.zshrc.j2", dest: "{{ nixos_dotfiles_location }}/shell/.zshrc", become: yes, dists: ["NixOS"] } # NOTE: will not be used as is and generated just for reference
