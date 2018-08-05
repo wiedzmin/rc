@@ -76,7 +76,7 @@ xft_fonts:
   - { name: "Go Mono", is_bold: yes, bold_keyword: "style", size_app: 16, size_term: 11 }
   - { name: "Hack", is_bold: yes, bold_keyword: "weight", size_app: 16, size_term: 11 }
   - { name: "Input Mono", is_bold: yes, bold_keyword: "weight", size_app: 16, size_term: 11 }
-  - { name: "Iosevka", is_bold: yes, bold_keyword: "weight", size_app: 16, size_term: 11 }
+  - { name: "Iosevka", is_bold: yes, bold_keyword: "weight", size_app: 16, size_term: 12 }
   - { name: "Noto Mono", is_bold: yes, bold_keyword: "style", size_app: 16, size_term: 11 }
   - { name: "mononoki", is_bold: yes, bold_keyword: "weight", size_app: 16, size_term: 11 }
 xft_font_current: "{{ xft_fonts.5 }}"
