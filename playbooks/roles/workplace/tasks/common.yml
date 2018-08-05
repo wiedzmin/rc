@@ -33,6 +33,12 @@
     user_shell_binaries: "{{ user_shell_binaries | default({}) | combine( {item.item: item.stdout} ) }}"
   with_items: "{{ user_shell_binaries.results }}"
 
+# TODO: think and maybe substitute respective implementations in all "ensure paths" and "instantiate templates" tasks with this
+- name: facts | current user username
+  tags: [common]
+  set_fact:
+    current_user_username: "{{ lookup('env', 'USER') }}"
+
 - name: groups | current user primary group
   tags: [common]
   shell: "groups | cut -d' ' -f1"
