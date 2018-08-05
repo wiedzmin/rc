@@ -10,7 +10,9 @@ binaries_prefix:
     path: "{{ ansible_env.HOME }}/scripts"
 emacs_config_dir: "{{ ansible_env.HOME }}/.emacs.d"
 pids_dir: "{{ ansible_env.HOME }}/pids"
-custom_vpn_datadir: /etc/custom_vpn
+job_vpn_datadir:
+  Gentoo: /etc/custom_vpn
+  NixOS: "{{ nixos_config_location }}/private/vpn/job.current"
 workspace_path: "{{ ansible_env.HOME }}/workspace"
 home_config_path: "{{ ansible_env.HOME }}/.config"
 default_browser_executable: firefox

@@ -1,6 +1,6 @@
 #!/sbin/openrc-run
 
-VPNCONF="{{ custom_vpn_datadir }}/office.ovpn"
+VPNCONF="{{ job_vpn_datadir['Gentoo'] }}/office.ovpn"
 PIDFILE={{ pids_dir }}/job-vpn.pid
 DAEMON_OPTS="--config ${VPNCONF} --writepid ${PIDFILE} --daemon"
 
@@ -16,4 +16,3 @@ stop() {
 	start-stop-daemon --stop --pidfile ${PIDFILE}
 	eend $? "Failed to stop job vpn"
 }
-

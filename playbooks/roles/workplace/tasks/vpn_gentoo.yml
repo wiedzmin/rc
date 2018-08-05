@@ -2,62 +2,23 @@
 
 - include_vars: vpn.yml
   tags: [vpn, services]
-  when: ansible_distribution == "Gentoo"
 
-- name: vpn | ensure custom config directory
+- import_tasks: common.yml
   tags: [vpn]
-  file:
-    path: "{{ custom_vpn_datadir }}"
-    state: directory
-    mode: "0755"
-    owner: "{{ user_name }}"
-    group: "{{ user_group }}"
-    recurse: yes
-  become: yes
-  when: ansible_distribution == "Gentoo"
 
-- name: vpn | cleanup custom config directory
-  tags: [cleanup]
-  file:
-    path: "{{ item }}"
-    state: absent
-  with_fileglob:
-    - "{{ custom_vpn_datadir }}/*"
-  when: ansible_distribution == "Gentoo"
-
-- name: vpn | copy files to system location
+- import_tasks: vpn.yml
   tags: [vpn]
-  copy:
-    src: "{{ playbook_dir }}/../private/vpn/current/{{ item }}"
-    dest: "{{ custom_vpn_datadir }}/{{ item }}"
-  become: yes
-  with_items:
-    - "auth.conf"
-    - "office.ovpn"
-  notify: stop vpn service
-  when: ansible_distribution == "Gentoo"
-
-- name: vpn | customize OpenVPN config | automate authentication
-  tags: [vpn]
-  lineinfile:
-    dest: "{{ custom_vpn_datadir }}/office.ovpn"
-    regexp: "^auth-user-pass"
-    line: "auth-user-pass {{ custom_vpn_datadir }}/auth.conf"
-  become: yes
-  notify: stop vpn service
-  when: ansible_distribution == "Gentoo"
 
 - name: vpn | customize OpenVPN config | fix up/down scripting
   tags: [vpn]
   lineinfile:
-    dest: "{{ custom_vpn_datadir }}/office.ovpn"
+    dest: "{{ job_vpn_datadir }}/office.ovpn"
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
   with_items:
     - { regexp: "^up /etc/openvpn/update-resolv-conf", line: "up /etc/openvpn/up.sh" }
     - { regexp: "^down /etc/openvpn/update-resolv-conf", line: "down /etc/openvpn/down.sh" }
   become: yes
-  when: ansible_distribution == "Gentoo"
   notify: stop vpn service
 
 - name: vpn | install openrc entry
@@ -68,4 +29,3 @@
     mode: 0755
   become: yes
   notify: stop vpn service
-  when: ansible_distribution == "Gentoo"

@@ -32,6 +32,9 @@
 - import_tasks: vpn_gentoo.yml
   when: ansible_distribution == "Gentoo"
 
+- import_tasks: vpn_nixos.yml
+  when: ansible_distribution == "NixOS"
+
 - import_tasks: misc_gentoo.yml
   when: ansible_distribution == "Gentoo"
 

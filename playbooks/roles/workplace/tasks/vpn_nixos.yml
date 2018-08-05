@@ -1,0 +1,18 @@
+---
+
+- include_vars: vpn.yml
+  tags: [vpn]
+
+- import_tasks: vpn.yml
+  tags: [vpn]
+
+- name: vpn | customize OpenVPN config | fix up/down scripting
+  tags: [vpn]
+  lineinfile:
+    path: "{{ job_vpn_datadir['NixOS'] }}/office.ovpn"
+    regexp: "{{ item }}"
+    state: absent
+  with_items:
+    - "^up /etc/openvpn/update-resolv-conf"
+    - "^down /etc/openvpn/update-resolv-conf"
+  become: yes

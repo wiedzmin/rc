@@ -1,0 +1,44 @@
+---
+
+- include_vars: vpn.yml
+  tags: [vpn, services, cleanup]
+
+- import_tasks: common.yml
+  tags: [vpn]
+
+- name: vpn | ensure custom config directory
+  tags: [vpn]
+  file:
+    path: "{{ job_vpn_datadir[ansible_distribution] }}"
+    state: directory
+    mode: "0755"
+    owner: "{{ current_user_username }}" # FIXME: substitute all old hardcoded user and group values with these vars
+    group: "{{ current_user_primary_group }}"
+    recurse: yes
+  become: yes
+
+- name: vpn | cleanup custom config directory
+  tags: [cleanup]
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_fileglob:
+    - "{{ job_vpn_datadir[ansible_distribution] }}/*"
+
+- name: vpn | copy files to config directory
+  tags: [vpn]
+  copy:
+    src: "{{ playbook_dir }}/../private/vpn/current/{{ item }}"
+    dest: "{{ job_vpn_datadir[ansible_distribution] }}/{{ item }}"
+  become: yes
+  with_items: # TODO: consider fileglob
+    - "auth.conf"
+    - "office.ovpn"
+
+- name: vpn | customize OpenVPN config | automate authentication
+  tags: [vpn]
+  lineinfile:
+    dest: "{{ job_vpn_datadir[ansible_distribution] }}/office.ovpn"
+    regexp: "^auth-user-pass"
+    line: "auth-user-pass {{ job_vpn_datadir[ansible_distribution] }}/auth.conf"
+  become: yes
