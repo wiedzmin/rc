@@ -43,8 +43,8 @@
     path: "{{ x11_stumpwm_traits.local_path }}/make-image.lisp"
     insertafter: ":executable t"
     line: "                                    :compression t"
-  when:
-    - xsession_current_wm == "stumpwm"
+  # SBCL on NixOS installed without compressed images support out-of-the-box
+  when: xsession_current_wm == "stumpwm" and ansible_distribution != "NixOS"
 
 - name: wm | stumpwm | cleanup
   tags: [wm]
@@ -67,8 +67,7 @@
     chdir: "{{ x11_stumpwm_traits.local_path }}"
     target: install
   become: yes
-  when:
-    - xsession_current_wm == "stumpwm"
+  when: xsession_current_wm == "stumpwm" and ansible_distribution == "Gentoo"
 
 - name: wm | generate common settings for StumpWM
   tags: [wm]

@@ -49,8 +49,7 @@
 
 - import_tasks: shell.yml
 
-- import_tasks: wm_gentoo.yml
-  when: ansible_distribution == "Gentoo"
+- import_tasks: wm.yml
 
 - import_tasks: x11.yml
 
