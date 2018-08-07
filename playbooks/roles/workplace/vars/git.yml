@@ -15,7 +15,7 @@ git_templates:
   - { src: 'git/git-commit-template.j2', dest: '{{ git_assets_dir }}/git-commit-template' }
   - { src: 'git/git-commit-template.j2', dest: '{{ git_assets_dir_nixos }}/git-commit-template', user: root, become: yes, dists: ["NixOS"] }
   - { src: 'git/.gitignore', dest: '{{ git_assets_dir }}/.gitignore' }
-  - { src: 'git/.gitignore', dest: '{{ git_assets_dir_nixos }}/.gitignore', user: root, become: yes, dists: ["NixOS"] }
+  - { src: 'git/.gitignore', dest: '{{ git_assets_dir_nixos }}/gitignore', user: root, become: yes, dists: ["NixOS"] }
   - { src: 'git/init-templates/hooks/pre-push', dest: '{{ git_assets_init_templates_dir }}/hooks/pre-push' }
   - { src: 'git/init-templates/hooks/pre-push', dest: '{{ git_assets_init_templates_dir_nixos }}/hooks/pre-push', user: root, become: yes, dists: ["NixOS"] }
 git_src_stop_words:

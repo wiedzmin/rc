@@ -35,7 +35,7 @@ x11_templates:
   - { src: "xmobarrc.xmonad.old", dest: "{{ ansible_env.HOME }}/.xmonad/xmobarrc.xmonad.old", dists: ["Gentoo"] }
   - { src: "emacsclient.desktop", dest: "{{ ansible_env.HOME }}/.local/share/applications/emacsclient.desktop" }
   - { src: "resources/.Xresources.j2", dest: "{{ ansible_env.HOME }}/.Xresources", xresources: yes, dists: ["Gentoo"] }
-  - { src: "resources/.Xresources.j2", dest: "{{ nixos_dotfiles_location }}/x11/resources/.Xresources", xresources: yes, dists: ["NixOS"] }
+  - { src: "resources/.Xresources.j2", dest: "{{ nixos_dotfiles_location }}/x11/resources/Xresources", xresources: yes, dists: ["NixOS"] }
   - { src: "resources/.urxvtrc.j2", dest: "{{ ansible_env.HOME }}/.urxvtrc", enabled: yes, xresources: yes, dists: ["Gentoo"] }
   - { src: "resources/.urxvtrc.j2", dest: "{{ nixos_dotfiles_location }}/x11/resources/.urxvtrc", enabled: yes, xresources: yes, dists: ["NixOS"] }
   - { src: "resources/.xftrc.j2", dest: "{{ ansible_env.HOME }}/.xftrc", enabled: yes, xresources: yes, dists: ["Gentoo"] }

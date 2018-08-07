@@ -22,9 +22,9 @@ python_paths:
   - { path: "{{ nixos_dotfiles_location }}/dev/python", become: yes, dists: ["NixOS"] }
 python_templates:
   - { src: 'python/.pylintrc', dest: '{{ ansible_env.HOME }}/.pylintrc' }
-  - { src: 'python/.pylintrc', dest: '{{ nixos_dotfiles_location }}/dev/python/.pylintrc', dists: ["NixOS"] }
+  - { src: 'python/.pylintrc', dest: '{{ nixos_dotfiles_location }}/dev/python/pylintrc', dists: ["NixOS"] }
   - { src: 'python/isort.cfg', dest: '{{ ansible_env.HOME }}/.isort.cfg' }
-  - { src: 'python/isort.cfg', dest: '{{ nixos_dotfiles_location }}/dev/python/.isort.cfg', dists: ["NixOS"] }
+  - { src: 'python/isort.cfg', dest: '{{ nixos_dotfiles_location }}/dev/python/isort.cfg', dists: ["NixOS"] }
   - { src: 'python/flake8', dest: '{{ home_config_path }}/flake8', dists: ["Gentoo"] }
   - { src: 'python/flake8', dest: '{{ nixos_dotfiles_location }}/dev/python/flake8', dists: ["NixOS"] }
   - { src: 'python/pep8', dest: '{{ home_config_path }}/pep8', dists: ["Gentoo"] }
