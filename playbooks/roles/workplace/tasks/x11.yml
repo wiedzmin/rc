@@ -93,6 +93,4 @@
   file:
     path: "{{ emacs_config_name_tangled }}"
     state: absent
-  when:
-    - xsession_script.changed
-    - ansible_distribution == "Gentoo"
+  when: xsession_script.changed and ansible_distribution == "Gentoo"
