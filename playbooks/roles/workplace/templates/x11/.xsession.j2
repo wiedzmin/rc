@@ -68,7 +68,7 @@ ac_adapter=$(acpi -a | cut -d' ' -f3 | cut -d- -f1)
 
 xrdb -merge .Xresources
 {% for config in x11_templates | selectattr('xresources', 'sameas', true) %}
-{% if config.enabled is defined and config.enabled %}
+{% if config.enabled is defined and config.enabled and ansible_distribution != "NixOS" %}
 xrdb -merge {{ config.dest }}
 {% endif %}
 {% endfor %}
