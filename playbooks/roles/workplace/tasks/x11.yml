@@ -80,10 +80,13 @@
   tags: [x11]
   copy:
     content: "{{ lookup('template', 'x11/.xsession.j2') }}"
-    dest: "{{ ansible_env.HOME }}/.xsession"
+    dest: "{{ item.path }}"
     mode: 0755
   register: xsession_script
-  when: ansible_distribution == "Gentoo"
+  with_items:
+    - { path: "{{ ansible_env.HOME }}/.xsession", dists: ["Gentoo"] }
+    - { path: "{{ nixos_dotfiles_location }}/x11/.xsession", dists: ["NixOS"] }
+  when: ansible_distribution in item.dists
 
 - name: x11 | remove tangled Emacs config
   tags: [x11]
