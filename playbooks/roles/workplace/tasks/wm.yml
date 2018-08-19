@@ -69,6 +69,14 @@
   become: yes
   when: xsession_current_wm == "stumpwm" and ansible_distribution == "Gentoo"
 
+- name: wm | stumpwm | install
+  tags: [wm]
+  copy:
+    src: "{{ x11_stumpwm_traits.local_path }}/stumpwm"
+    dest: "{{ nixos_config_location }}/contrib/stumpwm.bin"
+    mode: 0755
+  when: xsession_current_wm == "stumpwm" and ansible_distribution == "NixOS"
+
 - name: wm | generate common settings for StumpWM
   tags: [wm]
   copy:
